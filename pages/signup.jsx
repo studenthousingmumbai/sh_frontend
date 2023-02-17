@@ -4,6 +4,7 @@ import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
 import useAuth from "../hooks/useAuth";
 import { useRouter } from "next/router";
 import withAuth from "../hooks/withAuth";
+import Errors from '../components/common/Errors'; 
 
 export default function Signup() {
     const router = useRouter();
@@ -214,7 +215,9 @@ export default function Signup() {
                         </a>
                       </div>
                     </div> */}
-  
+                    {
+                      signupErrors.length > 0 && <Errors errors={signupErrors}/>
+                    }
                     <div>
                       <button
                         type="submit"

@@ -4,7 +4,7 @@ import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
 import useAuth from "../hooks/useAuth";
 import { useRouter } from "next/router";
 import withAuth from "../hooks/withAuth";
-import apis from "../lib/apis";
+import Errors from '../components/common/Errors';
 
 export default function Signin() {
     const router = useRouter();
@@ -31,11 +31,6 @@ export default function Signin() {
 
     return (
       <>
-        <div>
-          {loginErrors && loginErrors.map(error => (
-            <div> {error.message} </div>
-          ))}
-        </div>
         <div className="flex min-h-full">
           <div className="flex flex-1 flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
             <div className="mx-auto w-full max-w-sm lg:w-96">
@@ -177,7 +172,9 @@ export default function Signin() {
                         </a>
                       </div>
                     </div>
-  
+                    {
+                      loginErrors.length > 0 && <Errors errors={loginErrors}/>
+                    }
                     <div>
                       <button
                         type="submit"
