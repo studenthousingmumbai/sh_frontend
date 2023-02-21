@@ -37,7 +37,7 @@ import {
         <div className=" grid grid-cols-2 lg:grid-cols-4 gap-x-12 md:gap-x-48 gap-y-12 lg:gap-24 pb-12 w-full place-items-stretch ">
         {/* bg-[url('/am-4.png')] */}
           {features.map((ele) => (
-            <div className='relative flex items-end justify-center shadow-lg rounded-xl '>
+            <div className='relative flex items-end justify-center shadow-lg rounded-xl truncate'>
               <img className="w-full h-full object-cover rounded-xl " src={ele.src} alt={ele.name} />
               <div className='absolute flex flex-col justify-center items-center py-8 px-4 bg-gradient-to-b from-transparent to-white w-full rounded-xl'>
                 <div className='font-bold text-lg md:text-xl lg:text-2xl uppercase'>{ele.name}</div>

@@ -104,148 +104,148 @@ export default function Example() {
     }
 
     return (
-    <ProfileLayout>
-        <ProfileSidebar user={user && {firstname: user?.firstname, lastname: user?.lastname}}/>
-        <div className="w-full lg:w-3/4 py-6">
-            <div className='flex flex-col min-w-max max-h-max'>
+        <ProfileLayout>
+            <ProfileSidebar user={user && {firstname: user?.firstname, lastname: user?.lastname}}/>
+            <div className="w-full lg:w-3/4 py-6">
+                <div className='flex flex-col'>
 
-                {/* header */}
-                <div className='flex items-center'>
-                    <img className='h-10' src="/icon_person.png" alt="" />
-                    <h3 className='font-medium text-4xl uppercase'>About</h3>
-                </div>
-                <div className='bg-gray-300 mb-6'><div className='w-44 border border-yellow-300'></div></div>
-                
-                {/* subheader 1 */}
-                <div className='flex justify-between lg:justify-start items-center mb-6'> 
-                    <h1 className='uppercase text-2xl'>contact information</h1>
-                    <img className='h-6 ml-4 cursor-pointer' src="/icon_edit_2_outline.png" alt="" onClick={() => setEditContactInfo(true)} />
-                </div>
-
-                {/* contact information */}
-                <div className='flex lg:w-1/2 justify-start items-center mb-6'>
-                    <div className='w-1/2 capitalize text-xl'>phone number:</div>
-                    <div className={`w-1/2 capitalize ${editContactInfo && 'hidden'}`}>{user?.phone_number}</div>
-                    <input
-                        name='phone_number'
-                        value={user?.phone_number}
-                        className={`w-1/2 capitalize bg-gray-200 rounded-md py-1 px-2 focus:outline-none ${!editContactInfo && 'hidden'}`}
-                        onChange={handleChange}
-                    />
-                </div>
-                
-                <div className='flex lg:w-1/2 justify-start items-center mb-6'>
-                    <div className='w-1/2 capitalize text-xl'>email address:</div>
-                    <div className={`w-1/2 capitalize ${editContactInfo && 'hidden'}`}>{user?.email}</div>
-                    <input
-                        name='email'
-                        value={user?.email}
-                        className={`w-1/2 capitalize bg-gray-200 rounded-md py-1 px-2 focus:outline-none ${!editContactInfo && 'hidden'}`}
-                        onChange={handleChange}
-                    />
-                </div>
-                
-                <div className='flex lg:w-1/2 justify-start items-center mb-6'>
-                    <div className='w-1/2 capitalize text-xl'>academic year:</div>
-                    <div className={`w-1/2 capitalize ${editContactInfo && 'hidden'}`}>{user?.academic_year}</div>
-                    <input
-                        name='academic_year'
-                        value={user?.academic_year}
-                        className={`w-1/2 capitalize bg-gray-200 rounded-md py-1 px-2 focus:outline-none ${!editContactInfo && 'hidden'}`}
-                        onChange={handleChange}
-                    />
-                </div>
-                
-                <div className={`flex lg:w-1/2 justify-start items-center ${!editContactInfo && 'mb-6'}`}>
-                    <div className='w-1/2 capitalize text-xl'>college:</div>
-                    <div className={`w-1/2 capitalize ${editContactInfo && 'hidden'}`}>{user?.college}</div>
-                    <input
-                        name='college'
-                        value={user?.college}
-                        className={`w-1/2 capitalize bg-gray-200 rounded-md py-1 px-2 focus:outline-none ${!editContactInfo && 'hidden'}`}
-                        onChange={handleChange}
-                    />
-                </div>
-
-
-                <div className={`flex lg:w-1/2 justify-start items-center ${!editContactInfo && 'mb-6'}`}>
-                    <div className='w-1/2 capitalize text-xl'>course:</div>
-                    <div className={`w-1/2 uppercase ${editContactInfo && 'hidden'}`}>{user?.course}</div>
-                    <input
-                        name='course'
-                        value={user?.course}
-                        className={`w-1/2 capitalize bg-gray-200 rounded-md py-1 px-2 focus:outline-none ${!editContactInfo && 'hidden'}`}
-                        onChange={handleChange}
-                    />
-                </div>
-
-                {editContactInfo && (
-                    <div className='flex my-3 mx-3'>
-                        <button className='bg-[#ffcc29] hover:bg-[#fad45a] py-1 px-6 rounded-lg' onClick={() => setEditContactInfo(false)}>Save</button>
-                        <button className='bg-[#ffcc29] hover:bg-[#fad45a] py-1 px-6 ml-4 rounded-lg' onClick={() => setUser(initialvalues)}>Reset</button>
+                    {/* header */}
+                    <div className='flex items-center'>
+                        <img className='h-10' src="/icon_person.png" alt="" />
+                        <h3 className='font-medium text-2xl sm:text-4xl uppercase'>About</h3>
                     </div>
-                )}
-
-                {/* subheader 2 */}
-                <div className='flex justify-between lg:justify-start items-center mb-6'> 
-                    <h1 className='uppercase text-2xl'>Basic information</h1>
-                    <img className='h-6 ml-4 cursor-pointer' src="/icon_edit_2_outline.png" alt="" onClick={() => setEditBasicInfo(true)} />
-                </div>
-
-                {/* basic information */}
-                <div className='flex lg:w-1/2 justify-start items-center mb-6'>
-                    <div className='w-1/2 capitalize text-xl'>gender:</div>
-                    <div className={`w-1/2 capitalize ${editBasicInfo && 'hidden'}`}>{user?.gender}</div>
-                    <input
-                        name='gender'
-                        value={user?.gender}
-                        className={`w-1/2 capitalize bg-gray-200 rounded-md py-1 px-2 focus:outline-none ${!editBasicInfo && 'hidden'}`}
-                        onChange={handleChange}
-                    />
-                </div>
-                
-                <div className='flex lg:w-1/2 justify-start items-center mb-6'>
-                    <div className='w-1/2 capitalize text-xl'>age:</div>
-                    <div className={`w-1/2 capitalize ${editBasicInfo && 'hidden'}`}>{calculateAge(user?.dob)}</div>
-                    <input
-                        name='gender'
-                        value={calculateAge(user?.dob)}
-                        disabled
-                        className={`w-1/2 capitalize bg-gray-200 rounded-md py-1 px-2 focus:outline-none ${!editBasicInfo && 'hidden'}`}
-                    />
-                </div>
-                
-                <div className='flex lg:w-1/2 justify-start items-center mb-6'>
-                    <div className='w-1/2 capitalize text-xl'>birthday:</div>
-                    <div className={`w-1/2 capitalize ${editBasicInfo && 'hidden'}`}>{user?.dob}</div>
-                    <input
-                        name='dob'
-                        value={user?.dob}
-                        className={`w-1/2 capitalize bg-gray-200 rounded-md py-1 px-2 focus:outline-none ${!editBasicInfo && 'hidden'}`}
-                        onChange={handleChange}
-                    />
-                </div>
-                
-                <div className={`flex lg:w-1/2 justify-start items-center ${!editBasicInfo && 'mb-6'}`}>
-                    <div className='w-1/2 capitalize text-xl'>location:</div>
-                    <div className={`w-1/2 capitalize ${editBasicInfo && 'hidden'}`}>{user?.addres?.city}, {user?.addres?.state} </div>
-                    <input
-                        name='addres'
-                        value={user?.location}
-                        className={`w-1/2 capitalize bg-gray-200 rounded-md py-1 px-2 focus:outline-none ${!editBasicInfo && 'hidden'}`}
-                        onChange={handleChange}
-                    />
-                </div>
-
-                {editBasicInfo && (
-                    <div className='flex my-3 mx-3'>
-                        <button className='bg-[#ffcc29] hover:bg-[#fad45a] py-1 px-6 rounded-lg' onClick={() => setEditBasicInfo(false)}>Save</button>
-                        <button className='bg-[#ffcc29] hover:bg-[#fad45a] py-1 px-6 ml-4 rounded-lg' onClick={() => setUser(initialvalues)}>Reset</button>
+                    <div className='bg-gray-300 mb-6'><div className='w-44 border border-yellow-300'></div></div>
+                    
+                    {/* subheader 1 */}
+                    <div className='flex justify-between lg:justify-start items-center mb-6'> 
+                        <h1 className='uppercase text-lg sm:text-2xl'>contact information</h1>
+                        <img className='h-6 ml-4 cursor-pointer' src="/icon_edit_2_outline.png" alt="" onClick={() => setEditContactInfo(true)} />
                     </div>
-                )}
 
-            </div>
-        </div> 
-    </ProfileLayout>
+                    {/* contact information */}
+                    <div className='flex lg:w-1/2 justify-start items-center mb-6'>
+                        <div className='w-1/2 capitalize text-lg sm:text-xl'>phone number:</div>
+                        <div className={`w-1/2 capitalize ${editContactInfo && 'hidden'}`}>{user?.phone_number}</div>
+                        <input
+                            name='phone_number'
+                            value={user?.phone_number}
+                            className={`w-1/2 capitalize bg-gray-200 rounded-md py-1 px-2 focus:outline-none ${!editContactInfo && 'hidden'}`}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    
+                    <div className='flex lg:w-1/2 justify-start items-center mb-6'>
+                        <div className='w-1/2 capitalize text-lg sm:text-xl'>email address:</div>
+                        <div className={`w-1/2 capitalize ${editContactInfo && 'hidden'}`}>{user?.email}</div>
+                        <input
+                            name='email'
+                            value={user?.email}
+                            className={`w-1/2 capitalize bg-gray-200 rounded-md py-1 px-2 focus:outline-none ${!editContactInfo && 'hidden'}`}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    
+                    <div className='flex lg:w-1/2 justify-start items-center mb-6'>
+                        <div className='w-1/2 capitalize text-lg sm:text-xl'>academic year:</div>
+                        <div className={`w-1/2 capitalize ${editContactInfo && 'hidden'}`}>{user?.academic_year}</div>
+                        <input
+                            name='academic_year'
+                            value={user?.academic_year}
+                            className={`w-1/2 capitalize bg-gray-200 rounded-md py-1 px-2 focus:outline-none ${!editContactInfo && 'hidden'}`}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    
+                    <div className={`flex lg:w-1/2 justify-start items-center ${!editContactInfo && 'mb-6'}`}>
+                        <div className='w-1/2 capitalize text-lg sm:text-xl'>college:</div>
+                        <div className={`w-1/2 capitalize ${editContactInfo && 'hidden'}`}>{user?.college}</div>
+                        <input
+                            name='college'
+                            value={user?.college}
+                            className={`w-1/2 capitalize bg-gray-200 rounded-md py-1 px-2 focus:outline-none ${!editContactInfo && 'hidden'}`}
+                            onChange={handleChange}
+                        />
+                    </div>
+
+
+                    <div className={`flex lg:w-1/2 justify-start items-center ${!editContactInfo && 'mb-6'}`}>
+                        <div className='w-1/2 capitalize text-lg sm:text-xl'>course:</div>
+                        <div className={`w-1/2 uppercase ${editContactInfo && 'hidden'}`}>{user?.course}</div>
+                        <input
+                            name='course'
+                            value={user?.course}
+                            className={`w-1/2 capitalize bg-gray-200 rounded-md py-1 px-2 focus:outline-none ${!editContactInfo && 'hidden'}`}
+                            onChange={handleChange}
+                        />
+                    </div>
+
+                    {editContactInfo && (
+                        <div className='flex my-3 mx-3'>
+                            <button className='bg-[#ffcc29] hover:bg-[#fad45a] py-1 px-6 rounded-lg' onClick={() => setEditContactInfo(false)}>Save</button>
+                            <button className='bg-[#ffcc29] hover:bg-[#fad45a] py-1 px-6 ml-4 rounded-lg' onClick={() => setUser(initialvalues)}>Reset</button>
+                        </div>
+                    )}
+
+                    {/* subheader 2 */}
+                    <div className='flex justify-between lg:justify-start items-center mb-6'> 
+                        <h1 className='uppercase text-lg sm:text-2xl'>Basic information</h1>
+                        <img className='h-6 ml-4 cursor-pointer' src="/icon_edit_2_outline.png" alt="" onClick={() => setEditBasicInfo(true)} />
+                    </div>
+
+                    {/* basic information */}
+                    <div className='flex lg:w-1/2 justify-start items-center mb-6'>
+                        <div className='w-1/2 capitalize text-lg sm:text-xl'>gender:</div>
+                        <div className={`w-1/2 capitalize ${editBasicInfo && 'hidden'}`}>{user?.gender}</div>
+                        <input
+                            name='gender'
+                            value={user?.gender}
+                            className={`w-1/2 capitalize bg-gray-200 rounded-md py-1 px-2 focus:outline-none ${!editBasicInfo && 'hidden'}`}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    
+                    <div className='flex lg:w-1/2 justify-start items-center mb-6'>
+                        <div className='w-1/2 capitalize text-lg sm:text-xl'>age:</div>
+                        <div className={`w-1/2 capitalize ${editBasicInfo && 'hidden'}`}>{calculateAge(user?.dob)}</div>
+                        <input
+                            name='gender'
+                            value={calculateAge(user?.dob)}
+                            disabled
+                            className={`w-1/2 capitalize bg-gray-200 rounded-md py-1 px-2 focus:outline-none ${!editBasicInfo && 'hidden'}`}
+                        />
+                    </div>
+                    
+                    <div className='flex lg:w-1/2 justify-start items-center mb-6'>
+                        <div className='w-1/2 capitalize text-lg sm:text-xl'>birthday:</div>
+                        <div className={`w-1/2 capitalize ${editBasicInfo && 'hidden'}`}>{user?.dob}</div>
+                        <input
+                            name='dob'
+                            value={user?.dob}
+                            className={`w-1/2 capitalize bg-gray-200 rounded-md py-1 px-2 focus:outline-none ${!editBasicInfo && 'hidden'}`}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    
+                    <div className={`flex lg:w-1/2 justify-start items-center ${!editBasicInfo && 'mb-6'}`}>
+                        <div className='w-1/2 capitalize text-lg sm:text-xl'>location:</div>
+                        <div className={`w-1/2 capitalize ${editBasicInfo && 'hidden'}`}>{user?.addres?.city}, {user?.addres?.state} </div>
+                        <input
+                            name='addres'
+                            value={user?.location}
+                            className={`w-1/2 capitalize bg-gray-200 rounded-md py-1 px-2 focus:outline-none ${!editBasicInfo && 'hidden'}`}
+                            onChange={handleChange}
+                        />
+                    </div>
+
+                    {editBasicInfo && (
+                        <div className='flex my-3 mx-3'>
+                            <button className='bg-[#ffcc29] hover:bg-[#fad45a] py-1 px-6 rounded-lg' onClick={() => setEditBasicInfo(false)}>Save</button>
+                            <button className='bg-[#ffcc29] hover:bg-[#fad45a] py-1 px-6 ml-4 rounded-lg' onClick={() => setUser(initialvalues)}>Reset</button>
+                        </div>
+                    )}
+
+                </div>
+            </div> 
+        </ProfileLayout>
   )
 }
