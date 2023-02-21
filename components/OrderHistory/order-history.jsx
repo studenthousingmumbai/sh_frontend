@@ -56,12 +56,12 @@ export default function Listing({
                     <h2 className='text-lg uppercase'> 
                         {address || "vile-parle, west"}
                     </h2>
-                    <div className='lg:hidden justify-start items-center py-2'>
-                        <button className='py-2 px-4 bg-[#BDFDB3] uppercase font-bold rounded-3xl text-sm'>
+                    <div className='lg:hidden flex gap-4 flex-col sm:flex-row justify-start items-start sm:items-center py-2'>
+                        <button className='py-2 px-4 bg-[#BDFDB3] uppercase font-bold rounded-3xl text-xs sm:text-sm'>
                             contact us
                         </button>
                         
-                        <button className='py-2 px-4 ml-4 bg-[#FBCF5F] uppercase font-bold rounded-3xl text-sm text-white'>
+                        <button className='py-2 px-4 bg-[#FBCF5F] uppercase font-bold rounded-3xl text-xs sm:text-sm text-white'>
                             view property
                         </button>
                     </div>

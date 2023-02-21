@@ -19,13 +19,13 @@ export default function Example() {
                     </div>
                 </div>
                 <div className=" py-12 lg:col-span-3 lg:py-16">
-                    <div className='px-4 sm:px-6 lg:px-8 h-[40%]'>
-                        <div className="flex relative  max-w-lg lg:max-w-none h-24 items-center">
+                    <div className='px-4 sm:px-6 lg:px-8 '>
+                        <div className="flex relative  max-w-lg lg:max-w-none h-18 sm:h-24 items-center">
                             <div className='absolute h-full bg-yellow-300 top-0 left-0 bg-left w-1'>
                             </div>
-                            <div className='uppercase left-2 font-bold text-6xl pl-4'>about us</div>
+                            <div className='uppercase left-2 font-bold text-4xl sm:text-5xl md:text-6xl pl-4'>about us</div>
                         </div>
-                        <div className='py-6'>
+                        <div className='mt-3 text-md'>
                             "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
@@ -36,24 +36,24 @@ export default function Example() {
                         </div>
                     </div>
 
-                    <div className="flex items-center bg-gray-100 my-3">
-                        <div className="grid grid-cols-3 gap-8 py-4 items-center sm:px-6 lg:px-0">
+                    <div className="flex items-center bg-gray-100 px-3 my-3">
+                        <div className="grid grid-cols-3 gap-0 sm:gap-4 md:gap-8 items-center py-3 lg:py-6 sm:px-6 lg:px-0">
                             <div className="col-span-1 flex justify-center">
-                                <img className="h-8" src="/furniture1.png" alt="Tuple" />
-                                <h2 className="text-[22px] px-3 ">200+ Beds</h2>
+                                <img className="h-6 sm:h-8" src="/furniture1.png" alt="Tuple" />
+                                <h2 className="text-md sm:text-lg md:text-xl lg:text-2xl px-3">200+ Beds</h2>
                             </div>
                             <div className="col-span-1 flex justify-center">
-                                <img className="h-8" src="/home-2-1.png" alt="Tuple" />
-                                <h2 className="text-[22px] px-3 ">20+ Hostels</h2>
+                                <img className="h-6 sm:h-8" src="/home-2-1.png" alt="Tuple" />
+                                <h2 className="text-md sm:text-lg md:text-xl lg:text-2xl px-3 ">20+ Hostels</h2>
                             </div>
                             <div className="col-span-1 flex justify-center items-center">
-                                <img className="h-8" src="/multiple-users-silhouette-1.png" alt="Tuple" />
-                                <h2 className="text-[22px] px-3 ">2467+ Happy Students</h2>
+                                <img className="h-6 sm:h-8" src="/multiple-users-silhouette-1.png" alt="Tuple" />
+                                <h2 className="text-md sm:text-lg md:text-xl lg:text-2xl px-3 ">2467+ Happy Students</h2>
                             </div>
                         </div>
                     </div>
 
-                    <div className='px-4 py-6 sm:px-6 lg:px-8 h-[40%]' >
+                    <div className='px-4 sm:px-6 lg:px-8 ' >
                         <div className='flex items-center'>
                             <img className='h-12' src="/our_mission.png" alt="our_mission" />
                             <div className="flex items-center uppercase max-w-lg lg:max-w-none h-14 pl-2 left-2 font-bold text-3xl">

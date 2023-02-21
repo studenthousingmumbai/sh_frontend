@@ -63,7 +63,7 @@ export default function Example() {
     return (
     <ProfileLayout>
         <ProfileSidebar user={user && {firstname: user?.firstname, lastname: user?.lastname}}/>
-        <div className="w-full lg:w-3/4 min-w-max lg:min-w-0">
+        <div className="w-full">
                 {/* <h1 className='font-semibold capitalize text-2xl mb-3'>
                     Showing all listings  
                 </h1>  */}
