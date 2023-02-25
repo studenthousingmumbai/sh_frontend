@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
+import { useRouter } from 'next/router';
 import Layout from '../components/Layout'
 import Listing from '../components/Listings/Listing'; 
 import useApi from '../hooks/useApi';
+import Search from '../components/common/Search';
 
 // const listings = [ 
 //     {
@@ -33,16 +35,29 @@ import useApi from '../hooks/useApi';
 //     }
 // ]
 
+const genderOptions = [
+    { id: 'male', title: 'Male' },
+    { id: 'female', title: 'Female' },
+    { id: 'all', title: 'all' }
+  ]; 
+  
+
 export default function Listings() {
+    const router = useRouter();
     const { getAllListings } = useApi(); 
     const [listings, setListings] = useState([]); 
+    const [searchQuery, setSearchQuery] = useState(""); 
+    const [searchResults, setSearchResults] = useState([]); 
 
+    const { gender } = router.query;
+    const is_mounted = useRef(false); 
+    const [listingGender, setListingGender] = useState("all"); 
 
-    const fetchListings = async () => { 
+    const fetchListings = async (filters = {}, skip = 0, limit = 0) => { 
         const { listings: all_listings, total } = await getAllListings({ 
-          filters: {}, 
-          skip: 0, 
-          limit: 0
+          filters, 
+          skip, 
+          limit
         }); 
         
         console.log("Fetched all listings: ", all_listings); 
@@ -51,8 +66,30 @@ export default function Listings() {
     } 
 
     useEffect(() => {
-        fetchListings();
+        if(gender) { 
+            // setListingFilters({ gender });
+            setListingGender(gender); 
+        } else { 
+            fetchListings();
+        }
     },  []); 
+
+    useEffect(() => { 
+        if(!is_mounted.current){ 
+            is_mounted.current = true;
+        } else { 
+            if(listingGender === 'all') { 
+                fetchListings(); 
+            } else { 
+                fetchListings({ gender: listingGender }); 
+            }
+        }
+    }, [listingGender])
+
+    const handleSearch = (searchTerm, results) => { 
+        setSearchQuery(searchTerm);
+        setSearchResults(results);  
+    }
 
   return (
     <Layout>
@@ -68,76 +105,59 @@ export default function Listings() {
 
                     <div className="h-[1px] border border-gray-100 mb-3"></div>
                     
-                    <fieldset className="space-y-5 mb-5">
-                        <legend className='font-semibold text-md'>Gender</legend>
-                        <div className="relative flex items-start ml-3">
-                            <div className="flex h-5 items-center">
+
+                    <fieldset className="mt-4">
+                        <legend className='font-semibold text-md mb-3'>Gender</legend>
+                        <div className="ml-3">
+                        {genderOptions.map((option) => (
+                            <div key={option.id} className="flex items-center mb-2">
                                 <input
-                                    id="comments"
-                                    aria-describedby="comments-description"
-                                    name="comments"
-                                    type="checkbox"
-                                    className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                    id={option.id}
+                                    name="notification-method"
+                                    type="radio"
+                                    value={option.id}
+                                    checked={listingGender === option.id}
+                                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                    onChange={e => setListingGender(e.target.value)}
                                 />
-                            </div>
-                            <div className="ml-3 text-sm">
-                                <label htmlFor="comments" className="font-medium text-gray-500">
-                                    Male
+                                <label htmlFor={option.id} className="ml-3 block text-sm font-medium text-gray-700">
+                                    {option.title}
                                 </label>
-                                <span id="comments-description" className="text-gray-500">
-                                    <span className="sr-only">Male</span>
-                                </span>
                             </div>
+                        ))}
                         </div>
-                        <div className="relative flex items-start ml-3">
-                            <div className="flex h-5 items-center">
-                                <input
-                                    id="candidates"
-                                    aria-describedby="candidates-description"
-                                    name="candidates"
-                                    type="checkbox"
-                                    className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                />
-                            </div>
-                            <div className="ml-3 text-sm">
-                                <label htmlFor="candidates" className="font-medium text-gray-500">
-                                    Female
-                                </label>
-                                <span id="candidates-description" className="text-gray-500">
-                                    <span className="sr-only">Female</span> 
-                                </span>
-                            </div>
-                        </div>
-                    </fieldset>   
+                    </fieldset>
+
                     <div className="h-[1px] border border-gray-100 mb-3"></div>
                 </div>
             </div>
 
             <div className="w-3/4">
-                <div className="xl:w-96">
-                    <div className="input-group relative flex mb-2">
-                        <input 
-                            type="search" 
-                            className="mr-2 form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
-                            placeholder="Search Listings" 
-                            aria-label="Search" 
-                            aria-describedby="button-addon2"
-                        />
-                        <button className="btn inline-block px-6 py-2.5 bg-white text-gray-400 border border-solid border-gray-300 hover:text-blue-600 focus:text-blue-600 active:text-blue-600  text-xs rounded focus:outline-none hover:border-blue-600 focus:border-blue-600 focus:ring-0 transition duration-150 ease-in-out flex items-center" type="button" id="button-addon2">
-                            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="w-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
-                            </svg>
-                        </button>
-                    </div>
+                <div className='mb-2'> 
+                    <Search 
+                        api_endpoint={`${process.env.NEXT_PUBLIC_API_BASE_URL}/listing/search-listings`}
+                        placeholder="Search Listings"
+                        onResult={handleSearch}
+                    />
                 </div>
 
                 <div className='mb-3'> 
-                    <h3 className='text-md text-gray-500'> 
-                        Showing {listings.length} results     
-                    </h3> 
+                    {
+                        listings.length !== 0 && searchQuery === "" && 
+                        <h3 className='text-md text-gray-500'> 
+                            Showing {listings.length} results     
+                        </h3> 
+                    }
+                    {
+                        searchQuery !== "" && searchResults.length > 0 &&
+                        <h3 className='text-md text-gray-500'> 
+                            Showing {searchResults.length} results     
+                        </h3> 
+                    }
                 </div>  
+
                 {
-                    listings.length !== 0 && listings.map((listing,index) => ( 
+                    listings.length !== 0 && searchQuery === "" && listings.map((listing,index) => ( 
                         <>
                             <Listing 
                                 id={listing.id}
@@ -152,6 +172,23 @@ export default function Listings() {
                             { index !== listings.length - 1 && <div className='w-full h-[0.5px] border border-gray-200 mb-3'></div>}
                         </>
                     )) 
+                }
+                {
+                    searchQuery !== "" && searchResults.length > 0 && searchResults.map((listing,index) => (
+                        <>
+                            <Listing 
+                                id={listing.id}
+                                key={listing.id}
+                                name={listing.name}
+                                description={listing.description}
+                                images={listing.images}
+                                price={listing.price} 
+                                amenities={listing.amenities} 
+                                address={listing.address} 
+                            />  
+                            { index !== listings.length - 1 && <div className='w-full h-[0.5px] border border-gray-200 mb-3'></div>}
+                        </>
+                    ))
                 }
             </div> 
         </div>

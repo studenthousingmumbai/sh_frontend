@@ -7,6 +7,7 @@ import { step_status, steps } from '../../constants';
 import FloorPlanTest from '../../components/Booking/FloorPlanTest'; 
 import useApi from '../../hooks/useApi';
 import SelectMenu from '../../components/SelectMenu'; 
+import useAuth from '../../hooks/useAuth';
 
 const stepper_data = [
   { 
@@ -199,7 +200,7 @@ const BedSelection = ({ bedsInAppartment, beds, selectedAppartment, selectedBed,
   )
 }
 
-const Payment = ({ selectedFloor, selectedAppartment, selectedBed, onProceed }) => { 
+const Payment = ({ selectedFloor, selectedAppartment, selectedBed, onProceed, completePayment }) => { 
   return ( 
     <div className="flex w-full h-full items-center min-h-[50vh]">
       <div className="flex m-auto">
@@ -243,7 +244,10 @@ const Payment = ({ selectedFloor, selectedAppartment, selectedBed, onProceed }) 
           <button
             type="button"
             className="inline-flex items-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-            onClick={onProceed}
+            onClick={() => { 
+              onProceed(); 
+              completePayment(); 
+            }}
           >
             Proceed to payment
           </button>
@@ -257,9 +261,10 @@ export default function booking() {
     const router = useRouter();
     const { isReady } = router; 
     const { id } = router.query; 
-    const { getListing, updateListing, availableBeds, getBeds } = useApi();
+    const { getListing, updateListing, availableBeds, getBeds, createOrder } = useApi();
     const [listing, setListing] = useState({}); 
     const [availableBedsOnFloor, setAvailableBedsOnFloor] = useState({}); 
+    const user = useAuth.user; 
 
     useEffect(() => { 
         if(isReady){
@@ -327,6 +332,21 @@ export default function booking() {
         setStepperState(stepper_state); 
     }; 
 
+    const completePayment = async () => { 
+      const create_order_response = await createOrder({ 
+        user: user.id, 
+        appartment: selectedAppartment.id, 
+        bed: selectedBed, 
+        course: selectedCourse, 
+        year: selectedYear,
+        floor: selectedFloor, 
+        listing: id, 
+        amount: listing.price
+      }); 
+
+      console.log(create_order_response);
+    }
+
     const fetchBeds = async () => { 
       const beds = await getBeds(selectedAppartment.id); 
       console.log("Got beds for the selected appartment: ", beds); 
@@ -392,6 +412,7 @@ export default function booking() {
                       selectedAppartment={selectedAppartment}
                       selectedBed={selectedBed}
                       onProceed={onProceed}
+                      completePayment={completePayment}
                     /> 
                     || 
                     <></>

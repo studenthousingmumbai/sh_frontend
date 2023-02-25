@@ -323,6 +323,19 @@ export default function useApi() {
         }
     }
 
+    const createOrder = async (data) => { 
+        try{ 
+            const response = await axios(base_url + `/order`, { 
+                method: "POST", 
+                data 
+            }); 
+            return response.data; 
+        }
+        catch(err){ 
+            console.log(err); 
+            return err.response.data; 
+        }
+    }
 
     return { 
         addAppartment, 
@@ -347,6 +360,7 @@ export default function useApi() {
         updateAppartment, 
         updateBed, 
         updateListing, 
-        updateUser
+        updateUser, 
+        createOrder
     }
 }
