@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'; 
 import { TbView360 } from "react-icons/tb";
+import Link from 'next/link'; 
 
 import { Dialog, Disclosure, Popover, RadioGroup, Tab, Transition } from '@headlessui/react'
 import {
@@ -11,6 +12,8 @@ import {
 import { StarIcon } from '@heroicons/react/20/solid'
 import Layout from '../../components/Layout'; 
 import useApi from '../../hooks/useApi';
+import withAuth from '../../hooks/withAuth';
+import Modal from '../../components/common/Modal'; 
 
 const listings = [ 
   {
@@ -132,7 +135,8 @@ export default function Example({  }) {
   const { id } = router.query; 
   const [listing, setListing] = useState({}); 
   const { getListing } = useApi();
-
+  const { isAuthenticated } = withAuth(); 
+  const [open, setOpen] = useState(false); 
 
   console.log("Listing : ", listing); 
 
@@ -149,8 +153,40 @@ export default function Example({  }) {
     setListing(Listing)
   }
 
+  const handleBooknow = () => { 
+    if(isAuthenticated) { 
+      router.push(`/booking/${id}`)
+    } else { 
+      setOpen(true); 
+    }
+  }
+
   return (
     <Layout> 
+      <Modal title={"Sign in to make a booking"} open={open} onClose={() => setOpen(false)}>
+        <div className='mb-3'> 
+          <span>You must </span>
+          <Link href='/signin'>
+            <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500 text-[#f5c325] hover:text-[#fad45a]">
+              sign in 
+            </a>
+          </Link> 
+          <span> or </span>
+          <Link href='/signup'>
+            <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500 text-[#f5c325] hover:text-[#fad45a]">
+              Create a new account
+            </a>
+          </Link> 
+          <span> to make a boooking!</span>
+        </div>
+        <button
+          type='button'
+          className="inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600  px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-indigo-700 bg-[#ffcc29] hover:bg-[#fad45a]"
+          onClick={() => setOpen(false)}
+        >
+          Ok
+        </button>
+      </Modal>
 
       <div className="bg-white">
         <main className="mx-auto max-w-7xl sm:px-6 sm:pt-16 lg:px-8">
@@ -212,10 +248,15 @@ export default function Example({  }) {
               {/* Product info */}
               <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
                 <h1 className="text-3xl font-bold tracking-tight text-gray-900">{listing.name}</h1>
-                
+
                 <div className="mt-3">
-                  <h2 className="sr-only">Listing address</h2>
-                  <p className="text-xl tracking-tight text-gray-600">{listing.address}</p>
+                  <h2 className="sr-only">Listing description</h2>
+                  <h2 className="text-xl tracking-tight text-gray-600 font-medium">{listing && listing.description}</h2>
+                </div>
+
+                <div className="mt-3">
+                  <h5 className="sr-only">Listing address</h5>
+                  <p className="text-md tracking-tight text-gray-600">{listing && listing.address && listing.address.line_1}</p>
                 </div>
 
                 <div className="mt-3">
@@ -256,7 +297,8 @@ export default function Example({  }) {
                   <h1 className='uppercase text-xl text-gray-600'>starting at</h1>
                   <p className="text-3xl tracking-tight text-gray-900">₹{listing.price}/-</p>
                 </div>
-{/* 
+                
+                {/* 
                 <div className="mt-6">
                   <h3 className="sr-only">Description</h3>
                   <div
@@ -269,7 +311,7 @@ export default function Example({  }) {
                   <button
                       type="button"
                       className="mr-3 inline-flex items-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-                      onClick={() => router.push(`/booking/${id}`)}
+                      onClick={() => handleBooknow()}
                   >
                       Book Now
                   </button>   

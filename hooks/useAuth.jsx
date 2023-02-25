@@ -11,20 +11,17 @@ const useAuth = (props) => {
     const [signupErrors, setSignupErrors] = useState([]); 
     const home_route = '/'; 
     const { signup: signupUser, signin, isAuthenticated: isUserAuthenticated, googleSignin } = useApi();
-    const auth_routes = ['/booking']; 
+    const auth_routes = ['/booking', '/profile', '/order-history']; 
 
     const isAuth = async () => { 
         setIsLoading(true); 
-
         const token = localStorage.getItem('login_token');
     
-        console.log("JWT token : ", token);
-
         // if the user has logged out send them to the signin page (only if the page is not already signin or signup)
         if(!token){
             console.log("Pathname: ", router.pathname);
 
-            if(router.pathname !== '/signin' && router.pathname !== '/signup' && auth_routes.includes(router.pathname)){ 
+            if(router.pathname !== '/signin' && router.pathname !== '/signup' && (auth_routes.includes(router.pathname) || router.pathname.includes('/booking'))){ 
                 router.push('/signin'); 
             }
         }
@@ -76,9 +73,11 @@ const useAuth = (props) => {
         setIsLoading(false); 
     }
 
-    const getUser = async () => { 
-        const user = JSON.parse(localStorage.getItem("user"));
-        return user && user || {};
+    const getUser = () => { 
+        if (typeof window !== 'undefined') {
+            const user = JSON.parse(localStorage.getItem("user"));
+            return user && user || {};
+        }
     }
 
     const login = async (email, password) => { 

@@ -4,21 +4,24 @@ import Layout from '../components/Layout'
 import OrderHistory from '../components/OrderHistory/order-history';
 import ProfileLayout from '../components/common/ProfileLayout';
 import ProfileSidebar from '../components/common/ProfileSidebar';
+import useApi from '../hooks/useApi';
+import useAuth from '../hooks/useAuth';
+import withAuth from '../hooks/withAuth';
 
-const initialvalues = { 
-    firstname: "Tanay", 
-    lastname: "Kulkarni",
-    phone_number: '8097029342',
-    email: "tanaykulkarni7@gmail.com", 
-    academic_year: "FY.Bsc", 
-    college: "K.C College", 
-    gender: "male", 
-    dob: "1998/10/21", 
-    addres: { 
-        city: "Mumbai", 
-        state: "Maharashtra"
-    }
-}
+// const initialvalues = { 
+//     firstname: "Tanay", 
+//     lastname: "Kulkarni",
+//     phone_number: '8097029342',
+//     email: "tanaykulkarni7@gmail.com", 
+//     academic_year: "FY.Bsc", 
+//     college: "K.C College", 
+//     gender: "male", 
+//     dob: "1998/10/21", 
+//     addres: { 
+//         city: "Mumbai", 
+//         state: "Maharashtra"
+//     }
+// }
 
 const orderList = [
     {
@@ -53,60 +56,92 @@ const orderList = [
     }, 
 ]
 
-
 export default function Example() {
+    // const [user, setUser] = useState(initialvalues)
+    const [orders, setOrders] = useState([])
+    const { getOrders } = useApi(); 
+    const { isAuthenticated, isLoading } = withAuth(); 
+    const user = useAuth.user; 
 
-    const [user, setUser] = useState(initialvalues)
+    console.log("User is: ", user);
 
-    const [orders, setOrders] = useState(orderList)
+    const fetchOrders = async () => { 
+        console.log("User in fetch orders: ", user); 
+        const { orders: allOrders, total } = await getOrders({ 
+            filters: { user: user.id }, 
+            skip: 0, 
+            limit: 0
+        }); 
+
+        let transformed_orders = [];
+
+        for(let order of allOrders) { 
+            transformed_orders.push({ 
+                order_id: order.id, 
+                createdAt: order.createdAt, 
+                listing_id: order.listing_id, 
+                listing_name: order.listing, 
+                floor_no: order.floor,
+                address: order.address,  
+                status: "COMPLETE", 
+                scheduled_term: "1", 
+                images: order.images, 
+                course: order.course, 
+                appartment_no: order.appartment, 
+                amenities: "", 
+                room_no: order.room_no, 
+                bed_id: order.bed, 
+                bed_no: order.bed_no,
+                year: order.year 
+            }); 
+        }
+        
+        setOrders(transformed_orders); 
+
+        console.log("This users orders: ", allOrders, " total: ", total);
+    }
+
+    useEffect(() => { 
+        if(!isLoading && isAuthenticated) { 
+            fetchOrders(); 
+        }   
+    }, [isLoading]); 
 
     return (
-    <ProfileLayout>
-        <ProfileSidebar user={user && {firstname: user?.firstname, lastname: user?.lastname}}/>
-        <div className="w-full">
-                {/* <h1 className='font-semibold capitalize text-2xl mb-3'>
-                    Showing all listings  
-                </h1>  */}
-                {/* <div className="xl:w-96">
-                    <div className="input-group relative flex mb-2">
-                        <input 
-                            type="search" 
-                            className="mr-2 form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
-                            placeholder="Search Listings" 
-                            aria-label="Search" 
-                            aria-describedby="button-addon2"
-                        />
-                        <button className="btn inline-block px-6 py-2.5 bg-white text-gray-400 border border-solid border-gray-300 hover:text-blue-600 focus:text-blue-600 active:text-blue-600  text-xs rounded focus:outline-none hover:border-blue-600 focus:border-blue-600 focus:ring-0 transition duration-150 ease-in-out flex items-center" type="button" id="button-addon2">
-                            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="w-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
-                            </svg>
-                        </button>
+        <ProfileLayout>
+            {isAuthenticated && 
+                <>
+                    <ProfileSidebar/>
+                    <div className="w-full">
+                        {
+                            orders.length !== 0 && orders.map((order,index) => ( 
+                                <>
+                                    <OrderHistory 
+                                        listing_id={order.listing_id}
+                                        id={order.order_id}
+                                        key={order.order_id}
+                                        name={order.listing_name}
+                                        status= {order.status} 
+                                        floor_no={order.floor_no}
+                                        room_no={order.room_no}
+                                        bed_no={order.bed_no}
+                                        appartment_no={order.appartment_no}
+                                        bed_id={order.bed_id}
+                                        images={order.images}
+                                        scheduled_term={order.scheduled_term}
+                                        price={order.price} 
+                                        createdAt={order.createdAt}
+                                        year={order.year}
+                                        address={order.address}
+                                        course={order.course}
+                                    />  
+                                </>
+                            )) 
+                        }
                     </div>
-                </div> */}
-                {
-                    orders.length !== 0 && orders.map((order,index) => ( 
-                        <>
-                            <OrderHistory 
-                                id={order.order_id}
-                                key={order.order_id}
-                                name={order.listing_name}
-                                status= {order.status} 
-                                floor_no={order.floor_no}
-                                room_no={order.room_no}
-                                appartment_no={order.appartment_no}
-                                bed_id={order.bed_id}
-                                images={order.images}
-                                scheduled_term={order.scheduled_term}
-                                price={order.price} 
-                                amenities={order.amenities}
-                                address={order.address}
-                                course={order.course}
-                            />  
-                            {/* { index !== listings.length - 1 && <div className='w-full h-[0.5px] border border-gray-200 mb-3'></div>} */}
-                        </>
-                    )) 
-                }
-            </div> 
-    </ProfileLayout>
-  )
+                </>
+            }
+
+        </ProfileLayout>
+    )
 }

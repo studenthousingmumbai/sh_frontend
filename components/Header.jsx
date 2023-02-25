@@ -21,10 +21,10 @@ import useAuth from '../hooks/useAuth';
 import withAuth from '../hooks/withAuth'; 
 
 const userNavigation = [
-  { name: 'Your Profile', href: '#' },
+  { name: 'Your Profile', href: '/profile' },
+  { name: 'Order History', href: '/order-history' },
   { name: 'Sign out', href: '#' },
 ];
-
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -119,17 +119,19 @@ export default function Example() {
                       >
                         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                           {userNavigation.map((item) => (
-                            <Menu.Item key={item.name} onClick={() => {item.name === 'Sign out' && logout();}}>
+                            <Menu.Item key={item.name} >
                               {({ active }) => (
-                                <a
-                                  href={item.href}
-                                  className={classNames(
-                                    active ? 'bg-gray-100' : '',
-                                    'block px-4 py-2 text-sm text-gray-700'
-                                  )}
-                                >
-                                  {item.name}
-                                </a>
+                                <Link href={item.href}>
+                                  <a
+                                    onClick={() => {item.name === 'Sign out' && logout();}}
+                                    className={classNames(
+                                      active ? 'bg-gray-100' : '',
+                                      'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
+                                    )}
+                                  >
+                                    {item.name}
+                                  </a>
+                                </Link>
                               )}
                             </Menu.Item>
                           ))}
@@ -137,7 +139,7 @@ export default function Example() {
                       </Transition>
                     </Menu>
                 </div>
-            )  || 
+            ) || 
             <>
               <Link href="/signin">
                 <a

@@ -170,8 +170,6 @@ const AppartmentSelection = ({ listing, setSelectedAppartment, selectedFloor, se
 }
 
 const BedSelection = ({ bedsInAppartment, beds, selectedAppartment, selectedBed, setSelectedBed, onProceed }) => { 
-  useEffect(() => { }, []); 
-
   return ( 
     <div className="flex w-full h-full items-center min-h-[50vh]">
       <div className="h-full w-full flex">
@@ -237,7 +235,7 @@ const Payment = ({ selectedFloor, selectedAppartment, selectedBed, onProceed, co
           </p>
 
           <p className='mb-2'> 
-            <span className='font-semibold'>Bed Id: </span> {selectedBed || '__'}
+            <span className='font-semibold'>Bed No: </span> {selectedBed || '__'}
           </p>
 
           {/* <p className='text-md text-gray-600 mb-3'>after selection, click on the proceed button to get directed towards the next step of apartment selection</p> */}
@@ -337,13 +335,14 @@ export default function booking() {
         user: user.id, 
         appartment: selectedAppartment.id, 
         bed: selectedBed, 
-        course: selectedCourse, 
-        year: selectedYear,
+        course: bookByCourse ? selectedCourse : "", 
+        year: bookByCourse ? selectedYear : "",
         floor: selectedFloor, 
         listing: id, 
         amount: listing.price
       }); 
 
+      router.push('/order-history');
       console.log(create_order_response);
     }
 

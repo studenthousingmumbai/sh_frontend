@@ -12,7 +12,11 @@ export default function Listing({
     address,
     images,
     scheduled_term,
-    course
+    course, 
+    listing_id, 
+    createdAt, 
+    bed_no, 
+    year
 }) {
     const router = useRouter(); 
 
@@ -20,23 +24,23 @@ export default function Listing({
         <div className='w-full mb-6 border border-2 border-gray-300 rounded-3xl px-8 py-4'>
             <div className='flex w-full'>
                 <div className='w-[33.33%] lg:w-[20%] flex flex-col text-center lg:text-start overflow-hidden'>
-                    <div className='capitalize font-semibold'>booking ID</div>
+                    <div className='capitalize font-semibold'>Order ID</div>
                     <div className='text-sm'>{id}</div>
                 </div>
                 <div className='w-[33.33%] lg:w-[20%] flex flex-col text-center lg:text-start'>
                     <div className='capitalize font-semibold'>date placed</div>
-                    <div className='text-sm'>12/02/2019</div>
+                    <div className='text-sm'>{new Date(createdAt).toDateString()}</div>
                 </div>
                 <div className='w-[33.33%] lg:w-[20%] flex flex-col text-center lg:text-start'>
                     <div className='capitalize font-semibold '>status</div>
                     <div className='capitalize text-[#158802] text-sm font-bold'>{status}</div>
                 </div>
                 <div className='hidden lg:flex w-[40%] justify-end items-center'>
-                    <button className='py-2 px-4 bg-[#BDFDB3] uppercase font-bold rounded-3xl text-sm'>
+                    <button className='py-2 px-4 bg-[#BDFDB3] uppercase font-bold rounded-3xl text-sm' onClick={() => router.push('/contact-us')}>
                         contact us
                     </button>
                     
-                    <button className='py-2 px-4 ml-4 bg-[#FBCF5F] uppercase font-bold rounded-3xl text-sm text-white'>
+                    <button className='py-2 px-4 ml-4 bg-[#FBCF5F] uppercase font-bold rounded-3xl text-sm text-white' onClick={() => router.push(`/listing/${listing_id}`)}>
                         view property
                     </button>
                 </div>
@@ -54,14 +58,14 @@ export default function Listing({
                         {name}
                     </h2>
                     <h2 className='text-lg uppercase'> 
-                        {address || "vile-parle, west"}
+                        {address.line_1}
                     </h2>
                     <div className='lg:hidden flex gap-4 flex-col sm:flex-row justify-start items-start sm:items-center py-2'>
-                        <button className='py-2 px-4 bg-[#BDFDB3] uppercase font-bold rounded-3xl text-xs sm:text-sm'>
+                        <button className='py-2 px-4 bg-[#BDFDB3] uppercase font-bold rounded-3xl text-xs sm:text-sm' onClick={() => router.push('/contact-us')}>
                             contact us
                         </button>
                         
-                        <button className='py-2 px-4 bg-[#FBCF5F] uppercase font-bold rounded-3xl text-xs sm:text-sm text-white'>
+                        <button className='py-2 px-4 bg-[#FBCF5F] uppercase font-bold rounded-3xl text-xs sm:text-sm text-white' onClick={() => router.push(`/listing/${listing_id}`)}>
                             view property
                         </button>
                     </div>
@@ -89,10 +93,10 @@ export default function Listing({
                             </div>
                             <div className='flex w-full justify-start pt-2 '>
                                 <div className='w-4/6 capitalize'>
-                                    Room No. / Bed No.:
+                                    Bed No.:
                                 </div>
                                 <div className='w-2/6'>
-                                    {room_no}
+                                    {bed_no}
                                 </div>
                             </div>
                         </div>
@@ -107,10 +111,10 @@ export default function Listing({
                             </div>
                             <div className='flex w-full justify-start pt-2'>
                                 <div className='w-4/6 capitalize'>
-                                    amenities:
+                                    selected year:
                                 </div>
                                 <div className='w-2/6'>
-                                    {amenities}
+                                    {year}
                                 </div>
                             </div>
                             <div className='flex w-full justify-start pt-2'>

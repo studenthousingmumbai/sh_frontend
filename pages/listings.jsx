@@ -39,8 +39,7 @@ const genderOptions = [
     { id: 'male', title: 'Male' },
     { id: 'female', title: 'Female' },
     { id: 'all', title: 'all' }
-  ]; 
-  
+]; 
 
 export default function Listings() {
     const router = useRouter();
@@ -70,7 +69,7 @@ export default function Listings() {
             // setListingFilters({ gender });
             setListingGender(gender); 
         } else { 
-            fetchListings();
+            fetchListings({ publish: true });
         }
     },  []); 
 
@@ -79,9 +78,9 @@ export default function Listings() {
             is_mounted.current = true;
         } else { 
             if(listingGender === 'all') { 
-                fetchListings(); 
+                fetchListings({ publish: true }); 
             } else { 
-                fetchListings({ gender: listingGender }); 
+                fetchListings({ gender: listingGender, publish: true }); 
             }
         }
     }, [listingGender])
@@ -91,107 +90,106 @@ export default function Listings() {
         setSearchResults(results);  
     }
 
-  return (
-    <Layout>
-        <div className='flex w-full mt-5'> 
-            <div className='h-[800px] w-1/4 mr-5  relative'>
-                <div className='h-full w-full  rounded-md bg-white border border-gray-200 p-3'>
-                    <h1 className='capitalize text-lg mb-3 flex items-center'>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-gray-700 mr-2">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 13.5V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m12-3V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m-6-9V3.75m0 3.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 9.75V10.5" />
-                        </svg>
-                        <span>Filters</span>
-                    </h1>  
+    return (
+        <Layout>
+            <div className='flex w-full mt-5'> 
+                <div className='h-[800px] w-1/4 mr-5  relative'>
+                    <div className='h-full w-full  rounded-md bg-white border border-gray-200 p-3'>
+                        <h1 className='capitalize text-lg mb-3 flex items-center'>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-gray-700 mr-2">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 13.5V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m12-3V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m-6-9V3.75m0 3.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 9.75V10.5" />
+                            </svg>
+                            <span>Filters</span>
+                        </h1>  
 
-                    <div className="h-[1px] border border-gray-100 mb-3"></div>
-                    
-
-                    <fieldset className="mt-4">
-                        <legend className='font-semibold text-md mb-3'>Gender</legend>
-                        <div className="ml-3">
-                        {genderOptions.map((option) => (
-                            <div key={option.id} className="flex items-center mb-2">
-                                <input
-                                    id={option.id}
-                                    name="notification-method"
-                                    type="radio"
-                                    value={option.id}
-                                    checked={listingGender === option.id}
-                                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                    onChange={e => setListingGender(e.target.value)}
-                                />
-                                <label htmlFor={option.id} className="ml-3 block text-sm font-medium text-gray-700">
-                                    {option.title}
-                                </label>
+                        <div className="h-[1px] border border-gray-100 mb-3"></div>
+                        
+                        <fieldset className="mt-4">
+                            <legend className='font-semibold text-md mb-3'>Gender</legend>
+                            <div className="ml-3">
+                            {genderOptions.map((option) => (
+                                <div key={option.id} className="flex items-center mb-2">
+                                    <input
+                                        id={option.id}
+                                        name="notification-method"
+                                        type="radio"
+                                        value={option.id}
+                                        checked={listingGender === option.id}
+                                        className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                        onChange={e => setListingGender(e.target.value)}
+                                    />
+                                    <label htmlFor={option.id} className="ml-3 block text-sm font-medium text-gray-700">
+                                        {option.title}
+                                    </label>
+                                </div>
+                            ))}
                             </div>
-                        ))}
-                        </div>
-                    </fieldset>
+                        </fieldset>
 
-                    <div className="h-[1px] border border-gray-100 mb-3"></div>
+                        <div className="h-[1px] border border-gray-100 mb-3"></div>
+                    </div>
                 </div>
+
+                <div className="w-3/4">
+                    <div className='mb-2'> 
+                        <Search 
+                            api_endpoint={`${process.env.NEXT_PUBLIC_API_BASE_URL}/listing/search-listings`}
+                            placeholder="Search Listings"
+                            onResult={handleSearch}
+                        />
+                    </div>
+
+                    <div className='mb-3'> 
+                        {
+                            listings.length !== 0 && searchQuery === "" && 
+                            <h3 className='text-md text-gray-500'> 
+                                Showing {listings.length} results     
+                            </h3> 
+                        }
+                        {
+                            searchQuery !== "" && searchResults.length > 0 &&
+                            <h3 className='text-md text-gray-500'> 
+                                Showing {searchResults.length} results     
+                            </h3> 
+                        }
+                    </div>  
+
+                    {
+                        listings.length !== 0 && searchQuery === "" && listings.map((listing,index) => ( 
+                            <>
+                                <Listing 
+                                    id={listing.id}
+                                    key={listing.id}
+                                    name={listing.name}
+                                    description={listing.description}
+                                    images={listing.images}
+                                    price={listing.price} 
+                                    amenities={listing.amenities} 
+                                    address={listing.address} 
+                                />  
+                                { index !== listings.length - 1 && <div className='w-full h-[0.5px] border border-gray-200 mb-3'></div>}
+                            </>
+                        )) 
+                    }
+                    {
+                        searchQuery !== "" && searchResults.length > 0 && searchResults.map((listing,index) => (
+                            <>
+                                <Listing 
+                                    id={listing.id}
+                                    key={listing.id}
+                                    name={listing.name}
+                                    description={listing.description}
+                                    images={listing.images}
+                                    price={listing.price} 
+                                    amenities={listing.amenities} 
+                                    address={listing.address} 
+                                />  
+                                { index !== listings.length - 1 && <div className='w-full h-[0.5px] border border-gray-200 mb-3'></div>}
+                            </>
+                        ))
+                    }
+                </div> 
             </div>
-
-            <div className="w-3/4">
-                <div className='mb-2'> 
-                    <Search 
-                        api_endpoint={`${process.env.NEXT_PUBLIC_API_BASE_URL}/listing/search-listings`}
-                        placeholder="Search Listings"
-                        onResult={handleSearch}
-                    />
-                </div>
-
-                <div className='mb-3'> 
-                    {
-                        listings.length !== 0 && searchQuery === "" && 
-                        <h3 className='text-md text-gray-500'> 
-                            Showing {listings.length} results     
-                        </h3> 
-                    }
-                    {
-                        searchQuery !== "" && searchResults.length > 0 &&
-                        <h3 className='text-md text-gray-500'> 
-                            Showing {searchResults.length} results     
-                        </h3> 
-                    }
-                </div>  
-
-                {
-                    listings.length !== 0 && searchQuery === "" && listings.map((listing,index) => ( 
-                        <>
-                            <Listing 
-                                id={listing.id}
-                                key={listing.id}
-                                name={listing.name}
-                                description={listing.description}
-                                images={listing.images}
-                                price={listing.price} 
-                                amenities={listing.amenities} 
-                                address={listing.address} 
-                            />  
-                            { index !== listings.length - 1 && <div className='w-full h-[0.5px] border border-gray-200 mb-3'></div>}
-                        </>
-                    )) 
-                }
-                {
-                    searchQuery !== "" && searchResults.length > 0 && searchResults.map((listing,index) => (
-                        <>
-                            <Listing 
-                                id={listing.id}
-                                key={listing.id}
-                                name={listing.name}
-                                description={listing.description}
-                                images={listing.images}
-                                price={listing.price} 
-                                amenities={listing.amenities} 
-                                address={listing.address} 
-                            />  
-                            { index !== listings.length - 1 && <div className='w-full h-[0.5px] border border-gray-200 mb-3'></div>}
-                        </>
-                    ))
-                }
-            </div> 
-        </div>
-    </Layout>
-  )
+        </Layout>
+    )
 }
