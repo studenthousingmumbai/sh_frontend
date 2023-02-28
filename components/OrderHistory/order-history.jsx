@@ -21,19 +21,19 @@ export default function Listing({
     const router = useRouter(); 
 
     return (
-        <div className='w-full mb-6 border border-2 border-gray-300 rounded-3xl px-8 py-4'>
-            <div className='flex w-full'>
-                <div className='w-[33.33%] lg:w-[20%] flex flex-col text-center lg:text-start overflow-hidden'>
-                    <div className='capitalize font-semibold'>Order ID</div>
-                    <div className='text-sm'>{id}</div>
+        <div className='w-full mb-6 border border-2 border-gray-300 rounded-3xl px-4 sm:px-8 py-4'>
+            <div className='flex w-full gap-0 lg:gap-2'>
+                <div className='w-[33.33%] lg:w-[20%] flex flex-col text-center lg:text-start'>
+                    <div className='capitalize font-semibold text-sm sm:text-md'>Order ID</div>
+                    <div className='text-xs sm:text-sm break-all'>{id}</div>
                 </div>
                 <div className='w-[33.33%] lg:w-[20%] flex flex-col text-center lg:text-start'>
-                    <div className='capitalize font-semibold'>date placed</div>
-                    <div className='text-sm'>{new Date(createdAt).toDateString()}</div>
+                    <div className='capitalize font-semibold text-sm sm:text-md'>date placed</div>
+                    <div className='text-xs sm:text-sm'>{new Date(createdAt).toDateString()}</div>
                 </div>
                 <div className='w-[33.33%] lg:w-[20%] flex flex-col text-center lg:text-start'>
-                    <div className='capitalize font-semibold '>status</div>
-                    <div className='capitalize text-[#158802] text-sm font-bold'>{status}</div>
+                    <div className='capitalize font-semibold text-sm sm:text-md'>status</div>
+                    <div className='capitalize text-[#158802] text-xs sm:text-sm font-bold'>{status}</div>
                 </div>
                 <div className='hidden lg:flex w-[40%] justify-end items-center'>
                     <button className='py-2 px-4 bg-[#BDFDB3] uppercase font-bold rounded-3xl text-sm' onClick={() => router.push('/contact-us')}>
@@ -60,68 +60,68 @@ export default function Listing({
                     <h2 className='text-lg uppercase'> 
                         {address.line_1}
                     </h2>
-                    <div className='lg:hidden flex gap-4 flex-col sm:flex-row justify-start items-start sm:items-center py-2'>
-                        <button className='py-2 px-4 bg-[#BDFDB3] uppercase font-bold rounded-3xl text-xs sm:text-sm' onClick={() => router.push('/contact-us')}>
+                    <div className='lg:hidden flex gap-4 flex-row justify-start items-start sm:items-center py-2'>
+                        <button className='py-1 sm:py-2 px-4 bg-[#BDFDB3] uppercase font-bold rounded-3xl text-[10px] sm:text-xs sm:text-sm' onClick={() => router.push('/contact-us')}>
                             contact us
                         </button>
                         
-                        <button className='py-2 px-4 bg-[#FBCF5F] uppercase font-bold rounded-3xl text-xs sm:text-sm text-white' onClick={() => router.push(`/listing/${listing_id}`)}>
+                        <button className='py-1 sm:py-2 px-4 bg-[#FBCF5F] uppercase font-bold rounded-3xl text-[10px] sm:text-sm text-white' onClick={() => router.push(`/listing/${listing_id}`)}>
                             view property
                         </button>
                     </div>
-                    <div className='w-[80%] border border-gray-200 my-3'>
+                    <div className='w-full sm:w-[80%] border border-gray-200 my-3'>
                     </div>
 
                     <div className='uppercase font-medium'>booking information</div>
-                    <div className='flex w-full'>
+                    <div className='flex w-full gap-2'>
                         <div className='flex flex-col w-1/2'>
-                            <div className='flex w-full justify-start pt-2'>
-                                <div className='w-4/6 capitalize'>
+                            <div className='flex w-full justify-start pt-2 items-center'>
+                                <div className='w-4/6 capitalize text-sm sm:text-md'>
                                     floor no:
                                 </div>
-                                <div className='w-2/6'>
+                                <div className='w-2/6 text-sm sm:text-md'>
                                     {floor_no}
                                 </div>
                             </div>
-                            <div className='flex w-full justify-start pt-2'>
-                                <div className='w-4/6 capitalize'>
+                            <div className='flex w-full justify-start pt-2 items-center'>
+                                <div className='w-4/6 capitalize text-sm sm:text-md'>
                                     apartment no:
                                 </div>
-                                <div className='w-2/6'>
+                                <div className='w-2/6 text-sm sm:text-md'>
                                     {appartment_no}
                                 </div>
                             </div>
-                            <div className='flex w-full justify-start pt-2 '>
-                                <div className='w-4/6 capitalize'>
+                            <div className='flex w-full justify-start pt-2 items-center'>
+                                <div className='w-4/6 capitalize text-sm sm:text-md'>
                                     Bed No.:
                                 </div>
-                                <div className='w-2/6'>
+                                <div className='w-2/6 text-sm sm:text-md'>
                                     {bed_no}
                                 </div>
                             </div>
                         </div>
                         <div className='flex flex-col w-1/2'>
-                            <div className='flex w-full justify-start pt-2'>
-                                <div className='w-4/6 capitalize'>
+                            <div className='flex w-full justify-start pt-2 items-center'>
+                                <div className='w-4/6 capitalize text-sm sm:text-md'>
                                     scheduled term:
                                 </div>
-                                <div className='w-2/6'>
+                                <div className='w-2/6 text-sm sm:text-md'>
                                     {scheduled_term}
                                 </div>
                             </div>
-                            <div className='flex w-full justify-start pt-2'>
-                                <div className='w-4/6 capitalize'>
+                            <div className='flex w-full justify-start pt-2 items-center'>
+                                <div className='w-4/6 capitalize text-sm sm:text-md'>
                                     selected year:
                                 </div>
-                                <div className='w-2/6'>
+                                <div className='w-2/6 text-sm sm:text-md'>
                                     {year}
                                 </div>
                             </div>
-                            <div className='flex w-full justify-start pt-2'>
-                                <div className='w-4/6 capitalize'>
+                            <div className='flex w-full justify-start pt-2 items-center'>
+                                <div className='w-4/6 capitalize text-sm sm:text-md'>
                                     selected course:
                                 </div>
-                                <div className='w-2/6'>
+                                <div className='w-2/6 text-sm sm:text-md'>
                                     {course}
                                 </div>
                             </div>
