@@ -92,15 +92,15 @@ export default function Listings() {
 
     return (
         <Layout>
-            <div className='flex w-full mt-5'> 
-                <div className='h-[800px] w-1/4 mr-5  relative'>
-                    <div className='h-full w-full  rounded-md bg-white border border-gray-200 p-3'>
+            <div className='flex flex-col lg:flex-row w-full mt-5'> 
+                <div className='hidden lg:block h-[800px] w-1/4 mr-5 relative'>
+                    <div className='h-full w-full rounded-md bg-white border border-gray-200 p-3'>
                         <h1 className='capitalize text-lg mb-3 flex items-center'>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-gray-700 mr-2">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 13.5V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m12-3V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m-6-9V3.75m0 3.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 9.75V10.5" />
                             </svg>
                             <span>Filters</span>
-                        </h1>  
+                        </h1>
 
                         <div className="h-[1px] border border-gray-100 mb-3"></div>
                         
@@ -130,8 +130,46 @@ export default function Listings() {
                     </div>
                 </div>
 
-                <div className="w-3/4">
-                    <div className='mb-2'> 
+                <div className='flex lg:hidden bg-white border-b-2 border-gray-200 p-3 gap-3 overflow-y-auto'>
+                    <div className='capitalize text-lg flex items-center'>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 sm:w-6 sm:h-6 text-gray-700 mr-1 sm:mr-2">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 13.5V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m12-3V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m-6-9V3.75m0 3.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 9.75V10.5" />
+                        </svg>
+                        <span className='text-sm sm:text-base'>Filters</span>
+                    </div>
+
+                    <div className=" border border-gray-300"></div>
+                    
+                    <fieldset className="flex items-center">
+                        <div>
+                            <legend className='font-semibold text-sm sm:text-base'>Gender</legend>
+                        </div>
+                        <div className="flex items-center">
+                        {genderOptions.map((option) => (
+                            <div key={option.id} className="flex items-center ml-3">
+                                <input
+                                    id={option.id}
+                                    name="notification-method"
+                                    type="radio"
+                                    value={option.id}
+                                    checked={listingGender === option.id}
+                                    className=" border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                    onChange={e => setListingGender(e.target.value)}
+                                />
+                                <label htmlFor={option.id} className="ml-3 block text-sm font-medium text-gray-700">
+                                    {option.title}
+                                </label>
+                            </div>
+                        ))}
+                        </div>
+                        
+                    </fieldset>
+
+                    {/* <div className="h-[1px] border border-gray-100 mb-3"></div> */}
+                </div>
+
+                <div className="w-full lg:w-3/4">
+                    <div className='mb-2 mt-2 lg:mt-0'> 
                         <Search 
                             api_endpoint={`${process.env.NEXT_PUBLIC_API_BASE_URL}/listing/search-listings`}
                             placeholder="Search Listings"
@@ -167,7 +205,7 @@ export default function Listings() {
                                     amenities={listing.amenities} 
                                     address={listing.address} 
                                 />  
-                                { index !== listings.length - 1 && <div className='w-full h-[0.5px] border border-gray-200 mb-3'></div>}
+                                { index !== listings.length - 1 && <div className='w-full h-[0.5px] border border-gray-200 my-3'></div>}
                             </>
                         )) 
                     }
@@ -184,7 +222,7 @@ export default function Listings() {
                                     amenities={listing.amenities} 
                                     address={listing.address} 
                                 />  
-                                { index !== listings.length - 1 && <div className='w-full h-[0.5px] border border-gray-200 mb-3'></div>}
+                                { index !== listings.length - 1 && <div className='w-full h-[0.5px] border border-gray-200 my-3'></div>}
                             </>
                         ))
                     }
