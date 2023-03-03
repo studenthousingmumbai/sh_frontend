@@ -113,8 +113,9 @@ export default function Example() {
                 <>
                     <ProfileSidebar/>
                     <div className="w-full">
+                        <div className='hidden lg:block pl-3 pb-3 font-bold text-3xl'>Order History</div>
                         {
-                            orders.length !== 0 && orders.map((order,index) => ( 
+                            orderList.length !== 0 && orderList.map((order,index) => ( 
                                 <>
                                     <OrderHistory 
                                         listing_id={order.listing_id}

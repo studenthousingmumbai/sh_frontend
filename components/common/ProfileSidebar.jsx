@@ -3,10 +3,14 @@ import Link from "next/link"
 import useAuth from '../../hooks/useAuth';
 import withAuth from '../../hooks/withAuth';
 import { useEffect } from 'react';
+import { useRouter } from 'next/router'
 
 export default function ProfileSidebar() {
+    const router = useRouter()
     const { isAuthenticated } = withAuth(); 
     const user = useAuth.user; 
+
+    console.log(router.pathname)
 
     return (
         <div className='h-[30%] w-full lg:h-[800px] lg:w-1/4 mr-5 relative'>
@@ -30,12 +34,12 @@ export default function ProfileSidebar() {
                         </div>
                         
                         <Link href='/profile'>
-                            <div className='text-left text-2xl mt-8 cursor-pointer'>
+                            <div className={`text-left text-2xl mt-8 cursor-pointer ${router.pathname === '/profile' ? 'font-bold' : ''}`}>
                                 profile
                             </div>
                         </Link>
                         <Link href='/order-history'>
-                        <div className='text-left text-2xl mt-3 cursor-pointer'>
+                        <div className={`text-left text-2xl mt-3 cursor-pointer ${router.pathname === '/order-history' ? 'font-bold' : ''}`}>
                             order history
                         </div>
                         </Link>
@@ -47,13 +51,13 @@ export default function ProfileSidebar() {
                         </div>
                         <div className='flex flex-col sm:flex-row'>
                             <Link href='/profile'>
-                                <div className='text-left text-md sm:text-lg md:text-xl cursor-pointer'>
+                                <div className={`text-left text-md sm:text-lg md:text-xl cursor-pointer ${router.pathname === '/profile' ? 'font-bold' : ''}`}>
                                     profile
                                 </div>
                             </Link>
-                            <div className='hidden sm:block font-bold text mx-3 border border border-3 border-black'></div>
+                            <div className='hidden sm:block font-semibold text mx-3 border border border-3 border-black'></div>
                             <Link href='/order-history'>
-                                <div className='text-left text-md sm:text-lg md:text-xl cursor-pointer'>
+                                <div className={`text-left text-md sm:text-lg md:text-xl cursor-pointer ${router.pathname === '/order-history' ? 'font-bold' : ''}`}>
                                     order history
                                 </div>
                             </Link>
