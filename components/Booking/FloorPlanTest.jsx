@@ -44,7 +44,7 @@ export default function App({ floor_plan, beds, selectedBed, setSelectedBed }) {
 //   const _fitToViewer2 = () => setValue(fitToViewer(value))
 
   return (
-    <div className='w-full h-[600px] border border-gray-300'>
+    <div className='w-full h-[500px] border border-gray-300'>
         <div className='w-full h-full'>
             <AutoSizer>
                 {({ width, height }) => (
@@ -76,8 +76,8 @@ export default function App({ floor_plan, beds, selectedBed, setSelectedBed }) {
                                 beds.map(bed => ( 
                                     <g>
                                         <rect
-                                            onMouseUpCapture={() => bed.available && setSelectedBed(bed.id)}
-                                            className={`fill-[rgba(255,255,255,0.4)] cursor-pointer ${!bed.available && 'fill-[rgba(248,113,113,0.8)]'} hover:fill-[rgba(187,247,208,0.8)] active:fill-[rgba(74,222,128,0.8)] ${!bed.available && ' hover:fill-[rgba(248,113,113,0.8)] '} stroke-white ${selectedBed === bed.id && bed.available && 'fill-[rgba(74,222,128,0.8)] hover:fill-[rgba(74,222,128,0.8)] '}`}
+                                            onMouseUpCapture={() => (bed.available && !bed.locked) && setSelectedBed(bed.id)}
+                                            className={`fill-[rgba(255,255,255,0.4)] cursor-pointer ${(!bed.available || bed.locked) && 'fill-[rgba(248,113,113,0.8)]'} hover:fill-[rgba(187,247,208,0.8)] active:fill-[rgba(74,222,128,0.8)] ${!bed.available && ' hover:fill-[rgba(248,113,113,0.8)] '} stroke-white ${selectedBed === bed.id && bed.available && 'fill-[rgba(74,222,128,0.8)] hover:fill-[rgba(74,222,128,0.8)] '}`}
                                             strokeDasharray={"5,5"}
                                             x={bed.bb.x}
                                             y={bed.bb.y}

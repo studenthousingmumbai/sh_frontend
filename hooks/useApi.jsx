@@ -351,6 +351,20 @@ export default function useApi() {
         }
     }
 
+    const createPaymentSession = async (data) => { 
+        try{ 
+            const response = await axios(base_url + `/order/create-session`, { 
+                method: "POST", 
+                data 
+            }); 
+            return response.data; 
+        }
+        catch(err){ 
+            console.log(err); 
+            return err.response.data; 
+        }
+    }
+
     return { 
         addAppartment, 
         addFloor,
@@ -376,6 +390,7 @@ export default function useApi() {
         updateListing, 
         updateUser, 
         createOrder, 
-        getOrders
+        getOrders, 
+        createPaymentSession
     }
 }

@@ -8,13 +8,13 @@ function classNames(...classes) {
 export default function Example({ steps, stepChange }) {
   return (
     <div className="lg:border-t lg:border-b lg:border-gray-200">
-      <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Progress">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Progress">
         <ol
           role="list"
           className="overflow-hidden rounded-md lg:flex lg:rounded-none "
         >
           {steps.map((step, stepIdx) => (
-            <li key={step.id} className="relative overflow-hidden lg:flex-1" onClick={() => stepChange(step.name)}>
+            <li key={step.id} className="relative overflow-hidden lg:flex-1" onClick={() => stepChange && stepChange(step.name)}>
               <div
                 className={classNames(
                   stepIdx === 0 ? 'border-b-0 rounded-t-md' : '',
@@ -23,9 +23,9 @@ export default function Example({ steps, stepChange }) {
                 )}
               >
                 {step.status === 'complete' ? (
-                  <a href={step.href} className="group">
+                  <a className="group">
                     <span
-                      className="absolute top-0 left-0 h-full w-1 bg-transparent group-hover:bg-gray-200 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full"
+                      className="absolute top-0 left-0 h-full w-1 bg-transparent  lg:bottom-0 lg:top-auto lg:h-1 lg:w-full"
                       aria-hidden="true"
                     />
                     <span
@@ -35,7 +35,7 @@ export default function Example({ steps, stepChange }) {
                       )}
                     >
                       <span className="flex-shrink-0">
-                        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600">
+                        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-yellow-500">
                           <CheckIcon className="h-6 w-6 text-white" aria-hidden="true" />
                         </span>
                       </span>
@@ -46,9 +46,9 @@ export default function Example({ steps, stepChange }) {
                     </span>
                   </a>
                 ) : step.status === 'current' ? (
-                  <a href={step.href} aria-current="step">
+                  <a aria-current="step">
                     <span
-                      className="absolute top-0 left-0 h-full w-1 bg-indigo-600 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full"
+                      className="absolute top-0 left-0 h-full w-1 bg-yellow-500 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full"
                       aria-hidden="true"
                     />
                     <span
@@ -58,20 +58,20 @@ export default function Example({ steps, stepChange }) {
                       )}
                     >
                       <span className="flex-shrink-0">
-                        <span className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-indigo-600">
-                          <span className="text-indigo-600">{step.id}</span>
+                        <span className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-yellow-500">
+                          <span className="text-yellow-500">{step.id}</span>
                         </span>
                       </span>
                       <span className="mt-0.5 ml-4 flex min-w-0 flex-col">
-                        <span className="text-sm font-medium text-indigo-600">{step.name}</span>
+                        <span className="text-sm font-medium text-yellow-500">{step.name}</span>
                         <span className="text-sm font-medium text-gray-500">{step.description}</span>
                       </span>
                     </span>
                   </a>
                 ) : (
-                  <a href={step.href} className="group">
+                  <a className="group">
                     <span
-                      className="absolute top-0 left-0 h-full w-1 bg-transparent group-hover:bg-gray-200 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full"
+                      className="absolute top-0 left-0 h-full w-1 bg-transparent  lg:bottom-0 lg:top-auto lg:h-1 lg:w-full"
                       aria-hidden="true"
                     />
                     <span
@@ -112,7 +112,7 @@ export default function Example({ steps, stepChange }) {
             </li>
           ))}
         </ol>
-      </nav>
+      </div>
     </div>
   )
 }

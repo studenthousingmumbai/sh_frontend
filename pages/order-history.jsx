@@ -23,38 +23,38 @@ import withAuth from '../hooks/withAuth';
 //     }
 // }
 
-const orderList = [
-    {
-      order_id: "63dd57bcdc548038fa7fe6e5", 
-      createdAt: "2023-01-30T13:07:43.836Z", // this is the date placed, to show the date use - new Date(order.cretedAt).toDateString()
-      status: "COMPLETE", 
-      listing_name: "Ganga Niwas", 
-      floor_no: "3", 
-      appartment_no: "105", 
-      room_no: "2", 
-      bed_id: "63dd57bcdc448038fa7fe6e5", 
-      scheduled_term: "1", 
-      amenities: "", 
-      images: ['https://lh5.googleusercontent.com/p/AF1QipMD8uMloIMenAHDHnRg77jXZOdWXkr64pWC57VC=w348-h160-k-no'],
-      address: '123 Ganga Nivas, 34th Street, Juhu, Mumbai 401202',
-      course: "FY BCOM"
-    }, 
-    {
-      order_id: "63dd57bcdc548038fa7fe6e5", 
-      createdAt: "2023-01-30T13:07:43.836Z", // this is the date placed, to show the date use - new Date(order.cretedAt).toDateString()
-      status: "COMPLETE", 
-      listing_name: "Ganga Niwas", 
-      floor_no: "3", 
-      appartment_no: "105", 
-      room_no: "2", 
-      bed_id: "63dd57bcdc448038fa7fe6e5",
-      scheduled_term: "1", 
-      amenities: "", 
-      images: ['https://lh5.googleusercontent.com/p/AF1QipMD8uMloIMenAHDHnRg77jXZOdWXkr64pWC57VC=w348-h160-k-no'],
-      address: '123 Ganga Nivas, 34th Street, Juhu, Mumbai 401202',
-      course: "FY BCOM"
-    }, 
-]
+// const orderList = [
+//     {
+//       order_id: "63dd57bcdc548038fa7fe6e5", 
+//       createdAt: "2023-01-30T13:07:43.836Z", // this is the date placed, to show the date use - new Date(order.cretedAt).toDateString()
+//       status: "COMPLETE", 
+//       listing_name: "Ganga Niwas", 
+//       floor_no: "3", 
+//       appartment_no: "105", 
+//       room_no: "2", 
+//       bed_id: "63dd57bcdc448038fa7fe6e5", 
+//       scheduled_term: "1", 
+//       amenities: "", 
+//       images: ['https://lh5.googleusercontent.com/p/AF1QipMD8uMloIMenAHDHnRg77jXZOdWXkr64pWC57VC=w348-h160-k-no'],
+//       address: '123 Ganga Nivas, 34th Street, Juhu, Mumbai 401202',
+//       course: "FY BCOM"
+//     }, 
+//     {
+//       order_id: "63dd57bcdc548038fa7fe6e5", 
+//       createdAt: "2023-01-30T13:07:43.836Z", // this is the date placed, to show the date use - new Date(order.cretedAt).toDateString()
+//       status: "COMPLETE", 
+//       listing_name: "Ganga Niwas", 
+//       floor_no: "3", 
+//       appartment_no: "105", 
+//       room_no: "2", 
+//       bed_id: "63dd57bcdc448038fa7fe6e5",
+//       scheduled_term: "1", 
+//       amenities: "", 
+//       images: ['https://lh5.googleusercontent.com/p/AF1QipMD8uMloIMenAHDHnRg77jXZOdWXkr64pWC57VC=w348-h160-k-no'],
+//       address: '123 Ganga Nivas, 34th Street, Juhu, Mumbai 401202',
+//       course: "FY BCOM"
+//     }, 
+// ]
 
 export default function Example() {
     // const [user, setUser] = useState(initialvalues)
@@ -115,7 +115,7 @@ export default function Example() {
                     <div className="w-full">
                         <div className='hidden lg:block pl-3 pb-3 font-bold text-3xl'>Order History</div>
                         {
-                            orderList.length !== 0 && orderList.map((order,index) => ( 
+                            orders.length !== 0 && orders.map((order,index) => ( 
                                 <>
                                     <OrderHistory 
                                         listing_id={order.listing_id}

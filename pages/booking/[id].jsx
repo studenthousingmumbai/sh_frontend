@@ -54,8 +54,8 @@ const years = [
 
 const FloorSelection = ({ setBookByCourse, bookByCourse, setSelectedFloor, selectedFloor, selectedYear, selectedCourse, setSelectedCourse, setSelectedYear, onProceed, availableBeds }) => { 
   return ( 
-    <div className="flex w-full h-full items-center min-h-[50vh]">
-      <div className="h-full w-full flex mr-3">
+    <div className="flex flex-col lg:flex-row w-full items-center">
+      <div className="w-full flex mr-3">
         <img src='/correct_icon.png' className='w-10 h-10 mr-3'/>
         <div className="">
           <h1 className='font-semibold text-2xl mb-2'>Select the floor as per your preference</h1>
@@ -79,7 +79,6 @@ const FloorSelection = ({ setBookByCourse, bookByCourse, setSelectedFloor, selec
               </label>
             </div>
           </div>
-
           {
             bookByCourse && 
             <div className='flex mb-3'> 
@@ -101,19 +100,38 @@ const FloorSelection = ({ setBookByCourse, bookByCourse, setSelectedFloor, selec
               </div>
             </div>
           }
-          
+
+
+          <div className="w-full lg:hidden">
+            {
+              availableBeds !== {} && Object.keys(availableBeds).map(key => (
+                <div className='h-[60px] mb-3'> 
+                  <div className='w-full items-center'>
+                    Beds available: {availableBeds[key]}
+                  </div> 
+                  <div 
+                    className={`w-full py-3 mr-3 bg-gray-300 hover:bg-green-200 cursor-pointer flex items-center justify-center ${selectedFloor !== null && selectedFloor === key && 'bg-green-400 hover:bg-green-400'} active:bg-green-400`} 
+                    onClick={() => setSelectedFloor(key)}
+                  >
+                    Floor {key}  
+                  </div>  
+
+                </div> 
+              ))
+            } 
+          </div>
 
           <button
             type="button"
-            className="inline-flex items-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-            onClick={onProceed}
+            className="mt-3 items-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+            onClick={() => selectedFloor && onProceed()}
           >
             Proceed
           </button>
         </div>
       </div>
 
-      <div className="h-full w-full">
+      <div className="h-full w-full hidden lg:block">
         {
           availableBeds !== {} && Object.keys(availableBeds).map(key => (
             <div className='flex h-[60px] mb-2'> 
@@ -134,24 +152,51 @@ const FloorSelection = ({ setBookByCourse, bookByCourse, setSelectedFloor, selec
   )
 }
 
-const AppartmentSelection = ({ listing, setSelectedAppartment, selectedFloor, selectedAppartment, onProceed }) => {  
+const AppartmentSelection = ({ listing, setSelectedAppartment, selectedFloor, selectedAppartment, onProceed, onBack }) => {  
   return ( 
-    <div className="flex w-full h-full items-center min-h-[50vh]">
-      <div className="h-full w-full flex">
+    <div className="flex flex-col lg:flex-row w-full items-center">
+      <div className="w-full flex">
         <img src='/correct_icon.png' className='w-10 h-10 mr-3'/>
         <div className="">
           <h1 className='font-semibold text-2xl mb-2'>Select the Appartment as per your preference</h1>
           <p className='text-md text-gray-600 mb-3'>after selection, click on the proceed button to get directed towards the next step of room selection</p>
-          <button
-            type="button"
-            className="inline-flex items-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-            onClick={onProceed}
-          >
-            Proceed
-          </button>
+
+          <div className="w-full lg:hidden mb-3">
+            <div className='border border-gray-300 w-full grid grid-cols-3 gap-4 p-5'>
+              { 
+                listing && (listing.floors.find(floor => floor.floor_number === selectedFloor.toString())).appartments.map((appartment,index) => ( 
+                    <div 
+                      className={`bg-gray-300 w-full h-[50px] flex hover:bg-green-200 cursor-pointer items-center justify-center ${selectedAppartment !== null && selectedAppartment.appartment_number === appartment.appartment_number && 'bg-green-400 hover:bg-green-400'} active:bg-green-400`}
+                      onClick={() => setSelectedAppartment({appartment_number: appartment.appartment_number, id: appartment.id, floor_plan: appartment.floor_plan })}
+                    >
+                      {appartment.appartment_number}
+                    </div>
+                ))
+              }
+            </div> 
+          </div>
+
+          <div className='flex'>
+            <button
+              type="button"
+              className="mr-2 inline-flex items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-black shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+              onClick={() => onBack(steps.FLOOR_SELECTION)}
+            >
+              Back
+            </button>
+            <button
+              type="button"
+              className="inline-flex items-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+              onClick={onProceed}
+            >
+              Proceed
+            </button>
+          </div>
+
         </div>
       </div>
-      <div className="h-full w-full">
+
+      <div className="h-full w-full hidden lg:block">
         <div className='border border-gray-300 w-full h-full grid grid-cols-3 gap-4 p-5'>
           { 
             listing && (listing.floors.find(floor => floor.floor_number === selectedFloor.toString())).appartments.map((appartment,index) => ( 
@@ -169,24 +214,47 @@ const AppartmentSelection = ({ listing, setSelectedAppartment, selectedFloor, se
   )
 }
 
-const BedSelection = ({ bedsInAppartment, beds, selectedAppartment, selectedBed, setSelectedBed, onProceed }) => { 
+const BedSelection = ({ bedsInAppartment, beds, selectedAppartment, selectedBed, setSelectedBed, onProceed, onBack, lockBed }) => { 
+  console.log("Beds in appartment: ", bedsInAppartment); 
   return ( 
-    <div className="flex w-full h-full items-center min-h-[50vh]">
-      <div className="h-full w-full flex">
+    <div className="flex flex-col lg:flex-row w-full items-center">
+      <div className="w-full flex">
         <img src='/correct_icon.png' className='w-10 h-10 mr-3'/>
         <div className="">
           <h1 className='font-semibold text-2xl mb-2'>Select the room as per your preference</h1>
           <p className='text-md text-gray-600 mb-3'>after selection, click on the proceed button to get directed towards the next step of payment</p>
-          <button
-            type="button"
-            className="inline-flex items-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-            onClick={onProceed}
-          >
-            Proceed
-          </button>
+
+          <div className="w-full lg:hidden mb-3">
+            <FloorPlanTest 
+              floor_plan={selectedAppartment.floor_plan} 
+              beds={bedsInAppartment} 
+              selectedBed={selectedBed} 
+              setSelectedBed={setSelectedBed}
+            />
+          </div>
+
+          <div className='flex'>
+            <button
+              type="button"
+              className="mr-2 inline-flex items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-black shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+              onClick={() => onBack(steps.APPARTMENT_SELECTION)}
+            >
+              Back
+            </button>
+            <button
+              type="button"
+              className="inline-flex items-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+              onClick={() => { 
+                onProceed(); 
+                lockBed(); 
+              }}
+            >
+              Proceed
+            </button>
+          </div>
         </div>
       </div>
-      <div className="h-full w-full">
+      <div className="h-full w-full hidden lg:block">
         <FloorPlanTest 
           floor_plan={selectedAppartment.floor_plan} 
           beds={bedsInAppartment} 
@@ -198,7 +266,7 @@ const BedSelection = ({ bedsInAppartment, beds, selectedAppartment, selectedBed,
   )
 }
 
-const Payment = ({ selectedFloor, selectedAppartment, selectedBed, onProceed, completePayment }) => { 
+const Payment = ({ loading, selectedFloor, selectedAppartment, selectedBed, onProceed, completePayment, onBack }) => { 
   return ( 
     <div className="flex w-full h-full items-center min-h-[50vh]">
       <div className="flex m-auto">
@@ -210,12 +278,12 @@ const Payment = ({ selectedFloor, selectedAppartment, selectedBed, onProceed, co
             <p className='mr-2'> 
               <span className='font-semibold'>Gender: </span> Male
             </p>
-            <p className='mr-2'> 
+            {/* <p className='mr-2'> 
               <span className='font-semibold'>Age: </span> 22
             </p>
             <p className='mr-2'> 
               <span className='font-semibold'>College: </span> NMIMS
-            </p>
+            </p> */}
           </div>
           
           <p className='mb-2'> 
@@ -238,17 +306,36 @@ const Payment = ({ selectedFloor, selectedAppartment, selectedBed, onProceed, co
             <span className='font-semibold'>Bed No: </span> {selectedBed || '__'}
           </p>
 
-          {/* <p className='text-md text-gray-600 mb-3'>after selection, click on the proceed button to get directed towards the next step of apartment selection</p> */}
-          <button
-            type="button"
-            className="inline-flex items-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-            onClick={() => { 
-              onProceed(); 
-              completePayment(); 
-            }}
-          >
-            Proceed to payment
+          <div className='flex flex-col lg:flex-row'>
+            <button
+              type="button"
+              className="mr-2 inline-flex items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-black shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+              onClick={() => onBack(steps.ROOM_SELECTION)}
+            >
+              Back
+            </button>
+            <button
+              type="button"
+              className="inline-flex items-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+              onClick={() => { 
+                onProceed(); 
+                completePayment(); 
+              }}
+            >
+              <span className='mr-2'>
+                Proceed to payment
+              </span>
+              {
+                loading && 
+                <svg class="mr-3 h-5 w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+              }
           </button>
+          </div>
+          {/* <p className='text-md text-gray-600 mb-3'>after selection, click on the proceed button to get directed towards the next step of apartment selection</p> */}
+          
         </div>
       </div>
     </div>
@@ -259,7 +346,7 @@ export default function booking() {
     const router = useRouter();
     const { isReady } = router; 
     const { id } = router.query; 
-    const { getListing, updateListing, availableBeds, getBeds, createOrder } = useApi();
+    const { getListing, updateListing, availableBeds, getBeds, createPaymentSession, updateBed } = useApi();
     const [listing, setListing] = useState({}); 
     const [availableBedsOnFloor, setAvailableBedsOnFloor] = useState({}); 
     const user = useAuth.user; 
@@ -291,6 +378,7 @@ export default function booking() {
     const [selectedCourse, setSelectedCourse] = useState("BCOM"); 
     const [selectedYear, setSelectedYear] = useState("1"); 
     const [bookByCourse, setBookByCourse] = useState(false); 
+    const [loading, setLoading] = useState(false); 
 
     useEffect(() => { 
       if(currentStep === steps.ROOM_SELECTION) { 
@@ -330,8 +418,15 @@ export default function booking() {
         setStepperState(stepper_state); 
     }; 
 
+
+    const onBack = (prev_step) => { 
+      setCurrentStep(prev_step); 
+    };
+
     const completePayment = async () => { 
-      const create_order_response = await createOrder({ 
+      setLoading(true); 
+
+      const create_order_response = await createPaymentSession({ 
         user: user.id, 
         appartment: selectedAppartment.id, 
         bed: selectedBed, 
@@ -342,8 +437,12 @@ export default function booking() {
         amount: listing.price
       }); 
 
-      router.push('/order-history');
-      console.log(create_order_response);
+      // router.push('/order-history');
+      console.log("Payment session response: ", create_order_response);
+
+      window.location.href = create_order_response; 
+
+      setLoading(false);
     }
 
     const fetchBeds = async () => { 
@@ -361,11 +460,16 @@ export default function booking() {
       )); 
     }
 
+    const lockBed = async () => { 
+      const update_bed_response = await updateBed(selectedBed, { locked: true, locked_by: user.id }); 
+      console.log("update bed response: ", update_bed_response); 
+    }
+
     return (
         <Layout>
             <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-3'> 
                 <div className='border border-gray-200 mb-3'> 
-                    <Stepper steps={stepperState} stepChange={(step_name) => setCurrentStep(step_name)}/> 
+                    <Stepper steps={stepperState}/> 
                 </div>
                 { 
                     currentStep === steps.FLOOR_SELECTION && 
@@ -390,6 +494,7 @@ export default function booking() {
                       setSelectedAppartment={setSelectedAppartment}
                       onProceed={onProceed}
                       availableBeds={availableBedsOnFloor}
+                      onBack={onBack}
                     /> 
                     || 
                     currentStep === steps.ROOM_SELECTION && 
@@ -402,6 +507,8 @@ export default function booking() {
                       setSelectedBed={setSelectedBed}
                       onProceed={onProceed}
                       bedsInAppartment={bedsInAppartment}
+                      onBack={onBack}
+                      lockBed={lockBed}
                     /> 
 
                     || 
@@ -412,6 +519,8 @@ export default function booking() {
                       selectedBed={selectedBed}
                       onProceed={onProceed}
                       completePayment={completePayment}
+                      loading={loading}
+                      onBack={onBack}
                     /> 
                     || 
                     <></>
