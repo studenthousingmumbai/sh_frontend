@@ -9,6 +9,12 @@ import useApi from '../../hooks/useApi';
 import SelectMenu from '../../components/SelectMenu'; 
 import useAuth from '../../hooks/useAuth';
 
+
+
+String.prototype.capitalize = function() {
+  return this.charAt(0).toUpperCase() + this.slice(1);
+};
+
 const stepper_data = [
   { 
     id: '01', 
@@ -266,17 +272,17 @@ const BedSelection = ({ bedsInAppartment, beds, selectedAppartment, selectedBed,
   )
 }
 
-const Payment = ({ loading, selectedFloor, selectedAppartment, selectedBed, onProceed, completePayment, onBack }) => { 
+const Payment = ({ loading, selectedFloor, selectedAppartment, selectedBed, onProceed, completePayment, onBack, user, listing }) => { 
   return ( 
     <div className="flex w-full h-full items-center min-h-[50vh]">
       <div className="flex m-auto">
         <img src='/correct_icon.png' className='w-10 h-10 mr-3'/>
         <div className="">
-          <h1 className='font-semibold text-2xl mb-2'>Gaurav Bhatena</h1>
+          <h1 className='font-semibold text-2xl mb-2'>{user.firstname.capitalize() + " " + user.lastname.capitalize()}</h1>
           <h2 className='font-semibold text-xl mb-2'></h2>
           <div className='flex mb-2'>
             <p className='mr-2'> 
-              <span className='font-semibold'>Gender: </span> Male
+              <span className='font-semibold'>Hostel Type: </span> {listing.gender}
             </p>
             {/* <p className='mr-2'> 
               <span className='font-semibold'>Age: </span> 22
@@ -291,7 +297,7 @@ const Payment = ({ loading, selectedFloor, selectedAppartment, selectedBed, onPr
           </p>
 
           <p className='mb-2'> 
-            <span className='font-semibold'>Property: </span> Ganga Nivas
+            <span className='font-semibold'>Property: </span> {listing.name}
           </p>
 
           <p className='mb-2'> 
@@ -521,6 +527,8 @@ export default function booking() {
                       completePayment={completePayment}
                       loading={loading}
                       onBack={onBack}
+                      user={user}
+                      listing={listing}
                     /> 
                     || 
                     <></>
