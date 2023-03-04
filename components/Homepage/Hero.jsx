@@ -20,12 +20,12 @@ const navigation = [
           <div className='relative flex w-full lg:w-2/3 h-1/2 lg:h-full mr-5 truncate'>
             {/* <img src='/left-banner-overlay.png' className='absolute hidden lg:block top-0 left-0 h-full rounded-lg'/> */}
             <div className='absolute bg-black-overlay w-full h-full rounded-lg'></div>
-            <div className='absolute hidden lg:grid grid-cols justify-center items-center top-80 left-10 p-6'>
-              <div className='font-bold text-[60px] text-white leading-[70px] uppercase'>your home</div>
-              <div className='font-bold text-[60px] text-white leading-[70px] uppercase'>away from</div>
-              <div className='font-bold text-[125px] text-[#ffcc00] leading-[120px] uppercase'>home</div>
+            <div className='absolute hidden lg:grid grid-cols justify-center items-center bottom-5 left-5 p-6'>
+              <div className='font-bold text-6xl text-white uppercase px-3'>your home</div>
+              <div className='font-bold text-6xl text-white uppercase text-center'>away from</div>
+              <div className='font-bold text-[125px] text-[#ffcc00] leading-[110px] uppercase'>home</div>
               <Link href='/listings'>
-                <button className='font-bold bg-[#088b05] text-[26px] py-1 px-6 text-white uppercase rounded-[30px]'>explore now</button>
+                <button className='font-bold bg-[#088b05] text-[26px] mt-3 py-1 px-6 text-white uppercase rounded-[30px]'>explore now</button>
               </Link>
             </div>
             <div className='absolute flex lg:hidden flex-col justify-center items-center w-full h-full text-center p-6'>
