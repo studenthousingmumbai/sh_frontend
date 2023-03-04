@@ -4,9 +4,9 @@ export default function Listing({ id, name, description, price, amenities, addre
     const router = useRouter(); 
 
     return (
-        <>
-            <div className='hidden lg:flex w-full rounded-md p-2 hover:shadow-xl transition ease-in-out'>
-                <div className="rounded-xl bg-gray-300 w-[700px] h-[300px] mr-3 relative">
+        <div className='mb-6'>
+            <div className='hidden lg:flex w-full rounded-md p-6 hover:shadow-md hover:cursor-pointer border border-2 border-gray-200 transition ease-in-out'>
+                <div className="rounded-xl bg-gray-300 w-[700px] h-[300px] mr-6 relative">
                     <div className='bg-[rgba(0,0,0,0.3)] absolute top-0 left-0 w-full h-full rounded-md'></div>
                     <img className='w-full h-full object-cover rounded-md' src={images[0] || 'https://movi.com.tr/wp-content/uploads/2021/08/placeholder-home.png'}/>
                 </div>
@@ -140,6 +140,6 @@ export default function Listing({ id, name, description, price, amenities, addre
                     </div>
                 </div>  
             </div>
-        </>
+        </div>
     )
 }

@@ -78,6 +78,10 @@ module.exports = {
         'black-overlay': 'rgba(0, 0, 0, 0.55)',
       },
     },
+    screens: {
+      xs: "390px",
+      ...defaultTheme.screens
+    },
   },
   plugins: [
     require('@tailwindcss/forms')

@@ -1,7 +1,7 @@
 export default function Example() {
     return (
       <div className="bg-white mx-auto max-w-7xl">
-        <div className="py-6 px-6 sm:px-6 lg:px-8">
+        <div className="py-12 px-6 sm:px-6 lg:px-8">
           <div className="grid grid-cols-3 gap-8">
             <div className="col-span-1 flex justify-center">
               <img className="h-12" src="/furniture1.png" alt="Tuple" />

@@ -11,7 +11,7 @@ const useAuth = (props) => {
     const [signupErrors, setSignupErrors] = useState([]); 
     const home_route = '/'; 
     const { signup: signupUser, signin, isAuthenticated: isUserAuthenticated, googleSignin } = useApi();
-    const auth_routes = ['/booking', '/profile', '/order-history']; 
+    const auth_routes = ['/booking', '/profile', ]; 
 
     const isAuth = async () => { 
         setIsLoading(true); 

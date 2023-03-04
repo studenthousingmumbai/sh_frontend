@@ -95,7 +95,7 @@ const navigation = {
           Footer
         </h2>
         <div className="mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
-          <div className="xl:grid xl:grid-cols-3 xl:gap-8">
+          <div className="xl:grid xl:grid-cols-2 xl:gap-8">
             <div className="grid grid-cols-2 gap-8 xl:col-span-2">
               <div className="md:grid md:grid-cols-2 md:gap-8">
                 <div>
@@ -150,7 +150,7 @@ const navigation = {
                 </div>
               </div>
             </div>
-            <div className="mt-8 xl:mt-0">
+            {/* <div className="mt-8 xl:mt-0">
               <h3 className="text-base font-medium text-gray-900">Subscribe to our newsletter</h3>
               <p className="mt-4 text-base text-gray-500">
                 The latest news, articles, and resources, sent to your inbox weekly.
@@ -177,7 +177,7 @@ const navigation = {
                   </button>
                 </div>
               </form>
-            </div>
+            </div> */}
           </div>
           <div className="mt-8 border-t border-gray-200 pt-8 md:flex md:items-center md:justify-between">
             <div className="flex space-x-6 md:order-2">
