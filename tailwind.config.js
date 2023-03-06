@@ -2,6 +2,20 @@
 
 const defaultTheme = require('tailwindcss/defaultTheme')
 
+const newScreens = Object.entries(defaultTheme.screens).reduce(
+  (breakpoints, [label, value]) => {
+    if (label == "xl") {
+      breakpoints["lg1"] = "1330px";
+    }
+    if (label == "xl") {
+      breakpoints["lg2"] = "1548px";
+    }
+    breakpoints[label] = value;
+    return breakpoints;
+  },
+  {}
+);
+
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -11,6 +25,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'female-banner-cropped': "url('/female-no-bg-cropped.png')",
+        'male-banner-cropped': "url('/male-no-bg-cropped.png')",
+        'female-banner': "url('/female-no-bg.png')",
+        'male-banner': "url('/male-no-bg.png')",
+      },
       animation: {
         'fade-in': 'fade-in 0.5s linear forwards',
         marquee: 'marquee var(--marquee-duration) linear infinite',
@@ -80,7 +100,7 @@ module.exports = {
     },
     screens: {
       xs: "390px",
-      ...defaultTheme.screens
+      ...newScreens
     },
   },
   plugins: [

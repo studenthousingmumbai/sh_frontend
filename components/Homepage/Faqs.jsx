@@ -48,14 +48,14 @@ export default function Example() {
                         <span className="font-medium text-gray-900">{faq.question}</span>
                         <span className="ml-6 flex h-7 items-center">
                           <ChevronDownIcon
-                            className={classNames(open ? '-rotate-180' : 'rotate-0', 'h-6 w-6 transform')}
+                            className={classNames(open ? '-rotate-180 transition-all' : 'rotate-0 transition-all', 'h-6 w-6 transform transition-all')}
                             aria-hidden="true"
                           />
                         </span>
                       </Disclosure.Button>
                     </dt>
                     <Disclosure.Panel as="dd" className="mt-2 pr-12">
-                      <p className="text-base text-gray-500">{faq.answer}</p>
+                      <p className="text-base text-gray-500 transition-all">{faq.answer}</p>
                     </Disclosure.Panel>
                   </>
                 )}

@@ -6,11 +6,11 @@ export default function Listing({ id, name, description, price, amenities, addre
     return (
         <div className='mb-6'>
             <div className='hidden lg:flex w-full rounded-md p-6 hover:shadow-md hover:cursor-pointer border border-2 border-gray-200 transition ease-in-out'>
-                <div className="rounded-xl bg-gray-300 w-[700px] h-[300px] mr-6 relative">
+                <div className="rounded-xl bg-gray-300 w-[700px] mr-6 relative">
                     <div className='bg-[rgba(0,0,0,0.3)] absolute top-0 left-0 w-full h-full rounded-md'></div>
                     <img className='w-full h-full object-cover rounded-md' src={images[0] || 'https://movi.com.tr/wp-content/uploads/2021/08/placeholder-home.png'}/>
                 </div>
-                <div className="rounded-md w-full h-[300px] flex flex-col justify-between">
+                <div className="rounded-md w-full flex flex-col justify-between">
                     <h2 className='text-3xl uppercase mb-3'> 
                         {name}
                     </h2>
@@ -34,11 +34,11 @@ export default function Listing({ id, name, description, price, amenities, addre
                     </div> 
 
                     <div className='mb-3'> 
-                        <h2 className='uppercase text-xl'>amenities</h2>
-                        <div className='flex'> 
+                        <h2 className='uppercase text-xl mb-1'>amenities</h2>
+                        <div className='grid grid-cols-3 gap-x-2 gap-y-4'> 
                             { 
                                 amenities.length !== 0 && amenities.map(amenity => ( 
-                                    <span className='mr-3 text-md font-semibold'> 
+                                    <span className='lg:text-sm lg:1text-base font-[600]'> 
                                         {amenity}
                                     </span> 
                                 ))
@@ -49,7 +49,7 @@ export default function Listing({ id, name, description, price, amenities, addre
                     <div className='flex'> 
                         <button
                             type="button"
-                            className="mr-3 inline-flex items-center rounded-md border border-transparent bg-[#FFCC29] px-4 py-2 text-base font-medium text-black shadow-sm hover:bg-[#fad45a] focus:outline-none focus:ring-2 focus:ring-[#fad45a] focus:ring-offset-2"
+                            className="mr-3 inline-flex items-center rounded-md border border-transparent bg-[#FFCC29] px-4 py-2 text-sm lg1:text-base font-medium text-black shadow-sm hover:bg-[#fad45a] focus:outline-none focus:ring-2 focus:ring-[#fad45a] focus:ring-offset-2"
                             onClick={() => router.push(`/listing/${id}`)}
                         >
                             Book Now
@@ -57,7 +57,7 @@ export default function Listing({ id, name, description, price, amenities, addre
 
                         <button
                             type="button"
-                            className="mr-3 inline-flex items-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-[#167d05] focus:ring-offset-2"
+                            className="mr-3 inline-flex items-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm lg1:text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-[#167d05] focus:ring-offset-2"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="-ml-1 mr-2 h-5 w-5">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
@@ -68,12 +68,12 @@ export default function Listing({ id, name, description, price, amenities, addre
                 </div>  
             </div>
 
-            <div className='flex flex-col lg:hidden w-full rounded-md p-2 hover:shadow-xl transition ease-in-out'>
+            <div className='flex flex-col lg:hidden w-full rounded-md p-6 hover:shadow-xl border-2 border-gray-200  transition ease-in-out'>
                 <div className="rounded-xl bg-gray-300 w-full h-[350px] mr-3 relative">
                     <div className='bg-[rgba(0,0,0,0.3)] absolute top-0 left-0 w-full h-full rounded-md'></div>
                     <img className='w-full h-full object-cover rounded-md' src={images[0] || 'https://movi.com.tr/wp-content/uploads/2021/08/placeholder-home.png'}/>
                 </div>
-                <div className="rounded-md w-full h-[300px] flex flex-col justify-between">
+                <div className="rounded-md w-full flex flex-col justify-between">
                     <div className='flex w-full gap-1 justify-between items-center my-3'>
                         <h2 className='text-2xl sm:text-3xl uppercase font-bold'> 
                             {name}
@@ -100,11 +100,11 @@ export default function Listing({ id, name, description, price, amenities, addre
 
 
                     <div className='mb-3'> 
-                        <h2 className='uppercase text-lg sm:text-xl'>amenities</h2>
-                        <div className='flex justify-between gap-2 sm:gap-1'> 
+                        <h2 className='uppercase text-lg sm:text-xl mb-1'>amenities</h2>
+                        <div className='grid grid-cols-4 gap-x-2 gap-y-4'> 
                             { 
                                 amenities.length !== 0 && amenities.map(amenity => ( 
-                                    <span className='text-md font-semibold text-center'> 
+                                    <span className='text-[10px] sm:text-sm font-semibold'> 
                                         {amenity}
                                     </span> 
                                 ))
@@ -117,7 +117,7 @@ export default function Listing({ id, name, description, price, amenities, addre
                         <div className='w-[50%] lg:w-auto'>
                             <button
                                 type="button"
-                                className="w-full lg:w-auto inline-flex items-center justify-center rounded-md border border-transparent bg-[#FFCC29] px-4 py-2 text-base font-medium text-black shadow-sm hover:bg-[#fad45a] focus:outline-none focus:ring-2 focus:ring-[#fad45a] focus:ring-offset-2"
+                                className="w-full lg:w-auto inline-flex items-center justify-center rounded-md border border-transparent bg-[#FFCC29] px-4 py-2 text-xs sm:text-base font-medium text-black shadow-sm hover:bg-[#fad45a] focus:outline-none focus:ring-2 focus:ring-[#fad45a] focus:ring-offset-2"
                                 onClick={() => router.push(`/listing/${id}`)}
                             >
                                 Book Now
@@ -126,9 +126,9 @@ export default function Listing({ id, name, description, price, amenities, addre
                         <div className='w-[50%] lg:w-auto'>
                             <button
                                 type="button"
-                                className="w-full lg:w-auto inline-flex items-center justify-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-[#167d05] focus:ring-offset-2"
+                                className="w-full lg:w-auto inline-flex items-center justify-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-xs sm:text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-[#167d05] focus:ring-offset-2"
                             >
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="-ml-1 mr-2 h-5 w-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="-ml-1 mr-2 h-4 w-4">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
                                 </svg>
                                 Contact Us
