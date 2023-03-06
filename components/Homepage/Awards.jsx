@@ -46,14 +46,14 @@ import {
             </p>
           </div>
         </div>
-        <div className="grid grid-cols-4 py-8">
+        <div className='flex flex-col items-center justify-center mt-12 mb-8'>
+          <h1 className='font-bold text-4xl lg:text-5xl text-[#FBCF5F] text-center mb-2'>Awards & Recognition</h1>
+          <h1 className='text-xl md:text-2xl lg:text-3xl text-[#A5A3A3]'>Striving to be the best for you, always!</h1>
+        </div>
+        <div className="grid grid-cols-4 pt-8">
           {awards.map((ele) => (
             <img className="h-40 w-40 mx-auto rounded-lg object-contain" src={ele.src} alt={ele.name} />
           ))}
-        </div>
-        <div className='flex flex-col items-center justify-center py-8'>
-          <h1 className='font-bold text-4xl lg:text-5xl text-[#FBCF5F] text-center mb-2'>Awards & Recognition</h1>
-          <h1 className='text-xl md:text-2xl lg:text-3xl text-[#A5A3A3]'>Striving to be the best for you, always!</h1>
         </div>
       </div>
 

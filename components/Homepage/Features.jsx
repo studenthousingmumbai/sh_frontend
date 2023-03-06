@@ -34,14 +34,14 @@ import {
   export default function Example() {
     return (
       <div className='w-full max-h-full mb-6'>
-        <div className=" grid grid-cols-2 lg:grid-cols-4 gap-x-12 md:gap-x-48 gap-y-12 lg:gap-24 pb-12 w-full place-items-stretch ">
+        <div className=" grid grid-cols-2 xs:grid-cols-[40%_40%] sm:grid-cols-[40%_40%] gap-6 xs:gap-8 md:grid-cols-[30%_30%] justify-center lg:grid-cols-4 md:gap-12 lg:gap-8 lg1:gap-16 lg2:gap-24 mb-12 w-full place-items-stretch ">
         {/* bg-[url('/am-4.png')] */}
           {features.map((ele) => (
             <div className='relative flex items-end justify-center shadow-lg rounded-xl truncate'>
               <img className="w-full h-full object-cover rounded-xl " src={ele.src} alt={ele.name} />
               <div className='absolute flex flex-col justify-center items-center py-8 px-4 bg-gradient-to-b from-transparent to-white w-full rounded-xl'>
-                <div className='font-bold text-lg md:text-xl lg:text-2xl uppercase'>{ele.name}</div>
-                <div className='font-bold text-[7px] md:text-[9px] lg:text-[10px] uppercase break-normal bg-[#FBCF5F] rounded-sm px-1'>{ele.content}</div>
+                <div className='font-bold text-sm xs:text-base sm:text-lg lg1:text-xl lg2:text-2xl uppercase'>{ele.name}</div>
+                <div className='flex items-center justify-center font-bold text-[6.5px] xs:text-[7px] sm:text-[9px] md:text-[8px] lg:text-[8px] lg:leading-[0.75rem] lg1:text-[10px] lg1:leading-[0.75rem] lg2:text-xs uppercase break-normal bg-[#FBCF5F] rounded-sm px-1'>{ele.content}</div>
               </div>
             </div>
               

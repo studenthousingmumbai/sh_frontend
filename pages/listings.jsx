@@ -12,7 +12,7 @@ import Search from '../components/common/Search';
 //         description: 'Home away from home', 
 //         price: 20000, 
 //         images: ['https://lh5.googleusercontent.com/p/AF1QipMD8uMloIMenAHDHnRg77jXZOdWXkr64pWC57VC=w348-h160-k-no'], 
-//         amenities: ['Air conditioning', 'Attached Washroom', 'Spacious Cubboards'], 
+//         amenities: ['Air conditioning', 'Attached Washroom', 'Spacious Cubboards', 'Spacious Cubboards', 'Spacious Cubboards'], 
 //         address: '123 Ganga Nivas, 34th Street, Juhu, Mumbai 401202'
 //     }, 
 //     { 
@@ -205,7 +205,7 @@ export default function Listings() {
                                     amenities={listing.amenities} 
                                     address={listing.address} 
                                 />  
-                                { index !== listings.length - 1 && <div className='w-full h-[0.5px] border border-gray-200 my-3'></div>}
+                                {/* { index !== listings.length - 1 && <div className='w-full h-[0.5px] border border-gray-200 my-3'></div>} */}
                             </>
                         )) 
                     }
@@ -222,7 +222,7 @@ export default function Listings() {
                                     amenities={listing.amenities} 
                                     address={listing.address} 
                                 />  
-                                { index !== listings.length - 1 && <div className='w-full h-[0.5px] border border-gray-200 my-3'></div>}
+                                {/* { index !== listings.length - 1 && <div className='w-full h-[0.5px] border border-gray-200 my-3'></div>} */}
                             </>
                         ))
                     }

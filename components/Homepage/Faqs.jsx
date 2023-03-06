@@ -32,7 +32,7 @@ function classNames(...classes) {
 
 export default function Example() {
   return (
-    <div className="bg-gray-50">
+    <div className="bg-white">
       <div className="mx-auto max-w-7xl py-12 px-4 sm:py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl divide-y-2 divide-gray-200">
           <h2 className="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
@@ -48,14 +48,14 @@ export default function Example() {
                         <span className="font-medium text-gray-900">{faq.question}</span>
                         <span className="ml-6 flex h-7 items-center">
                           <ChevronDownIcon
-                            className={classNames(open ? '-rotate-180' : 'rotate-0', 'h-6 w-6 transform')}
+                            className={classNames(open ? '-rotate-180 transition-all' : 'rotate-0 transition-all', 'h-6 w-6 transform transition-all')}
                             aria-hidden="true"
                           />
                         </span>
                       </Disclosure.Button>
                     </dt>
                     <Disclosure.Panel as="dd" className="mt-2 pr-12">
-                      <p className="text-base text-gray-500">{faq.answer}</p>
+                      <p className="text-base text-gray-500 transition-all">{faq.answer}</p>
                     </Disclosure.Panel>
                   </>
                 )}

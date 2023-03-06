@@ -121,7 +121,7 @@ function StarRating({ rating }) {
           key={index}
           className={clsx(
             'h-5 w-5',
-            rating > index ? 'fill-cyan-500' : 'fill-gray-300'
+            rating > index ? 'fill-[#FBCF5F]' : 'fill-gray-300'
           )}
         />
       ))}
@@ -251,8 +251,9 @@ function ReviewGrid() {
           />
         </>
       )}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-gray-50" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-gray-50" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-32" />
+      {/* bg-gradient-to-b from-gray-50 */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32" />
     </div>
   )
 }
