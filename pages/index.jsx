@@ -16,7 +16,7 @@ import LogoCloud from '../components/Homepage/LogoCloud';
 import Layout from '../components/Layout'; 
 import Stepper  from '../components/Stepper'; 
 // import Carousel from '../components/Carousel';
-import { Reviews } from '../components/Homepage/Testimonials'; 
+import { Reviews } from '../components/Homepage/Testimonials';
 
 export default function Home() {
   return (

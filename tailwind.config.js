@@ -22,6 +22,8 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
     './src/**/*.{html,js}', 
     "./public/**/*.html",
+    "./node_modules/tw-elements/dist/js/**/*.js",
+    "./node_modules/flowbite/**/*.js"
   ],
   theme: {
     extend: {
@@ -104,6 +106,8 @@ module.exports = {
     },
   },
   plugins: [
-    require('@tailwindcss/forms')
+    require('@tailwindcss/forms'),
+    require("tw-elements/dist/plugin"),
+    require('flowbite/plugin')
   ],
 }
