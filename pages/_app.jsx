@@ -3,6 +3,8 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { useEffect } from 'react';
 
 function MyApp({ Component, pageProps }) {
+  const google_client_id = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+
   useEffect(() => {
     const use = async () => {
       (await import('tw-elements')).default;
