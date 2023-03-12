@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from 'next/router'; 
 import apis from "../lib/apis";
 import useApi from './useApi'; 
+import { googleLogout } from '@react-oauth/google';
 
 const useAuth = (props) => { 
     const router = useRouter();
@@ -135,6 +136,7 @@ const useAuth = (props) => {
         try{ 
             localStorage.removeItem("login_token"); 
             setIsAuthenticated(false); 
+            googleLogout();
             await router.push('/signin');
         }
         catch(err) { 
