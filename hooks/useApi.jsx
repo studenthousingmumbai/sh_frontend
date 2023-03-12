@@ -365,6 +365,33 @@ export default function useApi() {
         }
     }
 
+    const verifyAccount = async (verification_code) => { 
+        try{ 
+            const response = await axios(base_url + `/user/verify/${verification_code}`, { 
+                method: "GET", 
+            }); 
+            return response.data; 
+        }
+        catch(err){ 
+            console.log(err); 
+            return err.response.data; 
+        }
+    }
+
+    const studentsByListing = async (data) => { 
+        try{ 
+            const response = await axios(base_url + `/stats/students-by-listing`, { 
+                method: "POST",
+                data 
+            }); 
+            return response.data; 
+        }
+        catch(err){ 
+            console.log(err); 
+            return err.response.data; 
+        }
+    }
+
     return { 
         addAppartment, 
         addFloor,
@@ -391,6 +418,8 @@ export default function useApi() {
         updateUser, 
         createOrder, 
         getOrders, 
-        createPaymentSession
+        createPaymentSession,
+        verifyAccount, 
+        studentsByListing
     }
 }
