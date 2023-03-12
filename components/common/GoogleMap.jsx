@@ -23,7 +23,7 @@ class MapContainer extends Component {
         );
     }
 }
-  
+
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyD5ehujEawIkZN6IC3aCJOMa5GKTGHbhhM'
+    apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY
 })(MapContainer);
