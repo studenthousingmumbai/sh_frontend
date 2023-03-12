@@ -188,6 +188,9 @@ const FloorSelection = ({ setBookByCourse, bookByCourse, setSelectedFloor, selec
 }
 
 const AppartmentSelection = ({ listing, setSelectedAppartment, selectedFloor, selectedAppartment, onProceed, onBack, bookByCourse, selectedCollege, selectedCourse, selectedYear, studentStats }) => {  
+  console.log("Student stats: ", studentStats);
+  console.log("Length: ", Object.keys(studentStats).length); 
+
   return ( 
     <div className="flex flex-col lg:flex-row w-full items-center">
       <div className="w-full flex">
@@ -196,9 +199,6 @@ const AppartmentSelection = ({ listing, setSelectedAppartment, selectedFloor, se
           <h1 className='font-semibold text-2xl mb-2'>Select the Appartment as per your preference</h1>
           <p className='text-md text-gray-600 mb-3'>after selection, click on the proceed button to get directed towards the next step of room selection</p>
 
-
-       
-        
           <div className="w-full lg:hidden mb-3">
             <h1>
               {
@@ -217,7 +217,7 @@ const AppartmentSelection = ({ listing, setSelectedAppartment, selectedFloor, se
                         onClick={() => setSelectedAppartment({appartment_number: appartment.appartment_number, id: appartment.id, floor_plan: appartment.floor_plan })}
                       >
                         {
-                          bookByCourse && 
+                          bookByCourse && Object.keys(studentStats).length > 0 &&
                           <span className='px-2 py-1 text-xs bg-green-200 text-green-800 absolute right-[-10px] top-[-10px] rounded-full'>
                             {
                               `${studentStats[selectedFloor][appartment.appartment_number]} student${studentStats[selectedFloor][appartment.appartment_number] > 0 && 's' || ''}`
@@ -243,7 +243,7 @@ const AppartmentSelection = ({ listing, setSelectedAppartment, selectedFloor, se
             <button
               type="button"
               className="inline-flex items-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-              onClick={onProceed}
+              onClick={() => Object.keys(selectedAppartment).length > 0 && onProceed()}
             >
               Proceed
             </button>
@@ -271,7 +271,7 @@ const AppartmentSelection = ({ listing, setSelectedAppartment, selectedFloor, se
                   onClick={() => setSelectedAppartment({appartment_number: appartment.appartment_number, id: appartment.id, floor_plan: appartment.floor_plan })}
                 >
                   {
-                    bookByCourse && 
+                    bookByCourse && Object.keys(studentStats).length > 0 &&
                     <span className='px-2 py-1 text-xs bg-green-200 text-green-800 absolute right-[-10px] top-[-10px] rounded-full'>
                       {
                         `${studentStats[selectedFloor][appartment.appartment_number]} student${studentStats[selectedFloor][appartment.appartment_number] > 0 && 's' || ''}`
@@ -321,8 +321,10 @@ const BedSelection = ({ bedsInAppartment, beds, selectedAppartment, selectedBed,
               type="button"
               className="inline-flex items-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
               onClick={() => { 
-                onProceed(); 
-                lockBed(); 
+                if(selectedBed) { 
+                  onProceed(); 
+                  lockBed(); 
+                }
               }}
             >
               Proceed
@@ -383,13 +385,13 @@ const Payment = ({ loading, selectedFloor, selectedAppartment, selectedBed, onPr
           </p>
 
           <div className='flex flex-col lg:flex-row'>
-            <button
+            {/* <button
               type="button"
               className="mr-2 inline-flex items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-black shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
               onClick={() => onBack(steps.ROOM_SELECTION)}
             >
               Back
-            </button>
+            </button> */}
             <button
               type="button"
               className="inline-flex items-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
