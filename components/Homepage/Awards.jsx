@@ -35,23 +35,41 @@ import {
   export default function Example() {
     return (
       <div className='w-full max-h-full mb-6'>
-        <div className="w-full grid grid-cols-1 lg:grid-cols-2">
-          <div className='w-full h-full row-span-4 order-2 py-6 lg:py-0 lg:pl-28'>
-            <img className="w-full object-contain rounded-lg" src='/YourSpace.png' alt='furniturelayout' />
-          </div>
-          <div className='row-span-2 flex items-center lg:items-end'>
-            <motion.div className='w-full lg:pb-3' initial="hidden" whileInView="visible" variants={textVariantRightToLeft} viewport={{once:false, amount:0.5}}>
-              <h2 className='font-bold text-3xl lg:text-4xl text-start lg:text-start'>You need your space,</h2>
-              <h2 className='font-bold text-3xl lg:text-4xl text-start lg:text-start text-[#FBCF5F]'>Always!</h2>
+
+        <motion.div
+          className="w-full h-full flex flex-col lg:flex-row items-start lg:items-center"
+          initial="hidden" whileInView="visible"
+          transition={{staggerChildren: 0.45}}
+          viewport={{once:false, amount:0.3}}
+        >
+
+          <motion.div className=''>
+            <motion.div className='flex items-center lg:items-end' variants={textVariantRightToLeft}>
+              <div className='w-full lg:pb-3'>
+                <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-start'>You need your space,</h2>
+                <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-start text-[#FBCF5F]'>Always!</h2>
+              </div>
             </motion.div>
+            <motion.div className='hidden lg:block px-3 lg:p-0' variants={textVariantRightToLeft}>
+              <p className='text-sm sm:text-base md:text-lg lg1:text-xl text-center lg:text-start text-[#A5A3A3]'>
+                with spacious & luxuiries homes, you get your space & privacy promised & with 24/7 
+                round the clock security, safety is never comprimised & always delivered. 
+              </p>
+            </motion.div>
+          </motion.div>
+          <div className='w-full h-full row-span-4 py-6 lg:py-0 lg:pl-28'>
+            <img className="w-full object-contain rounded-lg" src='/YourSpace.png' alt='yourspacelayout' />
           </div>
-          <div className='row-span-2 px-3 lg:p-0 order-last'>
-            <p className='text-1xl lg:text-xl text-center lg:text-start text-[#A5A3A3]'>
+          <motion.div className='block lg:hidden px-3 lg:p-0' variants={textVariantRightToLeft}>
+            <p className='text-sm sm:text-base md:text-lg lg1:text-xl text-center lg:text-start text-[#A5A3A3]'>
               with spacious & luxuiries homes, you get your space & privacy promised & with 24/7 
               round the clock security, safety is never comprimised & always delivered. 
             </p>
-          </div>
-        </div>
+          </motion.div>
+
+        </motion.div>
+
+
         <div className='flex flex-col items-center justify-center mt-12 mb-8'>
           <h1 className='font-bold text-4xl lg:text-5xl text-[#FBCF5F] text-center mb-2'>Awards & Recognition</h1>
           <h1 className='text-xl md:text-2xl lg:text-3xl text-[#A5A3A3] text-center'>Striving to be the best for you, always!</h1>

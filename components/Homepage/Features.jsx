@@ -55,23 +55,40 @@ import {
             </div>             
           ))}
         </div>
-        <div className="w-full grid grid-cols-1 lg:grid-cols-2">
-          <div className='w-full h-full row-span-4 order-2 lg:order-none py-6 lg:py-0 lg:pr-28'>
+
+        <motion.div
+          className="w-full h-full flex flex-col lg:flex-row items-start lg:items-center"
+          initial="hidden" whileInView="visible"
+          transition={{staggerChildren: 0.45}}
+          viewport={{once:false, amount:0.3}}
+        >
+          <motion.div className='flex lg:hidden text-start lg:text-end' variants={textVariantLeftToRight}>
+            <div className='w-full lg:pb-3'>
+              <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-end'>Welcoming Adobe!</h2>
+              <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-end text-[#FBCF5F]'>Your Home, away from home</h2>
+            </div>
+          </motion.div>
+          <div className='w-full lg:w-1/2 h-full py-6 lg:py-0 lg:pr-28'>
             <img className="w-full object-contain rounded-lg" src='/furniturelayout.png' alt='furniturelayout' />
           </div>
-          <div className='row-span-2 flex items-center lg:items-end lg:order-none'>
-            <motion.div className='w-full lg:pb-3' initial="hidden" whileInView="visible" variants={textVariantLeftToRight} viewport={{once:false, amount:0.8}}>
-              <h2 className='font-bold text-3xl lg:text-4xl text-start lg:text-end'>Welcoming Adobe!</h2>
-              <h2 className='font-bold text-3xl lg:text-4xl text-start lg:text-end text-[#FBCF5F]'>Your Home, away from home</h2>
+          <motion.div
+            className='w-full lg:w-1/2 h-full'
+          >
+            <motion.div className='hidden lg:flex text-center lg:text-end' variants={textVariantLeftToRight}>
+              <div className='w-full lg:pb-3'>
+                <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-end'>Welcoming Adobe!</h2>
+                <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-end text-[#FBCF5F]'>Your Home, away from home</h2>
+              </div>
             </motion.div>
-          </div>
-          <div className='row-span-2 px-3 lg:p-0 order-last lg:order-none'>
-            <p className='text-1xl lg:text-xl text-center lg:text-end text-[#A5A3A3]'>In a city of lively contemporary culture, our range of homes combines modern
-              technology with tasteful décor to create a heaven for our guests, welcoming 
-              students with warm gracious in our home-like hostels
-            </p>
-          </div>
-        </div>
+            <motion.div className='px-3 lg:p-0' variants={textVariantLeftToRight}>
+              <p className='text-sm sm:text-base md:text-lg lg1:text-xl text-center lg:text-end text-[#A5A3A3]'>In a city of lively contemporary culture, our range of homes combines modern
+                technology with tasteful décor to create a heaven for our guests, welcoming 
+                students with warm gracious in our home-like hostels
+              </p>
+            </motion.div>
+          </motion.div>
+        </motion.div>
+
       </div>
     )
   }
