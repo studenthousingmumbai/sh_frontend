@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from 'next/router'; 
 import apis from "../lib/apis";
 import useApi from './useApi'; 
+import { googleLogout } from '@react-oauth/google';
 
 const useAuth = (props) => { 
     const router = useRouter();
@@ -16,7 +17,7 @@ const useAuth = (props) => {
     const isAuth = async () => { 
         setIsLoading(true); 
         const token = localStorage.getItem('login_token');
-    
+        
         // if the user has logged out send them to the signin page (only if the page is not already signin or signup)
         if(!token){
             console.log("Pathname: ", router.pathname);
@@ -114,25 +115,34 @@ const useAuth = (props) => {
             const { access_token, user, errors } = login_response;
 
             if(access_token && user) { 
-                localStorage.setItem('login_token', access_token); 
-                useAuth.user = user; 
-                setIsAuthenticated(true); 
-                router.push(home_route); 
+                // localStorage.setItem('login_token', access_token); 
+                // useAuth.user = user; 
+                // setIsAuthenticated(true); 
+                // router.push(home_route); 
+                return true; 
             }
             else{ 
                 // set login errors here 
                 setSignupErrors(errors);
                 setIsAuthenticated(false); 
+                return false;
             }
         }
 
         setIsLoading(false); 
     }
 
-    const logout = () => { 
-        localStorage.removeItem("login_token"); 
-        setIsAuthenticated(false); 
-        router.push('/signin');
+    const logout = async () => { 
+        try{ 
+            localStorage.removeItem("login_token"); 
+            setIsAuthenticated(false); 
+            googleLogout();
+            await router.push('/signin');
+        }
+        catch(err) { 
+            console.log("error occured : ", err);
+        }
+
     }
 
     return {  

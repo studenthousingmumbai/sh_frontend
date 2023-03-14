@@ -3,6 +3,8 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { useEffect } from 'react';
 
 function MyApp({ Component, pageProps }) {
+  const google_client_id = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+
   useEffect(() => {
     window.addEventListener('phx:page-loading-stop', (event) => {
       // trigger flowbite events
@@ -20,7 +22,7 @@ function MyApp({ Component, pageProps }) {
   }, []);
   
   return (
-    <GoogleOAuthProvider clientId="135627911225-famonrqmd3uclb46loag3oeg53t7fbq5.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId={google_client_id}>
       <Component {...pageProps} />
     </GoogleOAuthProvider>
   )

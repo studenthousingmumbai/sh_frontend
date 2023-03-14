@@ -9,8 +9,6 @@ import useApi from '../../hooks/useApi';
 import SelectMenu from '../../components/SelectMenu'; 
 import useAuth from '../../hooks/useAuth';
 
-
-
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
 };
@@ -46,6 +44,11 @@ const stepper_data = [
   }
 ]; 
 
+const colleges = [
+  { id: 1, value: 'NMIMS' }, 
+  { id: 2, value: 'Mithibai' }, 
+]
+
 const courses = [ 
   { id: 1, value: "BCOM" }, 
   { id: 2, value: "BSC" }, 
@@ -58,7 +61,10 @@ const years = [
   { id: 3, value: 3 }, 
 ];
 
-const FloorSelection = ({ setBookByCourse, bookByCourse, setSelectedFloor, selectedFloor, selectedYear, selectedCourse, setSelectedCourse, setSelectedYear, onProceed, availableBeds }) => { 
+const FloorSelection = ({ setBookByCourse, bookByCourse, setSelectedFloor, selectedFloor, selectedYear, selectedCourse, setSelectedCourse, selectedCollege, setSelectedCollege, setSelectedYear, onProceed, availableBeds, studentsStatsFloor }) => { 
+  console.log("Availabled beds: ", availableBeds);
+  console.log("Students on floor: ", studentsStatsFloor);
+  
   return ( 
     <div className="flex flex-col lg:flex-row w-full items-center">
       <div className="w-full flex mr-3">
@@ -88,6 +94,15 @@ const FloorSelection = ({ setBookByCourse, bookByCourse, setSelectedFloor, selec
           {
             bookByCourse && 
             <div className='flex mb-3'> 
+              <div  className='w-full mr-2'> 
+                <SelectMenu 
+                  label="Select College"
+                  options={colleges}
+                  value={selectedCollege}
+                  onChange={change => setSelectedCollege(change.value)}
+                />
+                
+              </div>
               <div className='w-full mr-2'> 
                 <SelectMenu 
                   label="Select course"
@@ -108,20 +123,25 @@ const FloorSelection = ({ setBookByCourse, bookByCourse, setSelectedFloor, selec
           }
 
 
-          <div className="w-full lg:hidden">
+          <div className="w-full lg:hidden border border-gray-300 p-5">
             {
               availableBeds !== {} && Object.keys(availableBeds).map(key => (
-                <div className='h-[60px] mb-3'> 
-                  <div className='w-full items-center'>
+                <div className='mb-3'> 
+                  <div className={`w-full items-center ${availableBeds[key] == 0 && 'text-red-500'}`}>
                     Beds available: {availableBeds[key]}
                   </div> 
+                  <div className='text-sm text-gray-600 mb-2'>
+                    { 
+                      bookByCourse && Object.keys(studentsStatsFloor).length > 0 && studentsStatsFloor[key] && availableBeds[key] > 0 &&
+                      studentsStatsFloor[key] + ` ${selectedCollege} year ${selectedYear} student${studentsStatsFloor[key] > 1 && 's' || ''}, from ${selectedCourse}`
+                    }
+                  </div>
                   <div 
-                    className={`w-full py-3 mr-3 bg-gray-300 hover:bg-green-200 cursor-pointer flex items-center justify-center ${selectedFloor !== null && selectedFloor === key && 'bg-green-400 hover:bg-green-400'} active:bg-green-400`} 
+                    className={`h-[60px] w-full py-3 mr-3 bg-gray-300 hover:bg-green-200 cursor-pointer flex items-center justify-center ${selectedFloor !== null && selectedFloor === key && 'bg-green-400 hover:bg-green-400'} active:bg-green-400 ${availableBeds[key] == 0 && ' pointer-events-none bg-red-100 text-red-500'}`} 
                     onClick={() => setSelectedFloor(key)}
                   >
                     Floor {key}  
                   </div>  
-
                 </div> 
               ))
             } 
@@ -137,19 +157,28 @@ const FloorSelection = ({ setBookByCourse, bookByCourse, setSelectedFloor, selec
         </div>
       </div>
 
-      <div className="h-full w-full hidden lg:block">
+      <div className="w-full hidden lg:block border border-gray-300 p-5">
         {
           availableBeds !== {} && Object.keys(availableBeds).map(key => (
-            <div className='flex h-[60px] mb-2'> 
+            <div className='flex mb-2 items-center'> 
               <div 
-                className={`h-full w-full mr-3 bg-gray-300 hover:bg-green-200 cursor-pointer flex items-center justify-center ${selectedFloor !== null && selectedFloor === key && 'bg-green-400 hover:bg-green-400'} active:bg-green-400`} 
+                className={`h-[60px] w-full mr-3 bg-gray-300 hover:bg-green-200 cursor-pointer flex items-center justify-center ${selectedFloor !== null && selectedFloor === key && 'bg-green-400 hover:bg-green-400'} active:bg-green-400 ${availableBeds[key] == 0 && ' pointer-events-none bg-red-100 text-red-500'}`} 
                 onClick={() => setSelectedFloor(key)}
               >
                 Floor {key}  
               </div>  
-              <div className='h-full w-full flex items-center'>
-                Beds available: {availableBeds[key]}
-              </div> 
+              
+              <div className='w-full'>
+                <div className={availableBeds[key] == 0 && 'text-red-500'}>
+                  Beds available: {availableBeds[key]}
+                </div> 
+                <div className='text-sm text-gray-600'>
+                  { 
+                    bookByCourse && Object.keys(studentsStatsFloor).length > 0 && studentsStatsFloor[key] && availableBeds[key] > 0 &&
+                    studentsStatsFloor[key] + ` ${selectedCollege} year ${selectedYear} student${studentsStatsFloor[key] > 1 && 's' || ''}, from ${selectedCourse}`
+                  }
+                </div>
+              </div>
             </div> 
           ))
         } 
@@ -158,7 +187,10 @@ const FloorSelection = ({ setBookByCourse, bookByCourse, setSelectedFloor, selec
   )
 }
 
-const AppartmentSelection = ({ listing, setSelectedAppartment, selectedFloor, selectedAppartment, onProceed, onBack }) => {  
+const AppartmentSelection = ({ listing, setSelectedAppartment, selectedFloor, selectedAppartment, onProceed, onBack, bookByCourse, selectedCollege, selectedCourse, selectedYear, studentStats }) => {  
+  console.log("Student stats: ", studentStats);
+  console.log("Length: ", Object.keys(studentStats).length); 
+
   return ( 
     <div className="flex flex-col lg:flex-row w-full items-center">
       <div className="w-full flex">
@@ -168,18 +200,36 @@ const AppartmentSelection = ({ listing, setSelectedAppartment, selectedFloor, se
           <p className='text-md text-gray-600 mb-3'>after selection, click on the proceed button to get directed towards the next step of room selection</p>
 
           <div className="w-full lg:hidden mb-3">
-            <div className='border border-gray-300 w-full grid grid-cols-3 gap-4 p-5'>
-              { 
-                listing && (listing.floors.find(floor => floor.floor_number === selectedFloor.toString())).appartments.map((appartment,index) => ( 
-                    <div 
-                      className={`bg-gray-300 w-full h-[50px] flex hover:bg-green-200 cursor-pointer items-center justify-center ${selectedAppartment !== null && selectedAppartment.appartment_number === appartment.appartment_number && 'bg-green-400 hover:bg-green-400'} active:bg-green-400`}
-                      onClick={() => setSelectedAppartment({appartment_number: appartment.appartment_number, id: appartment.id, floor_plan: appartment.floor_plan })}
-                    >
-                      {appartment.appartment_number}
-                    </div>
-                ))
+            <h1>
+              {
+                bookByCourse && `College: ${selectedCollege}, Course: ${selectedCourse}, Year: ${selectedYear}`
               }
-            </div> 
+            </h1>
+            <div className="border border-gray-300 p-5">
+              { 
+                <h1 className='mb-2'>FLOOR NUMBER: {selectedFloor}</h1>
+              }
+              <div className='w-full grid grid-cols-3 gap-4'>
+                { 
+                  listing && (listing.floors.find(floor => floor.floor_number === selectedFloor.toString())).appartments.map((appartment,index) => ( 
+                      <div 
+                        className={`relative bg-gray-300 w-full h-[50px] flex hover:bg-green-200 cursor-pointer items-center justify-center ${selectedAppartment !== null && selectedAppartment.appartment_number === appartment.appartment_number && 'bg-green-400 hover:bg-green-400'} active:bg-green-400`}
+                        onClick={() => setSelectedAppartment({appartment_number: appartment.appartment_number, id: appartment.id, floor_plan: appartment.floor_plan })}
+                      >
+                        {
+                          bookByCourse && Object.keys(studentStats).length > 0 &&
+                          <span className='px-2 py-1 text-xs bg-green-200 text-green-800 absolute right-[-10px] top-[-10px] rounded-full'>
+                            {
+                              `${studentStats[selectedFloor][appartment.appartment_number]} student${studentStats[selectedFloor][appartment.appartment_number] > 0 && 's' || ''}`
+                            }
+                          </span>
+                        }
+                        {appartment.appartment_number}
+                      </div>
+                  ))
+                }
+              </div> 
+            </div>
           </div>
 
           <div className='flex'>
@@ -193,7 +243,7 @@ const AppartmentSelection = ({ listing, setSelectedAppartment, selectedFloor, se
             <button
               type="button"
               className="inline-flex items-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-              onClick={onProceed}
+              onClick={() => Object.keys(selectedAppartment).length > 0 && onProceed()}
             >
               Proceed
             </button>
@@ -202,20 +252,40 @@ const AppartmentSelection = ({ listing, setSelectedAppartment, selectedFloor, se
         </div>
       </div>
 
-      <div className="h-full w-full hidden lg:block">
-        <div className='border border-gray-300 w-full h-full grid grid-cols-3 gap-4 p-5'>
+
+      <div className='h-full w-full hidden lg:block'>
+        <h1>
+          {
+            bookByCourse && `College: ${selectedCollege}, Course: ${selectedCourse}, Year: ${selectedYear}`
+          }
+        </h1>
+        <div className="border border-gray-300 p-5">
           { 
-            listing && (listing.floors.find(floor => floor.floor_number === selectedFloor.toString())).appartments.map((appartment,index) => ( 
+            <h1 className='mb-2'>FLOOR NUMBER: {selectedFloor}</h1>
+          }
+          <div className='w-full h-full grid grid-cols-3 gap-4'>
+            { 
+              listing && (listing.floors.find(floor => floor.floor_number === selectedFloor.toString())).appartments.map((appartment,index) => ( 
                 <div 
-                  className={`bg-gray-300 w-full h-[50px] flex hover:bg-green-200 cursor-pointer items-center justify-center ${selectedAppartment !== null && selectedAppartment.appartment_number === appartment.appartment_number && 'bg-green-400 hover:bg-green-400'} active:bg-green-400`}
+                  className={`relative bg-gray-300 w-full h-[50px] flex hover:bg-green-200 cursor-pointer items-center justify-center ${selectedAppartment !== null && selectedAppartment.appartment_number === appartment.appartment_number && 'bg-green-400 hover:bg-green-400'} active:bg-green-400`}
                   onClick={() => setSelectedAppartment({appartment_number: appartment.appartment_number, id: appartment.id, floor_plan: appartment.floor_plan })}
                 >
+                  {
+                    bookByCourse && Object.keys(studentStats).length > 0 &&
+                    <span className='px-2 py-1 text-xs bg-green-200 text-green-800 absolute right-[-10px] top-[-10px] rounded-full'>
+                      {
+                        `${studentStats[selectedFloor][appartment.appartment_number]} student${studentStats[selectedFloor][appartment.appartment_number] > 0 && 's' || ''}`
+                      }
+                    </span>
+                  }
                   {appartment.appartment_number}
                 </div>
-            ))
-          }
-        </div> 
+              ))
+            }
+          </div> 
+        </div>
       </div>
+
     </div>
   )
 }
@@ -251,8 +321,10 @@ const BedSelection = ({ bedsInAppartment, beds, selectedAppartment, selectedBed,
               type="button"
               className="inline-flex items-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
               onClick={() => { 
-                onProceed(); 
-                lockBed(); 
+                if(selectedBed) { 
+                  onProceed(); 
+                  lockBed(); 
+                }
               }}
             >
               Proceed
@@ -313,13 +385,13 @@ const Payment = ({ loading, selectedFloor, selectedAppartment, selectedBed, onPr
           </p>
 
           <div className='flex flex-col lg:flex-row'>
-            <button
+            {/* <button
               type="button"
               className="mr-2 inline-flex items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-black shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
               onClick={() => onBack(steps.ROOM_SELECTION)}
             >
               Back
-            </button>
+            </button> */}
             <button
               type="button"
               className="inline-flex items-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
@@ -352,7 +424,7 @@ export default function booking() {
     const router = useRouter();
     const { isReady } = router; 
     const { id } = router.query; 
-    const { getListing, updateListing, availableBeds, getBeds, createPaymentSession, updateBed } = useApi();
+    const { getListing, updateListing, availableBeds, getBeds, createPaymentSession, updateBed, studentsByListing } = useApi();
     const [listing, setListing] = useState({}); 
     const [availableBedsOnFloor, setAvailableBedsOnFloor] = useState({}); 
     const user = useAuth.user; 
@@ -367,7 +439,7 @@ export default function booking() {
     const fetchListing = async (id) => { 
         const Listing = await getListing(id); 
         const { result } = await availableBeds(id); 
-        
+
         console.log("Available beds on each floor: ", result);
         console.log("listing retrieved in booking: ", Listing);
         
@@ -381,10 +453,19 @@ export default function booking() {
     const [selectedAppartment, setSelectedAppartment] = useState({}); 
     const [selectedBed, setSelectedBed] = useState(""); 
     const [bedsInAppartment, setBedsInAppartment] = useState([]); 
+    const [selectedCollege, setSelectedCollege] = useState("NMIMS");
     const [selectedCourse, setSelectedCourse] = useState("BCOM"); 
+    const [studentStats, setStudentStats] = useState({});
+    const [studentsStatsFloor, setStudentStatsFloor] = useState({});
     const [selectedYear, setSelectedYear] = useState("1"); 
     const [bookByCourse, setBookByCourse] = useState(false); 
     const [loading, setLoading] = useState(false); 
+
+    useEffect(() => { 
+      if(bookByCourse) { 
+        getStudentStats(); 
+      }
+    }, [bookByCourse, selectedCollege, selectedCourse, selectedYear]);
 
     useEffect(() => { 
       if(currentStep === steps.ROOM_SELECTION) { 
@@ -425,6 +506,28 @@ export default function booking() {
     }; 
 
 
+    const getStudentStats = async () => { 
+      const stats = await studentsByListing({ 
+        listing_id: id, 
+        year: selectedYear, 
+        course: selectedCourse, 
+        college: selectedCollege
+      }); 
+      const result = {};
+
+      for (const key in stats) {
+        result[key] = Object.values(stats[key]).reduce((acc, val) => {
+          if (typeof val === 'number') {
+            return acc + val;
+          }
+          return acc;
+        }, 0);
+      }
+
+      setStudentStats(stats);
+      setStudentStatsFloor(result);
+    }
+
     const onBack = (prev_step) => { 
       setCurrentStep(prev_step); 
     };
@@ -438,6 +541,7 @@ export default function booking() {
         bed: selectedBed, 
         course: bookByCourse ? selectedCourse : "", 
         year: bookByCourse ? selectedYear : "",
+        college: bookByCourse ? selectedCollege : "",
         floor: selectedFloor, 
         listing: id, 
         amount: listing.price
@@ -488,8 +592,12 @@ export default function booking() {
                       setSelectedYear={setSelectedYear}
                       selectedCourse={selectedCourse}
                       setSelectedCourse={setSelectedCourse}
+                      selectedCollege={selectedCollege}
+                      setSelectedCollege={setSelectedCollege}
                       bookByCourse={bookByCourse}
                       setBookByCourse={setBookByCourse}
+                      studentsStatsFloor={studentsStatsFloor}
+                      getStudentStats={getStudentStats}
                     />
                     || 
                     currentStep === steps.APPARTMENT_SELECTION && 
@@ -499,8 +607,13 @@ export default function booking() {
                       selectedAppartment={selectedAppartment}
                       setSelectedAppartment={setSelectedAppartment}
                       onProceed={onProceed}
+                      studentStats={studentStats}
                       availableBeds={availableBedsOnFloor}
                       onBack={onBack}
+                      bookByCourse={bookByCourse}
+                      selectedCourse={selectedCourse}
+                      selectedCollege={selectedCollege}
+                      selectedYear={selectedYear}
                     /> 
                     || 
                     currentStep === steps.ROOM_SELECTION && 

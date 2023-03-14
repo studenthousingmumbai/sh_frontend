@@ -35,6 +35,32 @@ import Search from '../components/common/Search';
 //     }
 // ]
 
+
+function ListingSekeletons() { 
+    const skeletons = [1,2,3]; 
+    return ( 
+        <>
+            { 
+                skeletons.map(num => ( 
+                    <div className='hidden lg:flex w-full rounded-md p-6 hover:shadow-md hover:cursor-pointer border border-2 border-gray-200 transition ease-in-out'>
+                    <div className="rounded-xl bg-gray-300 w-[700px] mr-6 relative">
+                        <div className='w-full h-[300px] bg-gray-200 animate-pulse'></div>
+                    </div>
+        
+                    <div className="rounded-md w-full flex flex-col justify-between">
+                        <div className='w-full h-[40px] bg-gray-200 animate-pulse mb-2'></div>
+                        <div className='w-2/3 h-[40px] bg-gray-200 animate-pulse mb-2'></div>
+                        <div className='w-2/3 h-[40px] bg-gray-200 animate-pulse mb-2'></div>
+                        <div className='w-2/3 h-[40px] bg-gray-200 animate-pulse mb-2'></div>
+                        <div className='w-2/3 h-[40px] bg-gray-200 animate-pulse'></div>
+                    </div>
+                </div>
+                ))
+            }
+        </>
+    )
+}
+
 const genderOptions = [
     { id: 'male', title: 'Male' },
     { id: 'female', title: 'Female' },
@@ -47,12 +73,14 @@ export default function Listings() {
     const [listings, setListings] = useState([]); 
     const [searchQuery, setSearchQuery] = useState(""); 
     const [searchResults, setSearchResults] = useState([]); 
-
+    const [loading, setLoading] = useState(false); 
     const { gender } = router.query;
     const is_mounted = useRef(false); 
     const [listingGender, setListingGender] = useState("all"); 
 
     const fetchListings = async (filters = {}, skip = 0, limit = 0) => { 
+        setLoading(true); 
+
         const { listings: all_listings, total } = await getAllListings({ 
           filters, 
           skip, 
@@ -62,6 +90,7 @@ export default function Listings() {
         console.log("Fetched all listings: ", all_listings); 
 
         setListings(all_listings); 
+        setLoading(false);
     } 
 
     useEffect(() => {
@@ -111,7 +140,7 @@ export default function Listings() {
                                 <div key={option.id} className="flex items-center mb-2">
                                     <input
                                         id={option.id}
-                                        name="notification-method"
+                                        name="asdf"
                                         type="radio"
                                         value={option.id}
                                         checked={listingGender === option.id}
@@ -153,7 +182,7 @@ export default function Listings() {
                                     type="radio"
                                     value={option.id}
                                     checked={listingGender === option.id}
-                                    className=" border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                    className="border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                     onChange={e => setListingGender(e.target.value)}
                                 />
                                 <label htmlFor={option.id} className="ml-3 block text-sm font-medium text-gray-700">
@@ -162,7 +191,6 @@ export default function Listings() {
                             </div>
                         ))}
                         </div>
-                        
                     </fieldset>
 
                     {/* <div className="h-[1px] border border-gray-100 mb-3"></div> */}
@@ -191,9 +219,14 @@ export default function Listings() {
                             </h3> 
                         }
                     </div>  
+                    
+                    {
+                        loading && 
+                        <ListingSekeletons/>
+                    }
 
                     {
-                        listings.length !== 0 && searchQuery === "" && listings.map((listing,index) => ( 
+                        !loading && listings.length !== 0 && searchQuery === "" && listings.map((listing,index) => ( 
                             <>
                                 <Listing 
                                     id={listing.id}
@@ -204,13 +237,14 @@ export default function Listings() {
                                     price={listing.price} 
                                     amenities={listing.amenities} 
                                     address={listing.address} 
+                                    location={listing.location}
                                 />  
                                 {/* { index !== listings.length - 1 && <div className='w-full h-[0.5px] border border-gray-200 my-3'></div>} */}
                             </>
                         )) 
                     }
                     {
-                        searchQuery !== "" && searchResults.length > 0 && searchResults.map((listing,index) => (
+                        !loading && searchQuery !== "" && searchResults.length > 0 && searchResults.map((listing,index) => (
                             <>
                                 <Listing 
                                     id={listing.id}

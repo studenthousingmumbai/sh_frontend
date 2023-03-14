@@ -20,6 +20,7 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import useAuth from '../hooks/useAuth';
 import withAuth from '../hooks/withAuth'; 
 
+
 const userNavigation = [
   { name: 'Your Profile', href: '/profile' },
   { name: 'Order History', href: '/order-history' },
@@ -54,7 +55,7 @@ export default function Example() {
             </a>
           </div>
           <div className="-my-2 -mr-2 md:hidden">
-            <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+            <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500">
               <span className="sr-only">Open menu</span>
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </Popover.Button>
@@ -145,7 +146,6 @@ export default function Example() {
                 <a
                   href="#"
                   className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
-
                 >
                   Sign in
                 </a>
@@ -164,7 +164,7 @@ export default function Example() {
           </div>
         </div>
       </div>
-
+      
       <Transition
         as={Fragment}
         enter="duration-200 ease-out"
@@ -176,20 +176,22 @@ export default function Example() {
       >
         <Popover.Panel
           focus
-          className="absolute inset-x-0 top-0 origin-top-right transform p-2 transition md:hidden"
+          className="absolute inset-x-0 top-0 origin-top-right transform p-2 transition md:hidden z-[1000]"
         >
           <div className="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
             <div className="px-5 pt-5 pb-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                    alt="Your Company"
-                  />
+                  <Link href='/'>
+                    <img
+                      className="h-8 w-auto sm:h-10 cursor-pointer"
+                      src="https://studenthousing.co.in/wp-content/uploads/2020/03/SH_LogoR.png"
+                      alt=""
+                    />
+                  </Link>
                 </div>
                 <div className="-mr-2">
-                  <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                  <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500">
                     <span className="sr-only">Close menu</span>
                     <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                   </Popover.Button>
@@ -221,20 +223,55 @@ export default function Example() {
                 </Link>
               </div>
 
-              <div>
-                <a
-                  href="#"
-                  className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-                >
-                  Sign up
-                </a>
-                <p className="mt-6 text-center text-base font-medium text-gray-500">
-                  Existing customer?{" "}
-                  <a href="#" className="text-indigo-600 hover:text-indigo-500">
-                    Sign in
-                  </a>
-                </p>
-              </div>
+              {
+                !isAuthenticated && 
+                <div>
+                  <Link href='/signup'>
+                    <a
+                      className="w-full inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600  px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-indigo-700 bg-[#ffcc29] hover:bg-[#fad45a]"
+                    >
+                      Sign up
+                    </a>
+                  </Link>
+                  <p className="mt-6 text-center text-base font-medium text-gray-500">
+                    Existing customer?{" "}
+
+                    <Link href="/signin">
+                      <a href="#" className="text-yellow-600 hover:text-yellow-500">
+                        Sign in
+                      </a>
+                    </Link>
+                  </p>
+                </div>
+              }
+              
+              {
+                isAuthenticated && 
+                <div>
+                  <div className="mb-3"> 
+                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-yellow-500 mr-3">
+                      <span className="text-sm font-medium leading-none text-white">{isAuthenticated && user && ( user.firstname[0] + user.lastname[0]) || ""}</span>
+                    </span>
+                    <span className='mr-3 '>
+                      {isAuthenticated && user && ( user.firstname + " " + user.lastname) || ""}
+                    </span>
+                  </div>
+                  <div> 
+                    {userNavigation.map((item) => (
+                        <Link href={item.href}>
+                          <a
+                            onClick={() => {item.name === 'Sign out' && logout();}}
+                            className={classNames(
+                              'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
+                            )}
+                          >
+                            {item.name}
+                          </a>
+                        </Link>
+                    ))}
+                  </div>
+                </div>
+              }
             </div>
           </div>
         </Popover.Panel>
