@@ -4,6 +4,14 @@ import { useEffect } from 'react';
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
+    window.addEventListener('phx:page-loading-stop', (event) => {
+      // trigger flowbite events
+      window.document.dispatchEvent(new Event("DOMContentLoaded", {
+        bubbles: true,
+        cancelable: true
+      }));
+    });
+    
     const use = async () => {
       (await import('tw-elements')).default;
       (await import('flowbite')).default;
