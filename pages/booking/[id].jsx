@@ -8,6 +8,7 @@ import FloorPlanTest from '../../components/Booking/FloorPlanTest';
 import useApi from '../../hooks/useApi';
 import SelectMenu from '../../components/SelectMenu'; 
 import useAuth from '../../hooks/useAuth';
+import Modal from '../../components/common/Modal';
 
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
@@ -460,6 +461,8 @@ export default function booking() {
     const [selectedYear, setSelectedYear] = useState("1"); 
     const [bookByCourse, setBookByCourse] = useState(false); 
     const [loading, setLoading] = useState(false); 
+    const [errorModalOpen, setErrorModalOpen] = useState(false);
+    const [bookingError, setBookingError] = useState(""); 
 
     useEffect(() => { 
       if(bookByCourse) { 
@@ -505,7 +508,6 @@ export default function booking() {
         setStepperState(stepper_state); 
     }; 
 
-
     const getStudentStats = async () => { 
       const stats = await studentsByListing({ 
         listing_id: id, 
@@ -546,13 +548,24 @@ export default function booking() {
         listing: id, 
         amount: listing.price
       }); 
-
-      // router.push('/order-history');
       console.log("Payment session response: ", create_order_response);
 
-      window.location.href = create_order_response; 
+      if('errors' in create_order_response) { 
+        console.log("Error occured while booking: ", create_order_response.errors); 
+        setBookingError(create_order_response.errors[0].message);
+        setErrorModalOpen(true);
+      }
+      else{ 
+        window.location.href = create_order_response; 
+      }
 
       setLoading(false);
+    }
+
+    const handleErrorModalClose = () => { 
+      setErrorModalOpen(false); 
+      setBookingError("");
+      router.push('/listings'); 
     }
 
     const fetchBeds = async () => { 
@@ -576,77 +589,90 @@ export default function booking() {
     }
 
     return (
-        <Layout>
-            <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-3'> 
-                <div className='border border-gray-200 mb-3'> 
-                    <Stepper steps={stepperState}/> 
-                </div>
-                { 
-                    currentStep === steps.FLOOR_SELECTION && 
-                    <FloorSelection 
-                      selectedFloor={selectedFloor}
-                      setSelectedFloor={setSelectedFloor}
-                      onProceed={onProceed}
-                      availableBeds={availableBedsOnFloor}
-                      selectedYear={selectedYear}
-                      setSelectedYear={setSelectedYear}
-                      selectedCourse={selectedCourse}
-                      setSelectedCourse={setSelectedCourse}
-                      selectedCollege={selectedCollege}
-                      setSelectedCollege={setSelectedCollege}
-                      bookByCourse={bookByCourse}
-                      setBookByCourse={setBookByCourse}
-                      studentsStatsFloor={studentsStatsFloor}
-                      getStudentStats={getStudentStats}
-                    />
-                    || 
-                    currentStep === steps.APPARTMENT_SELECTION && 
-                    <AppartmentSelection  
-                      listing={listing}   
-                      selectedFloor={selectedFloor} 
-                      selectedAppartment={selectedAppartment}
-                      setSelectedAppartment={setSelectedAppartment}
-                      onProceed={onProceed}
-                      studentStats={studentStats}
-                      availableBeds={availableBedsOnFloor}
-                      onBack={onBack}
-                      bookByCourse={bookByCourse}
-                      selectedCourse={selectedCourse}
-                      selectedCollege={selectedCollege}
-                      selectedYear={selectedYear}
-                    /> 
-                    || 
-                    currentStep === steps.ROOM_SELECTION && 
-                    <BedSelection 
-                      // floor_plan={floor_plan} 
-                      // beds={beds}
-                      selectedBed={selectedBed}
-                      selectedFloor={selectedFloor}
-                      selectedAppartment={selectedAppartment}
-                      setSelectedBed={setSelectedBed}
-                      onProceed={onProceed}
-                      bedsInAppartment={bedsInAppartment}
-                      onBack={onBack}
-                      lockBed={lockBed}
-                    /> 
-
-                    || 
-                    currentStep === steps.PAYMENT && 
-                    <Payment 
-                      selectedFloor={selectedFloor}
-                      selectedAppartment={selectedAppartment}
-                      selectedBed={selectedBed}
-                      onProceed={onProceed}
-                      completePayment={completePayment}
-                      loading={loading}
-                      onBack={onBack}
-                      user={user}
-                      listing={listing}
-                    /> 
-                    || 
-                    <></>
-                }
+      <Layout>
+        <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-3'> 
+          <Modal title={bookingError} open={errorModalOpen} onClose={handleErrorModalClose}>
+            <div className='mb-3'> 
+              <span>Please return to the listing page to make a new booking.</span>
             </div>
-        </Layout>
+            <button
+              type='button'
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600  px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-indigo-700 bg-[#ffcc29] hover:bg-[#fad45a]"
+              onClick={handleErrorModalClose}
+            >
+              Ok
+            </button>
+          </Modal>
+
+          <div className='border border-gray-200 mb-3'> 
+            <Stepper steps={stepperState}/> 
+          </div>
+          { 
+              currentStep === steps.FLOOR_SELECTION && 
+              <FloorSelection 
+                selectedFloor={selectedFloor}
+                setSelectedFloor={setSelectedFloor}
+                onProceed={onProceed}
+                availableBeds={availableBedsOnFloor}
+                selectedYear={selectedYear}
+                setSelectedYear={setSelectedYear}
+                selectedCourse={selectedCourse}
+                setSelectedCourse={setSelectedCourse}
+                selectedCollege={selectedCollege}
+                setSelectedCollege={setSelectedCollege}
+                bookByCourse={bookByCourse}
+                setBookByCourse={setBookByCourse}
+                studentsStatsFloor={studentsStatsFloor}
+                getStudentStats={getStudentStats}
+              />
+              || 
+              currentStep === steps.APPARTMENT_SELECTION && 
+              <AppartmentSelection  
+                listing={listing}   
+                selectedFloor={selectedFloor} 
+                selectedAppartment={selectedAppartment}
+                setSelectedAppartment={setSelectedAppartment}
+                onProceed={onProceed}
+                studentStats={studentStats}
+                availableBeds={availableBedsOnFloor}
+                onBack={onBack}
+                bookByCourse={bookByCourse}
+                selectedCourse={selectedCourse}
+                selectedCollege={selectedCollege}
+                selectedYear={selectedYear}
+              /> 
+              || 
+              currentStep === steps.ROOM_SELECTION && 
+              <BedSelection 
+                // floor_plan={floor_plan} 
+                // beds={beds}
+                selectedBed={selectedBed}
+                selectedFloor={selectedFloor}
+                selectedAppartment={selectedAppartment}
+                setSelectedBed={setSelectedBed}
+                onProceed={onProceed}
+                bedsInAppartment={bedsInAppartment}
+                onBack={onBack}
+                lockBed={lockBed}
+              /> 
+
+              || 
+              currentStep === steps.PAYMENT && 
+              <Payment 
+                selectedFloor={selectedFloor}
+                selectedAppartment={selectedAppartment}
+                selectedBed={selectedBed}
+                onProceed={onProceed}
+                completePayment={completePayment}
+                loading={loading}
+                onBack={onBack}
+                user={user}
+                listing={listing}
+              /> 
+              || 
+              <></>
+          }
+        </div>
+      </Layout>
     )
 }

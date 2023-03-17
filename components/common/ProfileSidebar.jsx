@@ -18,7 +18,7 @@ export default function ProfileSidebar() {
                 {/* profile image */}
                 <div className='flex lg:flex-col gap-8 md:gap-16 lg:gap-0 justify-start lg:justify-center items-center mx-auto'>
                     <div className='relative bg-gray-300 rounded-full'>
-                        <div className="flex w-24 h-24 sm:w-36 sm:h-36 md:w-52 md:h-52 rounded-full justify-center items-center text-2xl sm:text-4xl md:text-7xl">
+                        <div className="flex w-24 h-24 sm:w-36 sm:h-36 md:w-52 md:h-52 rounded-full justify-center items-center text-2xl sm:text-4xl md:text-7xl uppercase bg-yellow-500 text-white">
                             {isAuthenticated && user.firstname[0] + user.lastname[0]}
                         </div>
                         {/* <div className='absolute flex justify-center items-center h-12 w-12 border border-4 border-white bg-gray-300 bottom-0 right-0 rounded-full'>

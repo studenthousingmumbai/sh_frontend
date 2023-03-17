@@ -3,20 +3,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/router'; 
 import { Popover, Transition, Dialog, Menu } from "@headlessui/react";
 import {
-  ArrowPathIcon,
   Bars3Icon,
-  BookmarkSquareIcon,
-  CalendarIcon,
-  ChartBarIcon,
-  CursorArrowRaysIcon,
-  LifebuoyIcon,
-  PhoneIcon,
-  PlayIcon,
-  ShieldCheckIcon,
-  Squares2X2Icon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import useAuth from '../hooks/useAuth';
 import withAuth from '../hooks/withAuth'; 
 
@@ -97,14 +86,14 @@ export default function Example() {
             ( 
                 <div className="ml-4 flex items-center md:ml-6">
                     {/* Profile dropdown */}
-                    <span className='mr-3'>
+                    <span className='mr-3 capitalize'>
                       {isAuthenticated && user && ( user.firstname + " " + user.lastname) || ""}
                     </span>
 
                     <Menu as="div" className="relative ml-3">
                       <div>
                         <Menu.Button className="flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                          <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-yellow-500">
+                          <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-yellow-500 uppercase">
                             <span className="text-sm font-medium leading-none text-white">{isAuthenticated && user && ( user.firstname[0] + user.lastname[0]) || ""}</span>
                           </span>
                         </Menu.Button>
@@ -249,10 +238,10 @@ export default function Example() {
                 isAuthenticated && 
                 <div>
                   <div className="mb-3"> 
-                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-yellow-500 mr-3">
+                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-yellow-500 mr-3 bg-yellow-500 uppercase">
                       <span className="text-sm font-medium leading-none text-white">{isAuthenticated && user && ( user.firstname[0] + user.lastname[0]) || ""}</span>
                     </span>
-                    <span className='mr-3 '>
+                    <span className='mr-3 capitalize'>
                       {isAuthenticated && user && ( user.firstname + " " + user.lastname) || ""}
                     </span>
                   </div>

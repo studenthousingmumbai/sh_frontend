@@ -392,6 +392,48 @@ export default function useApi() {
         }
     }
 
+    const forgotPassword = async (email) => { 
+        try{ 
+            const response = await axios(base_url + `/user/forgot-password`, { 
+                method: "POST",
+                data: { email } 
+            }); 
+            return response.data; 
+        }
+        catch(err){ 
+            console.log(err); 
+            return err.response.data; 
+        }
+    } 
+
+    const verifyResetCode = async (reset_code) => { 
+        try{ 
+            const response = await axios(base_url + `/user/verify-reset-code`, { 
+                method: "POST",
+                data: { reset_code } 
+            }); 
+            return response.data; 
+        }
+        catch(err){ 
+            console.log(err); 
+            return err.response.data; 
+        }
+    }
+
+    const resetPassword = async (password, reset_code) => { 
+        try{ 
+            const response = await axios(base_url + `/user/reset-password`, { 
+                method: "POST",
+                data: { password, reset_code } 
+            }); 
+            return response.data; 
+        }
+        catch(err){ 
+            console.log(err); 
+            return err.response.data; 
+        }
+    }
+
     return { 
         addAppartment, 
         addFloor,
@@ -420,6 +462,9 @@ export default function useApi() {
         getOrders, 
         createPaymentSession,
         verifyAccount, 
-        studentsByListing
+        studentsByListing,
+        forgotPassword,
+        verifyResetCode,
+        resetPassword
     }
 }

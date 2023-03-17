@@ -20,7 +20,7 @@ const navigation = [
           <div className='relative flex w-full lg:w-2/3 h-1/2 lg:h-full mr-5 truncate'>
 
             {/* left banner carousel */}
-            <div className='absolute w-full h-full rounded-lg z-0'data-carousel="slide">
+            <div className='absolute w-full h-full rounded-lg z-0' data-carousel="slide">
               <div className="z-1 hidden duration-700 ease-in-out rounded-lg" data-carousel-item>
                 <img src='/left_banner.png' className='w-full h-full object-cover object-right-bottom rounded-lg'/> 
               </div>
@@ -30,11 +30,11 @@ const navigation = [
               <div className="z-1 hidden duration-700 ease-in-out rounded-lg" data-carousel-item>
                 <img src='/left_banner.png' className='w-full h-full object-cover object-right-bottom rounded-lg'/> 
               </div>
-              {/* <div className="z-30 absolute right-4 bottom-4 sm:right-6 sm:bottom-6 space-x-2 lg:space-x-3 flex">
+              <div className="z-30 absolute right-4 bottom-4 sm:right-6 sm:bottom-6 space-x-2 lg:space-x-3 flex">
                 <button type="button" className="w-4 h-1 sm:w-6 sm:h-1 lg:w-8 lg:h-1 bg-gray-100 rounded-sm" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
                 <button type="button" className="w-4 h-1 sm:w-6 sm:h-1 lg:w-8 lg:h-1 bg-gray-100 rounded-sm" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
                 <button type="button" className="w-4 h-1 sm:w-6 sm:h-1 lg:w-8 lg:h-1 bg-gray-100 rounded-sm" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
-              </div> */}
+              </div>
             </div>  
 
             {/* <img src='/left-banner-overlay.png' className='absolute hidden lg:block top-0 left-0 h-full rounded-lg'/> */}
