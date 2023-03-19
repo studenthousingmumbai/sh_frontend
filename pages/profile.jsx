@@ -51,6 +51,10 @@ export default function Example() {
         }
     }, []);
 
+    const fetchUserDetails = async () => { 
+        
+    }
+
     return (
         <ProfileLayout>
             <ProfileSidebar user={user && {firstname: user?.firstname, lastname: user?.lastname}}/>

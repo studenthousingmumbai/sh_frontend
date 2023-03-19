@@ -1,30 +1,21 @@
-import React from 'react'
-import ReactPannellum from "react-pannellum";
-
-const MyVirtualTour = ({ imageLink }) => {
-    return (
-      <ReactPannellum
-        width="100%"
-        height="500px"
-        imageSource={imageLink}
-        pitch={10}
-        yaw={180}
-        hfov={110}
-        autoLoad
-        showZoomCtrl={false}
-        showFullscreenCtrl={false}
-        mouseZoom={false}
-        onScenechange={() => console.log("scene changed")}
-      />
-    );
-};
+import { useState } from 'react'
+import Head from 'next/head';
+import Modal from '../components/common/Modal';
+import VirtualTour from '../components/common/VirtualTour';
 
 export default function test() {
-    const imageLink = 'https://www.google.com/maps/@40.7125952,-74.0143501,3a,75y,198.9h,90.2t/data=!3m6!1e1!3m4!1swl3kLfgYDe8x6u5vxKUKZQ!2e0!7i16384!8i8192';
+  const [open, setOpen] = useState(false); 
 
-    return (
-      <div>
-        <MyVirtualTour imageLink={imageLink} />
-      </div>
-    );
+  return (
+    <div>
+      <button onClick={() => setOpen(true)}>open 360 degree tour</button>
+      <Modal title={"360 degree virtual tour"} open={open} onClose={() => setOpen(false)}>
+        <VirtualTour 
+          width={'100%'}
+          height='500px' 
+          virtual_tour_link={"https://www.google.com/maps/embed?pb=!4v1679126390569!6m8!1m7!1sCAoSLEFGMVFpcE5KUno3Vm9zU2tRLU1wa3NOZGEwNEFZRE5EaHpQR3R6TmhQWERn!2m2!1d19.10241309!2d72.83579384!3f195.21181298239262!4f-52.856295579796324!5f0.4000000000000002"}
+        />
+      </Modal>
+    </div>
+  );
 }

@@ -2,11 +2,9 @@ import { useEffect, useState } from 'react';
 import Link from "next/link";
 import { GoogleLogin, useGoogleLogin } from '@react-oauth/google'; 
 import { useRouter } from "next/router";
-
 import withAuth from '../../hooks/withAuth';
 import useApi from '../../hooks/useApi';
 import useAuth from '../../hooks/useAuth';
-
 
 export default function ResetPassword() {
     const router = useRouter(); 

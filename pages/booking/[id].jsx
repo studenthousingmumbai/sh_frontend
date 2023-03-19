@@ -9,6 +9,7 @@ import useApi from '../../hooks/useApi';
 import SelectMenu from '../../components/SelectMenu'; 
 import useAuth from '../../hooks/useAuth';
 import Modal from '../../components/common/Modal';
+import VirtualTour from '../../components/common/VirtualTour';
 
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
@@ -200,6 +201,7 @@ const AppartmentSelection = ({ listing, setSelectedAppartment, selectedFloor, se
           <h1 className='font-semibold text-2xl mb-2'>Select the Appartment as per your preference</h1>
           <p className='text-md text-gray-600 mb-3'>after selection, click on the proceed button to get directed towards the next step of room selection</p>
 
+          
           <div className="w-full lg:hidden mb-3">
             <h1>
               {
@@ -215,7 +217,7 @@ const AppartmentSelection = ({ listing, setSelectedAppartment, selectedFloor, se
                   listing && (listing.floors.find(floor => floor.floor_number === selectedFloor.toString())).appartments.map((appartment,index) => ( 
                       <div 
                         className={`relative bg-gray-300 w-full h-[50px] flex hover:bg-green-200 cursor-pointer items-center justify-center ${selectedAppartment !== null && selectedAppartment.appartment_number === appartment.appartment_number && 'bg-green-400 hover:bg-green-400'} active:bg-green-400`}
-                        onClick={() => setSelectedAppartment({appartment_number: appartment.appartment_number, id: appartment.id, floor_plan: appartment.floor_plan })}
+                        onClick={() => setSelectedAppartment({appartment_number: appartment.appartment_number, id: appartment.id, floor_plan: appartment.floor_plan, walkthrough_url: appartment.walkthrough_url })}
                       >
                         {
                           bookByCourse && Object.keys(studentStats).length > 0 &&
@@ -269,7 +271,7 @@ const AppartmentSelection = ({ listing, setSelectedAppartment, selectedFloor, se
               listing && (listing.floors.find(floor => floor.floor_number === selectedFloor.toString())).appartments.map((appartment,index) => ( 
                 <div 
                   className={`relative bg-gray-300 w-full h-[50px] flex hover:bg-green-200 cursor-pointer items-center justify-center ${selectedAppartment !== null && selectedAppartment.appartment_number === appartment.appartment_number && 'bg-green-400 hover:bg-green-400'} active:bg-green-400`}
-                  onClick={() => setSelectedAppartment({appartment_number: appartment.appartment_number, id: appartment.id, floor_plan: appartment.floor_plan })}
+                  onClick={() => setSelectedAppartment({appartment_number: appartment.appartment_number, id: appartment.id, floor_plan: appartment.floor_plan, walkthrough_url: appartment.walkthrough_url })}
                 >
                   {
                     bookByCourse && Object.keys(studentStats).length > 0 &&
@@ -291,7 +293,8 @@ const AppartmentSelection = ({ listing, setSelectedAppartment, selectedFloor, se
   )
 }
 
-const BedSelection = ({ bedsInAppartment, beds, selectedAppartment, selectedBed, setSelectedBed, onProceed, onBack, lockBed }) => { 
+const BedSelection = ({ setVirtualTourOpen, bedsInAppartment, beds, selectedAppartment, selectedBed, setSelectedBed, onProceed, onBack, lockBed }) => { 
+  console.log("Selected appartment: ", selectedAppartment);
   console.log("Beds in appartment: ", bedsInAppartment); 
   return ( 
     <div className="flex flex-col lg:flex-row w-full items-center">
@@ -300,6 +303,16 @@ const BedSelection = ({ bedsInAppartment, beds, selectedAppartment, selectedBed,
         <div className="">
           <h1 className='font-semibold text-2xl mb-2'>Select the room as per your preference</h1>
           <p className='text-md text-gray-600 mb-3'>after selection, click on the proceed button to get directed towards the next step of payment</p>
+          <button
+            type="button"
+            className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 mb-3"
+            onClick={() => setVirtualTourOpen(true)}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 mr-2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+            </svg>
+            Take a 360 virtual tour
+          </button>
 
           <div className="w-full lg:hidden mb-3">
             <FloorPlanTest 
@@ -321,10 +334,10 @@ const BedSelection = ({ bedsInAppartment, beds, selectedAppartment, selectedBed,
             <button
               type="button"
               className="inline-flex items-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-              onClick={() => { 
+              onClick={async () => { 
                 if(selectedBed) { 
+                  await lockBed(); 
                   onProceed(); 
-                  lockBed(); 
                 }
               }}
             >
@@ -463,6 +476,7 @@ export default function booking() {
     const [loading, setLoading] = useState(false); 
     const [errorModalOpen, setErrorModalOpen] = useState(false);
     const [bookingError, setBookingError] = useState(""); 
+    const [virtualTourOpen, setVirtualTourOpen] = useState(false); 
 
     useEffect(() => { 
       if(bookByCourse) { 
@@ -550,7 +564,7 @@ export default function booking() {
       }); 
       console.log("Payment session response: ", create_order_response);
 
-      if('errors' in create_order_response) { 
+      if(typeof create_order_response === 'object') { 
         console.log("Error occured while booking: ", create_order_response.errors); 
         setBookingError(create_order_response.errors[0].message);
         setErrorModalOpen(true);
@@ -604,6 +618,14 @@ export default function booking() {
             </button>
           </Modal>
 
+          <Modal title={"360 degree virtual tour"} open={virtualTourOpen} onClose={() => setVirtualTourOpen(false)}>
+            <VirtualTour 
+              width={'100%'}
+              height='500px' 
+              virtual_tour_link={selectedAppartment.walkthrough_url || ""}
+            />
+          </Modal>
+
           <div className='border border-gray-200 mb-3'> 
             <Stepper steps={stepperState}/> 
           </div>
@@ -646,6 +668,7 @@ export default function booking() {
               <BedSelection 
                 // floor_plan={floor_plan} 
                 // beds={beds}
+                setVirtualTourOpen={setVirtualTourOpen}
                 selectedBed={selectedBed}
                 selectedFloor={selectedFloor}
                 selectedAppartment={selectedAppartment}

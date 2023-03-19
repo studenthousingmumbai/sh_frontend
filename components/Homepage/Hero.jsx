@@ -48,9 +48,7 @@ const navigation = [
             </Link>
             </div>
           </div>
-
           
-
           {/* right male and female banners for medium and below screens */}
           <div className='lg:hidden flex flex-col gap-4 sm:gap-6 h-1/2 z-50'>
             <Link href={{ pathname: '/listings', query: { gender: 'female' } }}>
