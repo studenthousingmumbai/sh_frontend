@@ -296,6 +296,7 @@ const AppartmentSelection = ({ listing, setSelectedAppartment, selectedFloor, se
 const BedSelection = ({ setVirtualTourOpen, bedsInAppartment, beds, selectedAppartment, selectedBed, setSelectedBed, onProceed, onBack, lockBed }) => { 
   console.log("Selected appartment: ", selectedAppartment);
   console.log("Beds in appartment: ", bedsInAppartment); 
+
   return ( 
     <div className="flex flex-col lg:flex-row w-full items-center">
       <div className="w-full flex">
@@ -477,6 +478,7 @@ export default function booking() {
     const [errorModalOpen, setErrorModalOpen] = useState(false);
     const [bookingError, setBookingError] = useState(""); 
     const [virtualTourOpen, setVirtualTourOpen] = useState(false); 
+    const [lockErrorModalOpen, setLockErrorModalOpen] = useState(false); 
 
     useEffect(() => { 
       if(bookByCourse) { 
@@ -600,6 +602,15 @@ export default function booking() {
     const lockBed = async () => { 
       const update_bed_response = await updateBed(selectedBed, { locked: true, locked_by: user.id }); 
       console.log("update bed response: ", update_bed_response); 
+
+      if("errors" in update_bed_response) { 
+        setLockErrorModalOpen(true); 
+      }
+    }
+
+    const handleLockErrorModalClose = () => { 
+      setLockErrorModalOpen(false); 
+      router.push('/listings'); 
     }
 
     return (
@@ -613,6 +624,19 @@ export default function booking() {
               type='button'
               className="inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600  px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-indigo-700 bg-[#ffcc29] hover:bg-[#fad45a]"
               onClick={handleErrorModalClose}
+            >
+              Ok
+            </button>
+          </Modal>
+
+          <Modal title="Cannot book bed" open={lockErrorModalOpen} onClose={handleLockErrorModalClose}>
+            <div className='mb-3'> 
+              <span>The bed you are trying to book has been reserved by another user. Please return to the listing page to make a new booking</span>
+            </div>
+            <button
+              type='button'
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600  px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-indigo-700 bg-[#ffcc29] hover:bg-[#fad45a]"
+              onClick={handleLockErrorModalClose}
             >
               Ok
             </button>
