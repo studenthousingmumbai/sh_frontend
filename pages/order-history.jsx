@@ -83,6 +83,7 @@ export default function Example() {
                 listing_name: order.listing, 
                 floor_no: order.floor,
                 address: order.address,  
+                amount: order.amount,
                 status: "COMPLETE", 
                 scheduled_term: "1", 
                 images: order.images, 
@@ -92,13 +93,15 @@ export default function Example() {
                 room_no: order.room_no, 
                 bed_id: order.bed, 
                 bed_no: order.bed_no,
-                year: order.year 
+                year: order.year, 
+                college: order.college,
+                payment_details: order.payment_details
             }); 
         }
         
         setOrders(transformed_orders); 
 
-        console.log("This users orders: ", allOrders, " total: ", total);
+        console.log("This users orders: ", transformed_orders, " total: ", total);
     }
 
     useEffect(() => { 
@@ -135,6 +138,9 @@ export default function Example() {
                                         year={order.year}
                                         address={order.address}
                                         course={order.course}
+                                        payment_details={order.payment_details}
+                                        college={order.college}
+                                        amount={order.amount}
                                     />  
                                 </>
                             )) 

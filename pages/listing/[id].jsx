@@ -8,6 +8,7 @@ import Layout from '../../components/Layout';
 import useApi from '../../hooks/useApi';
 import withAuth from '../../hooks/withAuth';
 import GoogleMap from '../../components/common/GoogleMap';
+import VideoPlayer from '../../components/common/VideoPlayer';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -22,6 +23,7 @@ export default function Example({  }) {
   const { isAuthenticated } = withAuth(); 
   const [open, setOpen] = useState(false); 
   const [locationOpen, setLocationOpen] = useState(false);
+  const [watchVideoOpen, setWatchVideoOpen] = useState(false); 
 
   console.log("Listing : ", listing); 
 
@@ -78,6 +80,10 @@ export default function Example({  }) {
         >
           Ok
         </button>
+      </Modal>
+
+      <Modal title="Watch Listing Video" onClose={setWatchVideoOpen} open={watchVideoOpen}>
+        <VideoPlayer videoLink={listing.video_link} width={'w-[550px]'}/>
       </Modal>
 
       <div className="bg-white">
@@ -151,15 +157,15 @@ export default function Example({  }) {
                   <p className="text-md tracking-tight text-gray-600">{listing && listing.address && listing.address.line_1}</p>
                 </div>
 
-                <div className="mt-3">
+                {/* <div className="mt-3">
                   <h2 className="sr-only">Distances</h2>
                   <a className="text-md tracking-tight text-green-500 hover:text-green-600 underline cursor-pointer">View distances</a>
-                </div>
+                </div> */}
 
                 <div className='flex mt-3'> 
                     <button
                       type="button"
-                      className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 mr-2"
                       onClick={handleViewOnMap}
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="-ml-1 mr-2 h-5 w-5">
@@ -168,12 +174,23 @@ export default function Example({  }) {
                         </svg>
                         View on Map
                     </button>
+
+                    <button
+                      type="button"
+                      className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      onClick={() => setWatchVideoOpen(true)}
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24" className='mr-2'>
+                        <path fill="#FF0000" d="M21.34 5.04c-.24-.89-.95-1.59-1.84-1.84C17.53 3 12 3 12 3S6.47 3 4.5 3.2c-.89.25-1.6.95-1.84 1.84C2 7.12 2 12 2 12s0 4.88.66 6.96c.24.89.95 1.59 1.84 1.84 1.97.2 7.5.2 7.5.2s5.53 0 7.5-.2c.89-.25 1.6-.95 1.84-1.84.66-2.08.66-6.96.66-6.96s0-4.88-.66-6.96zM9.75 15.42V8.58l6.67 3.42-6.67 3.42z" />
+                      </svg>
+                      Watch Video
+                    </button>
                 </div>
 
                 <div className="mt-3">
                   <h2 className="sr-only">Listing price</h2>
                   <h1 className='uppercase text-xl text-gray-600'>starting at</h1>
-                  <p className="text-3xl tracking-tight text-gray-900">₹{listing.price}/-</p>
+                  <p className="text-3xl tracking-tight text-gray-900">₹{parseInt(listing.price).toLocaleString('en-IN', { maximumFractionDigits: 2 })}/-</p>
                 </div>
                 
                 <div className='flex mt-3'> 
@@ -188,6 +205,7 @@ export default function Example({  }) {
                   <button
                       type="button"
                       className="mr-3 inline-flex items-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                      onClick={() => router.push('/contact-us')}
                   >
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="-ml-1 mr-2 h-5 w-5">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />

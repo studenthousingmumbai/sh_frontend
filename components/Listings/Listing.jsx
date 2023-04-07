@@ -29,7 +29,7 @@ export default function Listing({ id, name, description, price, amenities, addre
 
                     <div className='mb-3'> 
                         <h2 className='uppercase text-xl mb-1'>starting at</h2>
-                        <div className='text-2xl font-bold'>₹{price}/-</div>    
+                        <div className='text-2xl font-bold'>₹{parseInt(price).toLocaleString('en-IN', { maximumFractionDigits: 2 })}/-</div>    
                     </div>
 
                     <div>
@@ -113,7 +113,7 @@ export default function Listing({ id, name, description, price, amenities, addre
 
                     <div className='mb-3'> 
                         <h2 className='uppercase text-lg sm:text-xl mb-1'>starting at</h2>
-                        <div className='text-lg sm:text-2xl font-bold'>₹{price}/-</div>    
+                        <div className='text-lg sm:text-2xl font-bold'>₹{parseInt(price).toLocaleString('en-IN', { maximumFractionDigits: 2 })}/-</div>    
                     </div>
 
                     <div className='mb-3'> 

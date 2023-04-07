@@ -434,6 +434,20 @@ export default function useApi() {
         }
     }
 
+    const contactUs = async ({ name, email, phone, message }) => { 
+        try{ 
+            const response = await axios(base_url + `/user/contact-us`, { 
+                method: "POST",
+                data: { name, email, phone, message  } 
+            }); 
+            return response.data; 
+        }
+        catch(err){ 
+            console.log(err); 
+            return err.response.data; 
+        }
+    }
+
     return { 
         addAppartment, 
         addFloor,
@@ -465,6 +479,7 @@ export default function useApi() {
         studentsByListing,
         forgotPassword,
         verifyResetCode,
-        resetPassword
+        resetPassword,
+        contactUs
     }
 }

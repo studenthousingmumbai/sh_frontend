@@ -11,7 +11,7 @@ import {
   const awards = [
     {
       name: 'ias',
-      src: '/IASaward.png',
+      src: '/award-2.png',
     },
     {
       name: 'ISOcertification',
@@ -23,26 +23,24 @@ import {
     },
     {
       name: 'NSHA',
-      src: '/NSHA.png',
+      src: '/award-1.png',
     }
   ]
 
   const textVariantRightToLeft = {
     hidden: { opacity: 0, y: 50},
-    visible: {opacity: 1, y: 0, transition: { duration: 0.65 }}
+    visible: {opacity: 1, y: 0, transition: { duration: 0.3 }}
   }
   
   export default function Example() {
     return (
-      <div className='w-full max-h-full mb-6'>
-
+      <div className='w-full max-h-full mb-6 p'>
         <motion.div
           className="w-full h-full flex flex-col lg:flex-row items-start lg:items-center"
           initial="hidden" whileInView="visible"
-          transition={{staggerChildren: 0.45}}
-          viewport={{once:false, amount:0.3}}
+          transition={{staggerChildren: 0.10}}
+          viewport={{once:false, amount:0.1}}
         >
-
           <motion.div className=''>
             <motion.div className='flex items-center lg:items-end' variants={textVariantRightToLeft}>
               <div className='w-full lg:pb-3'>
@@ -66,9 +64,7 @@ import {
               round the clock security, safety is never comprimised & always delivered. 
             </p>
           </motion.div>
-
         </motion.div>
-
 
         <div className='flex flex-col items-center justify-center mt-12 mb-8'>
           <h1 className='font-bold text-4xl lg:text-5xl text-[#FBCF5F] text-center mb-2'>Awards & Recognition</h1>
@@ -81,7 +77,6 @@ import {
         </div>
       </div>
 
-      
       // <div className="relative bg-white py-16 sm:py-24 lg:py-32">
       //   <div className="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
       //     <h2 className="text-lg font-semibold text-indigo-600">Deploy faster</h2>

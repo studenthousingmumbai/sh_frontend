@@ -10,8 +10,6 @@ export default function App({ floor_plan, beds, selectedBed, setSelectedBed }) {
   const [imageWidth, setImageWidth] = useState(100); 
   const [imageHeight, setImageHeight] = useState(100);  
 
-//   console.log("Initial value: ", INITIAL_VALUE);
-
   useEffect(() => {
     if(!is_mounted.current){
         is_mounted.current = true; 
@@ -76,8 +74,8 @@ export default function App({ floor_plan, beds, selectedBed, setSelectedBed }) {
                                 beds.map(bed => ( 
                                     <g>
                                         <rect
-                                            onMouseUpCapture={() => (bed.available && !bed.locked) && setSelectedBed(bed.id)}
-                                            className={`fill-[rgba(255,255,255,0.4)] cursor-pointer ${(!bed.available || bed.locked) && 'fill-[rgba(248,113,113,0.8)]'} hover:fill-[rgba(187,247,208,0.8)] active:fill-[rgba(74,222,128,0.8)] ${!bed.available && ' hover:fill-[rgba(248,113,113,0.8)] '} stroke-white ${selectedBed === bed.id && bed.available && 'fill-[rgba(74,222,128,0.8)] hover:fill-[rgba(74,222,128,0.8)] '}`}
+                                            onMouseUpCapture={() => (bed.available && !bed.locked) && setSelectedBed(bed)}
+                                            className={`fill-[rgba(255,255,255,0.4)] cursor-pointer ${(!bed.available || bed.locked) && 'fill-[rgba(248,113,113,0.8)]'} hover:fill-[rgba(187,247,208,0.8)] active:fill-[rgba(74,222,128,0.8)] ${!bed.available && ' hover:fill-[rgba(248,113,113,0.8)] '} stroke-white ${selectedBed.id === bed.id && bed.available && 'fill-[rgba(74,222,128,0.8)] hover:fill-[rgba(74,222,128,0.8)] '}`}
                                             strokeDasharray={"5,5"}
                                             x={bed.bb.x}
                                             y={bed.bb.y}

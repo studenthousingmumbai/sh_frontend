@@ -1,16 +1,18 @@
+import Link from "next/link";
+
 const navigation = {
     solutions: [
-      { name: 'Contact Us', href: '#' },
+      { name: 'Contact Us', href: '/contact-us' },
     ],
     support: [
-      { name: 'About Us', href: '#' },
+      { name: 'About Us', href: '/about-us' },
+      { name: "Faqs", href: "/faqs" }
     ],
     company: [
-      { name: 'Explore Homes', href: '#' },
+      { name: 'Explore Homes', href: '/listings' },
     ],
     legal: [
-      { name: 'Hostel Rules', href: '#' },
-      { name: 'Terms and Conditions', href: '#' },
+      { name: 'Terms and Conditions', href: '/terms-and-conditions' },
     ],
     social: [
       {
@@ -92,9 +94,11 @@ const navigation = {
                   <ul role="list" className="mt-4 space-y-4">
                     {navigation.solutions.map((item) => (
                       <li key={item.name}>
-                        <a href={item.href} className="text-base text-gray-500 hover:text-gray-900">
-                          {item.name}
-                        </a>
+                        <Link href={item.href}>
+                          <a className="text-base text-gray-500 hover:text-gray-900">
+                            {item.name}
+                          </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -104,9 +108,11 @@ const navigation = {
                   <ul role="list" className="mt-4 space-y-4">
                     {navigation.support.map((item) => (
                       <li key={item.name}>
-                        <a href={item.href} className="text-base text-gray-500 hover:text-gray-900">
-                          {item.name}
-                        </a>
+                        <Link href={item.href}>
+                          <a className="text-base text-gray-500 hover:text-gray-900">
+                            {item.name}
+                          </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -118,9 +124,11 @@ const navigation = {
                   <ul role="list" className="mt-4 space-y-4">
                     {navigation.company.map((item) => (
                       <li key={item.name}>
-                        <a href={item.href} className="text-base text-gray-500 hover:text-gray-900">
-                          {item.name}
-                        </a>
+                        <Link href={item.href}>
+                          <a className="text-base text-gray-500 hover:text-gray-900">
+                            {item.name}
+                          </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -130,9 +138,11 @@ const navigation = {
                   <ul role="list" className="mt-4 space-y-4">
                     {navigation.legal.map((item) => (
                       <li key={item.name}>
-                        <a href={item.href} className="text-base text-gray-500 hover:text-gray-900">
-                          {item.name}
-                        </a>
+                        <Link href={item.href}>
+                          <a className="text-base text-gray-500 hover:text-gray-900">
+                            {item.name}
+                          </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>

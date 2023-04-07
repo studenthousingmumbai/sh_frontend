@@ -3,26 +3,40 @@ import { ChevronDownIcon } from '@heroicons/react/24/outline'
 
 const faqs = [
   {
-    question: "What's the best thing about Switzerland?",
+    question: "How and when can I see the room before booking?",
     answer:
-      "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+      "Whenever you want to. Get in touch with our team here and you can either schedule a visit if you're in town, or we will arrange for a video call to show you the room. There are virtual tours for each accommodation with which you can check the entire property out.",
   },
   {
-    question: "How do you make holy water?",
+    question: "What is the minimum duration of stay?",
     answer:
-      "You boil the hell out of it. Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam aut tempora vitae odio inventore fuga aliquam nostrum quod porro. Delectus quia facere id sequi expedita natus.",
+      "Your annual academic year, ideally lasting 10-11 months is the minimum duration of staying with us.",
   },
   {
-    question: "What do you call someone with no body and no nose?",
+    question: "Is there a curfew in the hostels?",
     answer:
-      "Nobody knows. Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, voluptas ipsa quia excepturi, quibusdam natus exercitationem sapiente tempore labore voluptatem.",
+      "Yes there is an 11pm curfew. If you want to stay out for the night you can choose to do so by informing your hostel caretaker and parents in advance. You students' safety and well being is something we do not compromise upon.",
   },
   {
-    question: "Why do you never see elephants hiding in trees?",
+    question: "Do you provide relocation to other Student Housing accommodations?",
     answer:
-      "Because they're so good at it. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+      "If there is a bed available in the accommodation you want to shift to, we would be happy to see you choose something you like, better!",
   },
-
+  {
+    question: "How many meals will I get in a day?",
+    answer:
+      "Typically our meal plans include breakfast, lunch and dinner. Tea, coffee, fruits are available throughout the day and so are typically evening snacks. At some locations, we don't offer lunch plans.",
+  },
+   {
+    question: "How do I schedule a visit?",
+    answer:
+      "You can give us a call here or fill out your basic details here, with which our team will contact you and assist you in your visit.",
+  },
+  {
+    question: "How many people will I share the entire acommodation with?",
+    answer:
+      "Depends on the accommodation. Ideally, it varies between 10-50 students in one whole premises. However, our properties are designed in a way the space doesn't feel cramped up.",
+  },
   // More questions...
 ]
 
@@ -32,8 +46,8 @@ function classNames(...classes) {
 
 export default function Example() {
   return (
-    <div className="bg-white">
-      <div className="mx-auto max-w-7xl py-12 px-4 sm:py-16 sm:px-6 lg:px-8">
+    <div className="bg-white h-[100vh] flex ">
+      <div className="m-auto mx-auto max-w-7xl py-12 px-4 sm:py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl divide-y-2 divide-gray-200">
           <h2 className="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Frequently asked questions

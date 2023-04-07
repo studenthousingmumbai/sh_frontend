@@ -15,6 +15,138 @@ String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
+const colleges = {
+  "Mukesh Patel School of Tech": { 
+      courses: [
+          'B.Tech', 
+          'MBA.Tech',
+          'MCA', 
+          'M.Tech', 
+          'B.Tech Integrated'
+      ],
+      years: ['1', '2', '3', '4', '5']
+  }, 
+  "NMIMS": { 
+      courses: [
+          'MBA - Core', 
+          'MBA Pharmaceuticals Management',
+          'MBA (Decision Sciences & Analytics)',
+          'MBA Law',
+          'Master of Business Adm Part Time',
+          'Master of Bus Adm Part Time (SE)/Diploma in SE',
+          'MBA (Real Estate Management)',
+          'MBA Entrepreneurship & Family Business',
+          'MBA Entrepreneurship',
+          'Integrated MBA(E & FB)',
+          'Bachelor of Busi Adm (Entrepreneurship & Family Business )',
+          'Bachelor of Business Mgmt & Marketing',
+          'Bachelor of Architecture',
+          'Master of Architecture',
+          'B.A. (Hon.) Interior Envt. and Design',
+          'Master of Business Administration (Business Analytics)',
+          'MBA (Digital Transformation)',
+          'B.Des (Humanising Technology)',
+          'BBA',
+          'B.COM (HONS.)',
+          'B.SC.FINANCE',
+          'M.SC.FINANCE',
+          'B.A.(Hons) Liberal Arts',
+          'BBA In Branding & Advertising',
+          'Master of Law (LL.M)',
+          'BA LLB/BBA LLB',
+          'Master of Law (LL.M)',
+          'MBA Common',
+          'M.Sc. Statistics & Data Science',
+          'M.Sc. Statistics',
+          'M.Sc. Ph.D. Biological Sciences (Integrated prog)',
+          'M.Sc. Biological Sciences',
+          'Master of Physiotherapy',
+          'M.Sc. Chemistry (Analytical & Organic Chemistry)',
+          'M.Sc. Ph.D. Chemistry (Analytical & Organic Chemistry) (Int. Prog)',
+          'B.Sc. (Applied Statistics & Analytics)',
+          '5-Year Integrated M.Sc. in Biomedical Science',
+          'M.Sc. (Applied Statistics & Analytics)',
+          'M.Sc. (Applied Psychology)',
+          'B.Sc. (Applied Psychology)',
+          'B.Sc. (Data Science)',
+          'B.Sc. (Artificial Intelligence)',
+          'B.Sc. (Animation and VFX)',
+          'B. Pharm',
+          'B. Pharm+MBA',
+          'D. Pharm',
+          'M.Pharm (Ind. Pharmacy)+MBA (PT & HCM)',
+          'M.Pharm (Pharmaceutics)+MBA (PT & HCM)',
+          'M.Pharm (Pharm Tech)+MBA (PT & HCM)',
+          'M.Pharm (Pharm QA)+MBA (PT & HCM)',
+          'B.Sc. Economics',
+          'M.Sc. Economics',
+          'Bachelor of Science in Agriculture',
+          'BBA-Hospitality Operations & Management',
+          'Bachelor of Science in Mathematics (Honours)',
+          'B.A Music (Indian Music)',
+          'Bachelor of Performing Arts (Music)',
+          'B.A Music (Western Contemporary Music)'
+      ],
+      years: ['1', '2', '3', '4', '5']
+  },
+  "Mithibai": { 
+      courses: [
+          'B.Sc. Biotechnology', 
+          'Accountancy',
+          'B. Com. Banking & Insurance', 
+          'B. Com. Financial Markets', 
+          'B. Com. Accounting & Finance',
+          'B.M.S. (Bachelor in Management Studies',
+          'B. Sc. Computer Science',
+          'B.A. Sociology',
+          'B.A. Politics',
+          'B.A. Philosophy',
+          'Business Law',
+          'B.Sc. Statistics',
+          'B.Sc. Mathematics', 
+          'Environmental Studies', 
+          'B.Sc. Microbiology',
+          'B.Sc. Biochemistry',
+          'B.Sc. Botany',
+          'B.Sc. Zoology',
+          'B.Sc. Physics',
+          'B.Sc Chemistry',
+          'Business Economics',
+          'Bachelor of Commerce (B.Com)',
+          'Bachelor of Mass Media (B. M. M)',
+          'B.A. Hindi',
+          'B.A. Gujarati',
+          'B.A. English',
+          'B. A. Psychology',
+          'Junior College (Science)',
+          'Junior College (Commerce)',
+          'Junior College (Arts)'
+      ],
+      years: ['1', '2', '3']
+  }, 
+  "NM": {
+      courses: [
+          'Bachelor of Commerce (B.Com)',
+          'Bachelor of Mass Media (B. M. M)',
+          'Junior College (Science)',
+          'Junior College (Commerce)',
+          'Junior College (Arts)',
+          'Bachelor of Management Studies (BMS)'
+      ],
+      years: ['1', '2', '3']
+  },
+  "other": { 
+      courses: [
+          'Junior College',
+          'Diploma', 
+          'Under-graduate', 
+          'Post-graduate', 
+          'Phd'
+      ],
+      years: ['1', '2', '3', '4', '5']
+  }
+};
+
 const stepper_data = [
   { 
     id: '01', 
@@ -46,22 +178,22 @@ const stepper_data = [
   }
 ]; 
 
-const colleges = [
-  { id: 1, value: 'NMIMS' }, 
-  { id: 2, value: 'Mithibai' }, 
-]
+// const colleges = [
+//   { id: 1, value: 'NMIMS' }, 
+//   { id: 2, value: 'Mithibai' }, 
+// ]
 
-const courses = [ 
-  { id: 1, value: "BCOM" }, 
-  { id: 2, value: "BSC" }, 
-  { id: 3, value: "MSC" }
-];
+// const courses = [ 
+//   { id: 1, value: "BCOM" }, 
+//   { id: 2, value: "BSC" }, 
+//   { id: 3, value: "MSC" }
+// ];
 
-const years = [ 
-  { id: 1, value: 1 }, 
-  { id: 2, value: 2 }, 
-  { id: 3, value: 3 }, 
-];
+// const years = [ 
+//   { id: 1, value: 1 }, 
+//   { id: 2, value: 2 }, 
+//   { id: 3, value: 3 }, 
+// ];
 
 const FloorSelection = ({ setBookByCourse, bookByCourse, setSelectedFloor, selectedFloor, selectedYear, selectedCourse, setSelectedCourse, selectedCollege, setSelectedCollege, setSelectedYear, onProceed, availableBeds, studentsStatsFloor }) => { 
   console.log("Availabled beds: ", availableBeds);
@@ -95,33 +227,98 @@ const FloorSelection = ({ setBookByCourse, bookByCourse, setSelectedFloor, selec
           </div>
           {
             bookByCourse && 
-            <div className='flex mb-3'> 
-              <div  className='w-full mr-2'> 
-                <SelectMenu 
-                  label="Select College"
-                  options={colleges}
-                  value={selectedCollege}
-                  onChange={change => setSelectedCollege(change.value)}
-                />
+            <>
+              <div> 
+                <label htmlFor="College" className="block text-sm font-medium leading-6 text-gray-900">
+                  Select College
+                </label>
+                <select
+                  id="College"
+                  name="College"
+                  className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  defaultValue=""
+                  placeholder='Select College'
+                  onChange={e => setSelectedCollege(e.target.value)}
+                >
+                  {
+                    Object.keys(colleges).map(key => ( 
+                      <option key={key} value={key}>{key}</option>
+                    ))
+                  }
+                </select>
+              </div>
+              {
+                selectedCollege && 
+                <div> 
+                  <label htmlFor="College" className="block text-sm font-medium leading-6 text-gray-900">
+                    Select Course
+                  </label>
+                  <select
+                    id="College"
+                    name="College"
+                    className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    defaultValue=""
+                    placeholder='Select College'
+                    onChange={e => setSelectedCourse(e.target.value)}
+                  >
+                    {
+                      colleges[selectedCollege].courses.map(course => ( 
+                        <option key={course} value={course}>{course}</option>
+                      ))
+                    }
+                  </select>
+                </div>
+              }
+              {
+                selectedCollege && 
+                <div> 
+                  <label htmlFor="College" className="block text-sm font-medium leading-6 text-gray-900">
+                    Select Year
+                  </label>
+                  <select
+                    id="College"
+                    name="College"
+                    className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    defaultValue=""
+                    placeholder='Select College'
+                    onChange={e => setSelectedYear(e.target.value)}
+                  >
+                    {
+                      colleges[selectedCollege].years.map(year => ( 
+                        <option key={year} value={year}>{year}</option>
+                      ))
+                    }
+                  </select>
+                </div>
+              }
+            </>
+            // <div className='flex mb-3'> 
+            //   <div  className='w-full mr-2'> 
+            //     <SelectMenu 
+            //       label="Select College"
+            //       options={colleges}
+            //       value={selectedCollege}
+            //       onChange={change => setSelectedCollege(change.value)}
+            //     />
                 
-              </div>
-              <div className='w-full mr-2'> 
-                <SelectMenu 
-                  label="Select course"
-                  options={courses}
-                  value={selectedCourse}
-                  onChange={change => setSelectedCourse(change.value)}
-                />
-              </div>
-              <div  className='w-full'> 
-                <SelectMenu 
-                  label="Select year"
-                  options={years}
-                  value={selectedYear}
-                  onChange={change => setSelectedYear(change.value)}
-                />
-              </div>
-            </div>
+            //   </div>
+            //   <div className='w-full mr-2'> 
+            //     <SelectMenu 
+            //       label="Select course"
+            //       options={courses}
+            //       value={selectedCourse}
+            //       onChange={change => setSelectedCourse(change.value)}
+            //     />
+            //   </div>
+            //   <div  className='w-full'> 
+            //     <SelectMenu 
+            //       label="Select year"
+            //       options={years}
+            //       value={selectedYear}
+            //       onChange={change => setSelectedYear(change.value)}
+            //     />
+            //   </div>
+            // </div>
           }
 
 
@@ -336,7 +533,7 @@ const BedSelection = ({ setVirtualTourOpen, bedsInAppartment, beds, selectedAppa
               type="button"
               className="inline-flex items-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
               onClick={async () => { 
-                if(selectedBed) { 
+                if(Object.keys(selectedBed).length > 0) { 
                   await lockBed(); 
                   onProceed(); 
                 }
@@ -359,7 +556,10 @@ const BedSelection = ({ setVirtualTourOpen, bedsInAppartment, beds, selectedAppa
   )
 }
 
-const Payment = ({ loading, selectedFloor, selectedAppartment, selectedBed, onProceed, completePayment, onBack, user, listing }) => { 
+const Payment = ({ loading, selectedFloor, selectedAppartment, selectedBed, onProceed, completePayment, onBack, user, listing, selectedCollege, selectedCourse, selectedYear }) => { 
+  const [agree, setAgree] = useState(false); 
+  console.log("Selected bed: ", selectedBed);
+
   return ( 
     <div className="flex w-full h-full items-center min-h-[50vh]">
       <div className="flex m-auto">
@@ -380,7 +580,7 @@ const Payment = ({ loading, selectedFloor, selectedAppartment, selectedBed, onPr
           </div>
           
           <p className='mb-2'> 
-            <span className='font-semibold'>Term: </span> 12 Months | 1 Academic year
+            <span className='font-semibold'>Term: </span> 1 Academic year
           </p>
 
           <p className='mb-2'> 
@@ -396,9 +596,46 @@ const Payment = ({ loading, selectedFloor, selectedAppartment, selectedBed, onPr
           </p>
 
           <p className='mb-2'> 
-            <span className='font-semibold'>Bed No: </span> {selectedBed || '__'}
+            <span className='font-semibold'>Bed No: </span> {selectedBed.bed_no || '__'}
           </p>
+          
+          {
+            selectedCollege && 
+            <p className='mb-2'> 
+              <span className='font-semibold'>College: </span> {selectedCollege}
+            </p>
+          }
+          {
+            selectedCourse && 
+            <p className='mb-2'> 
+              <span className='font-semibold'>Course: </span> {selectedCourse}
+            </p>
+          }
+          {
+            selectedYear && 
+            <p className='mb-2'> 
+              <span className='font-semibold'>Year: </span> {selectedYear}
+            </p>
+          }
 
+          <div className="relative flex items-start mb-3">
+            <div className="flex h-5 items-center">
+              <input
+                id="comments"
+                aria-describedby="comments-description"
+                name="comments"
+                type="checkbox"
+                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                checked={agree}
+                onChange={e => setAgree(e.target.checked)}
+              />
+            </div>
+            <div className="ml-3 text-sm">
+              <label htmlFor="comments" className="font-medium text-gray-700">
+                I agree to the <a href='/terms-and-conditions' target='_blank' className='text-blue-300 hover:text-blue-400'>terms and conditions</a>
+              </label>
+            </div>
+          </div>
           <div className='flex flex-col lg:flex-row'>
             {/* <button
               type="button"
@@ -407,17 +644,16 @@ const Payment = ({ loading, selectedFloor, selectedAppartment, selectedBed, onPr
             >
               Back
             </button> */}
-            <button
+           <button
               type="button"
-              className="inline-flex items-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+              className="inline-flex items-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={!agree}
               onClick={() => { 
                 onProceed(); 
                 completePayment(); 
               }}
             >
-              <span className='mr-2'>
-                Proceed to payment
-              </span>
+              Proceed to Payment
               {
                 loading && 
                 <svg class="mr-3 h-5 w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -425,7 +661,7 @@ const Payment = ({ loading, selectedFloor, selectedAppartment, selectedBed, onPr
                   <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
               }
-          </button>
+            </button>
           </div>
           {/* <p className='text-md text-gray-600 mb-3'>after selection, click on the proceed button to get directed towards the next step of apartment selection</p> */}
           
@@ -556,7 +792,7 @@ export default function booking() {
       const create_order_response = await createPaymentSession({ 
         user: user.id, 
         appartment: selectedAppartment.id, 
-        bed: selectedBed, 
+        bed: selectedBed.id, 
         course: bookByCourse ? selectedCourse : "", 
         year: bookByCourse ? selectedYear : "",
         college: bookByCourse ? selectedCollege : "",
@@ -592,6 +828,7 @@ export default function booking() {
         beds.map(bed => ({ 
           bb: bed.bounding_box, 
           id: bed.id, 
+          bed_no: bed.bed_no,
           available: bed.available, 
           locked: bed.locked, 
           deleted: bed.deleted 
@@ -600,7 +837,7 @@ export default function booking() {
     }
 
     const lockBed = async () => { 
-      const update_bed_response = await updateBed(selectedBed, { locked: true, locked_by: user.id }); 
+      const update_bed_response = await updateBed(selectedBed.id, { locked: true, locked_by: user.id }); 
       console.log("update bed response: ", update_bed_response); 
 
       if("errors" in update_bed_response) { 
@@ -702,12 +939,14 @@ export default function booking() {
                 onBack={onBack}
                 lockBed={lockBed}
               /> 
-
               || 
               currentStep === steps.PAYMENT && 
               <Payment 
                 selectedFloor={selectedFloor}
                 selectedAppartment={selectedAppartment}
+                selectedYear={selectedYear}
+                selectedCourse={selectedCourse}
+                selectedCollege={selectedCollege}
                 selectedBed={selectedBed}
                 onProceed={onProceed}
                 completePayment={completePayment}

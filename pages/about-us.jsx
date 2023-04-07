@@ -26,13 +26,18 @@ export default function Example() {
                             <div className='uppercase left-2 font-bold text-4xl sm:text-5xl md:text-6xl pl-4'>about us</div>
                         </div>
                         <div className='mt-3 text-md'>
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                            ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit
-                            in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                            sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                            mollit anim id est laborum."
+                            <p className='mb-3'>
+                                At student housing, we understand the challenges of being a student and living away from home. That's why we strive to create a welcoming and supportive environment where students can thrive academically and socially.
+                            </p>
+                            <p className='mb-3'>
+                                Our company has been in operation for several years, and we have built a strong reputation for providing high-quality accommodation services to our students. We have a team of experienced staff members who are always ready to assist students in any way they can.
+                            </p>
+                            <p className='mb-3'>
+                                Our hostels are strategically located near major universities and colleges, making it easy for students to access their classes and other academic facilities. We also offer a variety of amenities, including laundry services, high-speed internet, and 24-hour security.
+                            </p>
+                            <p className='mb-3'>
+                                We believe that our student hostels provide an excellent opportunity for students to meet new people and form lifelong friendships. Our social events and community-building initiatives are designed to help students connect with one another and make the most of their university experience.
+                            </p>
                         </div>
                     </div>
 
@@ -40,15 +45,15 @@ export default function Example() {
                         <div className="grid grid-cols-3 gap-0 sm:gap-4 md:gap-8 items-center py-3 lg:py-6 sm:px-6 lg:px-0">
                             <div className="col-span-1 flex justify-center">
                                 <img className="h-6 sm:h-8" src="/furniture1.png" alt="Tuple" />
-                                <h2 className="text-md sm:text-lg md:text-xl lg:text-2xl px-3">200+ Beds</h2>
+                                <h2 className="text-md sm:text-lg md:text-xl lg:text-xl px-3">300+ Beds</h2>
                             </div>
                             <div className="col-span-1 flex justify-center">
                                 <img className="h-6 sm:h-8" src="/home-2-1.png" alt="Tuple" />
-                                <h2 className="text-md sm:text-lg md:text-xl lg:text-2xl px-3 ">20+ Hostels</h2>
+                                <h2 className="text-md sm:text-lg md:text-xl lg:text-xl px-3 ">20+ Hostels</h2>
                             </div>
                             <div className="col-span-1 flex justify-center items-center">
                                 <img className="h-6 sm:h-8" src="/multiple-users-silhouette-1.png" alt="Tuple" />
-                                <h2 className="text-md sm:text-lg md:text-xl lg:text-2xl px-3 ">2467+ Happy Students</h2>
+                                <h2 className="text-md sm:text-lg md:text-xl lg:text-xl px-3">4000+ Students</h2>
                             </div>
                         </div>
                     </div>
@@ -61,13 +66,7 @@ export default function Example() {
                             </div>
                         </div>
                         <div className='pt-6'>
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                            ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit
-                            in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                            sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                            mollit anim id est laborum."
+                            At student housing, we are passionate about providing our students with the best possible experience. We are constantly looking for ways to improve our services and make our hostels even better. So if you're looking for a safe, comfortable, and affordable place to stay while pursuing your studies, look no further than our student hostels. We would be delighted to welcome you to our community!
                         </div>
                     </div>
                 </div>
