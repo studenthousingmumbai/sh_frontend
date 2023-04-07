@@ -53,14 +53,14 @@ const navigation = [
             </div> */}
 
             {/* left banner text for large and below screens */}
-            <div className='absolute flex lg:hidden flex-col justify-center items-center w-full h-full text-center p-6'>
+            {/* <div className='absolute flex lg:hidden flex-col justify-center items-center w-full h-full text-center p-6'>
             <div className='font-bold text-4xl sm:text-5xl text-white uppercase'>your home</div>
             <div className='font-bold text-4xl sm:text-5xl text-white uppercase'>away from</div>
             <div className='font-bold text-7xl sm:text-8xl text-[#ffcc00] uppercase'>home</div>
             <Link href='/listings'>
                 <button className='font-bold bg-[#088b05] py-1 px-8 xs:px-10 sm:px-12 md:px-14 text-xl sm:text-2xl text-white uppercase rounded-[30px]'>explore now</button>
             </Link>
-            </div>
+            </div> */}
           </div>
           
           {/* right male and female banners for medium and below screens */}
