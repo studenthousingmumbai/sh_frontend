@@ -17,6 +17,7 @@ import Layout from '../components/Layout';
 import Stepper  from '../components/Stepper'; 
 // import Carousel from '../components/Carousel';
 import { Reviews } from '../components/Homepage/Testimonials';
+import WhatsAppButton from '../components/common/WhatsappButton';
 
 export default function Home() {
   return (
@@ -28,6 +29,10 @@ export default function Home() {
 		</Head>
 
 		<Layout>
+			<span className='fixed bottom-[25px] right-[20px] z-[1000]'>
+				<WhatsAppButton message={""}/>
+			</span>
+
 			<Hero/>
 			{/* <div className='h-screen w-full bg-orange-400  lg:bg-red-400'></div> */}
 			<LogoCloud/>

@@ -133,39 +133,64 @@ function classNames(...classes) {
 export default function Example() {
   return (
     <Layout>
-        <div className="bg-white "> 
-        <div className="mx-auto max-w-7xl py-12 px-4 sm:py-16 sm:px-6 lg:px-8">
-            <div className="mx-auto max-w-3xl divide-y-2 divide-gray-200">
-            <h2 className="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                Frequently asked questions
-            </h2>
-            <dl className="mt-6 space-y-6 divide-y divide-gray-200">
-                {faqs.map((faq) => (
-                <Disclosure as="div" key={faq.question} className="pt-6">
-                    {({ open }) => (
-                    <>
-                        <dt className="text-lg">
-                        <Disclosure.Button className="flex w-full items-start justify-between text-left text-gray-400">
-                            <span className="font-medium text-gray-900">{faq.question}</span>
-                            <span className="ml-6 flex h-7 items-center">
-                            <ChevronDownIcon
-                                className={classNames(open ? '-rotate-180 transition-all' : 'rotate-0 transition-all', 'h-6 w-6 transform transition-all')}
-                                aria-hidden="true"
-                            />
-                            </span>
-                        </Disclosure.Button>
-                        </dt>
-                        <Disclosure.Panel as="dd" className="mt-2 pr-12">
-                        <p className="text-base text-gray-500 transition-all">{faq.answer}</p>
-                        </Disclosure.Panel>
-                    </>
-                    )}
-                </Disclosure>
-                ))}
-            </dl>
-            </div>
+      <div className="bg-white">
+        <div className="mx-auto max-w-7xl divide-y divide-gray-900/10 px-6 lg:px-8 pt-12">
+          <h2 className="text-2xl font-bold leading-10 tracking-tight text-gray-900">Frequently asked questions</h2>
+          <dl className="mt-10 space-y-8 divide-y divide-gray-900/10">
+            {faqs.map((faq) => (
+              <div key={faq.id} className="pt-8 lg:grid lg:grid-cols-12 lg:gap-8">
+                <dt className="text-base font-semibold leading-7 text-gray-900 lg:col-span-5">{faq.question}</dt>
+                <dd className="mt-4 lg:col-span-7 lg:mt-0">
+                  <p className="text-base leading-7 text-gray-600">{faq.answer}</p>
+                </dd>
+              </div>
+            ))}
+          </dl>
         </div>
-        </div>
+      </div>
     </Layout>
   )
 }
+
+
+
+
+// export default function Example() {
+//   return (
+//     <Layout>
+//         <div className="bg-white "> 
+//         <div className="mx-auto max-w-7xl py-12 px-4 sm:py-16 sm:px-6 lg:px-8">
+//             <div className="mx-auto max-w-3xl divide-y-2 divide-gray-200">
+//             <h2 className="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+//                 Frequently asked questions
+//             </h2>
+//             <dl className="mt-6 space-y-6 divide-y divide-gray-200">
+//                 {faqs.map((faq) => (
+//                 <Disclosure as="div" key={faq.question} className="pt-6">
+//                     {({ open }) => (
+//                     <>
+//                         <dt className="text-lg">
+//                         <Disclosure.Button className="flex w-full items-start justify-between text-left text-gray-400">
+//                             <span className="font-medium text-gray-900">{faq.question}</span>
+//                             <span className="ml-6 flex h-7 items-center">
+//                             <ChevronDownIcon
+//                                 className={classNames(open ? '-rotate-180 transition-all' : 'rotate-0 transition-all', 'h-6 w-6 transform transition-all')}
+//                                 aria-hidden="true"
+//                             />
+//                             </span>
+//                         </Disclosure.Button>
+//                         </dt>
+//                         <Disclosure.Panel as="dd" className="mt-2 pr-12">
+//                         <p className="text-base text-gray-500 transition-all">{faq.answer}</p>
+//                         </Disclosure.Panel>
+//                     </>
+//                     )}
+//                 </Disclosure>
+//                 ))}
+//             </dl>
+//             </div>
+//         </div>
+//         </div>
+//     </Layout>
+//   )
+// }

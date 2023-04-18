@@ -17,7 +17,7 @@ const navigation = [
   
   export default function Example() {
     return (
-      <div className='h-[80vh]'>
+      <div className='h-[75vh] '>
         <div className='flex flex-col lg:flex-row h-full gap-4 sm:gap-6 lg:gap-0'>
 
           {/* left banner carousel */}

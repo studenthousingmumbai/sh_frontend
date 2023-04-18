@@ -151,6 +151,7 @@ export default function Example({  }) {
                   <h2 className="sr-only">Listing description</h2>
                   <h2 className="text-xl tracking-tight text-gray-600 font-medium">{listing && listing.description}</h2>
                 </div>
+                
 
                 <div className="mt-3">
                   <h5 className="sr-only">Listing address</h5>
@@ -187,13 +188,30 @@ export default function Example({  }) {
                     </button>
                 </div>
 
-                <div className="mt-3">
-                  <h2 className="sr-only">Listing price</h2>
+                <div className="mt-3 mb-3 ">
                   <h1 className='uppercase text-xl text-gray-600'>starting at</h1>
                   <p className="text-3xl tracking-tight text-gray-900">₹{parseInt(listing.price).toLocaleString('en-IN', { maximumFractionDigits: 2 })}/-</p>
                 </div>
                 
-                <div className='flex mt-3'> 
+                <div className='mb-3'>
+                  <h1 className='uppercase text-xl text-gray-600 '>Amenities</h1>
+                  <div className='flex '> 
+                    { 
+                        listing && listing.amenities && listing.amenities.length !== 0 && listing.amenities.map((amenity, index) => ( 
+                            index <= 3 &&  
+                            <span className='lg:text-sm lg:1text-base mr-2 inline-flex items-center rounded-full bg-gray-200 px-2.5 py-0.5 text-xs font-semibold text-gray-800'> 
+                                {amenity}
+                            </span> 
+                        ))
+                    }
+                    {
+                       listing && listing.amenities && listing.amenities.length > 4 && <EllipsisHorizontalIcon className='w-6 h-6'/>
+                    }
+                  </div>
+
+                </div>
+
+                <div className='flex mt-3 mb-3'> 
                   <button
                       type="button"
                       className="mr-3 inline-flex items-center rounded-md border border-transparent bg-[#FFCC29] px-4 py-2 text-base font-medium text-black shadow-sm hover:bg-[#fad45a] focus:outline-none focus:ring-2 focus:ring-[#fad45a] focus:ring-offset-2"
@@ -214,52 +232,15 @@ export default function Example({  }) {
                   </button> 
                 </div>
 
-                <section aria-labelledby="details-heading" className="mt-12">
-                  <h2 id="details-heading" className="sr-only">
-                    Additional details
-                  </h2>
-
-                  <div className="divide-y divide-gray-200 border-t">
-                      <Disclosure as="div">
-                        {({ open }) => (
-                          <>
-                            <h3>
-                              <Disclosure.Button className="group relative flex w-full items-center justify-between py-6 text-left">
-                                <span
-                                  className={classNames(
-                                    open ? 'text-indigo-600' : 'text-gray-900',
-                                    'text-sm font-medium'
-                                  )}
-                                >
-                                  Amenities
-                                </span>
-                                <span className="ml-6 flex items-center">
-                                  {open ? (
-                                    <MinusIcon
-                                      className="block h-6 w-6 text-indigo-400 group-hover:text-indigo-500"
-                                      aria-hidden="true"
-                                    />
-                                  ) : (
-                                    <PlusIcon
-                                      className="block h-6 w-6 text-gray-400 group-hover:text-gray-500"
-                                      aria-hidden="true"
-                                    />
-                                  )}
-                                </span>
-                              </Disclosure.Button>
-                            </h3>
-                            <Disclosure.Panel as="div" className="prose prose-sm pb-6">
-                              <ul role="list">
-                                {listing && listing.amenities && listing.amenities.map((item) => (
-                                  <li key={item}>{item}</li>
-                                ))}
-                              </ul>
-                            </Disclosure.Panel>
-                          </>
-                        )}
-                      </Disclosure>
-                  </div>
-                </section>
+                <div>
+                  <Link
+                    href='/terms-and-conditions'
+                  >
+                    <a className="text-lg text-gray-500 underline font-semibold text- hover:text-[#FFCC29]">
+                      Hostel Rules and Policies
+                    </a>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

@@ -5,15 +5,15 @@ export default function Example() {
           <div className="grid grid-row-3 md:grid-cols-3 gap-4">
             <div className="col-span-1 flex flex-col lg:flex-row justify-center items-center">
               <img className="h-10" src="/furniture1.png" alt="Tuple" />
-              <h2 className="text-xl px-3 py-2 md:py-3">200+ Beds</h2>
+              <h2 className="text-xl px-3 py-2 md:py-3 font-bold">200+ Beds</h2>
             </div>
             <div className="col-span-1 flex flex-col lg:flex-row justify-center items-center">
               <img className="h-10" src="/home-2-1.png" alt="Tuple" />
-              <h2 className="text-xl px-3 py-2 md:py-3">20+ Hostels</h2>
+              <h2 className="text-xl px-3 py-2 md:py-3 font-bold">20+ Hostels</h2>
             </div>
             <div className="col-span-1 flex flex-col lg:flex-row justify-center items-center">
               <img className="h-10" src="/multiple-users-silhouette-1.png" alt="Tuple" />
-              <h2 className="text-xl px-3 py-2 md:py-3 text-center break-normal">2467+ Happy Students</h2>
+              <h2 className="text-xl px-3 py-2 md:py-3 text-center break-normal font-bold">2467+ Happy Students</h2>
             </div>
           </div>
         </div>

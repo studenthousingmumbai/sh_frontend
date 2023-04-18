@@ -27,7 +27,7 @@ export default function Example() {
   const user = useAuth.user; 
 
   return (
-    <Popover className="relative bg-white">
+    <Popover className="relative bg-white mb-3">
       <div className="mx-auto px-4 sm:px-16">
         <div className="flex items-center justify-between border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
@@ -35,12 +35,11 @@ export default function Example() {
               <span className="sr-only">Your Company</span>
               <Link href='/'>
                 <img
-                  className="h-8 w-auto sm:h-10 cursor-pointer"
-                  src="https://studenthousing.co.in/wp-content/uploads/2020/03/SH_LogoR.png"
+                  className="h-12 w-auto sm:h-10 cursor-pointer"
+                  src="/sh_logo.png"
                   alt=""
                 />
               </Link> 
-              
             </a>
           </div>
           <div className="-my-2 -mr-2 md:hidden">
@@ -76,6 +75,15 @@ export default function Example() {
               >
                 Contact Us
               </a>          
+            </Link>
+
+            <Link href='/terms-and-conditions'> 
+              <a
+                href="#"
+                className="text-base font-medium text-gray-500 hover:text-gray-900"
+              >
+                Terms & conditions
+              </a>
             </Link>
 
             <Link href='/faqs'> 
@@ -182,8 +190,8 @@ export default function Example() {
                 <div>
                   <Link href='/'>
                     <img
-                      className="h-8 w-auto sm:h-10 cursor-pointer"
-                      src="https://studenthousing.co.in/wp-content/uploads/2020/03/SH_LogoR.png"
+                      className="h-10 w-auto sm:h-10 cursor-pointer"
+                      src="/sh_logo.png"
                       alt=""
                     />
                   </Link>
@@ -217,6 +225,14 @@ export default function Example() {
                     className="text-base font-medium text-gray-900 hover:text-gray-700"
                   >
                     Contact Us
+                  </a>
+                </Link>
+                <Link href='/terms-and-conditions'> 
+                  <a
+                    href="#"
+                    className="text-base font-medium text-gray-500 hover:text-gray-900"
+                  >
+                    Terms & conditions
                   </a>
                 </Link>
                 <Link href='/faqs'> 
