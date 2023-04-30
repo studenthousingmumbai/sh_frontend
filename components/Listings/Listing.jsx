@@ -16,14 +16,14 @@ export default function Listing({ id, name, description, price, amenities, addre
 
     return (
         <div className='mb-3'>
-            <div className='hidden lg:flex w-full rounded-md p-4 transition-all ease-in-out duration-300 hover:shadow-md hover:cursor-pointer border border-1 border-gray-300 hover:border-gray-400 t shadow-sm group' onClick={() => router.push(`/listing/${id}`)}>
+            <div className='hidden lg:flex w-full rounded-md p-4 transition-all ease-in-out duration-300 hover:shadow-md hover:cursor-pointer border border-1 border-gray-300 hover:border-gray-400 hover:scale-[1.01] shadow-sm group' onClick={() => router.push(`/listing/${id}`)}>
                 <div className="rounded-xl bg-gray-300 w-[700px] h-[300px] mr-6 relative">
                     <div className='bg-[rgba(0,0,0,0.3)] absolute top-0 left-0 w-full h-full rounded-md'></div>
                     <img className='w-full h-full object-cover rounded-md' src={images[0] || 'https://movi.com.tr/wp-content/uploads/2021/08/placeholder-home.png'}/>
                 </div>
 
                 <div className="rounded-md w-full flex flex-col justify-between">
-                    <h2 className='text-3xl uppercase mb-3 transition ease-in-out duration-300 group-hover:text-blue-600'> 
+                    <h2 className='text-3xl uppercase mb-3 transition ease-in-out duration-300 group-hover:text-brandColorHover'> 
                         {name}
                     </h2>
 
@@ -52,7 +52,7 @@ export default function Listing({ id, name, description, price, amenities, addre
                             { 
                                 amenities.length !== 0 && amenities.map((amenity, index) => ( 
                                     index <= 3 &&  
-                                    <span className='lg:text-sm lg:1text-base mr-2 inline-flex items-center rounded-full bg-gray-200 px-2.5 py-0.5 text-xs font-semibold text-gray-800'> 
+                                    <span className='lg:text-sm lg:text-base mr-2 inline-flex items-center rounded-full bg-amenitiesPillBg px-2.5 py-0.5 text-xs font-semibold text-amenitiesPillText border border-amenitiesPillBorder'> 
                                         {amenity}
                                     </span> 
                                 ))
@@ -122,7 +122,7 @@ export default function Listing({ id, name, description, price, amenities, addre
                             { 
                                 amenities.length !== 0 && amenities.map((amenity,index) => (
                                     index <= 3 &&  
-                                    <span className='lg:text-sm lg:1text-base mr-2 inline-flex items-center rounded-full bg-gray-200 px-2.5 py-0.5 text-xs font-semibold text-gray-800'> 
+                                    <span className='lg:text-sm lg:text-base mr-2 inline-flex items-center rounded-full bg-amenitiesPillBg px-2.5 py-0.5 text-xs font-semibold text-amenitiesPillText'> 
                                         {amenity}
                                     </span> 
                                 ))

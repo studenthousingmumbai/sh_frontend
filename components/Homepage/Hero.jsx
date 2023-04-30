@@ -30,16 +30,15 @@ const navigation = [
               <Carousel
                 slideDuration={5000} 
                 images={[
-                  '/sh-vector-2.jpg',
-                  '/SH-BANNER-VECTOR-4.png', 
-                  '/sh-vector-1.jpg', 
+                  '/banner_1.png',
+                  '/banner_2.png', 
+                  '/banner_3.png', 
                 ]}
                 width="w-full"
                 height="h-full"
                 hideArrows={true}
                 animationStyle="slide"
               />
-
             {/* left banner text for large and above screens */}
 
             {/* <div className='absolute bg-black-overlay w-full h-full rounded-lg'></div> */}

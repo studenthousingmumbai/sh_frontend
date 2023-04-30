@@ -144,7 +144,7 @@ export default function Listings() {
                                         type="radio"
                                         value={option.id}
                                         checked={listingGender === option.id}
-                                        className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                        className="h-4 w-4 border-gray-300 text-brandColor focus:ring-brandColor"
                                         onChange={e => setListingGender(e.target.value)}
                                     />
                                     <label htmlFor={option.id} className="ml-3 block text-sm font-medium text-gray-700">
@@ -182,7 +182,7 @@ export default function Listings() {
                                     type="radio"
                                     value={option.id}
                                     checked={listingGender === option.id}
-                                    className="border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                    className="border-gray-300 text-brandColor focus:ring-brandColor"
                                     onChange={e => setListingGender(e.target.value)}
                                 />
                                 <label htmlFor={option.id} className="ml-3 block text-sm font-medium text-gray-700">

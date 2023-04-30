@@ -41,22 +41,6 @@ import {
     return (
       <div className='w-full max-h-full mb-6 pc'>
         
-        <div className="grid grid-cols-2 xs:grid-cols-[40%_40%] sm:grid-cols-[40%_40%] gap-6 xs:gap-8 md:grid-cols-[30%_30%] justify-center lg:grid-cols-4 md:gap-12 lg:gap-8 lg1:gap-16 lg2:gap-24 mb-10 w-full place-items-stretch py-5">
-        {/* bg-[url('/am-4.png')] */}
-          {features.map((ele) => (
-            <div>
-              <div className='relative flex items-end justify-center shadow-lg rounded-xl truncate'>
-                <img className="w-full h-full object-cover rounded-xl " src={ele.src} alt={ele.name} />
-                <div className='absolute flex flex-col justify-center items-center py-8 px-4 bg-gradient-to-b from-transparent to-white w-full rounded-xl'>
-                  <div className='hidden lg:block font-bold text-sm xs:text-base sm:text-lg lg1:text-xl lg2:text-2xl uppercase'>{ele.name}</div>
-                  <div className='hidden lg:flex items-center justify-center font-bold text-[8px] lg:leading-[0.75rem] lg1:text-[10px] lg1:leading-[0.75rem] lg2:text-xs uppercase break-normal bg-[#FBCF5F] rounded-md px-2'>{ele.content}</div>
-                </div>
-              </div>
-              <div className='flex lg:hidden font-bold justify-center uppercase text-center text-sm xs:text-base sm:text-lg md:text-xl'>{ele.name}</div>
-            </div>             
-          ))}
-        </div>
-
         <motion.div
           className="w-full h-full flex flex-col lg:flex-row items-start lg:items-center"
           initial="hidden" whileInView="visible"
@@ -72,6 +56,7 @@ import {
           <div className='w-full lg:w-1/2 h-full py-6 lg:py-0 lg:pr-28'>
             <img className="w-full object-contain rounded-lg" src='/book-by-course.jpg' alt='book by course banner' />
           </div>
+
           <motion.div
             className='w-full lg:w-1/2 h-full'
           >
@@ -89,6 +74,25 @@ import {
             </motion.div>
           </motion.div>
         </motion.div>
+
+
+        <div className="grid grid-cols-2 xs:grid-cols-[40%_40%] sm:grid-cols-[40%_40%] gap-6 xs:gap-8 md:grid-cols-[30%_30%] justify-center lg:grid-cols-4 md:gap-12 lg:gap-8 lg1:gap-16 lg2:gap-24 mb-10 w-full place-items-stretch py-5">
+        {/* bg-[url('/am-4.png')] */}
+          {features.map((ele) => (
+            <div>
+              <div className='relative flex items-end justify-center shadow-lg rounded-xl truncate'>
+                <img className="w-full h-full object-cover rounded-xl " src={ele.src} alt={ele.name} />
+                <div className='absolute flex flex-col justify-center items-center py-8 px-4 bg-gradient-to-b from-transparent to-white w-full rounded-xl'>
+                  <div className='hidden lg:block font-bold text-sm xs:text-base sm:text-lg lg1:text-xl lg2:text-2xl uppercase'>{ele.name}</div>
+                  <div className='hidden lg:flex items-center justify-center font-bold text-[8px] lg:leading-[0.75rem] lg1:text-[10px] lg1:leading-[0.75rem] lg2:text-xs uppercase break-normal bg-[#FBCF5F] rounded-md px-2'>{ele.content}</div>
+                </div>
+              </div>
+              <div className='flex lg:hidden font-bold justify-center uppercase text-center text-sm xs:text-base sm:text-lg md:text-xl'>{ele.name}</div>
+            </div>             
+          ))}
+        </div>
+
+ 
 
       </div>
     )

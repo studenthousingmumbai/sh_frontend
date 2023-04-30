@@ -24,6 +24,8 @@ export default function Example({  }) {
   const [open, setOpen] = useState(false); 
   const [locationOpen, setLocationOpen] = useState(false);
   const [watchVideoOpen, setWatchVideoOpen] = useState(false); 
+  const [selectedImage, setSelectedImage] = useState(""); 
+  const [selectedImageOpen, setSelectedImageOpen] = useState(false); 
 
   console.log("Listing : ", listing); 
 
@@ -86,7 +88,15 @@ export default function Example({  }) {
         <VideoPlayer videoLink={listing.video_link} width={'w-[550px]'}/>
       </Modal>
 
-      <div className="bg-white">
+
+      {/* <Modal open={selectedImageOpen} onClose={() => setSelectedImageOpen(false)}>
+        <div className='w-[1000px]'> 
+          <img src={selectedImage} className='w-full'/>
+        </div>
+      </Modal> */}
+
+
+      <div className="bg-white mb-5">
         <main className="mx-auto max-w-7xl sm:px-6 sm:pt-16 lg:px-8">
           <div className="mx-auto max-w-2xl lg:max-w-none">
             {/* Product */}
@@ -122,18 +132,19 @@ export default function Example({  }) {
                 </div>
 
                 <Tab.Panels className="aspect-w-1 aspect-h-1 w-full">
-                  {listing && listing.images &&  listing.images.map((image) => (
+                  {listing && listing.images && listing.images.map((image) => (
                     <Tab.Panel key={image.id}>
                       <img
                         src={image}
                         alt={"Listing Image"}
                         className="h-full w-full object-cover object-center sm:rounded-lg"
+                        onClick={() => {setSelectedImage(image); setSelectedImageOpen(true)}}
                       />
                     </Tab.Panel>
                   ))}
 
                   {
-                    listing.images && listing.images.length ===0  && 
+                    listing.images && listing.images.length === 0 && 
                     <img 
                       src='https://movi.com.tr/wp-content/uploads/2021/08/placeholder-home.png'
                       alt={"Listing Image"}
@@ -199,7 +210,7 @@ export default function Example({  }) {
                     { 
                         listing && listing.amenities && listing.amenities.length !== 0 && listing.amenities.map((amenity, index) => ( 
                             index <= 3 &&  
-                            <span className='lg:text-sm lg:1text-base mr-2 inline-flex items-center rounded-full bg-gray-200 px-2.5 py-0.5 text-xs font-semibold text-gray-800'> 
+                            <span className='lg:text-sm lg:text-base mr-2 inline-flex items-center rounded-full bg-amenitiesPillBg px-2.5 py-0.5 text-xs font-semibold text-amenitiesPillText border border-amenitiesPillBorder'> 
                                 {amenity}
                             </span> 
                         ))

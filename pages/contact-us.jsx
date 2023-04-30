@@ -86,6 +86,7 @@ export default function Example() {
                                     autoComplete="name"
                                     className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                                     placeholder="Full name"
+                                    required={true}
                                 />
                             </div>
                             <div>
@@ -101,6 +102,7 @@ export default function Example() {
                                     autoComplete="email"
                                     className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                                     placeholder="Email"
+                                    required={true}
                                 />
                             </div>
                             <div>
@@ -116,6 +118,7 @@ export default function Example() {
                                     autoComplete="tel"
                                     className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                                     placeholder="Phone"
+                                    required={true}
                                 />
                             </div>
                             <div>
@@ -131,12 +134,13 @@ export default function Example() {
                                     className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                                     placeholder="Message"
                                     defaultValue={''}
+                                    required={true}
                                 />
                             </div>
                             <div>
                                 <button
                                     type="submit"
-                                    className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-6 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                    className="inline-flex justify-center rounded-md border border-transparent bg-brandColor py-3 px-6 text-base font-medium shadow-sm hover:bg-[#fad45a] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                                 >
                                     Submit
                                 </button>

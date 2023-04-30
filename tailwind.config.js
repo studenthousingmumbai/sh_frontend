@@ -98,6 +98,13 @@ module.exports = {
       },
       colors: {
         'black-overlay': 'rgba(0, 0, 0, 0.55)',
+        brandColor: "#FFCC29", 
+        brandColorHover: "#cc9c02",
+        brandColorText: "#856603", 
+        brandColorBg: "#f7ecc6", 
+        amenitiesPillBg: "#fff1c4", 
+        amenitiesPillText: "#806103",
+        amenitiesPillBorder: "#edc139"
       },
     },
     screens: {

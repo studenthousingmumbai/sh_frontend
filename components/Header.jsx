@@ -29,27 +29,27 @@ export default function Example() {
   return (
     <Popover className="relative bg-white mb-3">
       <div className="mx-auto px-4 sm:px-16">
-        <div className="flex items-center justify-between border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
+        <div className="flex items-center justify-between border-b-2 border-gray-100 py-6 lg:justify-start lg:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <a href="#">
               <span className="sr-only">Your Company</span>
               <Link href='/'>
                 <img
-                  className="h-12 w-auto sm:h-10 cursor-pointer"
+                  className="w-[150px] h-[70px] cursor-pointer"
                   src="/sh_logo.png"
                   alt=""
                 />
               </Link> 
             </a>
           </div>
-          <div className="-my-2 -mr-2 md:hidden">
+          <div className="-my-2 -mr-2 lg:hidden">
             <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500">
               <span className="sr-only">Open menu</span>
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </Popover.Button>
           </div>
 
-          <Popover.Group as="nav" className="hidden space-x-10 md:flex">
+          <Popover.Group as="nav" className="hidden space-x-10 lg:flex">
             <Link href='/listings'> 
               <a
                 href="#"
@@ -82,7 +82,7 @@ export default function Example() {
                 href="#"
                 className="text-base font-medium text-gray-500 hover:text-gray-900"
               >
-                Terms & conditions
+                Terms & Conditions
               </a>
             </Link>
 
@@ -96,7 +96,7 @@ export default function Example() {
             </Link>
           </Popover.Group>
 
-          <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
+          <div className="hidden items-center justify-end lg:flex lg:flex-1 lg:w-0">
 
           {
             isAuthenticated && 
@@ -182,7 +182,7 @@ export default function Example() {
       >
         <Popover.Panel
           focus
-          className="absolute inset-x-0 top-0 origin-top-right transform p-2 transition md:hidden z-[1000]"
+          className="absolute inset-x-0 top-0 origin-top-right transform p-2 transition lg:hidden z-[1000]"
         >
           <div className="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
             <div className="px-5 pt-5 pb-6">
@@ -190,7 +190,7 @@ export default function Example() {
                 <div>
                   <Link href='/'>
                     <img
-                      className="h-10 w-auto sm:h-10 cursor-pointer"
+                      className="w-[150px] h-[70px] cursor-pointer"
                       src="/sh_logo.png"
                       alt=""
                     />
@@ -232,7 +232,7 @@ export default function Example() {
                     href="#"
                     className="text-base font-medium text-gray-500 hover:text-gray-900"
                   >
-                    Terms & conditions
+                    Terms & Conditions
                   </a>
                 </Link>
                 <Link href='/faqs'> 

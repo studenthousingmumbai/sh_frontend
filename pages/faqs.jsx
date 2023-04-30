@@ -133,7 +133,7 @@ function classNames(...classes) {
 export default function Example() {
   return (
     <Layout>
-      <div className="bg-white">
+      <div className="bg-white mb-5">
         <div className="mx-auto max-w-7xl divide-y divide-gray-900/10 px-6 lg:px-8 pt-12">
           <h2 className="text-2xl font-bold leading-10 tracking-tight text-gray-900">Frequently asked questions</h2>
           <dl className="mt-10 space-y-8 divide-y divide-gray-900/10">
@@ -151,9 +151,6 @@ export default function Example() {
     </Layout>
   )
 }
-
-
-
 
 // export default function Example() {
 //   return (
