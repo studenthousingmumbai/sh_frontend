@@ -106,10 +106,10 @@ const useAuth = (props) => {
         setIsLoading(false); 
     }
 
-    const signup = async (firstname, lastname, email, password) => { 
+    const signup = async (firstname, lastname, email, password, phoneNumber) => { 
         setIsLoading(true); 
 
-        const login_response = await signupUser(firstname, lastname, email, password); 
+        const login_response = await signupUser(firstname, lastname, email, password, phoneNumber); 
         
         if(login_response){ 
             const { access_token, user, errors } = login_response;

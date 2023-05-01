@@ -40,9 +40,9 @@ import {
 
   export default function Example() {
     return (
-      <div className='w-full max-h-full mb-6 p'>
+      <div className='w-full '>
         <motion.div
-          className="w-full h-full flex flex-col lg:flex-row items-start lg:items-center"
+          className="w-full h-full flex flex-col lg:flex-row items-start lg:items-center my-6"
           initial="hidden" whileInView="visible"
           transition={{staggerChildren: 0.10}}
           viewport={{once:false, amount:0.1}}
@@ -50,42 +50,42 @@ import {
           <motion.div className=''>
             <motion.div className='flex items-center lg:items-end' variants={textVariantRightToLeft}>
               <div className='w-full lg:pb-3'>
-                <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-start'>You need your space,</h2>
-                <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-start text-[#FBCF5F]'>Always!</h2>
+                <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-start'>Exclusive Turf Events!</h2>
+                <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-start text-[#FBCF5F]'>Love Cricket? Enjoy Football?</h2>
               </div>
             </motion.div>
             <motion.div className='hidden lg:block px-3 lg:p-0' variants={textVariantRightToLeft}>
-              <p className='text-sm sm:text-base md:text-lg lg1:text-xl text-center lg:text-start text-[#A5A3A3]'>
-                with spacious & luxuiries homes, you get your space & privacy promised & with 24/7 
-                round the clock security, safety is never comprimised & always delivered. 
+              <p className='sm:text-lg md:text-lg lg1:text-xl text-center lg:text-start text-[#A5A3A3]'>
+                Worry not, Engage in the sports you love with your housemates during our SH turf events!
               </p>
             </motion.div>
           </motion.div>
-          <div className='w-full h-full row-span-4 py-6 lg:py-0 lg:pl-28'>
-            <img className="w-full object-contain rounded-lg" src='/YourSpace.png' alt='yourspacelayout' />
+          <div className='w-full lg:w-1/2 h-full py-6 lg:py-0 lg:pl-28'>
+            <img className="w-full object-contain rounded-lg" src='/turf-events.png' alt='yourspacelayout' />
           </div>
+
+
           <motion.div className='block lg:hidden px-3 lg:p-0' variants={textVariantRightToLeft}>
-            <p className='text-sm sm:text-base md:text-lg lg1:text-xl text-center lg:text-start text-[#A5A3A3]'>
-              with spacious & luxuiries homes, you get your space & privacy promised & with 24/7 
-              round the clock security, safety is never comprimised & always delivered. 
+            <p className='sm:text-lg md:text-lg lg1:text-xl text-center lg:text-start text-[#A5A3A3]'>
+              Worry not, Engage in the sports you love with your housemates during our SH turf events!
             </p>
           </motion.div>
         </motion.div>
 
         <motion.div
-          className="w-full h-full flex flex-col lg:flex-row items-start lg:items-center"
+          className="w-full h-full flex flex-col lg:flex-row items-start lg:items-center my-6"
           initial="hidden" whileInView="visible"
           transition={{staggerChildren: 0.10}}
           viewport={{ once:false, amount:0.1}}
         >
           <motion.div className='flex lg:hidden text-start lg:text-end' variants={textVariantLeftToRight}>
             <div className='w-full lg:pb-3'>
-              <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-end'>Book By Course</h2>
-              <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-end text-[#FBCF5F]'>Move in with your batchmates</h2>
+              <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-end'>College Drop Facility</h2>
+              <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-end text-[#FBCF5F]'>From home to college</h2>
             </div>
           </motion.div>
           <div className='w-full lg:w-1/2 h-full py-6 lg:py-0 lg:pr-28'>
-            <img className="w-full object-contain rounded-lg" src='/book-by-course.jpg' alt='book by course banner' />
+            <img className="w-full object-contain rounded-lg" src='/bus.png' alt='book by course banner' />
           </div>
 
           <motion.div
@@ -93,28 +93,28 @@ import {
           >
             <motion.div className='hidden lg:flex text-center lg:text-end' variants={textVariantLeftToRight}>
               <div className='w-full lg:pb-3'>
-                <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-end'>Book By Course</h2>
-                <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-end text-[#FBCF5F]'>Move in with your batchmates</h2>
+                <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-end'>College Drop Facility</h2>
+                <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-end text-[#FBCF5F]'>From home to college</h2>
               </div>
             </motion.div>
             <motion.div className='px-3 lg:p-0' variants={textVariantLeftToRight}>
-              <p className='text-sm sm:text-base md:text-lg lg1:text-xl text-center lg:text-end text-[#A5A3A3]'>
-                Need to move in with your friends? Say no more! Use our newest “Book by course” feature while booking your 
-                favourite property & share the same rooms with your friends! 
+              <p className='sm:text-lg md:text-lg lg1:text-xl text-center lg:text-end text-[#A5A3A3]'>
+                We've got you covered! An exclusive in-house facility provided to our students
               </p>
             </motion.div>
           </motion.div>
         </motion.div>
 
-
-        <div className='flex flex-col items-center justify-center mt-12 mb-8'>
-          <h1 className='font-bold text-4xl lg:text-5xl text-[#FBCF5F] text-center mb-2'>Awards & Recognition</h1>
-          <h1 className='text-xl md:text-2xl lg:text-3xl text-[#A5A3A3] text-center'>Striving to be the best for you, always!</h1>
-        </div>
-        <div className="grid grid-cols-4 pt-8">
-          {awards.map((ele) => (
-            <img className="h-40 w-40 mx-auto rounded-lg object-contain" src={ele.src} alt={ele.name} />
-          ))}
+        <div className='mt-12'> 
+          <div className='flex flex-col items-center justify-center mt-12'>
+            <h1 className='font-bold text-4xl lg:text-5xl text-[#FBCF5F] text-center mb-2'>Awards & Recognition</h1>
+            <h1 className='text-xl md:text-2xl lg:text-3xl text-[#A5A3A3] text-center'>Striving to be the best for you, always!</h1>
+          </div>
+          <div className="grid grid-cols-4 pt-8">
+            {awards.map((ele) => (
+              <img className="h-40 w-40 mx-auto rounded-lg object-contain" src={ele.src} alt={ele.name} />
+            ))}
+          </div>
         </div>
       </div>
 

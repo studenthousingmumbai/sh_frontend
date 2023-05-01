@@ -5,6 +5,7 @@ import useAuth from "../hooks/useAuth";
 import { useRouter } from "next/router";
 import withAuth from "../hooks/withAuth";
 import Errors from '../components/common/Errors'; 
+import PhoneNumberInput from "../components/common/PhoneNumberInput";
 
 export default function Signup() {
     const router = useRouter();
@@ -15,11 +16,12 @@ export default function Signup() {
     const [lastname, setLastname] = useState(""); 
     const [email, setEmail] = useState(""); 
     const [password, setPassword] = useState(""); 
+    const [phoneNumber, setPhoneNumber] = useState("");
     const [signupComplete, setSignupComplete] = useState(false); 
 
     const handleSubmit = async (e) => { 
       e.preventDefault(); 
-      const signup_success = await signup(firstname, lastname, email, password); 
+      const signup_success = await signup(firstname, lastname, email, password, phoneNumber); 
 
       if(signup_success) { 
         setSignupComplete(true);
@@ -214,6 +216,13 @@ export default function Signup() {
                         />
                       </div>
                     </div>
+                    
+                    <PhoneNumberInput 
+                      required={true}
+                      initialValue={phoneNumber} 
+                      onChange={value => setPhoneNumber(value)}
+                    />
+
                     {
                       signupErrors.length > 0 && <Errors errors={signupErrors}/>
                     }

@@ -21,11 +21,11 @@ export default function useApi() {
         }
     }
 
-    const signup = async (firstname, lastname, email, password) => { 
+    const signup = async (firstname, lastname, email, password, phoneNumber) => { 
         try{ 
             const response = await axios(base_url + '/user/signup', { 
                 method: "POST", 
-                data: { firstname, lastname, email, password }
+                data: { firstname, lastname, email, password, phoneNumber }
             }); 
 
             return response.data; 

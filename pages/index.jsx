@@ -40,6 +40,7 @@ export default function Home() {
 			<Awards/>
 			<Reviews/>
 			<Faqs/>
+			<Contact/>
 		</Layout>
     </div>
   )

@@ -17,7 +17,7 @@ const navigation = [
   
   export default function Example() {
     return (
-      <div className='h-[75vh] '>
+      <div className='h-[75vh]'>
         <div className='flex flex-col lg:flex-row h-full gap-4 sm:gap-6 lg:gap-0'>
 
           {/* left banner carousel */}
@@ -63,7 +63,7 @@ const navigation = [
           </div>
           
           {/* right male and female banners for medium and below screens */}
-          <div className='lg:hidden flex flex-col gap-4 sm:gap-6 h-1/2 z-50'>
+          <div className='lg:hidden flex flex-col gap-4 sm:gap-6 h-1/2 z-50 mb-6'>
             <Link href={{ pathname: '/listings', query: { gender: 'female' } }}>
               <div className='relative z-[1] w-full h-1/2 hover:scale-[1.04] cursor-pointer transition-all rounded-lg bg-female-banner bg-[bottom_right_-1rem] bg-no-repeat bg-contain'>
                 <div className='absolute z-[-1] left-0 bg-[#f8c14c] h-full w-1/2 rounded-l-lg rounded-r-lg transition-all lg2:rounded-r-none'></div>
@@ -92,23 +92,6 @@ const navigation = [
                 </div>
               </div>
             </Link>
-            {/* <Link href={{ pathname: '/listings', query: { gender: 'male' } }}>
-              <div className='w-full h-1/2 flex hover:scale-[1.04] cursor-pointer transition-all'>
-                <div className='relative left-0 bg-[#f8c14c] h-full w-full rounded-2xl flex-1'>
-                  <div className='absolute top-[14%] left-[10%] justify-center items-center'>
-                    <div className='font-bold text-xl xs:text-2xl sm:text-3xl uppercase leading-none xs:leading-7 sm:leading-8'>male</div>
-                    <div className='text-2xl xs:text-3xl sm:text-4xl uppercase leading-none sm:leading-8'>hostels</div>
-                    <div className='text-[10px] xs:text-[12px] xs:pl-0.5 sm:pl-1 whitespace-nowrap'>click here to explore now</div>
-                    <div className='flex items-center justify-center my-1 xs:my-2 w-7 h-7 xs:w-8 xs:h-8 md:w-10 md:h-10 rounded-full bg-[#088b05] cursor-pointer'>
-                      <ChevronRightIcon className='w-5 h-5 xs:w-6 xs:h-6 md:w-7 md:h-7 text-white'/>
-                    </div>
-                  </div>
-                </div>
-                <div className='relative flex-1'>
-                  <img src='/male-no-bg.png' className='absolute w-full h-full object-cover object-right-bottom rounded-lg'/>
-                </div>
-              </div>
-            </Link> */}
           </div>
 
           {/* right male and female banners for large and above screens */}

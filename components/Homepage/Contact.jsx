@@ -1,15 +1,38 @@
+import { useState } from 'react';
 import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline'
+import { CheckCircleIcon, XMarkIcon } from '@heroicons/react/20/solid'
+import useApi from '../../hooks/useApi';
 
 export default function Example() {
+  const [email,setEmail] = useState("");
+  const [name,setName] = useState("");
+  const [phone,setPhone] = useState("");
+  const [message,setMessage] = useState("");
+  const [success, setSuccess] = useState(false);
+  const { contactUs } = useApi();
+
+  const handleSendMessage = async (e) => { 
+    e.preventDefault(); 
+
+    const response = await contactUs({ name, email, phone, message }); 
+
+    if(typeof response !== 'string') {
+        console.log("Error occured while sending email!");
+    } else { 
+        setSuccess(true);
+    }
+  }
+
+
   return (
-    <div className="bg-gray-100">
+    <div className="">
       <div className="mx-auto max-w-7xl py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
         <div className="relative bg-white shadow-xl">
           <h2 className="sr-only">Contact us</h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-3">
             {/* Contact information */}
-            <div className="relative overflow-hidden bg-indigo-700 py-10 px-6 sm:px-10 xl:p-12">
+            <div className="relative overflow-hidden bg-yellow-400 py-10 px-6 sm:px-10 xl:p-12">
               <div className="pointer-events-none absolute inset-0 sm:hidden" aria-hidden="true">
                 <svg
                   className="absolute inset-0 h-full w-full"
@@ -191,22 +214,25 @@ export default function Example() {
             {/* Contact form */}
             <div className="py-10 px-6 sm:px-10 lg:col-span-2 xl:p-12">
               <h3 className="text-lg font-medium text-gray-900">Send us a message</h3>
-              <form action="#" method="POST" className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
-                <div>
+              <form className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8  mb-3" onSubmit={handleSendMessage}>
+                <div className='sm:col-span-2'>
                   <label htmlFor="first-name" className="block text-sm font-medium text-gray-900">
-                    First name
+                    Full Name
                   </label>
                   <div className="mt-1">
                     <input
+                      value={name}
+                      onChange={e => setName(e.target.value)}
                       type="text"
                       name="first-name"
                       id="first-name"
                       autoComplete="given-name"
                       className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                      required={true}
                     />
                   </div>
                 </div>
-                <div>
+                {/* <div>
                   <label htmlFor="last-name" className="block text-sm font-medium text-gray-900">
                     Last name
                   </label>
@@ -219,18 +245,21 @@ export default function Example() {
                       className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                     />
                   </div>
-                </div>
+                </div> */}
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-900">
                     Email
                   </label>
                   <div className="mt-1">
                     <input
+                      value={email}
+                      onChange={e => setEmail(e.target.value)}
                       id="email"
                       name="email"
                       type="email"
                       autoComplete="email"
                       className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                      required={true}
                     />
                   </div>
                 </div>
@@ -245,16 +274,19 @@ export default function Example() {
                   </div>
                   <div className="mt-1">
                     <input
+                      value={phone}
+                      onChange={e => setPhone(e.target.value)}
                       type="text"
                       name="phone"
                       id="phone"
                       autoComplete="tel"
                       className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                       aria-describedby="phone-optional"
+                      required={true}
                     />
                   </div>
                 </div>
-                <div className="sm:col-span-2">
+                {/* <div className="sm:col-span-2">
                   <label htmlFor="subject" className="block text-sm font-medium text-gray-900">
                     Subject
                   </label>
@@ -266,7 +298,7 @@ export default function Example() {
                       className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                     />
                   </div>
-                </div>
+                </div> */}
                 <div className="sm:col-span-2">
                   <div className="flex justify-between">
                     <label htmlFor="message" className="block text-sm font-medium text-gray-900">
@@ -278,24 +310,52 @@ export default function Example() {
                   </div>
                   <div className="mt-1">
                     <textarea
+                      value={message}
+                      onChange={e => setMessage(e.target.value)}
                       id="message"
                       name="message"
                       rows={4}
                       className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                       aria-describedby="message-max"
                       defaultValue={''}
+                      required={true}
                     />
                   </div>
                 </div>
                 <div className="sm:col-span-2 sm:flex sm:justify-end">
                   <button
                     type="submit"
-                    className="mt-2 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+                    className="inline-flex justify-center rounded-md border border-transparent bg-brandColor py-3 px-6 text-base font-medium shadow-sm hover:bg-[#fad45a] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   >
                     Submit
                   </button>
                 </div>
               </form>
+              {
+                success && 
+                  <div className="rounded-md bg-green-50 p-4">
+                    <div className="flex">
+                        <div className="flex-shrink-0">
+                            <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
+                        </div>
+                        <div className="ml-3">
+                            <p className="text-sm font-medium text-green-800">Message sent successfully!</p>
+                        </div>
+                        <div className="ml-auto pl-3">
+                            <div className="-mx-1.5 -my-1.5">
+                                <button
+                                    type="button"
+                                    className="inline-flex rounded-md bg-green-50 p-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 focus:ring-offset-green-50"
+                                    onClick={() => setSuccess(false)}
+                                >
+                                    <span className="sr-only">Dismiss</span>
+                                    <XMarkIcon className="h-5 w-5" aria-hidden="true" />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+              }
             </div>
           </div>
         </div>

@@ -39,10 +39,9 @@ import {
   
   export default function Example() {
     return (
-      <div className='w-full max-h-full mb-6 pc'>
-        
+      <div className='w-full max-h-full my-6'>
         <motion.div
-          className="w-full h-full flex flex-col lg:flex-row items-start lg:items-center"
+          className="w-full h-full flex flex-col lg:flex-row items-start lg:items-center mb-6"
           initial="hidden" whileInView="visible"
           transition={{staggerChildren: 0.10}}
           viewport={{ once:false, amount:0.1}}
@@ -67,7 +66,7 @@ import {
               </div>
             </motion.div>
             <motion.div className='px-3 lg:p-0' variants={textVariantLeftToRight}>
-              <p className='text-sm sm:text-base md:text-lg lg1:text-xl text-center lg:text-end text-[#A5A3A3]'>
+              <p className='sm:text-lg md:text-lg lg1:text-xl text-center lg:text-end text-[#A5A3A3]'>
                 Need to move in with your friends? Say no more! Use our newest “Book by course” feature while booking your 
                 favourite property & share the same rooms with your friends! 
               </p>
@@ -91,9 +90,6 @@ import {
             </div>             
           ))}
         </div>
-
- 
-
       </div>
     )
   }
