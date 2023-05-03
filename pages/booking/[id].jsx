@@ -852,7 +852,7 @@ export default function booking() {
 
     return (
       <Layout>
-        <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-3'> 
+        <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-3 min-h-[75vh]'> 
           <Modal title={bookingError} open={errorModalOpen} onClose={handleErrorModalClose}>
             <div className='mb-3'> 
               <span>Please return to the listing page to make a new booking.</span>
@@ -890,6 +890,7 @@ export default function booking() {
           <div className='border border-gray-200 mb-3'> 
             <Stepper steps={stepperState}/> 
           </div>
+          <div className='my-6'>
           { 
               currentStep === steps.FLOOR_SELECTION && 
               <FloorSelection 
@@ -958,6 +959,7 @@ export default function booking() {
               || 
               <></>
           }
+          </div>
         </div>
       </Layout>
     )

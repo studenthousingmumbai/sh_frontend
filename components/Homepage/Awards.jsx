@@ -105,6 +105,101 @@ import {
           </motion.div>
         </motion.div>
 
+
+        <motion.div
+          className="w-full h-full flex flex-col lg:flex-row items-start lg:items-center my-6"
+          initial="hidden" whileInView="visible"
+          transition={{staggerChildren: 0.10}}
+          viewport={{once:false, amount:0.1}}
+        >
+          <motion.div className=''>
+            <motion.div className='flex items-center lg:items-end' variants={textVariantRightToLeft}>
+              <div className='w-full lg:pb-3'>
+                <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-start'>Housekeeping</h2>
+                <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-start text-[#FBCF5F]'>Daily professional cleaning services</h2>
+              </div>
+            </motion.div>
+            <motion.div className='hidden lg:block px-3 lg:p-0' variants={textVariantRightToLeft}>
+              <p className='sm:text-lg md:text-lg lg1:text-xl text-center lg:text-start text-[#A5A3A3]'>
+                We make sure that every property is kept clean & tidy to maintain a organised and a healthy home environment for you!
+              </p>
+            </motion.div>
+          </motion.div>
+          <div className='w-full lg:w-1/2 h-full py-6 lg:py-0 lg:pl-28'>
+            <img className="w-full object-contain rounded-lg" src='/new-amenities/housekeeping.png' alt='yourspacelayout' />
+          </div>
+
+          <motion.div className='block lg:hidden px-3 lg:p-0' variants={textVariantRightToLeft}>
+            <p className='sm:text-lg md:text-lg lg1:text-xl text-center lg:text-start text-[#A5A3A3]'>
+              We make sure that every property is kept clean & tidy to maintain a organised and a healthy home environment for you!
+            </p>
+          </motion.div>
+        </motion.div>
+
+        <motion.div
+          className="w-full h-full flex flex-col lg:flex-row items-start lg:items-center my-6"
+          initial="hidden" whileInView="visible"
+          transition={{staggerChildren: 0.10}}
+          viewport={{ once:false, amount:0.1}}
+        >
+          <motion.div className='flex lg:hidden text-start lg:text-end' variants={textVariantLeftToRight}>
+            <div className='w-full lg:pb-3'>
+              <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-end'>24/7 Security</h2>
+              <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-end text-[#FBCF5F]'>safety is our priority</h2>
+            </div>
+          </motion.div>
+
+          <div className='w-full lg:w-1/2 h-full py-6 lg:py-0 lg:pr-28'>
+            <img className="w-full object-contain rounded-lg" src='/new-amenities/security.png' alt='book by course banner' />
+          </div>
+
+          <motion.div
+            className='w-full lg:w-1/2 h-full'
+          >
+            <motion.div className='hidden lg:flex text-center lg:text-end' variants={textVariantLeftToRight}>
+              <div className='w-full lg:pb-3'>
+                <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-end'>24/7 Security</h2>
+                <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-end text-[#FBCF5F]'>safety is our priority</h2>
+              </div>
+            </motion.div>
+            <motion.div className='px-3 lg:p-0' variants={textVariantLeftToRight}>
+              <p className='sm:text-lg md:text-lg lg1:text-xl text-center lg:text-end text-[#A5A3A3]'>
+                With CCTV cameras across the property along with security guards you can rest easy knowing that these trained professionals are on duty at all times to keep you and your belongings safe
+              </p>
+            </motion.div>
+          </motion.div>
+        </motion.div>
+
+        <motion.div
+          className="w-full h-full flex flex-col lg:flex-row items-start lg:items-center my-6"
+          initial="hidden" whileInView="visible"
+          transition={{staggerChildren: 0.10}}
+          viewport={{once:false, amount:0.1}}
+        >
+          <motion.div className=''>
+            <motion.div className='flex items-center lg:items-end' variants={textVariantRightToLeft}>
+              <div className='w-full lg:pb-3'>
+                <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-start'>Laundry Services</h2>
+                <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-start text-[#FBCF5F]'>Leave the laundry to us at the hostel!</h2>
+              </div>
+            </motion.div>
+            <motion.div className='hidden lg:block px-3 lg:p-0' variants={textVariantRightToLeft}>
+              <p className='sm:text-lg md:text-lg lg1:text-xl text-center lg:text-start text-[#A5A3A3]'>
+                Enjoy fresh and clean clothes without the hassle. Our convenient laundry services make staying clean and comfortable a breeze
+              </p>
+            </motion.div>
+          </motion.div>
+          <div className='w-full lg:w-1/2 h-full py-6 lg:py-0 lg:pl-28'>
+            <img className="w-full object-contain rounded-lg" src='/new-amenities/laundry-2.png' alt='yourspacelayout' />
+          </div>
+
+          <motion.div className='block lg:hidden px-3 lg:p-0' variants={textVariantRightToLeft}>
+            <p className='sm:text-lg md:text-lg lg1:text-xl text-center lg:text-start text-[#A5A3A3]'>
+              Enjoy fresh and clean clothes without the hassle. Our convenient laundry services make staying clean and comfortable a breeze
+            </p>
+          </motion.div>
+        </motion.div>
+
         <div className='mt-12'> 
           <div className='flex flex-col items-center justify-center mt-12'>
             <h1 className='font-bold text-4xl lg:text-5xl text-[#FBCF5F] text-center mb-2'>Awards & Recognition</h1>

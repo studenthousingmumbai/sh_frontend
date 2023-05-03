@@ -1,12 +1,46 @@
 import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline'
 import Layout from '../components/Layout'
+import { Parallax } from 'react-parallax';
 
 export default function Example() {
   return (
     <Layout> 
         <div className="relative bg-white max-h-full">
-            <div className="relative mx-auto max-w-7xl lg:grid lg:grid-cols-5 h-full">
-                <div className="relative flex justify-center bg-gray-100 items-center my-auto h-[500px] lg:h-[90%] lg:col-span-2">
+            {/* <Parallax bgImage="/about-us.png" strength={500} >
+                <div style={{ height: '500px' }}>
+                    <div className='absolute bg-black-overlay w-full h-full'></div>
+                    
+                </div>
+            </Parallax> */}
+
+            {/* <Parallax bgImage="/about-us.png" strength={500}>
+                <div style={{ height: '500px' }}>
+                    <h1>My Component</h1>
+                </div>
+                <Parallax.Layer offset={0.5} speed={0.2}>
+                    <div style={{ height: '100px', width: '100%', backgroundColor: '#ffffff80', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        <h2>Some text here</h2>
+                    </div>
+                </Parallax.Layer>
+            </Parallax> */}
+
+            {/* <Parallax bgImage="/about-us.png" strength={500} style={{ height: '500px', backgroundPosition: 'center center'}}>
+                <div className="relative flex justify-center items-center my-auto h-[500px]">
+                    <div className='absolute bg-black-overlay w-full h-full'></div>
+                    <div className='absolute w-full text-center'>
+                        <h1 className='uppercase font-bold text-[#EDBD00] text-5xl'>
+                            re-imagining
+                        </h1>
+                        <h1 className='uppercase text-2xl text-white'>
+                            <b>co-living</b> for the future
+                        </h1>
+                    </div>
+                </div>
+            </Parallax> */}
+
+            
+            <div className="relative mx-auto max-w-7xl  h-full">
+                <div className="relative flex justify-center bg-gray-100 items-center my-auto h-[500px] ">
                     <img className='w-full h-full object-cover' src="/about-us.png" alt="about-us" />
                     <div className='absolute bg-black-overlay w-full h-full'></div>
                     <div className='absolute w-full text-center'>
@@ -18,9 +52,10 @@ export default function Example() {
                         </h1>
                     </div>
                 </div>
+
                 <div className=" py-12 lg:col-span-3 lg:py-16">
                     <div className='px-4 sm:px-6 lg:px-8 '>
-                        <div className="flex relative  max-w-lg lg:max-w-none h-18 sm:h-24 items-center">
+                        <div className="flex relative max-w-lg lg:max-w-none h-18 sm:h-24 items-center">
                             <div className='absolute h-full bg-yellow-300 top-0 left-0 bg-left w-1'>
                             </div>
                             <div className='uppercase left-2 font-bold text-4xl sm:text-5xl md:text-6xl pl-4'>about us</div>

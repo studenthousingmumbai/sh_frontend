@@ -43,10 +43,10 @@ const rules = [
 export default function TermsAndConditions() {
   return (
     <Layout>
-        <h1 className='text-2xl mb-5 font-bold mt-3'>Hostel Rules and policies</h1>
-        <ul className='list-disc px-5'>
+        <h1 className='text-3xl capitalize font-semibold mx-auto max-w-7xl px-6 lg:px-8 mb-5'>Hostel Rules and policies</h1>
+        <ul className='list-disc mx-auto max-w-7xl px-6 lg:px-8'>
             {rules.map(rule => ( 
-                <li className='text-md text-gray-600 mb-3'>
+                <li className='text-md text-gray-600 ml-5 mb-3'>
                     {rule}
                 </li>
             ))}

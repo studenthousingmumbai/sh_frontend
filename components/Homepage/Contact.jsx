@@ -131,8 +131,7 @@ export default function Example() {
               </div>
               <h3 className="text-lg font-medium text-white">Contact information</h3>
               <p className="mt-6 max-w-3xl text-base text-indigo-50">
-                Nullam risus blandit ac aliquam justo ipsum. Quam mauris volutpat massa dictumst amet. Sapien tortor
-                lacus arcu.
+                G-11, Madonna Apts, Next to NMIMS and Mithibai College, Opp: Bhaidas Hall, Vile Parle (W), Mumbai - 400056
               </p>
               <dl className="mt-8 space-y-6">
                 <dt>
@@ -140,17 +139,17 @@ export default function Example() {
                 </dt>
                 <dd className="flex text-base text-indigo-50">
                   <PhoneIcon className="h-6 w-6 flex-shrink-0 text-indigo-200" aria-hidden="true" />
-                  <span className="ml-3">+1 (555) 123-4567</span>
+                  <span className="ml-3">+91-9819780000/9004033884</span>
                 </dd>
                 <dt>
                   <span className="sr-only">Email</span>
                 </dt>
                 <dd className="flex text-base text-indigo-50">
                   <EnvelopeIcon className="h-6 w-6 flex-shrink-0 text-indigo-200" aria-hidden="true" />
-                  <span className="ml-3">support@workcation.com</span>
+                  <span className="ml-3">studenthousing.co.in@gmail.com</span>
                 </dd>
               </dl>
-              <ul role="list" className="mt-8 flex space-x-12">
+              {/* <ul role="list" className="mt-8 flex space-x-12">
                 <li>
                   <a className="text-indigo-200 hover:text-indigo-100" href="#">
                     <span className="sr-only">Facebook</span>
@@ -208,7 +207,7 @@ export default function Example() {
                     </svg>
                   </a>
                 </li>
-              </ul>
+              </ul> */}
             </div>
 
             {/* Contact form */}
