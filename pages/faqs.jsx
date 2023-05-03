@@ -189,7 +189,7 @@ export default function Example() {
         {
            faqs.map(faq => ( 
             <div className="mx-auto max-w-7xl divide-y divide-gray-900/10 px-6 lg:px-8 pt-12 mb-5">
-              <h2 className="text-2xl font-bold leading-10 tracking-tight text-gray-900 capitalize">{faq.category}</h2>
+              <h2 className="text-2xl font-bold leading-10 tracking-tight text-brandColor capitalize">{faq.category}</h2>
               <dl className="mt-10 space-y-8 divide-y divide-gray-900/10">
                 {faq.questions.map((item, index) => (
                   <div key={index} className="pt-8 lg:grid lg:grid-cols-12 lg:gap-8">
