@@ -1,11 +1,15 @@
 import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline'
 import Layout from '../components/Layout'
 import { Parallax } from 'react-parallax';
+import VideoPlayer from '../components/common/VideoPlayer';
+
+
+
 
 export default function Example() {
   return (
     <Layout> 
-        <div className="relative bg-white max-h-full">
+        <div className="relative bg-white max-h-full px-4 sm:px-16">
             {/* <Parallax bgImage="/about-us.png" strength={500} >
                 <div style={{ height: '500px' }}>
                     <div className='absolute bg-black-overlay w-full h-full'></div>
@@ -38,17 +42,16 @@ export default function Example() {
                 </div>
             </Parallax> */}
 
-            
             <div className="relative mx-auto max-w-7xl  h-full">
                 <div className="relative flex justify-center bg-gray-100 items-center my-auto h-[500px] ">
                     <img className='w-full h-full object-cover' src="/about-us.png" alt="about-us" />
                     <div className='absolute bg-black-overlay w-full h-full'></div>
                     <div className='absolute w-full text-center'>
                         <h1 className='uppercase font-bold text-[#EDBD00] text-5xl'>
-                            re-imagining
+                            re-creating 
                         </h1>
                         <h1 className='uppercase text-2xl text-white'>
-                            <b>co-living</b> for the future
+                            <b>Student co-living</b> for the future
                         </h1>
                     </div>
                 </div>
@@ -80,7 +83,7 @@ export default function Example() {
                         <div className="grid grid-cols-3 gap-0 sm:gap-4 md:gap-8 items-center py-3 lg:py-6 sm:px-6 lg:px-0">
                             <div className="col-span-1 flex justify-center">
                                 <img className="h-6 sm:h-8" src="/furniture1.png" alt="Tuple" />
-                                <h2 className="text-md sm:text-lg md:text-xl lg:text-xl px-3">300+ Beds</h2>
+                                <h2 className="text-md sm:text-lg md:text-xl lg:text-xl px-3">800+ Beds</h2>
                             </div>
                             <div className="col-span-1 flex justify-center">
                                 <img className="h-6 sm:h-8" src="/home-2-1.png" alt="Tuple" />
@@ -93,7 +96,26 @@ export default function Example() {
                         </div>
                     </div>
 
-                    <div className='px-4 sm:px-6 lg:px-8 ' >
+                    {/* <div className='flex mb-3'>
+                        <div className='m-auto'> 
+                            <VideoPlayer videoLink={"https://www.youtube.com/watch?v=FCPAzV3VgIo&t=13s&ab_channel=StudentHousingMumbai"} />
+                        </div>
+                    </div>  */}
+
+                    <div className="video-responsive mb-5 mt-5" style={{overflow: "hidden", paddingBottom: "45.25%", position: "relative", height: "0"}}>
+                        <iframe
+                            width="853"
+                            height="480"
+                            src={`https://www.youtube.com/embed/FCPAzV3VgIo`}
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            title="Embedded youtube"
+                            style={{ left: "0", top: "0", height: "100%", width: "100%", position: "absolute"}}
+                        />
+                    </div>
+
+                    <div className='px-4 sm:px-6 lg:px-8'>
                         <div className='flex items-center'>
                             <img className='h-12' src="/our_mission.png" alt="our_mission" />
                             <div className="flex items-center uppercase max-w-lg lg:max-w-none h-14 pl-2 left-2 font-bold text-3xl">

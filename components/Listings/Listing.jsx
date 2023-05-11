@@ -47,7 +47,7 @@ export default function Listing({ id, name, description, price, amenities, addre
                     </div> 
 
                     <div className='mb-3'> 
-                        <h2 className='uppercase text-xl mb-1'>amenities</h2>
+                        <h2 className='uppercase text-lg mb-1'>amenities</h2>
                         <div className='flex'> 
                             { 
                                 amenities.length !== 0 && amenities.map((amenity, index) => ( 
@@ -112,7 +112,7 @@ export default function Listing({ id, name, description, price, amenities, addre
                     </div>
 
                     <div className='mb-3'> 
-                        <h2 className='uppercase text-lg sm:text-xl mb-1'>starting at</h2>
+                        <h2 className='uppercase text-lg sm:text-lg mb-1'>starting at</h2>
                         <div className='text-lg sm:text-2xl font-bold'>₹{parseInt(price).toLocaleString('en-IN', { maximumFractionDigits: 2 })}/-</div>    
                     </div>
 

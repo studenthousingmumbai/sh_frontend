@@ -26,8 +26,8 @@ export default function Example() {
 
   return (
     <Layout> 
-        <div className="relative bg-white h-[90vh]">
-            <div className="absolute inset-0">
+        <div className="relative bg-white h-[90vh] ">
+            <div className="absolute inset-0 px-4 sm:px-12 ">
                 <div className="absolute inset-y-0 left-0 w-1/2 bg-gray-50" />
             </div>
 
@@ -47,9 +47,13 @@ export default function Example() {
                             </div>
                             <div className="mt-6">
                                 <dt className="sr-only">Phone number</dt>
-                                    <dd className="flex">
+                                <dd className="flex mb-3">
                                     <PhoneIcon className="h-6 w-6 flex-shrink-0 text-gray-400" aria-hidden="true" />
-                                    <span className="ml-3"> +91-9819780000/9004033884</span>
+                                    <span className="ml-3"> +91-9819780000</span>
+                                </dd>
+                                <dd className="flex">
+                                    <PhoneIcon className="h-6 w-6 flex-shrink-0 text-gray-400" aria-hidden="true" />
+                                    <span className="ml-3"> +91-9004033884</span>
                                 </dd>
                             </div>
                             <div className="mt-3">

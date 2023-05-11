@@ -6,6 +6,7 @@ import {
     ServerIcon,
     ShieldCheckIcon,
   } from '@heroicons/react/24/outline'
+  import Link from 'next/link'
   import styles from './features.module.css'
   import { motion } from "framer-motion"
   
@@ -36,28 +37,37 @@ import {
     hidden: { opacity: 0, y: 50},
     visible: { opacity: 1, y: 0, transition: { duration: 0.30 }}
   }
+
+  
+  const imageVariantFadeIn = { 
+    hidden: { opacity: 0, translateY: "-50px" },
+    visible: { opacity: 1, translateY: "0px", transition: { duration: 0.6, ease: "easeOut" } }
+  }
   
   export default function Example() {
+    const animate_once = true; 
+
     return (
-      <div className='w-full max-h-full my-6'>
+      <div className='w-full max-h-full my-6 px-4 sm:px-16'>
         <motion.div
           className="w-full h-full flex flex-col lg:flex-row items-start lg:items-center mb-6"
           initial="hidden" whileInView="visible"
           transition={{staggerChildren: 0.10}}
-          viewport={{ once:false, amount:0.1}}
+          viewport={{ once:animate_once }}
         >
           <motion.div className='flex lg:hidden text-start lg:text-end' variants={textVariantLeftToRight}>
-            <div className='w-full lg:pb-3'>
+            <div className='w-full mb-3 lg:pb-3'>
               <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-end'>Book By Course</h2>
               <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-end text-[#FBCF5F]'>Move in with your batchmates</h2>
             </div>
           </motion.div>
-          <div className='w-full lg:w-1/2 h-full py-6 lg:py-0 lg:pr-28'>
+
+          <motion.div variants={imageVariantFadeIn} className='w-full h-full lg:mr-3 mb-3 lg:mb-0 border-2 border-gray-200 bg-white rounded-lg p-2 shadow-lg'>
             <img className="w-full object-contain rounded-lg" src='/book-by-course.jpg' alt='book by course banner' />
-          </div>
+          </motion.div>
 
           <motion.div
-            className='w-full lg:w-1/2 h-full'
+            className='w-full h-full'
           >
             <motion.div className='hidden lg:flex text-center lg:text-end' variants={textVariantLeftToRight}>
               <div className='w-full lg:pb-3'>
@@ -65,11 +75,23 @@ import {
                 <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-end text-[#FBCF5F]'>Move in with your batchmates</h2>
               </div>
             </motion.div>
+
             <motion.div className='px-3 lg:p-0' variants={textVariantLeftToRight}>
-              <p className='sm:text-lg md:text-lg lg1:text-xl text-center lg:text-end text-[#A5A3A3]'>
+              <p className='text-xl lg1:text-3xl text-left lg:text-end text-[#A5A3A3] mb-3'>
                 Need to move in with your friends? Say no more! Use our newest “Book by course” feature while booking your 
                 favourite property & share the same rooms with your friends! 
               </p>
+
+              <div className='text-left lg:text-end'> 
+                <Link href='/listings'>
+                  <a
+                    href="#"
+                    className="w-[250px] inline-flex items-center justify-center whitespace-nowrap rounded-full border border-transparent px-4 py-2 text-xl  text-gray-700 shadow-sm bg-[#ffcc29] hover:bg-[#fad45a] "
+                  >
+                    Book Now
+                  </a>
+                </Link>
+              </div>
             </motion.div>
           </motion.div>
         </motion.div>

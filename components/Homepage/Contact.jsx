@@ -25,14 +25,14 @@ export default function Example() {
 
 
   return (
-    <div className="">
-      <div className="mx-auto max-w-7xl py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
-        <div className="relative bg-white shadow-xl">
-          <h2 className="sr-only">Contact us</h2>
+    <div className="bg-gray-50">
+      <div className="mx-auto max-w-7xl py-6 px-4  sm:px-6 lg:px-8 rounded-lg">
+        <div className="relative bg-white shadow-xl rounded-lg">
+          <h2 className="sr-only">Get in touch with us</h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-3">
             {/* Contact information */}
-            <div className="relative overflow-hidden bg-yellow-400 py-10 px-6 sm:px-10 xl:p-12">
+            <div className="relative overflow-hidden bg-yellow-400 py-10 px-6 sm:px-10 xl:p-12 rounded-lg">
               <div className="pointer-events-none absolute inset-0 sm:hidden" aria-hidden="true">
                 <svg
                   className="absolute inset-0 h-full w-full"
@@ -129,7 +129,7 @@ export default function Example() {
                   </defs>
                 </svg>
               </div>
-              <h3 className="text-lg font-medium text-white">Contact information</h3>
+              <h3 className="text-lg font-medium text-white">Get in touch with us</h3>
               <p className="mt-6 max-w-3xl text-base text-indigo-50">
                 G-11, Madonna Apts, Next to NMIMS and Mithibai College, Opp: Bhaidas Hall, Vile Parle (W), Mumbai - 400056
               </p>
@@ -139,7 +139,11 @@ export default function Example() {
                 </dt>
                 <dd className="flex text-base text-indigo-50">
                   <PhoneIcon className="h-6 w-6 flex-shrink-0 text-indigo-200" aria-hidden="true" />
-                  <span className="ml-3">+91-9819780000/9004033884</span>
+                  <span className="ml-3">+91-9819780000</span>
+                </dd>
+                <dd className="flex text-base text-indigo-50">
+                  <PhoneIcon className="h-6 w-6 flex-shrink-0 text-indigo-200" aria-hidden="true" />
+                  <span className="ml-3">+91-9004033884</span>
                 </dd>
                 <dt>
                   <span className="sr-only">Email</span>
@@ -267,9 +271,6 @@ export default function Example() {
                     <label htmlFor="phone" className="block text-sm font-medium text-gray-900">
                       Phone
                     </label>
-                    <span id="phone-optional" className="text-sm text-gray-500">
-                      Optional
-                    </span>
                   </div>
                   <div className="mt-1">
                     <input

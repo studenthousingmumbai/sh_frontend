@@ -62,9 +62,9 @@ function ListingSekeletons() {
 }
 
 const genderOptions = [
-    { id: 'male', title: 'Male' },
-    { id: 'female', title: 'Female' },
-    { id: 'all', title: 'all' }
+    { id: 'all', title: 'All' },
+    { id: 'male', title: 'Boys' },
+    { id: 'female', title: 'Girls' },
 ]; 
 
 export default function Listings() {
@@ -121,7 +121,7 @@ export default function Listings() {
 
     return (
         <Layout>
-            <div className='flex flex-col lg:flex-row w-full mt-5'> 
+            <div className='flex flex-col lg:flex-row w-full mt-5 px-4 sm:px-16'> 
                 <div className='hidden lg:block h-[800px] w-1/4 mr-5 relative'>
                     <div className='h-full w-full rounded-md bg-white border border-gray-200 p-3'>
                         <h1 className='capitalize text-lg mb-3 flex items-center'>

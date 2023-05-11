@@ -5,6 +5,8 @@ import Header from '../components/Header';
 import Hero from '../components/Homepage/Hero';
 import Features from '../components/Homepage/Features';
 import Awards from '../components/Homepage/Awards';
+import Amenities from '../components/Homepage/Amenities'; 
+
 // import Reviews from '../components/Homepage/Reviews';
 import Faqs from '../components/Homepage/Faqs';
 import Footer from '../components/Footer';
@@ -37,6 +39,7 @@ export default function Home() {
 			{/* <div className='h-screen w-full bg-orange-400  lg:bg-red-400'></div> */}
 			<LogoCloud/>
 			<Features/>
+			<Amenities/>
 			<Awards/>
 			<Reviews/>
 			<Faqs/>

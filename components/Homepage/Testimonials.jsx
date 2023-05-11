@@ -299,12 +299,18 @@ export function Reviews() {
     <section
       id="reviews"
       aria-labelledby="reviews-title"
-      className="pt-20 pb-16 sm:pt-32 sm:pb-24"
+      className="pt-20 pb-16 sm:pt-32 sm:pb-24 px-4 sm:px-16"
     >
         {/* <Container> */}
-        <h2 className="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+        <div className='flex'>
+          <div className='m-auto text-center'> 
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl w-full mb-3">
             Hear it from our students
-          </h2>
+            </h2>
+            <div className='border-[5px] w-[60px] border-b border-brandColor text-center'></div> 
+          </div>
+        </div>
+
             {/* <p className="mt-2 text-lg text-gray-600 sm:text-center">
                 Thousands of people have doubled their net-worth in the last 30 days.
             </p> */}

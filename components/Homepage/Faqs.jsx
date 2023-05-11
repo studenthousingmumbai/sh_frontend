@@ -46,12 +46,20 @@ function classNames(...classes) {
 
 export default function Example() {
   return (
-    <div className="bg-white">
+    <div className="bg-gray-50">
       <div className="mx-auto max-w-7xl py-12 px-4 sm:py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl divide-y-2 divide-gray-200">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Frequently asked questions
-          </h2>
+          
+          <div className='flex'>
+            <div className='m-auto text-center'> 
+              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl w-full mb-3">
+                Frequently asked questions
+              </h2>
+              <div className='border-[5px] w-[60px] border-b border-brandColor text-center'></div> 
+            </div>
+          </div>
+          
+          
           <dl className="mt-6 space-y-6 divide-y divide-gray-200">
             {faqs.map((faq) => (
               <Disclosure as="div" key={faq.question} className="pt-6">

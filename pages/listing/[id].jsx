@@ -96,7 +96,7 @@ export default function Example({  }) {
       </Modal> */}
 
 
-      <div className="bg-white mb-5">
+      <div className="bg-white mb-5 px-4 sm:px-16">
         <main className="mx-auto max-w-7xl sm:px-6 sm:pt-16 lg:px-8">
           <div className="mx-auto max-w-2xl lg:max-w-none">
             {/* Product */}
@@ -200,12 +200,12 @@ export default function Example({  }) {
                 </div>
 
                 <div className="mt-3 mb-3 ">
-                  <h1 className='uppercase text-xl text-gray-600'>starting at</h1>
+                  <h1 className='uppercase text-lg text-gray-600'>starting at</h1>
                   <p className="text-3xl tracking-tight text-gray-900">₹{parseInt(listing.price).toLocaleString('en-IN', { maximumFractionDigits: 2 })}/-</p>
                 </div>
                 
                 <div className='mb-3'>
-                  <h1 className='uppercase text-xl text-gray-600 '>Amenities</h1>
+                  <h1 className='uppercase text-lg text-gray-600 '>Amenities</h1>
                   <div className='flex '> 
                     { 
                         listing && listing.amenities && listing.amenities.length !== 0 && listing.amenities.map((amenity, index) => ( 

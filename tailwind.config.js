@@ -32,6 +32,7 @@ module.exports = {
         'male-banner-cropped': "url('/male-no-bg-cropped.png')",
         'female-banner': "url('/female-no-bg.png')",
         'male-banner': "url('/male-no-bg.png')",
+        'custom-gradient': 'linear-gradient(180deg, #ffffff 0%, #fff5d5 99%);',
       },
       animation: {
         'fade-in': 'fade-in 0.5s linear forwards',
