@@ -40,7 +40,7 @@ import {
 
   
   const imageVariantFadeIn = { 
-    hidden: { opacity: 0, translateY: "-50px" },
+    hidden: { opacity: 0, translateY: "50px" },
     visible: { opacity: 1, translateY: "0px", transition: { duration: 0.6, ease: "easeOut" } }
   }
   
