@@ -81,7 +81,7 @@ export default function Signin() {
                       <div>
                         <button
                           type="submit"
-                          className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 text-gray-700 bg-[#ffcc29] hover:bg-[#fad45a]"
+                          className="flex w-full justify-center rounded-md border border-transparent py-2 px-4 text-sm font-medium text-white shadow-sm  text-gray-700 bg-[#ffcc29] hover:bg-[#fad45a]"
                         >
                           Submit
                         </button>
@@ -93,7 +93,7 @@ export default function Signin() {
                 <div className="mx-auto w-full max-w-sm lg:w-96 h-full items-center mt-3">
                   <h1>
                     A password reset link has been sent to your registered email address. If you haven't received the link, click &nbsp;
-                    <a href="#" onClick={sendResetLink} className="font-medium text-indigo-600 hover:text-indigo-500 text-[#f5c325] hover:text-[#fad45a]">
+                    <a href="#" onClick={sendResetLink} className="font-medium text-[#f5c325] hover:text-[#fad45a]">
                       here
                     </a>&nbsp;
                     to send again. 

@@ -28,7 +28,6 @@ export default function Example() {
     <div className="bg-gray-50 pb-5">
       <div className="mx-auto max-w-7xl py-6 px-4  sm:px-6 lg:px-8 rounded-lg">
         <div className="relative bg-white shadow-xl rounded-lg">
-
           <h2 className="sr-only">Get in touch with us</h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-3">
@@ -130,7 +129,7 @@ export default function Example() {
                   </defs>
                 </svg>
               </div>
-            <img src='sh-diamond-logo.png' className='h-[200px] w-[200px]'/>
+              <img src='sh-diamond-logo.png' className='h-[200px] w-[200px]'/>
 
               <h3 className="text-lg font-medium text-white">Get in touch with us</h3>
               <p className="mt-6 max-w-3xl text-base text-indigo-50">
