@@ -56,7 +56,7 @@ export default function Example() {
                     </div>
                 </div>
 
-                <div className=" py-12 lg:col-span-3 lg:py-16">
+                <div className="py-12 lg:col-span-3 lg:py-16">
                     <div className='px-4 sm:px-6 lg:px-8 '>
                         <div className="flex relative max-w-lg lg:max-w-none h-18 sm:h-24 items-center">
                             <div className='absolute h-full bg-yellow-300 top-0 left-0 bg-left w-1'>
@@ -102,7 +102,7 @@ export default function Example() {
                         </div>
                     </div>  */}
 
-                    <div className="video-responsive mb-5 mt-5" style={{overflow: "hidden", paddingBottom: "45.25%", position: "relative", height: "0"}}>
+                    <div className="video-responsive mb-12 mt-5" style={{overflow: "hidden", paddingBottom: "45.25%", position: "relative", height: "0"}}>
                         <iframe
                             width="853"
                             height="480"
@@ -116,6 +116,12 @@ export default function Example() {
                     </div>
 
                     <div className='px-4 sm:px-6 lg:px-8'>
+
+                        <div className="flex items-center uppercase max-w-lg lg:max-w-none h-14 pl-2 left-2 font-bold text-3xl">
+                            Why Student Housing? 
+                        </div>
+                        <img src='/why-sh.png' className='w-full h-full mb-12'/>
+
                         <div className='flex items-center'>
                             <img className='h-12' src="/our_mission.png" alt="our_mission" />
                             <div className="flex items-center uppercase max-w-lg lg:max-w-none h-14 pl-2 left-2 font-bold text-3xl">

@@ -2,6 +2,7 @@ import Link from "next/link";
 
 const navigation = {
     solutions: [
+      { name: "Home", href: "/" },
       { name: 'Explore Homes', href: '/listings' },
     ],
     support: [
@@ -10,9 +11,9 @@ const navigation = {
     ],
     company: [
       { name: 'About Us', href: '/about-us' },
+      { name: 'Terms and Conditions', href: '/terms-and-conditions' },
     ],
     legal: [
-      { name: 'Terms and Conditions', href: '/terms-and-conditions' },
     ],
     social: [
       {
