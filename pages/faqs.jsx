@@ -33,7 +33,7 @@ const faqs = [
         {
           question: "Do all accommodations have parking facilities?",
           answer:
-            "It differs from accommodation to accommodation. Two-wheeler parking would be available at all locations though.That differs from residence to residence. Just go through them all on the residence page listed on our website. As long as you don't have a stretch limousine, you'll probably find a place with a parking area for your vehicle.",
+            "It differs from accommodation to accommodation. Two-wheeler parking would be available at all locations though. That differs from residence to residence.",
         },
         {
           question: "What do I have to bring?",
@@ -93,11 +93,11 @@ const faqs = [
     { 
       category: "General", 
       questions: [ 
-        {
-          question: "How is Student Housing different from other PGs and hostels?",
-          answer:
-            "So, within the walls of our professionally-managed residences, you'll be pampered with all kinds of services and amenities. We're talking on-demand professional housekeeping, a customisable menu, regional cuisines. You'll also get to particate in our much-loved community engagement programme. And you'll be able to access all our services through the Stanza Living - Resident app, which makes for a tech-enabled, customisable, new-age living experience that you won't find anywhere else. Certainly not in other PGs and Hostels.",
-        },
+        // {
+        //   question: "How is Student Housing different from other PGs and hostels?",
+        //   answer:
+        //     "So, within the walls of our professionally-managed residences, you'll be pampered with all kinds of services and amenities. We're talking on-demand professional housekeeping, a customisable menu, regional cuisines. You'll also get to particate in our much-loved community engagement programme. And you'll be able to access all our services through the Stanza Living - Resident app, which makes for a tech-enabled, customisable, new-age living experience that you won't find anywhere else. Certainly not in other PGs and Hostels.",
+        // },
         {
           question: "What paperwork will I be getting once I pay?",
           answer:
