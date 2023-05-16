@@ -3,13 +3,11 @@ import { useRouter } from 'next/router';
 import Link from 'next/link'; 
 import Modal from '../../components/common/Modal'; 
 import { Disclosure, Tab } from '@headlessui/react'
-import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline'
 import Layout from '../../components/Layout'; 
 import useApi from '../../hooks/useApi';
 import withAuth from '../../hooks/withAuth';
 import GoogleMap from '../../components/common/GoogleMap';
 import VideoPlayer from '../../components/common/VideoPlayer';
-import EllipsisHorizontalIcon from '@heroicons/react/24/outline';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -217,7 +215,7 @@ export default function Example({  }) {
                         ))
                     }
                     {
-                       listing && listing.amenities && listing.amenities.length > 4 && <EllipsisHorizontalIcon className='w-6 h-6'/>
+                       listing && listing.amenities && listing.amenities.length > 4 && '...'
                     }
                   </div>
 
