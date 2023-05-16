@@ -9,6 +9,7 @@ import useApi from '../../hooks/useApi';
 import withAuth from '../../hooks/withAuth';
 import GoogleMap from '../../components/common/GoogleMap';
 import VideoPlayer from '../../components/common/VideoPlayer';
+import EllipsisHorizontalIcon from '@heroicons/react/24/outline';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
