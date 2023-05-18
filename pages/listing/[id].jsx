@@ -62,21 +62,21 @@ export default function Example({  }) {
         <div className='mb-3'> 
           <span>You must </span>
           <Link href='/signin'>
-            <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500 text-[#f5c325] hover:text-[#fad45a]">
+            <a href="#" className="font-medium text-[#f5c325] hover:text-[#fad45a]">
               sign in 
             </a>
           </Link> 
           <span> or </span>
           <Link href='/signup'>
-            <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500 text-[#f5c325] hover:text-[#fad45a]">
+            <a href="#" className="font-medium text-[#f5c325] hover:text-[#fad45a]">
               Create a new account
             </a>
           </Link> 
-          <span> to make a boooking!</span>
+          <span> to make a booking!</span>
         </div>
         <button
           type='button'
-          className="inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600  px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-indigo-700 bg-[#ffcc29] hover:bg-[#fad45a]"
+          className="inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent px-4 py-2 text-base font-medium text-gray-700 shadow-sm bg-[#ffcc29] hover:bg-[#fad45a]"
           onClick={() => setOpen(false)}
         >
           Ok

@@ -395,7 +395,7 @@ const AppartmentSelection = ({ listing, setSelectedAppartment, selectedFloor, se
       <div className="w-full flex">
         <img src='/correct_icon.png' className='w-10 h-10 mr-3'/>
         <div className="">
-          <h1 className='font-semibold text-2xl mb-2'>Select the Appartment as per your preference</h1>
+          <h1 className='font-semibold text-2xl mb-2'>Select the Apartment as per your preference</h1>
           <p className='text-md text-gray-600 mb-3'>after selection, click on the proceed button to get directed towards the next step of room selection</p>
 
           
