@@ -60,7 +60,7 @@ export default function Example({  }) {
     <Layout> 
       <Modal title={"Sign in to make a booking"} open={open} onClose={() => setOpen(false)}>
         <div className='mb-3'> 
-          <span>You must </span>
+          <span>Please </span>
           <Link href='/signin'>
             <a href="#" className="font-medium text-[#f5c325] hover:text-[#fad45a]">
               sign in 
