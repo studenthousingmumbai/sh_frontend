@@ -48,17 +48,13 @@ export default function Listing({ id, name, description, price, amenities, addre
 
                     <div className='mb-3'> 
                         <h2 className='uppercase text-lg mb-1'>amenities</h2>
-                        <div className='flex'> 
+                        <div className='flex flex-wrap'> 
                             { 
                                 amenities.length !== 0 && amenities.map((amenity, index) => ( 
-                                    index <= 3 &&  
-                                    <span className='lg:text-sm lg:text-base mr-2 inline-flex items-center rounded-full bg-amenitiesPillBg px-2.5 py-0.5 text-xs font-semibold text-amenitiesPillText border border-amenitiesPillBorder'> 
+                                    <span className='text-sm mr-2 inline-flex items-center rounded-full bg-amenitiesPillBg px-2.5 py-0.5 text-xs font-semibold text-amenitiesPillText border border-amenitiesPillBorder mb-2'> 
                                         {amenity}
                                     </span> 
                                 ))
-                            }
-                            {
-                                amenities.length > 4 && <EllipsisHorizontalIcon className='w-6 h-6'/>
                             }
                         </div>
                     </div>
@@ -118,17 +114,13 @@ export default function Listing({ id, name, description, price, amenities, addre
 
                     <div className='mb-3'> 
                         <h2 className='uppercase text-lg sm:text-xl mb-1'>amenities</h2>
-                        <div className=''> 
+                        <div className='flex flex-wrap'> 
                             { 
                                 amenities.length !== 0 && amenities.map((amenity,index) => (
-                                    index <= 3 &&  
-                                    <span className='lg:text-sm lg:text-base mr-2 inline-flex items-center rounded-full bg-amenitiesPillBg px-2.5 py-0.5 text-xs font-semibold text-amenitiesPillText'> 
+                                    <span className='text-sm mb-2 inline-flex items-center rounded-full bg-amenitiesPillBg px-2.5 py-0.5 text-xs font-semibold text-amenitiesPillText'> 
                                         {amenity}
                                     </span> 
                                 ))
-                            }
-                            {
-                                amenities.length > 4 && <EllipsisHorizontalIcon className='w-6 h-6'/>
                             }
                         </div>
                     </div>

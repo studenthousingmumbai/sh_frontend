@@ -205,20 +205,15 @@ export default function Example({  }) {
                 
                 <div className='mb-3'>
                   <h1 className='uppercase text-lg text-gray-600 '>Amenities</h1>
-                  <div className='flex '> 
+                  <div className='flex flex-wrap'> 
                     { 
-                        listing && listing.amenities && listing.amenities.length !== 0 && listing.amenities.map((amenity, index) => ( 
-                            index <= 3 &&  
-                            <span className='lg:text-sm lg:text-base mr-2 inline-flex items-center rounded-full bg-amenitiesPillBg px-2.5 py-0.5 text-xs font-semibold text-amenitiesPillText border border-amenitiesPillBorder'> 
+                        listing && listing.amenities && listing.amenities.length !== 0 && listing.amenities.map((amenity, index) => (
+                            <span className='text-sm mb-2 mr-2 inline-flex items-center rounded-full bg-amenitiesPillBg px-2.5 py-0.5 text-xs font-semibold text-amenitiesPillText border border-amenitiesPillBorder'> 
                                 {amenity}
                             </span> 
                         ))
                     }
-                    {
-                       listing && listing.amenities && listing.amenities.length > 4 && '...'
-                    }
                   </div>
-
                 </div>
 
                 <div className='flex mt-3 mb-3'> 
