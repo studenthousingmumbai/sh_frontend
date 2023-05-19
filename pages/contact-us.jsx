@@ -42,7 +42,9 @@ export default function Example() {
                             <div>
                                 <dt className="sr-only">Postal address</dt>
                                 <dd>
-                                    <p>G-11, Madonna Apts, Next to NMIMS and Mithibai College, Opp: Bhaidas Hall, Vile Parle (W), Mumbai - 400056</p>
+                                    <a href="https://goo.gl/maps/j4Hyw1hUb3heq8K86" target="_blank" className="mt-6 max-w-3xl text-base text-indigo-50 underline">
+                                        Ganga Niwas, Next to SBI Bank, Across NMIMS University, VM Road Juhu, Vile Parle West, Mumbai- 56. A
+                                    </a>
                                 </dd>
                             </div>
                             <div className="mt-6">
@@ -158,7 +160,7 @@ export default function Example() {
                                         <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
                                     </div>
                                     <div className="ml-3">
-                                        <p className="text-sm font-medium text-green-800">Message sent successfully!</p>
+                                        <p className="text-sm font-medium text-green-800">Thank you! Our team will contact you shortly.</p>
                                     </div>
                                     <div className="ml-auto pl-3">
                                         <div className="-mx-1.5 -my-1.5">
