@@ -3,10 +3,12 @@ import { useRouter } from 'next/router';
 import { EllipsisHorizontalIcon, MapPinIcon } from '@heroicons/react/24/outline';
 import Modal from '../../components/common/Modal';
 import GoogleMap from '../common/GoogleMap';
+import VideoPlayer from '../common/VideoPlayer';
 
-export default function Listing({ id, name, description, price, amenities, address, images, location }) {
+export default function Listing({ id, name, description, price, amenities, address, images, location, video_link }) {
     const router = useRouter(); 
     const [open,setOpen] = useState(false);
+    const [watchVideoOpen, setWatchVideoOpen] = useState(false); 
 
     const handleViewOnMap = (e) => { 
         e.preventDefault();
@@ -16,6 +18,10 @@ export default function Listing({ id, name, description, price, amenities, addre
 
     return (
         <div className='mb-3'>
+            <Modal title="Watch Listing Video" onClose={setWatchVideoOpen} open={watchVideoOpen}>
+                <VideoPlayer videoLink={video_link} width={'w-[550px]'}/>
+            </Modal>
+            
             <div className='hidden lg:flex w-full rounded-md p-4 transition-all ease-in-out duration-300 hover:shadow-md hover:cursor-pointer border border-1 border-gray-300 hover:border-gray-400 hover:scale-[1.01] shadow-sm group' onClick={() => router.push(`/listing/${id}`)}>
                 <div className="rounded-xl bg-gray-300 w-[700px] h-[300px] mr-6 relative">
                     {/* <div className='bg-[rgba(0,0,0,0.3)] absolute top-0 left-0 w-full h-full rounded-md'></div> */}
@@ -32,10 +38,10 @@ export default function Listing({ id, name, description, price, amenities, addre
                         <div className='text-2xl font-bold'>₹{parseInt(price).toLocaleString('en-IN', { maximumFractionDigits: 2 })}/-</div>    
                     </div>
 
-                    <div>
+                    <div className='flex mb-3'>
                         <button
                             type="button"
-                            className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 mb-3"
+                            className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2  mr-2"
                             onClick={handleViewOnMap}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="-ml-1 mr-2 h-5 w-5">
@@ -43,6 +49,17 @@ export default function Listing({ id, name, description, price, amenities, addre
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
                             </svg>
                             View on Map
+                        </button>
+
+                        <button
+                            type="button"
+                            className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            onClick={() => setWatchVideoOpen(true)}
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24" className='mr-2'>
+                                <path fill="#FF0000" d="M21.34 5.04c-.24-.89-.95-1.59-1.84-1.84C17.53 3 12 3 12 3S6.47 3 4.5 3.2c-.89.25-1.6.95-1.84 1.84C2 7.12 2 12 2 12s0 4.88.66 6.96c.24.89.95 1.59 1.84 1.84 1.97.2 7.5.2 7.5.2s5.53 0 7.5-.2c.89-.25 1.6-.95 1.84-1.84.66-2.08.66-6.96.66-6.96s0-4.88-.66-6.96zM9.75 15.42V8.58l6.67 3.42-6.67 3.42z" />
+                            </svg>
+                            Watch Video
                         </button>
                     </div> 
 

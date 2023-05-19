@@ -238,6 +238,7 @@ export default function Listings() {
                                     amenities={listing.amenities} 
                                     address={listing.address} 
                                     location={listing.location}
+                                    video_link={listing.video_link}
                                 />  
                                 {/* { index !== listings.length - 1 && <div className='w-full h-[0.5px] border border-gray-200 my-3'></div>} */}
                             </>
@@ -255,6 +256,7 @@ export default function Listings() {
                                     price={listing.price} 
                                     amenities={listing.amenities} 
                                     address={listing.address} 
+                                    video_link={listing.video_link}
                                 />  
                                 {/* { index !== listings.length - 1 && <div className='w-full h-[0.5px] border border-gray-200 my-3'></div>} */}
                             </>
