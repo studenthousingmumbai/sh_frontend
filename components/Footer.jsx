@@ -3,7 +3,7 @@ import Link from "next/link";
 const navigation = {
     solutions: [
       { name: "Home", href: "/" },
-      { name: 'Explore Homes', href: '/listings' },
+      { name: 'Explore Hostels', href: '/listings' },
     ],
     support: [
       { name: 'Contact Us', href: '/contact-us' },
