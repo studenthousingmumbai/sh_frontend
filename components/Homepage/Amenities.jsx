@@ -45,13 +45,13 @@ import {
           <motion.div className='w-full h-full'>
             <motion.div className='flex items-center lg:items-end' variants={textVariantRightToLeft}>
               <div className='w-full mb-3 lg:pb-3'>
-                <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-start'>Exclusive Turf Events!</h2>
-                <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-start text-[#FBCF5F]'>Love Cricket? Enjoy Football?</h2>
+                <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-start'>Love Cricket? Enjoy Football?</h2>
+                <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-start text-[#FBCF5F]'>Exclusive Turf Events for you!</h2>
               </div>
             </motion.div>
             <motion.div className='hidden lg:block px-3 lg:p-0' variants={textVariantRightToLeft}>
               <p className='sm:text-lg md:text-xl lg1:text-3xl text-center lg:text-start text-[#A5A3A3]'>
-                Worry not, Engage in the sports you love with your housemates during our SH turf events!
+                Engage in the sports you love. A turf facility to play with your hostel-mates, available any time for all of you at Student Housing!
               </p>
             </motion.div>
           </motion.div>
@@ -63,7 +63,7 @@ import {
 
           <motion.div className='block lg:hidden px-3 lg:p-0' variants={textVariantRightToLeft}>
             <p className='text-xl text-left lg:text-start text-[#A5A3A3]'>
-              Worry not, Engage in the sports you love with your housemates during our SH turf events!
+              Engage in the sports you love. A turf facility to play with your hostel-mates, available any time for all of you at Student Housing!
             </p>
           </motion.div>
         </motion.div>
