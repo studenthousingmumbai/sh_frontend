@@ -132,9 +132,9 @@ export default function Example() {
               <img src='sh-diamond-logo.png' className='h-[200px] w-[200px]'/>
 
               <h3 className="text-lg font-medium text-white">Get in touch with us</h3>
-              <p className="mt-6 max-w-3xl text-base text-indigo-50">
-                G-11, Madonna Apts, Next to NMIMS and Mithibai College, Opp: Bhaidas Hall, Vile Parle (W), Mumbai - 400056
-              </p>
+              <a href="https://goo.gl/maps/j4Hyw1hUb3heq8K86" target="_blank" className="mt-6 max-w-3xl text-base text-indigo-50">
+                Ganga Niwas, Next to SBI Bank, Across NMIMS University, VM Road Juhu, Vile Parle West, Mumbai- 56. A
+              </a>
               <dl className="mt-8 space-y-6">
                 <dt>
                   <span className="sr-only">Phone number</span>
@@ -218,7 +218,7 @@ export default function Example() {
 
             {/* Contact form */}
             <div className="py-10 px-6 sm:px-10 lg:col-span-2 xl:p-12">
-              <h3 className="text-lg font-medium text-gray-900">Send us a message</h3>
+              <h3 className="text-lg font-medium text-gray-900">Write to us</h3>
               <form className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8  mb-3" onSubmit={handleSendMessage}>
                 <div className='sm:col-span-2'>
                   <label htmlFor="first-name" className="block text-sm font-medium text-gray-900">
@@ -341,7 +341,7 @@ export default function Example() {
                             <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
                         </div>
                         <div className="ml-3">
-                            <p className="text-sm font-medium text-green-800">Message sent successfully!</p>
+                            <p className="text-sm font-medium text-green-800">Thank you! Our team will contact you shortly.</p>
                         </div>
                         <div className="ml-auto pl-3">
                             <div className="-mx-1.5 -my-1.5">
