@@ -52,14 +52,15 @@ export default function verification() {
                                         alt="Your Company"
                                     />
                                 </Link>
-                                <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">Account verification complete</h2>
+                                <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">We’ve verified your account!</h2>
                                 <p className="mt-2 text-sm text-gray-600">
-                                    Congratulations your account has been verified successfully! You can sign in &nbsp;
+                                    Congrats, your account is verified successfully. You can now &nbsp;
                                     <Link href='/signin'>
                                         <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500 text-[#f5c325] hover:text-[#fad45a]">
-                                            here
+                                            Sign in here
                                         </a>
                                     </Link>
+                                    &nbsp; and find your ideal accommodation with Student Housing! 
                                 </p>
                             </div>
                         </div>

@@ -63,7 +63,7 @@ export default function Signup() {
                 {
                   signupComplete && 
                   <>
-                    <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">Verify your account to signin</h2>
+                    <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">Verify your account to Sign in.</h2>
                   </>
                   ||
                   <>
@@ -149,7 +149,7 @@ export default function Signup() {
                   <form className="space-y-6" onSubmit={handleSubmit}>
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                        Firstname
+                        First Name
                       </label>
                       <div className="mt-1">
                         <input
@@ -183,7 +183,7 @@ export default function Signup() {
 
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                        Email address
+                        Email Address
                       </label>
                       <div className="mt-1">
                         <input
@@ -240,12 +240,13 @@ export default function Signup() {
               || 
               <div className="mx-auto w-full max-w-sm lg:w-96 h-full items-center">
                 <h1>
-                  Thank you for signing up with Student Housing. Please check your email for an account verification email. Once you verify your account you can signin &nbsp;   
+                  Thank you for signing up with Student Housing. Kindly check your email and verify your account. After that,&nbsp;   
                   <Link href='/signin'> 
                     <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500 text-[#f5c325] hover:text-[#fad45a]">
-                      here
+                      Sign in here
                     </a>
                   </Link>
+                  &nbsp; and enjoy easy living! 
                 </h1>
               </div>
               }
