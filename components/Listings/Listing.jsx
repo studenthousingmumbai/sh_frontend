@@ -18,7 +18,7 @@ export default function Listing({ id, name, description, price, amenities, addre
         <div className='mb-3'>
             <div className='hidden lg:flex w-full rounded-md p-4 transition-all ease-in-out duration-300 hover:shadow-md hover:cursor-pointer border border-1 border-gray-300 hover:border-gray-400 hover:scale-[1.01] shadow-sm group' onClick={() => router.push(`/listing/${id}`)}>
                 <div className="rounded-xl bg-gray-300 w-[700px] h-[300px] mr-6 relative">
-                    <div className='bg-[rgba(0,0,0,0.3)] absolute top-0 left-0 w-full h-full rounded-md'></div>
+                    {/* <div className='bg-[rgba(0,0,0,0.3)] absolute top-0 left-0 w-full h-full rounded-md'></div> */}
                     <img className='w-full h-full object-cover rounded-md' src={images[0] || 'https://movi.com.tr/wp-content/uploads/2021/08/placeholder-home.png'}/>
                 </div>
 
