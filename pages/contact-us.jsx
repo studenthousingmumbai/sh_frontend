@@ -42,7 +42,7 @@ export default function Example() {
                             <div>
                                 <dt className="sr-only">Postal address</dt>
                                 <dd>
-                                    <a href="https://goo.gl/maps/j4Hyw1hUb3heq8K86" target="_blank" className="mt-6 max-w-3xl text-base text-indigo-50 underline">
+                                    <a href="https://goo.gl/maps/j4Hyw1hUb3heq8K86" target="_blank" className="mt-6 max-w-3xl text-base text-indigo-500 underline">
                                         Ganga Niwas, Next to SBI Bank, Across NMIMS University, VM Road Juhu, Vile Parle West, Mumbai- 56. A
                                     </a>
                                 </dd>
