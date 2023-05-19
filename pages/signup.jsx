@@ -56,8 +56,8 @@ export default function Signup() {
                 <Link href='/'>
                   <img
                     className="h-20 w-auto cursor-pointer"
-                    src="https://studenthousing.co.in/wp-content/uploads/2020/03/SH_LogoR.png"
-                    alt="Your Company"
+                    src="/sh_logo.png"
+                    alt="Student Housing logo"
                   />
                 </Link>
                 {

@@ -48,7 +48,7 @@ export default function verification() {
                                 <Link href='/'>
                                     <img
                                         className="h-20 w-auto cursor-pointer"
-                                        src="https://studenthousing.co.in/wp-content/uploads/2020/03/SH_LogoR.png"
+                                        src="/sh_logo.png"
                                         alt="Your Company"
                                     />
                                 </Link>
