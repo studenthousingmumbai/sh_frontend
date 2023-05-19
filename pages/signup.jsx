@@ -50,7 +50,6 @@ export default function Signup() {
         */}
         <div className="flex min-h-full">
           <div className="flex flex-1 flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
-            
             <div className="mx-auto w-full max-w-sm lg:w-96">
               <div>
                 <Link href='/'>
