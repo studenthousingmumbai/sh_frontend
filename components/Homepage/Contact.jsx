@@ -132,7 +132,7 @@ export default function Example() {
               <img src='sh-diamond-logo.png' className='h-[200px] w-[200px]'/>
 
               <h3 className="text-lg font-medium text-white">Get in touch with us</h3>
-              <a href="https://goo.gl/maps/j4Hyw1hUb3heq8K86" target="_blank" className="mt-6 max-w-3xl text-base text-indigo-50">
+              <a href="https://goo.gl/maps/j4Hyw1hUb3heq8K86" target="_blank" className="mt-6 max-w-3xl text-base text-indigo-200 underline">
                 Ganga Niwas, Next to SBI Bank, Across NMIMS University, VM Road Juhu, Vile Parle West, Mumbai- 56. A
               </a>
               <dl className="mt-8 space-y-6">
