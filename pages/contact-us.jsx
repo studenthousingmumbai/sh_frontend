@@ -26,7 +26,7 @@ export default function Example() {
 
   return (
     <Layout> 
-        <div className="relative bg-white h-[90vh] ">
+        <div className="relative bg-white">
             <div className="absolute inset-0 px-4 sm:px-12 ">
                 <div className="absolute inset-y-0 left-0 w-1/2 bg-gray-50" />
             </div>
@@ -43,7 +43,7 @@ export default function Example() {
                                 <dt className="sr-only">Postal address</dt>
                                 <dd>
                                     <a href="https://goo.gl/maps/j4Hyw1hUb3heq8K86" target="_blank" className="mt-6 max-w-3xl text-base text-indigo-500 underline">
-                                        Ganga Niwas, Next to SBI Bank, Across NMIMS University, VM Road Juhu, Vile Parle West, Mumbai- 56. A
+                                        Ganga Niwas, Next to SBI Bank, Across NMIMS University, VM Road Juhu, Vile Parle West, Mumbai- (56)
                                     </a>
                                 </dd>
                             </div>
@@ -62,7 +62,7 @@ export default function Example() {
                                 <dt className="sr-only">Email</dt>
                                 <dd className="flex">
                                     <EnvelopeIcon className="h-6 w-6 flex-shrink-0 text-gray-400" aria-hidden="true" />
-                                    <span className="ml-3">studenthousing.co.in@gmail.com</span>
+                                    <span className="ml-3">info@studenthousing.co.in</span>
                                 </dd>
                             </div>
                         </dl>

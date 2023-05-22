@@ -97,7 +97,7 @@ import {
             </motion.div>
             <motion.div className='px-3 lg:p-0' variants={textVariantLeftToRight}>
               <p className='text-xl lg1:text-3xl text-left lg:text-center lg:text-end text-[#A5A3A3]'>
-                We've got you covered! An exclusive in-hostel facility provided for you at no additional cost
+              We've got you covered! An exclusive in-hostel facility, where we drop you to your college from some hostels in cars at no additional cost. Sounds comforting?
               </p>
             </motion.div>
           </motion.div>
@@ -119,7 +119,7 @@ import {
             </motion.div>
             <motion.div className='hidden lg:block px-3 lg:p-0' variants={textVariantRightToLeft}>
               <p className='sm:text-lg md:text-xl lg1:text-3xl text-center lg:text-start text-[#A5A3A3]'>
-                We make sure that every property is kept clean & tidy to maintain a organised and a healthy home environment for you!
+                We make sure that every accommodation is kept clean & tidy to maintain a organised and a clean, homely environment for you! A dedicated caretaker for every floor, every accommodation.
               </p>
             </motion.div>
           </motion.div>
@@ -130,7 +130,7 @@ import {
 
           <motion.div className='block lg:hidden px-3 lg:p-0' variants={textVariantRightToLeft}>
             <p className='text-xl text-left lg:text-start text-[#A5A3A3]'>
-              We make sure that every property is kept clean & tidy to maintain a organised and a healthy home environment for you!
+              We make sure that every accommodation is kept clean & tidy to maintain a organised and a clean, homely environment for you! A dedicated caretaker for every floor, every accommodation.
             </p>
           </motion.div>
         </motion.div>
@@ -178,13 +178,13 @@ import {
           <motion.div className='w-full h-full'>
             <motion.div className='flex items-center lg:items-end' variants={textVariantRightToLeft}>
               <div className='w-full mb-3 lg:pb-3'>
-                <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-start'>Laundry Services</h2>
-                <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-start text-[#FBCF5F]'>Leave the laundry to us at the hostel!</h2>
+                <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-start'>Laundry with Ironing</h2>
+                <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-start text-[#FBCF5F]'>Picked and delivered to your room!</h2>
               </div>
             </motion.div>
             <motion.div className='hidden lg:block px-3 lg:p-0' variants={textVariantRightToLeft}>
               <p className='text-xl lg1:text-3xl text-center lg:text-start text-[#A5A3A3]'>
-                Enjoy fresh and clean clothes without the hassle. Our convenient laundry services make staying clean and comfortable a breeze
+                Enjoy fresh and clean clothes without the hassle. Our convenient laundry services make staying clean and comfortable as a breeze.
               </p>
             </motion.div>
           </motion.div>
@@ -195,7 +195,7 @@ import {
 
           <motion.div className='block lg:hidden px-3 lg:p-0' variants={textVariantRightToLeft}>
             <p className='text-xl text-left lg:text-start text-[#A5A3A3]'>
-              Enjoy fresh and clean clothes without the hassle. Our convenient laundry services make staying clean and comfortable a breeze
+              Enjoy fresh and clean clothes without the hassle. Our convenient laundry services make staying clean and comfortable as a breeze.
             </p>
           </motion.div>
         </motion.div>

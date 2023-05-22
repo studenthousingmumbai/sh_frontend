@@ -133,7 +133,7 @@ export default function Example() {
 
               <h3 className="text-lg font-medium text-white">Get in touch with us</h3>
               <a href="https://goo.gl/maps/j4Hyw1hUb3heq8K86" target="_blank" className="mt-6 max-w-3xl text-base text-indigo-50 underline">
-                Ganga Niwas, Next to SBI Bank, Across NMIMS University, VM Road Juhu, Vile Parle West, Mumbai- 56. A
+                Ganga Niwas, Next to SBI Bank, Across NMIMS University, VM Road Juhu, Vile Parle West, Mumbai- (56)
               </a>
               <dl className="mt-8 space-y-6">
                 <dt>
@@ -152,7 +152,7 @@ export default function Example() {
                 </dt>
                 <dd className="flex text-base text-indigo-50">
                   <EnvelopeIcon className="h-6 w-6 flex-shrink-0 text-indigo-200" aria-hidden="true" />
-                  <span className="ml-3">studenthousing.co.in@gmail.com</span>
+                  <span className="ml-3">info@studenthousing.co.in</span>
                 </dd>
               </dl>
               {/* <ul role="list" className="mt-8 flex space-x-12">

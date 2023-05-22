@@ -57,8 +57,8 @@ import {
         >
           <motion.div className='flex lg:hidden text-start lg:text-end' variants={textVariantLeftToRight}>
             <div className='w-full mb-3 lg:pb-3'>
-              <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-end'>Book By Course</h2>
-              <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-end text-[#FBCF5F]'>Move in with your batchmates</h2>
+              <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-end'>Need to move in with your friends?</h2>
+              <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-end text-[#FBCF5F]'>Say no more!</h2>
             </div>
           </motion.div>
 
@@ -71,15 +71,14 @@ import {
           >
             <motion.div className='hidden lg:flex text-center lg:text-end' variants={textVariantLeftToRight}>
               <div className='w-full lg:pb-3'>
-                <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-end'>Book By Course</h2>
-                <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-end text-[#FBCF5F]'>Move in with your batchmates</h2>
+                <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-end'>Need to move in with your friends?</h2>
+                <h2 className='font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-end text-[#FBCF5F]'>Say no more!</h2>
               </div>
             </motion.div>
 
             <motion.div className='px-3 lg:p-0' variants={textVariantLeftToRight}>
               <p className='text-xl lg1:text-3xl text-left lg:text-end text-[#A5A3A3] mb-3'>
-                Need to move in with your friends? Say no more! Use our newest “Book by course” feature while booking your 
-                favourite property & share the same rooms with your friends! 
+                While booking a bed, Use our newest <b>“Book by course”</b> feature to filter out your college & share the same room with your college buddies!
               </p>
 
               <div className='text-left lg:text-end'> 
