@@ -21,7 +21,7 @@ export default function Example() {
                 </div>
 
                 <div className="relative mx-auto max-w-7xl lg:grid lg:grid-cols-5 h-full">
-                    <div className="bg-gray-50 py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-24 xl:pr-12">
+                    <div className="bg-gray-50 py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-8 xl:pr-12">
                         <div className="mx-auto max-w-lg">
                             <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-2xl">Student Housing Ganga Niwas - Boys Accommodation</h2>
                      
@@ -58,7 +58,7 @@ export default function Example() {
                         </div>
                     </div>
 
-                    <div className="bg-white py-16 px-4 sm:px-6 lg:col-span-3 lg:py-24 lg:px-8 xl:pl-12">
+                    <div className="bg-white py-16 px-4 sm:px-6 lg:col-span-3 lg:py-8 lg:px-8 xl:pl-12">
                         <div className="mx-auto max-w-lg">
                             <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-2xl">
                             Student Housing Crescenzo- Girls Accommodation</h2>
@@ -99,7 +99,7 @@ export default function Example() {
                 </div>
 
                 <div className="relative mx-auto max-w-7xl lg:grid lg:grid-cols-5 h-full">
-                    <div className="bg-gray-50 py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-24 xl:pr-12">
+                    <div className="bg-gray-50 py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-8 xl:pr-12">
                         <div className="mx-auto max-w-lg">
                             <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-2xl">Student Housing Anand- Boys Accommodation</h2>
                      
@@ -134,7 +134,7 @@ export default function Example() {
                          </div>
                     </div>
 
-                    <div className="bg-white py-16 px-4 sm:px-6 lg:col-span-3 lg:py-24 lg:px-8 xl:pl-12">
+                    <div className="bg-white py-16 px-4 sm:px-6 lg:col-span-3 lg:py-8 lg:px-8 xl:pl-12">
                         <div className="mx-auto max-w-lg">
                             <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-2xl">
                             Student Housing Bhav Bindu-  Girls Accommodation</h2>
@@ -175,7 +175,7 @@ export default function Example() {
                 </div>
 
                 <div className="relative mx-auto max-w-7xl lg:grid lg:grid-cols-5 h-full">
-                    <div className="bg-gray-50 py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-24 xl:pr-12">
+                    <div className="bg-gray-50 py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-8 xl:pr-12">
                         <div className="mx-auto max-w-lg">
                             <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-2xl">Student Housing Madonna- Office</h2>
                      
@@ -210,7 +210,7 @@ export default function Example() {
                        </div>
                     </div>
 
-                    <div className="bg-white py-16 px-4 sm:px-6 lg:col-span-3 lg:py-24 lg:px-8 xl:pl-12">
+                    <div className="bg-white py-16 px-4 sm:px-6 lg:col-span-3 lg:py-8 lg:px-8 xl:pl-12">
                         <div className="mx-auto max-w-lg">
                             <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-2xl">
                             Student Housing Bharat - Boys Accommodation</h2>
@@ -251,7 +251,7 @@ export default function Example() {
                 </div>
 
                 <div className="relative mx-auto max-w-7xl lg:grid lg:grid-cols-5 h-full">
-                    <div className="bg-gray-50 py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-24 xl:pr-12">
+                    <div className="bg-gray-50 py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-8 xl:pr-12">
                         <div className="mx-auto max-w-lg">
                             <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-2xl">
                                 Student Housing Shradha Suman-  Girls Accommodation</h2>
@@ -289,7 +289,7 @@ export default function Example() {
                         </div>
                     </div>
 
-                    <div className="bg-white py-16 px-4 sm:px-6 lg:col-span-3 lg:py-24 lg:px-8 xl:pl-12">
+                    <div className="bg-white py-16 px-4 sm:px-6 lg:col-span-3 lg:py-8 lg:px-8 xl:pl-12">
                         <div className="mx-auto max-w-lg">
                             <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-2xl">
                             Student Housing Moti Mahal - Boys Accommodation</h2>
@@ -331,7 +331,7 @@ export default function Example() {
 
 
                 <div className="relative mx-auto max-w-7xl lg:grid lg:grid-cols-5 h-full">
-                    <div className="bg-gray-50 py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-24 xl:pr-12">
+                    <div className="bg-gray-50 py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-8 xl:pr-12">
                         <div className="mx-auto max-w-lg">
                             <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-2xl">
                             Student Housing Suraj Sadan -  Girls Accommodation</h2>
@@ -369,7 +369,7 @@ export default function Example() {
                         </div>
                     </div>
 
-                    <div className="bg-white py-16 px-4 sm:px-6 lg:col-span-3 lg:py-24 lg:px-8 xl:pl-12">
+                    <div className="bg-white py-16 px-4 sm:px-6 lg:col-span-3 lg:py-8 lg:px-8 xl:pl-12">
                         <div className="mx-auto max-w-lg">
                             <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-2xl">
                             Student Housing Kapadia- Boys Accommodation</h2>
@@ -409,7 +409,7 @@ export default function Example() {
                 </div>
 
                 <div className="relative mx-auto max-w-7xl lg:grid lg:grid-cols-5 h-full">
-                    <div className="bg-gray-50 py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-24 xl:pr-12">
+                    <div className="bg-gray-50 py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-8 xl:pr-12">
                         <div className="mx-auto max-w-lg">
                             <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-2xl">
                             Student Housing Megha Villa- Boys Accommodation</h2>
