@@ -23,16 +23,16 @@ export default function Example() {
                 <div className="relative mx-auto max-w-7xl lg:grid lg:grid-cols-5 h-full">
                     <div className="bg-gray-50 py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-24 xl:pr-12">
                         <div className="mx-auto max-w-lg">
-                            <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">Student Housing Ganga Niwas - Boys Accommodation</h2>
-                             <p className="mt-3 text-lg leading-6 text-gray-500">
+                            <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-2xl">Student Housing Ganga Niwas - Boys Accommodation</h2>
+                            <p className="mt-3 text-lg leading-6 text-gray-500">
                                 Student Housing Ganga Niwas - Boys Accommodation
-                            </p>
+                            </p> 
                             <dl className="mt-8 text-base text-gray-500">
                                 <div>
                                     <dt className="sr-only">Postal address</dt>
                                     <dd>
                                         <a href="https://goo.gl/maps/j4Hyw1hUb3heq8K86" target="_blank" className="mt-6 max-w-3xl text-base text-indigo-500 underline">
-                                            Address: Ganga Niwas, Next to SBI Bank, Vaikunthlal Mehta Road, Across NMIMS, Vile Parle West, Mumbai, Maharashtra 400056 
+                                            Ganga Niwas, Next to SBI Bank, Vaikunthlal Mehta Road, Across NMIMS, Vile Parle West, Mumbai, Maharashtra 400056 
                                         </a>
                                     </dd>
                                 </div>
@@ -42,9 +42,7 @@ export default function Example() {
                                         <PhoneIcon className="h-6 w-6 flex-shrink-0 text-gray-400" aria-hidden="true" />
                                         <span className="ml-3"> +91-9819780000</span>
                                     </dd>
-                                    <dd className="flex">                                       
-                                        <span className="ml-3">Working hours: Open 24 Hours</span>
-                                    </dd> 
+                                   
                                 </div>
                                  <div className="mt-3">
                                     <dt className="sr-only">Email</dt>
@@ -52,6 +50,9 @@ export default function Example() {
                                         <EnvelopeIcon className="h-6 w-6 flex-shrink-0 text-gray-400" aria-hidden="true" />
                                         <span className="ml-3">info@studenthousing.co.in</span>
                                     </dd>
+                                    <dd className="flex">                                       
+                                        <span className="ml-3">Working hours: Open 24 Hours</span>
+                                    </dd> 
                                 </div>
                             </dl>
 
