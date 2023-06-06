@@ -24,7 +24,7 @@ export default function Example() {
                 <div className="relative mx-auto max-w-7xl lg:grid lg:grid-cols-5 h-full">
                     <div className="bg-gray-50 py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-8 xl:pr-12">
                         <div className="mx-auto max-w-lg">
-                            <h2 className="font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-start text-[#FBCF5F]">Student Housing Ganga Niwas - Boys Accommodation</h2>
+                            <h2 className="font-bold text-3xl lg:text-3xl lg1:text-3xl text-start lg:text-start text-[#FBCF5F]">Student Housing Ganga Niwas - Boys Accommodation</h2>
                      
                             <dl className="mt-8 text-base text-gray-500">
                                 <div>
@@ -61,7 +61,7 @@ export default function Example() {
 
                     <div className="bg-white py-16 px-4 sm:px-6 lg:col-span-3 lg:py-8 lg:px-8 xl:pl-12">
                         <div className="mx-auto max-w-lg">
-                            <h2 className="font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-start text-[#FBCF5F]">
+                            <h2 className="font-bold text-3xl lg:text-3xl lg1:text-3xl text-start lg:text-start text-[#FBCF5F]">
                             Student Housing Crescenzo- Girls Accommodation</h2>
                           
                             <dl className="mt-8 text-base text-gray-500">
@@ -102,7 +102,7 @@ export default function Example() {
                 <div className="relative mx-auto max-w-7xl lg:grid lg:grid-cols-5 h-full">
                     <div className="bg-gray-50 py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-8 xl:pr-12">
                         <div className="mx-auto max-w-lg">
-                            <h2 className="font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-start text-[#FBCF5F]">Student Housing Anand- Boys Accommodation</h2>
+                            <h2 className="font-bold text-3xl lg:text-3xl lg1:text-3xl text-start lg:text-start text-[#FBCF5F]">Student Housing Anand- Boys Accommodation</h2>
                      
                             <dl className="mt-8 text-base text-gray-500">
                                 <div>
@@ -137,7 +137,7 @@ export default function Example() {
 
                     <div className="bg-white py-16 px-4 sm:px-6 lg:col-span-3 lg:py-8 lg:px-8 xl:pl-12">
                         <div className="mx-auto max-w-lg">
-                            <h2 className="font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-start text-[#FBCF5F]">
+                            <h2 className="font-bold text-3xl lg:text-3xl lg1:text-3xl text-start lg:text-start text-[#FBCF5F]">
                             Student Housing Bhav Bindu-  Girls Accommodation</h2>
                           
                             <dl className="mt-8 text-base text-gray-500">
@@ -178,7 +178,7 @@ export default function Example() {
                 <div className="relative mx-auto max-w-7xl lg:grid lg:grid-cols-5 h-full">
                     <div className="bg-gray-50 py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-8 xl:pr-12">
                         <div className="mx-auto max-w-lg">
-                            <h2 className="font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-start text-[#FBCF5F]">Student Housing Madonna- Office</h2>
+                            <h2 className="font-bold text-3xl lg:text-3xl lg1:text-3xl text-start lg:text-start text-[#FBCF5F]">Student Housing Madonna- Office</h2>
                      
                             <dl className="mt-8 text-base text-gray-500">
                                 <div>
@@ -213,7 +213,7 @@ export default function Example() {
 
                     <div className="bg-white py-16 px-4 sm:px-6 lg:col-span-3 lg:py-8 lg:px-8 xl:pl-12">
                         <div className="mx-auto max-w-lg">
-                            <h2 className="font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-start text-[#FBCF5F]">
+                            <h2 className="font-bold text-3xl lg:text-3xl lg1:text-3xl text-start lg:text-start text-[#FBCF5F]">
                             Student Housing Bharat - Boys Accommodation</h2>
                           
                             <dl className="mt-8 text-base text-gray-500">
@@ -254,7 +254,7 @@ export default function Example() {
                 <div className="relative mx-auto max-w-7xl lg:grid lg:grid-cols-5 h-full">
                     <div className="bg-gray-50 py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-8 xl:pr-12">
                         <div className="mx-auto max-w-lg">
-                            <h2 className="font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-start text-[#FBCF5F]">
+                            <h2 className="font-bold text-3xl lg:text-3xl lg1:text-3xl text-start lg:text-start text-[#FBCF5F]">
                                 Student Housing Shradha Suman-  Girls Accommodation</h2>
                      
                             <dl className="mt-8 text-base text-gray-500">
@@ -292,7 +292,7 @@ export default function Example() {
 
                     <div className="bg-white py-16 px-4 sm:px-6 lg:col-span-3 lg:py-8 lg:px-8 xl:pl-12">
                         <div className="mx-auto max-w-lg">
-                            <h2 className="font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-start text-[#FBCF5F]">
+                            <h2 className="font-bold text-3xl lg:text-3xl lg1:text-3xl text-start lg:text-start text-[#FBCF5F]">
                             Student Housing Moti Mahal - Boys Accommodation</h2>
                           
                             <dl className="mt-8 text-base text-gray-500">
@@ -334,7 +334,7 @@ export default function Example() {
                 <div className="relative mx-auto max-w-7xl lg:grid lg:grid-cols-5 h-full">
                     <div className="bg-gray-50 py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-8 xl:pr-12">
                         <div className="mx-auto max-w-lg">
-                            <h2 className="font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-start text-[#FBCF5F]">
+                            <h2 className="font-bold text-3xl lg:text-3xl lg1:text-3xl text-start lg:text-start text-[#FBCF5F]">
                             Student Housing Suraj Sadan -  Girls Accommodation</h2>
                      
                             <dl className="mt-8 text-base text-gray-500">
@@ -372,7 +372,7 @@ export default function Example() {
 
                     <div className="bg-white py-16 px-4 sm:px-6 lg:col-span-3 lg:py-8 lg:px-8 xl:pl-12">
                         <div className="mx-auto max-w-lg">
-                            <h2 className="font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-start text-[#FBCF5F]">
+                            <h2 className="font-bold text-3xl lg:text-3xl lg1:text-3xl text-start lg:text-start text-[#FBCF5F]">
                             Student Housing Kapadia- Boys Accommodation</h2>
                           
                             <dl className="mt-8 text-base text-gray-500">
@@ -412,7 +412,7 @@ export default function Example() {
                 <div className="relative mx-auto max-w-7xl lg:grid lg:grid-cols-5 h-full">
                     <div className="bg-gray-50 py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-8 xl:pr-12">
                         <div className="mx-auto max-w-lg">
-                            <h2 className="font-bold text-3xl lg:text-2xl lg1:text-4xl text-start lg:text-start text-[#FBCF5F]">
+                            <h2 className="font-bold text-3xl lg:text-3xl lg1:text-3xl text-start lg:text-start text-[#FBCF5F]">
                             Student Housing Megha Villa- Boys Accommodation</h2>
                      
                             <dl className="mt-8 text-base text-gray-500">
