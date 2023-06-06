@@ -10,19 +10,8 @@ export default function Example() {
     const [phone,setPhone] = useState("");
     const [message,setMessage] = useState("");
     const [success, setSuccess] = useState(false);
-    const { contactUs } = useApi();
+    const { locations } = useApi();
 
-    const handleSendMessage = async (e) => { 
-        e.preventDefault(); 
-
-        const response = await contactUs({ name, email, phone, message }); 
-
-        if(typeof response !== 'string') {
-            console.log("Error occured while sending email!");
-        } else { 
-            setSuccess(true);
-        }
-    }
 
     return (
         <Layout> 
@@ -35,9 +24,9 @@ export default function Example() {
                     <div className="bg-gray-50 py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-24 xl:pr-12">
                         <div className="mx-auto max-w-lg">
                             <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">Student Housing Ganga Niwas - Boys Accommodation</h2>
-                            <!-- <p className="mt-3 text-lg leading-6 text-gray-500">
+                             <p className="mt-3 text-lg leading-6 text-gray-500">
                                 Student Housing Ganga Niwas - Boys Accommodation
-                            </p> -->
+                            </p>
                             <dl className="mt-8 text-base text-gray-500">
                                 <div>
                                     <dt className="sr-only">Postal address</dt>
@@ -57,22 +46,16 @@ export default function Example() {
                                         <span className="ml-3">Working hours: Open 24 Hours</span>
                                     </dd> 
                                 </div>
-                                <!-- <div className="mt-3">
+                                 <div className="mt-3">
                                     <dt className="sr-only">Email</dt>
                                     <dd className="flex">
                                         <EnvelopeIcon className="h-6 w-6 flex-shrink-0 text-gray-400" aria-hidden="true" />
                                         <span className="ml-3">info@studenthousing.co.in</span>
                                     </dd>
-                                </div> -->
+                                </div>
                             </dl>
-<!-- 
-                            {/* <p className="mt-6 text-base text-gray-500">
-                                Looking for careers?{' '}
-                                <a href="#" className="font-medium text-gray-700 underline">
-                                    View all job openings
-                                </a>
-                                .
-                            </p> */} -->
+
+                        
                         </div>
                     </div>
                  
