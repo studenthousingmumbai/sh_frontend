@@ -21,7 +21,7 @@ export default function Example() {
                     <div className='absolute bg-black-overlay w-full h-full'></div>
                     <div className='absolute w-full text-center'>
                         <h1 className='uppercase text-2xl text-white'>
-                            <b>Locations</b>
+                            <b>Where we are</b>
                         </h1>
                     </div>
              </div>
