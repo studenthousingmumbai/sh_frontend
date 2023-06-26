@@ -13,7 +13,6 @@ export default function Example() {
     const [success, setSuccess] = useState(false);
     const { locations } = useApi();
 
-
     return (
         <Layout> 
             <div className="relative bg-white">
