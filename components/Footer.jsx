@@ -6,6 +6,7 @@ const navigation = {
       { name: 'Explore Hostels', href: '/listings' },
     ],
     support: [
+      { name: 'Locations', href: '/locations' },
       { name: 'Contact Us', href: '/contact-us' },
       { name: "Faqs", href: "/faqs" }
     ],

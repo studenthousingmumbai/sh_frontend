@@ -184,8 +184,18 @@ function classNames(...classes) {
 export default function Example() {
   return (
     <Layout>
+      <div className="relative flex justify-center bg-gray-100 items-center my-auto h-[500px] ">
+                    <img className='w-full h-full object-cover' src="/faq-bg.jpeg" alt="faq" />
+                    <div className='absolute bg-black-overlay w-full h-full'></div>
+                    <div className='absolute w-full text-center'>
+                        <h1 className='uppercase text-2xl text-white'>
+                            <b>FAQs</b>
+                        </h1>
+                    </div>
+             </div>
       <div className="bg-white mb-12">
-        <h1 className='text-3xl capitalize font-semibold mx-auto max-w-7xl px-6 lg:px-8'>Frequently asked questions</h1>
+       
+        <h1 className='text-3xl capitalize font-semibold mx-auto max-w-7xl pt-4 px-6 lg:px-8'>Frequently asked questions</h1>
         {
            faqs.map(faq => ( 
             <div className="mx-auto max-w-7xl divide-y divide-gray-900/10 px-6 lg:px-8 pt-12 mb-5">

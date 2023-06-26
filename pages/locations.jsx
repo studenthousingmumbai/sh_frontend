@@ -15,6 +15,15 @@ export default function Example() {
 
     return (
         <Layout> 
+           <div className="relative flex justify-center bg-gray-100 items-center my-auto h-[500px] ">
+                    <img className='w-full h-full object-cover' src="/locations-bg.jpeg" alt="locations" />
+                    <div className='absolute bg-black-overlay w-full h-full'></div>
+                    <div className='absolute w-full text-center'>
+                        <h1 className='uppercase text-2xl text-white'>
+                            <b>Where we are</b>
+                        </h1>
+                    </div>
+             </div>
             <div className="relative bg-white">
                 <div className="absolute inset-0 px-4 sm:px-12 ">
                     <div className="absolute inset-y-0 left-0 w-1/2 bg-gray-50" />
