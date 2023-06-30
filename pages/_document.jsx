@@ -12,8 +12,8 @@ export default function Document() {
           <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700;900&display=swap" rel="stylesheet"/>
           <meta name="description" content="Student Housing in Mumbai" />
           <link rel="icon" href="/sh_logo.png" />
-          {/* <script async src="https://www.googletagmanager.com/gtag/js?id=G-DEFDC3GBPL"></script> */}
-          {/* <script
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-DEFDC3GBPL"></script>
+          <script
             dangerouslySetInnerHTML={{
               __html: `
                 window.dataLayer = window.dataLayer || [];
@@ -23,9 +23,9 @@ export default function Document() {
                 gtag('config', 'G-DEFDC3GBPL');
               `,
             }}
-          /> */}
-          {/* <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75045456-1"></script> */}
-          {/* <script
+          />
+          <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75045456-1"></script>
+          <script
              dangerouslySetInnerHTML={{
               __html: `
                 window.dataLayer = window.dataLayer || [];
@@ -35,8 +35,8 @@ export default function Document() {
                 gtag('config', 'UA-75045456-1');
               `,
             }}
-          /> */}
-          {/* <script type="text/javascript"
+          />
+          <script type="text/javascript"
             dangerouslySetInnerHTML={{
               __html: `
                 (function(c,l,a,r,i,t,y){
@@ -46,10 +46,10 @@ export default function Document() {
               })(window, document, "clarity", "script", "hf3i0kvqqu");
               `,
             }}
-          /> */}
+          />
       </Head>
 
-      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-DEFDC3GBPL" strategy='afterInteractive'></Script>
+      {/* <Script async src="https://www.googletagmanager.com/gtag/js?id=G-DEFDC3GBPL" strategy='afterInteractive'></Script>
       <Script id="google-analytics" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
@@ -79,7 +79,7 @@ export default function Document() {
             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
           })(window, document, "clarity", "script", "hf3i0kvqqu");
         `}
-      </Script>
+      </Script> */}
       
       <body className='h-full'>
           <Main />
