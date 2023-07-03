@@ -1,8 +1,12 @@
 import '../styles/globals.css'
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+
 
 function FacebookPixel() {
+  const router = useRouter(); 
+
   useEffect(() => {
     import("react-facebook-pixel")
       .then((x) => x.default)
@@ -10,7 +14,7 @@ function FacebookPixel() {
         ReactPixel.init('983766016309702');
         ReactPixel.pageView();
 
-        Router.events.on("routeChangeComplete", () => {
+        router.events.on("routeChangeComplete", () => {
           ReactPixel.pageView();
         });
       });

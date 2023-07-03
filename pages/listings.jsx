@@ -1,9 +1,11 @@
 import { useEffect, useState, useRef } from 'react'
 import { useRouter } from 'next/router';
+import Head from "next/head";
 import Layout from '../components/Layout'
 import Listing from '../components/Listings/Listing'; 
 import useApi from '../hooks/useApi';
 import Search from '../components/common/Search';
+import apis from '../lib/apis';
 
 // const listings = [ 
 //     {
@@ -67,14 +69,14 @@ const genderOptions = [
     { id: 'female', title: 'Girls' },
 ]; 
 
-export default function Listings() {
+export default function Listings({ all_listings, total, gender }) {
     const router = useRouter();
     const { getAllListings } = useApi(); 
-    const [listings, setListings] = useState([]); 
+    const [listings, setListings] = useState(all_listings); 
     const [searchQuery, setSearchQuery] = useState(""); 
     const [searchResults, setSearchResults] = useState([]); 
     const [loading, setLoading] = useState(false); 
-    const { gender } = router.query;
+    // const { gender } = router.query;
     const is_mounted = useRef(false); 
     const [listingGender, setListingGender] = useState("all"); 
 
@@ -97,8 +99,6 @@ export default function Listings() {
         if(gender) { 
             // setListingFilters({ gender });
             setListingGender(gender); 
-        } else { 
-            fetchListings({ publish: true });
         }
     },  []); 
 
@@ -120,31 +120,91 @@ export default function Listings() {
     }
 
     return (
-        <Layout>
-            <div className='flex flex-col lg:flex-row w-full mt-5 px-4 sm:px-16'> 
-                <div className='hidden lg:block h-[800px] w-1/4 mr-5 relative'>
-                    <div className='h-full w-full rounded-md bg-white border border-gray-200 p-3'>
-                        <h1 className='capitalize text-lg mb-3 flex items-center'>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-gray-700 mr-2">
+        <>
+            <Head>
+                {
+                    gender ? (
+                        gender === 'male' ? 
+                        <>
+                            <title>Book Boys hostel with Facilities in Mumbai</title>
+                            <meta name='description' content="One of the best boy's hostels is provided by Student Housing. Location, Hygiene, and service are three main pillars of the outstanding stay we provide to students in Mumbai."/>
+                        </>
+                        :
+                        <>
+                            <title>Book Girls hostel with Facilities in Mumbai</title>
+                            <meta name='description' content="Student housing offers girls' hostel in Mumbai an safe space with 24/7 security and biometric scan entry. Services like delicious three-times-a-day meals, laundry, and drop-off services will also save their valuable time."/>
+                        </>
+                    )
+                    : 
+                    <>
+                        <title>Book Student Hostel in Mumbai with facilities | Student Housing</title>
+                        <meta name='description' content='Student housing provides students hostels in Mumbai at prime locations. Hostels are strategically located near major colleges and prime residential areas. We provide hostel stays for girls and boys.'/>
+                    </>
+                }
+            </Head>
+            <Layout>
+                <div className='flex flex-col lg:flex-row w-full mt-5 px-4 sm:px-16'> 
+                    <div className='hidden lg:block h-[800px] w-1/4 mr-5 relative'>
+                        <div className='h-full w-full rounded-md bg-white border border-gray-200 p-3'>
+                            <h1 className='capitalize text-lg mb-3 flex items-center'>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-gray-700 mr-2">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 13.5V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m12-3V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m-6-9V3.75m0 3.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 9.75V10.5" />
+                                </svg>
+                                <span>Filters</span>
+                            </h1>
+
+                            <div className="h-[1px] border border-gray-100 mb-3"></div>
+                            
+                            <fieldset className="mt-4">
+                                <legend className='font-semibold text-md mb-3'>Gender</legend>
+                                <div className="ml-3">
+                                {genderOptions.map((option) => (
+                                    <div key={option.id} className="flex items-center mb-2">
+                                        <input
+                                            id={option.id}
+                                            name="asdf"
+                                            type="radio"
+                                            value={option.id}
+                                            checked={listingGender === option.id}
+                                            className="h-4 w-4 border-gray-300 text-brandColor focus:ring-brandColor"
+                                            onChange={e => setListingGender(e.target.value)}
+                                        />
+                                        <label htmlFor={option.id} className="ml-3 block text-sm font-medium text-gray-700">
+                                            {option.title}
+                                        </label>
+                                    </div>
+                                ))}
+                                </div>
+                            </fieldset>
+
+                            <div className="h-[1px] border border-gray-100 mb-3"></div>
+                        </div>
+                    </div>
+
+                    <div className='flex lg:hidden bg-white border-b-2 border-gray-200 p-3 gap-3 overflow-y-auto'>
+                        <div className='capitalize text-lg flex items-center'>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 sm:w-6 sm:h-6 text-gray-700 mr-1 sm:mr-2">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 13.5V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m12-3V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m-6-9V3.75m0 3.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 9.75V10.5" />
                             </svg>
-                            <span>Filters</span>
-                        </h1>
+                            <span className='text-sm sm:text-base'>Filters</span>
+                        </div>
 
-                        <div className="h-[1px] border border-gray-100 mb-3"></div>
+                        <div className=" border border-gray-300"></div>
                         
-                        <fieldset className="mt-4">
-                            <legend className='font-semibold text-md mb-3'>Gender</legend>
-                            <div className="ml-3">
+                        <fieldset className="flex items-center">
+                            <div>
+                                <legend className='font-semibold text-sm sm:text-base'>Gender</legend>
+                            </div>
+                            <div className="flex items-center">
                             {genderOptions.map((option) => (
-                                <div key={option.id} className="flex items-center mb-2">
+                                <div key={option.id} className="flex items-center ml-3">
                                     <input
                                         id={option.id}
-                                        name="asdf"
+                                        name="notification-method"
                                         type="radio"
                                         value={option.id}
                                         checked={listingGender === option.id}
-                                        className="h-4 w-4 border-gray-300 text-brandColor focus:ring-brandColor"
+                                        className="border-gray-300 text-brandColor focus:ring-brandColor"
                                         onChange={e => setListingGender(e.target.value)}
                                     />
                                     <label htmlFor={option.id} className="ml-3 block text-sm font-medium text-gray-700">
@@ -155,115 +215,102 @@ export default function Listings() {
                             </div>
                         </fieldset>
 
-                        <div className="h-[1px] border border-gray-100 mb-3"></div>
-                    </div>
-                </div>
-
-                <div className='flex lg:hidden bg-white border-b-2 border-gray-200 p-3 gap-3 overflow-y-auto'>
-                    <div className='capitalize text-lg flex items-center'>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 sm:w-6 sm:h-6 text-gray-700 mr-1 sm:mr-2">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 13.5V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m12-3V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m-6-9V3.75m0 3.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 9.75V10.5" />
-                        </svg>
-                        <span className='text-sm sm:text-base'>Filters</span>
+                        {/* <div className="h-[1px] border border-gray-100 mb-3"></div> */}
                     </div>
 
-                    <div className=" border border-gray-300"></div>
-                    
-                    <fieldset className="flex items-center">
-                        <div>
-                            <legend className='font-semibold text-sm sm:text-base'>Gender</legend>
+                    <div className="w-full lg:w-3/4">
+                        <div className='mb-2 mt-2 lg:mt-0'> 
+                            <Search 
+                                api_endpoint={`${process.env.NEXT_PUBLIC_API_BASE_URL}/listing/search-listings`}
+                                placeholder="Search Listings"
+                                onResult={handleSearch}
+                            />
                         </div>
-                        <div className="flex items-center">
-                        {genderOptions.map((option) => (
-                            <div key={option.id} className="flex items-center ml-3">
-                                <input
-                                    id={option.id}
-                                    name="notification-method"
-                                    type="radio"
-                                    value={option.id}
-                                    checked={listingGender === option.id}
-                                    className="border-gray-300 text-brandColor focus:ring-brandColor"
-                                    onChange={e => setListingGender(e.target.value)}
-                                />
-                                <label htmlFor={option.id} className="ml-3 block text-sm font-medium text-gray-700">
-                                    {option.title}
-                                </label>
-                            </div>
-                        ))}
-                        </div>
-                    </fieldset>
 
-                    {/* <div className="h-[1px] border border-gray-100 mb-3"></div> */}
-                </div>
-
-                <div className="w-full lg:w-3/4">
-                    <div className='mb-2 mt-2 lg:mt-0'> 
-                        <Search 
-                            api_endpoint={`${process.env.NEXT_PUBLIC_API_BASE_URL}/listing/search-listings`}
-                            placeholder="Search Listings"
-                            onResult={handleSearch}
-                        />
-                    </div>
-
-                    <div className='mb-3'> 
+                        <div className='mb-3'> 
+                            {
+                                listings.length !== 0 && searchQuery === "" && 
+                                <h3 className='text-md text-gray-500'> 
+                                    Showing {listings.length} results     
+                                </h3> 
+                            }
+                            {
+                                searchQuery !== "" && searchResults.length > 0 &&
+                                <h3 className='text-md text-gray-500'> 
+                                    Showing {searchResults.length} results     
+                                </h3> 
+                            }
+                        </div>  
+                        
                         {
-                            listings.length !== 0 && searchQuery === "" && 
-                            <h3 className='text-md text-gray-500'> 
-                                Showing {listings.length} results     
-                            </h3> 
+                            loading && 
+                            <ListingSekeletons/>
+                        }
+
+                        {
+                            !loading && listings.length !== 0 && searchQuery === "" && listings.map((listing,index) => ( 
+                                <>
+                                    <Listing 
+                                        id={listing.id}
+                                        key={listing.id}
+                                        name={listing.name}
+                                        description={listing.description}
+                                        images={listing.images}
+                                        price={listing.price} 
+                                        amenities={listing.amenities} 
+                                        address={listing.address} 
+                                        location={listing.location}
+                                        video_link={listing.video_link}
+                                    />  
+                                    {/* { index !== listings.length - 1 && <div className='w-full h-[0.5px] border border-gray-200 my-3'></div>} */}
+                                </>
+                            )) 
                         }
                         {
-                            searchQuery !== "" && searchResults.length > 0 &&
-                            <h3 className='text-md text-gray-500'> 
-                                Showing {searchResults.length} results     
-                            </h3> 
+                            !loading && searchQuery !== "" && searchResults.length > 0 && searchResults.map((listing,index) => (
+                                <>
+                                    <Listing 
+                                        id={listing.id}
+                                        key={listing.id}
+                                        name={listing.name}
+                                        description={listing.description}
+                                        images={listing.images}
+                                        price={listing.price} 
+                                        amenities={listing.amenities} 
+                                        address={listing.address} 
+                                        video_link={listing.video_link}
+                                    />  
+                                    {/* { index !== listings.length - 1 && <div className='w-full h-[0.5px] border border-gray-200 my-3'></div>} */}
+                                </>
+                            ))
                         }
-                    </div>  
-                    
-                    {
-                        loading && 
-                        <ListingSekeletons/>
-                    }
-
-                    {
-                        !loading && listings.length !== 0 && searchQuery === "" && listings.map((listing,index) => ( 
-                            <>
-                                <Listing 
-                                    id={listing.id}
-                                    key={listing.id}
-                                    name={listing.name}
-                                    description={listing.description}
-                                    images={listing.images}
-                                    price={listing.price} 
-                                    amenities={listing.amenities} 
-                                    address={listing.address} 
-                                    location={listing.location}
-                                    video_link={listing.video_link}
-                                />  
-                                {/* { index !== listings.length - 1 && <div className='w-full h-[0.5px] border border-gray-200 my-3'></div>} */}
-                            </>
-                        )) 
-                    }
-                    {
-                        !loading && searchQuery !== "" && searchResults.length > 0 && searchResults.map((listing,index) => (
-                            <>
-                                <Listing 
-                                    id={listing.id}
-                                    key={listing.id}
-                                    name={listing.name}
-                                    description={listing.description}
-                                    images={listing.images}
-                                    price={listing.price} 
-                                    amenities={listing.amenities} 
-                                    address={listing.address} 
-                                    video_link={listing.video_link}
-                                />  
-                                {/* { index !== listings.length - 1 && <div className='w-full h-[0.5px] border border-gray-200 my-3'></div>} */}
-                            </>
-                        ))
-                    }
-                </div> 
-            </div>
-        </Layout>
+                    </div> 
+                </div>
+            </Layout>
+        </>
     )
+}
+
+export async function getServerSideProps(context) {
+    console.log("Get server side props called!"); 
+    const { query } = context;
+    const { gender } = query;
+
+    // Fetch data from external API
+    const { listings: all_listings, total } = await apis.getAllListings({ 
+        filters: gender ? { publish: true, gender } : { publish: true }, 
+        skip: 0, 
+        limit: 0 
+    }); 
+
+    console.log("All listings: ", all_listings, " total: ", total); 
+
+    // Pass data to the page via props
+    return { 
+        props: { 
+            all_listings, 
+            total, 
+            gender: gender && gender || null
+        } 
+    }
 }

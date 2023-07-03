@@ -24,11 +24,11 @@ import WhatsAppButton from '../components/common/WhatsappButton';
 export default function Home() {
   return (
     <div>
-		{/* <Head>
-			<title>Student Housing</title>
-			<meta name="description" content="Student Housing in Mumbai" />
+		<Head>
+			<title>Book Hostels in Mumbai For College Students | Student Housing</title>
+			<meta name="description" content="Student housing offers hostels in Mumbai for college students at a reasonable price. A fully functional clean apartment with regular cleaning services. We also provide additional services like meals, laundry and drop off to college." />
 			<link rel="icon" href="/sh_logo.png" />
-		</Head> */}
+		</Head>
 
 		<Layout>
 			<span className='fixed bottom-[25px] right-[20px] z-[1000]'>

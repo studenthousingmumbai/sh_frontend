@@ -1,6 +1,7 @@
 import { Disclosure } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import Layout from '../components/Layout'
+import Head from 'next/head';
 
 const faqs = [
     {
@@ -183,38 +184,44 @@ function classNames(...classes) {
 
 export default function Example() {
   return (
-    <Layout>
-      <div className="relative flex justify-center bg-gray-100 items-center my-auto h-[500px] ">
-                    <img className='w-full h-full object-cover' src="/faq-bg.jpeg" alt="faq" />
-                    <div className='absolute bg-black-overlay w-full h-full'></div>
-                    <div className='absolute w-full text-center'>
-                        <h1 className='uppercase text-2xl text-white'>
-                            <b>FAQs</b>
-                        </h1>
+    <> 
+      <Head>
+        <title>Book Student Housing Mumbai in Vile Parle, Juhu</title>
+        <meta name='description' content="Student housing Mumbai in Vile Parle, Juhu offers a full fledge facilities to the students for their comfortable stay.  We offer competitive prices with impeccable services. 24 hrs helpline and on call doctor services makes student's life easy and stressfree."/>
+      </Head>
+      <Layout>
+        <div className="relative flex justify-center bg-gray-100 items-center my-auto h-[500px] ">
+                      <img className='w-full h-full object-cover' src="/faq-bg.jpeg" alt="faq" />
+                      <div className='absolute bg-black-overlay w-full h-full'></div>
+                      <div className='absolute w-full text-center'>
+                          <h1 className='uppercase text-2xl text-white'>
+                              <b>FAQs</b>
+                          </h1>
+                      </div>
+              </div>
+        <div className="bg-white mb-12">
+        
+          <h1 className='text-3xl capitalize font-semibold mx-auto max-w-7xl pt-4 px-6 lg:px-8'>Frequently asked questions</h1>
+          {
+            faqs.map(faq => ( 
+              <div className="mx-auto max-w-7xl divide-y divide-gray-900/10 px-6 lg:px-8 pt-12 mb-5">
+                <h2 className="text-2xl font-bold leading-10 tracking-tight text-brandColor capitalize">{faq.category}</h2>
+                <dl className="mt-10 space-y-8 divide-y divide-gray-900/10">
+                  {faq.questions.map((item, index) => (
+                    <div key={index} className="pt-8 lg:grid lg:grid-cols-12 lg:gap-8">
+                      <dt className="text-base font-semibold leading-7 text-gray-900 lg:col-span-5">{item.question}</dt>
+                      <dd className="mt-4 lg:col-span-7 lg:mt-0">
+                        <p className="text-base leading-7 text-gray-600">{item.answer}</p>
+                      </dd>
                     </div>
-             </div>
-      <div className="bg-white mb-12">
-       
-        <h1 className='text-3xl capitalize font-semibold mx-auto max-w-7xl pt-4 px-6 lg:px-8'>Frequently asked questions</h1>
-        {
-           faqs.map(faq => ( 
-            <div className="mx-auto max-w-7xl divide-y divide-gray-900/10 px-6 lg:px-8 pt-12 mb-5">
-              <h2 className="text-2xl font-bold leading-10 tracking-tight text-brandColor capitalize">{faq.category}</h2>
-              <dl className="mt-10 space-y-8 divide-y divide-gray-900/10">
-                {faq.questions.map((item, index) => (
-                  <div key={index} className="pt-8 lg:grid lg:grid-cols-12 lg:gap-8">
-                    <dt className="text-base font-semibold leading-7 text-gray-900 lg:col-span-5">{item.question}</dt>
-                    <dd className="mt-4 lg:col-span-7 lg:mt-0">
-                      <p className="text-base leading-7 text-gray-600">{item.answer}</p>
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-           ))
-        }
-      </div>
-    </Layout>
+                  ))}
+                </dl>
+              </div>
+            ))
+          }
+        </div>
+      </Layout>
+    </>
   )
 }
 
