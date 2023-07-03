@@ -48,6 +48,8 @@ export default function Document() {
             `,
           }}
         />
+        <FacebookPixel />
+
         {/* <script type='text/javascript'
           dangerouslySetInnerHTML={{ 
             __html: `
@@ -102,7 +104,6 @@ export default function Document() {
       <body className='h-full'>
           <Main />
           <NextScript />
-          <FacebookPixel />
       </body>
     </Html>
   )
