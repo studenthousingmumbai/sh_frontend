@@ -280,7 +280,7 @@ export async function getServerSideProps(context) {
     const { id } = context.params;
 
     // Fetch data from external API
-    const listing = await apis.getListing(id); 
+    const listing = await apis.getListing(process.env.NEXT_PUBLIC_API_BASE_URL, id); 
 
     console.log("Listing: ", listing); 
 

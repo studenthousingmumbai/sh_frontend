@@ -297,7 +297,7 @@ export async function getServerSideProps(context) {
     const { gender } = query;
 
     // Fetch data from external API
-    const { listings: all_listings, total } = await apis.getAllListings({ 
+    const { listings: all_listings, total } = await apis.getAllListings(process.env.NEXT_PUBLIC_API_BASE_URL, { 
         filters: gender ? { publish: true, gender } : { publish: true }, 
         skip: 0, 
         limit: 0 
