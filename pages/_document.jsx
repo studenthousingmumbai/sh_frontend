@@ -1,6 +1,4 @@
 import { Head, Html, Main, NextScript } from 'next/document';
-import Script from 'next/script';
-import FacebookPixel from '../components/FacebookPixel';
 
 export default function Document() {
   return (
@@ -48,7 +46,6 @@ export default function Document() {
             `,
           }}
         />
-        <FacebookPixel />
 
         {/* <script type='text/javascript'
           dangerouslySetInnerHTML={{ 
