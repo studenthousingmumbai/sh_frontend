@@ -1,5 +1,6 @@
 import { Head, Html, Main, NextScript } from 'next/document';
 import Script from 'next/script';
+import FacebookPixel from '../components/FacebookPixel';
 
 export default function Document() {
   return (
@@ -47,7 +48,7 @@ export default function Document() {
             `,
           }}
         />
-        <script type='text/javascript'
+        {/* <script type='text/javascript'
           dangerouslySetInnerHTML={{ 
             __html: `
               !function(f,b,e,v,n,t,s)
@@ -63,7 +64,7 @@ export default function Document() {
             `
           }}
         />
-        <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=983766016309702&ev=PageView&noscript=1"/></noscript>
+        <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=983766016309702&ev=PageView&noscript=1"/></noscript> */}
       </Head>
 
       {/* <Script async src="https://www.googletagmanager.com/gtag/js?id=G-DEFDC3GBPL" strategy='afterInteractive'></Script>
@@ -101,6 +102,7 @@ export default function Document() {
       <body className='h-full'>
           <Main />
           <NextScript />
+          <FacebookPixel />
       </body>
     </Html>
   )

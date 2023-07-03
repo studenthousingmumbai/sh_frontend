@@ -142,7 +142,6 @@ const useAuth = (props) => {
         catch(err) { 
             console.log("error occured : ", err);
         }
-
     }
 
     return {  
