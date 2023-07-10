@@ -60,7 +60,7 @@ export async function getStaticProps(context) {
                             url
                         }
 						content {
-							markdown
+							html
 						}
 						id
                         description
