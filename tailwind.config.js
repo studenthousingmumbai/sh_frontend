@@ -33,6 +33,7 @@ module.exports = {
         'female-banner': "url('/female-no-bg.png')",
         'male-banner': "url('/male-no-bg.png')",
         'custom-gradient': 'linear-gradient(180deg, #ffffff 0%, #fff5d5 99%);',
+        'blog-landscape': "url(/landscape_blog_2.jpg)"
       },
       animation: {
         'fade-in': 'fade-in 0.5s linear forwards',

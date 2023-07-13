@@ -1,14 +1,36 @@
 import { gql } from "@apollo/client"
 import client from "../../apolloClient"
+import Layout from "../../components/Layout";
+import styles from "../../styles/BlogContent.module.css"
+import moment from "moment/moment";
 
 export default function Blog({ blog }) {
     console.log("Blog: ", blog); 
 
     return (
-        <div>
-            <img src={blog.coverPhoto.url}/>
-            <div dangerouslySetInnerHTML={{ __html: blog.content.html }}></div>
-        </div>
+        <Layout>
+            <div className="w-[70%] md:w-[65%] lg:w-[55%] mx-auto py-16 lg:py-20">
+
+                {/* page route */}
+                <div className="text-xs sm:text-sm md:text-base">
+                    <span className="text-brandColor">Home&nbsp;&nbsp;/&nbsp;&nbsp;Blogs&nbsp;&nbsp;/&nbsp;&nbsp;</span>
+                    <span>
+                        {blog.title}
+                    </span>
+                </div>
+
+                {/* blog content */}
+                <div className="rounded-xl mt-5 md:mt-10">
+                    <img className="rounded-xl" src={blog.coverPhoto.url}/>
+                </div>
+                <div className="mt-3 md:mt-5 text-sm md:text-lg text-brandColor font-[500]">
+                    {moment(blog.createdOn).format('ll')}
+                </div>
+
+                <div className={styles['blog-content']} dangerouslySetInnerHTML={{ __html: blog.content.html }}></div>
+            </div>
+        </Layout>
+
     )
 }
 
