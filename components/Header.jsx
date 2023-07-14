@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useState, useEffect } from "react";
 import Link from 'next/link';
 import { useRouter } from 'next/router'; 
 import { Popover, Transition, Dialog, Menu } from "@headlessui/react";
@@ -25,11 +25,23 @@ export default function Example() {
   const { isLoading, isAuthenticated } = withAuth(); 
   const { logout } = useAuth(); 
   const user = useAuth.user; 
+  const [scrolled, setScrolled] = useState(false);
+
+  const scrollHandler = () => {
+      setScrolled(window.scrollY > 0);
+  };
+
+  useEffect(() => {
+      window.addEventListener('scroll', scrollHandler);
+      return () => {
+          window.removeEventListener('scroll', scrollHandler);
+      };
+  }, []);
 
   return (
-    <Popover className="relative bg-white mb-3">
+    <Popover className={`relative bg-white mb-3 sticky top-0 z-50 transition-shadow duration-500 ease-in-out shadow-sm ${scrolled ? 'shadow-md' : ''}`}>
       <div className="mx-auto px-4 sm:px-16">
-        <div className="flex items-center justify-between border-b-2 border-gray-100 py-6 lg:justify-start lg:space-x-10">
+        <div className="flex items-center justify-between  py-6 lg:justify-start lg:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <a href="#">
               <span className="sr-only">Your Company</span>

@@ -10,9 +10,81 @@ import withAuth from '../../hooks/withAuth';
 import GoogleMap from '../../components/common/GoogleMap';
 import VideoPlayer from '../../components/common/VideoPlayer';
 import apis from '../../lib/apis';
+import { ChevronDownIcon } from '@heroicons/react/24/outline'
+import { FaBed } from 'react-icons/fa';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
+}
+
+function Occupancies({ occupancies }) { 
+  return ( 
+    <div className='flex flex-wrap mb-3'>
+      {  
+        occupancies.map(occupancy => ( 
+          <div className='border border-gray-300 p-6 rounded-lg mr-3 mb-3 grow bg-gray-50'>
+            <div className='flex items-center justify-center mb-3'>
+              <div className='p-3 rounded-full shadow-md bg-white'>
+                <FaBed className='text-brandColor w-6 h-6'/>
+              </div>
+              <div className=''>
+                &nbsp; X <span className='text-brandColor font-bold text-xl'>{occupancy.total_beds}</span>
+              </div>
+            </div> 
+            <div className='font-semibold text-center'> {occupancy.description} </div>
+            <div className='flex items-center justify-center'>
+              ₹&nbsp;  
+              <div className='text-xl font-bold'>{occupancy.price} / {occupancy.period}</div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  )
+}
+
+function Faqs({ faqs }) {
+  return (
+    <div className="">
+      <div className="">
+        <div className="">
+          <div className='flex'>
+            <div className=''> 
+              <h2 className="text-2xl font-bold tracking-tight text-gray-900 w-full mb-3">
+                Frequently asked questions
+              </h2>
+              <div className='border-[5px] w-[60px] border-b border-brandColor '></div> 
+            </div>
+          </div>
+          
+          <dl className="mt-6 space-y-6 divide-y divide-gray-200">
+            {faqs.map((faq) => (
+              <Disclosure as="div" key={faq.question} className="pt-6">
+                {({ open }) => (
+                  <>
+                    <dt className="text-lg">
+                      <Disclosure.Button className="flex w-full items-start justify-between text-left text-gray-400">
+                        <span className="font-medium text-gray-900">{faq.question}</span>
+                        <span className="ml-6 flex h-7 items-center">
+                          <ChevronDownIcon
+                            className={classNames(open ? '-rotate-180 transition-all' : 'rotate-0 transition-all', 'h-6 w-6 transform transition-all')}
+                            aria-hidden="true"
+                          />
+                        </span>
+                      </Disclosure.Button>
+                    </dt>
+                    <Disclosure.Panel as="dd" className="mt-2 pr-12">
+                      <p className="text-base text-gray-500 transition-all">{faq.answer}</p>
+                    </Disclosure.Panel>
+                  </>
+                )}
+              </Disclosure>
+            ))}
+          </dl>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export default function Example({ listing: Listing }) {
@@ -110,7 +182,7 @@ export default function Example({ listing: Listing }) {
 
         <div className="bg-white mb-5 px-4 sm:px-16">
           <main className="mx-auto max-w-7xl sm:px-6 sm:pt-16 lg:px-8">
-            <div className="mx-auto max-w-2xl lg:max-w-none">
+            <div className="mx-auto max-w-2xl lg:max-w-none mb-6">
               {/* Product */}
               <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
                 {/* Image gallery */}
@@ -249,7 +321,6 @@ export default function Example({ listing: Listing }) {
                         Contact Us
                     </button> 
                   </div>
-
                   <div>
                     <Link
                       href='/terms-and-conditions'
@@ -262,6 +333,23 @@ export default function Example({ listing: Listing }) {
                 </div>
               </div>
             </div>
+            
+            <div>
+              <div className='flex'>
+                <div className='mb-6'> 
+                  <h2 className="text-2xl font-bold tracking-tight text-gray-900 w-full mb-3">
+                    Hostel Details
+                  </h2>
+                  <div className='border-[5px] w-[60px] border-b border-brandColor '></div> 
+                </div>
+              </div>
+              <Occupancies occupancies={listing.occupancies}/>
+            </div>
+
+            <div className='mt-12 mb-12'>
+              <Faqs faqs={listing.faqs}/>
+            </div>
+
             
             <Modal title={"View Location On Map"} open={locationOpen} onClose={() => setLocationOpen(false)}>
               <div className='mb-3 w-full h-[500px] bg-gray-200'> 

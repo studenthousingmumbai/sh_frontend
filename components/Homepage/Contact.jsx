@@ -1,9 +1,11 @@
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline'
 import { CheckCircleIcon, XMarkIcon } from '@heroicons/react/20/solid'
 import useApi from '../../hooks/useApi';
 
 export default function Example() {
+  const router = useRouter();
   const [email,setEmail] = useState("");
   const [name,setName] = useState("");
   const [phone,setPhone] = useState("");
@@ -20,6 +22,7 @@ export default function Example() {
         console.log("Error occured while sending email!");
     } else { 
         setSuccess(true);
+        router.push('/thank-you');
     }
   }
 
@@ -333,7 +336,7 @@ export default function Example() {
                   </button>
                 </div>
               </form>
-              {
+              {/* {
                 success && 
                   <div className="rounded-md bg-green-50 p-4">
                     <div className="flex">
@@ -357,7 +360,7 @@ export default function Example() {
                         </div>
                     </div>
                   </div>
-              }
+              } */}
             </div>
           </div>
         </div>
