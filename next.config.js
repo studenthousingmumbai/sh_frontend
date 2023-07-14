@@ -6,7 +6,13 @@ const nextConfig = {
   //   scrollRestoration: true,
   // },
   images: {
-    domains: ['d22y2gqvewxrcl.cloudfront.net', 'google.com', 'i.pinimg.com', 'www.iconinc.co.uk']
+    domains: [
+      'd22y2gqvewxrcl.cloudfront.net', 
+      'google.com', 
+      'i.pinimg.com', 
+      'www.iconinc.co.uk',
+      'media.graphassets.com'
+    ]
   }
 }
 
