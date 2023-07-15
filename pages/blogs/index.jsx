@@ -17,36 +17,36 @@ export default function Blogs({ blogs }) {
                 {/* flex layout */}
                 <div className="flex flex-col lg:flex-row gap-4">
                     {blogs.map((blog, index) => (
-                        <div className="border border-gray-200 rounded-lg p-4 flex flex-col justify-between" key={index}>
+                        <div className="border border-gray-200 rounded-lg p-4 flex flex-col justify-between hover:scale-[1.01] hover:shadow-md hover:border-gray-400 transform transition duration-300 ease-in-out" key={index}>
 
-                        {/* blog image */}
-                        <div className="rounded-lg">
-                            <img className="rounded-lg" src={blog?.coverPhoto?.url} alt="blog_image" />
-                        </div>
-
-                        <div>
-                            {/* created at */}
-                            <div className="mt-3 sm:mt-4 text-xs md:text-base font-semibold text-brandColor">
-                                {moment(blog.createdOn).format('ll')}
+                            {/* blog image */}
+                            <div className="rounded-lg">
+                                <img className="rounded-lg" src={blog?.coverPhoto?.url} alt="blog_image" />
                             </div>
 
-                            {/* title */}
-                            <div className="mt-2 sm:mt-3 font-bold text-sm sm:text-lg md:text-2xl">
-                                {blog.title}
+                            <div>
+                                {/* created at */}
+                                <div className="mt-3 sm:mt-4 text-xs md:text-base font-semibold text-brandColor">
+                                    {moment(blog.createdOn).format('ll')}
+                                </div>
+
+                                {/* title */}
+                                <div className="mt-2 sm:mt-3 font-bold text-sm sm:text-lg md:text-2xl">
+                                    {blog.title}
+                                </div>
+
+                                {/* description */}
+                                <div className="mt-2 sm:mt-3 flex-grow text-sm sm:text-base">
+                                    {blog.description}
+                                </div>
                             </div>
 
-                            {/* description */}
-                            <div className="mt-2 sm:mt-3 flex-grow text-sm sm:text-base">
-                                {blog.description}
+                            {/* link to */}
+                            <div className="mt-3 text-brandColor font-semibold self-start text-xs sm:text-base">
+                                <Link href={`/blogs/${blog.id}`}>
+                                    Read more...
+                                </Link>
                             </div>
-                        </div>
-
-                        {/* link to */}
-                        <div className="mt-3 text-brandColor font-semibold self-start text-xs sm:text-base">
-                            <Link href={`/blogs/${blog.id}`}>
-                                Read more...
-                            </Link>
-                        </div>
                         </div>
                     ))}
                 </div>
