@@ -20,8 +20,8 @@ export default function Blog({ blog }) {
                 </div>
 
                 {/* blog content */}
-                <div className="rounded-xl mt-5 md:mt-10">
-                    <img className="rounded-xl" src={blog.coverPhoto.url}/>
+                <div className="rounded-xl mt-5 md:mt-10 w-full">
+                    <img className="rounded-xl w-full" src={blog.coverPhoto.url}/>
                 </div>
                 <div className="mt-3 md:mt-5 text-sm md:text-lg text-brandColor font-[500]">
                     {moment(blog.createdOn).format('ll')}
