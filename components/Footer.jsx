@@ -4,16 +4,17 @@ const navigation = {
     solutions: [
       { name: "Home", href: "/" },
       { name: 'Explore Hostels', href: '/listings' },
+      { name: 'Blogs', href: '/blogs' },
     ],
     support: [
       { name: 'Locations', href: '/locations' },
       { name: 'Contact Us', href: '/contact-us' },
-      { name: 'Blogs', href: '/blogs' },
       { name: "Faqs", href: "/faqs" }
     ],
     company: [
       { name: 'About Us', href: '/about-us' },
       { name: 'Terms and Conditions', href: '/terms-and-conditions' },
+      { name: "Refer & Earn", href: "/refer-and-earn" }
     ],
     legal: [
     ],

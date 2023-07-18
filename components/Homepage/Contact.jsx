@@ -150,7 +150,7 @@ export default function Example() {
                   <PhoneIcon className="h-6 w-6 flex-shrink-0 text-indigo-200" aria-hidden="true" />
                   <span className="ml-3">+91-9004033884</span>
                 </dd>
-                <dd className="flex">
+                <dd className="flex text-base text-indigo-50">
                   <PhoneIcon className="h-6 w-6 flex-shrink-0 text-indigo-200" aria-hidden="true" />
                   <span className="ml-3"> +91-8779003845</span>
                 </dd>

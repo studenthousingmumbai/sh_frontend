@@ -52,10 +52,10 @@ export default function ReferAndEarn() {
         <div className='flex flex-col lg:flex-row w-full p-6 bg-refer-and-earn-banner bg-cover bg-no-repeat gap-4 lg:gap-0'>
             <div className='w-full lg:w-1/2 flex flex-col items-center lg:items-end justify-center gap-4 lg:gap-8'>
                 <div className='w-[70%] text-[41px] leading-[52px] text-center lg:text-left font-semibold'>
-                    Refer your friends to the Student Housing and get Vouchers upto 1000/- INR.
+                    Refer your friends to Student Housing and get Vouchers upto 1000/- INR.
                 </div>
                 <div className='w-[70%] text-xl font-semibold text-center lg:text-left'>
-                    You are just steps away to get your reward
+                    You are just steps away from getting your reward
                 </div>
             </div>
 
