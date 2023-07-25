@@ -67,6 +67,7 @@ const genderOptions = [
     { id: 'all', title: 'All' },
     { id: 'male', title: 'Boys' },
     { id: 'female', title: 'Girls' },
+    { id: 'unisex', title: "Unisex" }
 ]; 
 
 export default function Listings({ all_listings, total, gender }) {
