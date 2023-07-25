@@ -448,6 +448,20 @@ export default function useApi() {
         }
     }
 
+    const referAndEarn = async ({ name, contact, housingProperty, referralName, referralContact, referralHousingProperty }) => { 
+        try{ 
+            const response = await axios(base_url + `/user/refer-and-earn`, { 
+                method: "POST",
+                data: { name, contact, housingProperty, referralName, referralContact, referralHousingProperty  } 
+            }); 
+            return response.data; 
+        }
+        catch(err){ 
+            console.log(err); 
+            return err.response.data; 
+        }
+    }
+
     return { 
         addAppartment, 
         addFloor,
@@ -480,6 +494,7 @@ export default function useApi() {
         forgotPassword,
         verifyResetCode,
         resetPassword,
-        contactUs
+        contactUs,
+        referAndEarn
     }
 }

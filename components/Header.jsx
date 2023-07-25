@@ -97,7 +97,7 @@ export default function Example() {
                 Contact Us
               </a>          
             </Link>
-
+{/* 
             <Link href='/blogs'> 
               <a
                 href="#"
@@ -105,7 +105,7 @@ export default function Example() {
               >
                 Blogs
               </a>          
-            </Link>
+            </Link> */}
 
             <Link href='/refer-and-earn'> 
               <a
