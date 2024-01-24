@@ -186,7 +186,7 @@ export default function Example() {
                 <div className="relative mx-auto max-w-7xl lg:grid lg:grid-cols-5 h-full">
                     <div className="bg-gray-50 py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-8 xl:pr-12">
                         <div className="mx-auto max-w-lg">
-                            <h2 className="font-bold text-2xl lg:text-2xl lg1:text-2xl text-start lg:text-start text-[#FBCF5F]">Student Housing Madonna- Office</h2>
+                            <h2 className="font-bold text-2xl lg:text-2xl lg1:text-2xl text-start lg:text-start text-[#FBCF5F]">Student Housing Office - Madonna Apartment</h2>
                      
                             <dl className="mt-8 text-base text-gray-500">
                                 <div>
