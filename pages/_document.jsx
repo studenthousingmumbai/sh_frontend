@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html className="h-full bg-white antialiased" lang="en">
       <Head>
-        <title>Student Housing</title>
+        {/* <title>Student Housing</title> */}
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css"/>
         <link rel="preconnect" href="https://fonts.googleapis.com"/>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
@@ -23,7 +23,7 @@ export default function Document() {
             `,
           }}
         />
-        
+
         {/* Tawk to live chat */}
         <script
           dangerouslySetInnerHTML={{
