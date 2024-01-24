@@ -23,6 +23,24 @@ export default function Document() {
             `,
           }}
         />
+        
+        {/* Tawk to live chat */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+              (function(){
+                var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+                s1.async=true;
+                s1.src='https://embed.tawk.to/65b0f5130ff6374032c44bc4/1hktjql51';
+                s1.charset='UTF-8';
+                s1.setAttribute('crossorigin','*');
+                s0.parentNode.insertBefore(s1,s0);
+              })();
+            `,
+          }}
+        />
+
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75045456-1"></script>
         <script
             dangerouslySetInnerHTML={{

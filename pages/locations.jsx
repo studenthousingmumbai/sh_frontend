@@ -192,7 +192,7 @@ export default function Example() {
                                 <div>
                                     <dt className="sr-only">Postal address</dt>
                                     <dd>
-                                        <a href="https://www.google.com/maps/place/Madonna+Apts/@19.1038631,72.836616,17z/data=!3m1!4b1!4m6!3m5!1s0x3be7c9b880deaaab:0x2f086cbcd7744afb!8m2!3d19.1038631!4d72.836616!16s%2Fg%2F11kj8_zbdb?hl=en-GB&authuser=1&entry=ttu" target="_blank" className="mt-6 max-w-3xl text-base text-indigo-500 underline">
+                                        <a href="https://www.google.com/search?q=Madonna+Student+Housing+Hostel&stick=H4s|AAAAAA" target="_blank" className="mt-6 max-w-3xl text-base text-indigo-500 underline">
                                         Ground floor, Madonna Building, Opp- Bhaidas Hall, Near NMIMS University, Vile Parle West, Mumbai, Maharashtra 400056 
                                         </a>
                                     </dd>
