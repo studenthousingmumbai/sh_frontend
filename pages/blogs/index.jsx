@@ -61,7 +61,7 @@ export async function getServerSideProps(){
         const { data } = await client.query({
             query: gql`
                 query Blogs {
-                    blogs {
+                    blogs(first: 100) {
                         coverPhoto {
                             url
                         }
