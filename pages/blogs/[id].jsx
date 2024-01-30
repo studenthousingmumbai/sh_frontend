@@ -5,8 +5,6 @@ import styles from "../../styles/BlogContent.module.css"
 import moment from "moment/moment";
 
 export default function Blog({ blog }) {
-    console.log("Blog: ", blog); 
-
     return (
         <Layout>
             <div className="w-[70%] md:w-[65%] lg:w-[55%] mx-auto py-16 lg:py-20">
@@ -30,7 +28,6 @@ export default function Blog({ blog }) {
                 <div className={styles['blog-content']} dangerouslySetInnerHTML={{ __html: blog.content.html }}></div>
             </div>
         </Layout>
-
     )
 }
 
