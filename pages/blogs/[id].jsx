@@ -34,41 +34,41 @@ export default function Blog({ blog }) {
     )
 }
 
-export async function getStaticPaths() {
-    try {
-        const { data } = await client.query({
-            query: gql`
-                query Blogs {
-                    blogs {
-                        id
-                    }
-                }
-            `,
-        });
-        const { blogs } = data;
+// export async function getStaticPaths() {
+//     try {
+//         const { data } = await client.query({
+//             query: gql`
+//                 query Blogs {
+//                     blogs {
+//                         id
+//                     }
+//                 }
+//             `,
+//         });
+//         const { blogs } = data;
         
-        console.log("Blog ids: ", blogs); 
+//         console.log("Blog ids: ", blogs); 
 
-        // Generate the paths array based on the fetched IDs
-        const paths = blogs.map((blog) => ({
-            params: { id: blog.id },
-        }));
+//         // Generate the paths array based on the fetched IDs
+//         const paths = blogs.map((blog) => ({
+//             params: { id: blog.id },
+//         }));
       
-        return {
-            paths,
-            fallback: false,
-        };
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        return {
-            paths: [],
-            fallback: false,
-        };
-    }
-}
+//         return {
+//             paths,
+//             fallback: false,
+//         };
+//     } catch (error) {
+//         console.error('Error fetching data:', error);
+//         return {
+//             paths: [],
+//             fallback: false,
+//         };
+//     }
+// }
 
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
     const { id } = context.params;
 
 	try {
@@ -96,22 +96,20 @@ export async function getStaticProps(context) {
 				id 
 			}
 		});
-
         const { blogs } = data; 
-
 		console.log("Pulled blog: ", blogs); 
 
 		return {
 			props: {
 				blog: blogs[0]
-			}
+			}, 
 		};
 	} catch (error) {
 		console.error('Error fetching data:', error);
 		return {
 			props: {
 				blog: null
-			}
+			}, 
 		};
 	}
 }

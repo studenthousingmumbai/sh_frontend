@@ -56,7 +56,7 @@ export default function Blogs({ blogs }) {
   )
 }
 
-export async function getStaticProps(){
+export async function getServerSideProps(){
     try {
         const { data } = await client.query({
             query: gql`
@@ -83,7 +83,6 @@ export async function getStaticProps(){
             props: {
                 blogs
             }, 
-            revalidate: 10
         };
     } 
     catch (error) {
@@ -92,7 +91,6 @@ export async function getStaticProps(){
             props: {
                 blogs: []
             },
-            revalidate: 10
         };
     }
 }
