@@ -76,7 +76,6 @@ export async function getServerSideProps(){
                 }
             `
         });
-    
         const { blogs } = data;
     
         return {
