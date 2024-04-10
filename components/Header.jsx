@@ -52,6 +52,7 @@ export default function Example() {
                   alt=""
                 />
               </Link> 
+              <span className="text-[8px]">Student Housing India Private Limited</span>
             </a>
           </div>
           <div className="-my-2 -mr-2 lg:hidden">

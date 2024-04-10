@@ -241,7 +241,7 @@ const navigation = {
           </div>
 
           <div className="mt-16 border-t border-white/10 pt-8 sm:mt-20 mt-8">
-            <p className="text-xs leading-5 text-gray-400">&copy; Student Housing, Inc. All rights reserved.</p>
+            <p className="text-xs leading-5 text-gray-400">&copy; Student Housing India Private Limited. All rights reserved.</p>
           </div>
         </div>
       </footer>

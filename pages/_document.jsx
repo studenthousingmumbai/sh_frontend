@@ -10,6 +10,7 @@ export default function Document() {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700;900&display=swap" rel="stylesheet"/>
         <meta name="description" content="Student Housing in Mumbai" />
+        <meta name="google-site-verification" content="TdH2yMKePDJB-Vb8XETapJ-ad9iQF7dCnPKwIk0PJQw" />
         <link rel="icon" href="/sh_logo.png" />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-DEFDC3GBPL"></script>
         <script

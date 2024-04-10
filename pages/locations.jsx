@@ -229,8 +229,7 @@ export default function Example() {
                                     <dt className="sr-only">Postal address</dt>
                                     <dd>
                                         <a href="https://www.google.com/maps/place/Student+Housing+Hostels:+Crescenzo+Apartment/@19.1024726,72.7630308,13z/data=!3m1!5s0x3be7c9b8bfa30ceb:0xc685c3566f90015d!4m10!1m2!2m1!1screscenzo!3m6!1s0x3be7c90d5e92ad71:0xac4f3339bb7ec057!8m2!3d19.1024726!4d72.8351286!15sCgljcmVzY2Vuem9aCyIJY3Jlc2NlbnpvkgEWc3R1ZGVudF9ob3VzaW5nX2NlbnRlcuABAA!16s%2Fg%2F11qzj3y64s?hl=en-GB&authuser=1&entry=ttu" target="_blank" className="mt-6 max-w-3xl text-base text-indigo-500 underline">
-                                        Floor 2 and 3, Bharat Building, Irla Road, Indira Nagar, Vile Parle West, Mumbai, Maharashtra 400056  
-
+                                            3RD FLOOR, FLAT NO. 6, BHARAT BUILDING , DIVYATIRTH CHSL, IRLA , VILEPARLE WEST, MUMBAI, Mumbai Suburban, Maharashtra, 400056  
                                         </a>
                                     </dd>
                                 </div>
@@ -253,8 +252,6 @@ export default function Example() {
                                     </dd> 
                                 </div>
                             </dl>
-
-                        
                         </div>
                     </div>
                 </div>
@@ -293,8 +290,6 @@ export default function Example() {
                                     </dd> 
                                 </div>
                             </dl>
-
-                        
                         </div>
                     </div>
 
@@ -308,8 +303,7 @@ export default function Example() {
                                     <dt className="sr-only">Postal address</dt>
                                     <dd>
                                         <a href="https://www.google.com/search?q=maps+moti+mahal&rlz=1C5CHFA_enIN877IN877&sxsrf=APwXEdfFSkWThrXhN-nGJOHtXPDWRCA2ag%3A1684561638686&ei=5l5oZLjMKcXhseMPz4qQ-AU&ved=0ahUKEwi4182QmYP_AhXFcGwGHU8FBF8Q4dUDCA8&uact=5&oq=maps+moti+mahal&gs_lcp=Cgxnd3Mtd2l6LXNlcnAQAzICCCYyAggmMgIIJjICCCYyAggmOgoIABBHENYEELADOgQIIxAnOggIABCKBRCRAjoICAAQgAQQiwM6DgguEIAEEIsDEJgDEKgDOgUIABCABDoLCAAQigUQkQIQiwM6DQgAEIAEEBQQhwIQsQM6CggAEIAEEBQQhwI6EwgAEIAEEBQQhwIQsQMQgwEQiwM6DgguEIAEEIsDEKgDEJgDOgsIABCABBCxAxCDAToGCAAQFhAeOggIABAWEB4QDzoICAAQigUQhgM6BQghEKABOgcIIRCgARAKSgQIQRgAUNgMWLIxYOMzaAdwAXgAgAGLA4gBhSKSAQgwLjIyLjMuMZgBAKABAcgBCLgBAsABAQ&sclient=gws-wiz-serp&bshm=lcbsc/1,lcbsc/1#rlimm=6182767607223361045" target="_blank" className="mt-6 max-w-3xl text-base text-indigo-500 underline">
-                                        Floor 3 4R3P+G96, N S Rd Number 2, Navyug Society, JVPD Scheme, Vile Parle West, Mumbai, Maharashtra 400056 
-
+                                            Floor 3 4R3P+G96, N S Rd Number 2, Navyug Society, JVPD Scheme, Vile Parle West, Mumbai, Maharashtra 400056 
                                         </a>
                                     </dd>
                                 </div>
@@ -319,7 +313,6 @@ export default function Example() {
                                         <PhoneIcon className="h-6 w-6 flex-shrink-0 text-gray-400" aria-hidden="true" />
                                         <span className="ml-3"> +91-9867373030</span>
                                     </dd>
-                                   
                                 </div>
                                  <div className="mt-3">
                                     <dt className="sr-only">Email</dt>
@@ -344,7 +337,6 @@ export default function Example() {
                         <div className="mx-auto max-w-lg">
                             <h2 className="font-bold text-2xl lg:text-2xl lg1:text-2xl text-start lg:text-start text-[#FBCF5F]">
                             Student Housing Suraj Sadan -  Girls Accommodation</h2>
-                     
                             <dl className="mt-8 text-base text-gray-500">
                                 <div>
                                     <dt className="sr-only">Postal address</dt>
@@ -411,8 +403,6 @@ export default function Example() {
                                     </dd> 
                                 </div>
                             </dl>
-
-                        
                         </div>
                     </div>
                 </div>
@@ -422,7 +412,6 @@ export default function Example() {
                         <div className="mx-auto max-w-lg">
                             <h2 className="font-bold text-2xl lg:text-2xl lg1:text-2xl text-start lg:text-start text-[#FBCF5F]">
                             Student Housing Megha Villa- Boys Accommodation</h2>
-                     
                             <dl className="mt-8 text-base text-gray-500">
                                 <div>
                                     <dt className="sr-only">Postal address</dt>
@@ -438,7 +427,6 @@ export default function Example() {
                                         <PhoneIcon className="h-6 w-6 flex-shrink-0 text-gray-400" aria-hidden="true" />
                                         <span className="ml-3"> +91-8779003845</span>
                                     </dd>
-                                   
                                 </div>
                                  <div className="mt-3">
                                     <dt className="sr-only">Email</dt>
@@ -451,14 +439,9 @@ export default function Example() {
                                     </dd> 
                                 </div>
                             </dl>   
-
-                        
                         </div>
                     </div>
-
-            
                 </div>
-
             </div>
         </Layout>
     )
