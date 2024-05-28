@@ -30,7 +30,7 @@ export default function Example({ open, onClose, title, children }) {
           <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
         </Transition.Child>
 
-        <div className="fixed inset-0 z-10 overflow-y-auto">
+        <div className="fixed inset-0 overflow-y-auto">
           <div className="flex min-h-full justify-center p-4 text-center items-center sm:p-0">
             <Transition.Child
               as={Fragment}
@@ -41,16 +41,12 @@ export default function Example({ open, onClose, title, children }) {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform overflow-x-scroll rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-xl w-full sm:p-6">
-                <div>
-                  <div className="mb-5">
-                    <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-                      {title}
-                    </Dialog.Title>
-                  </div>
-                  <div>
-                    {children}
-                  </div>
+              <Dialog.Panel className="relative flex flex-col transform rounded-lg p-4 bg-white text-left shadow-xl transition-all sm:w-full sm:max-w-xl w-full">
+                <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900 mb-3">
+                  {title || 'Title'}
+                </Dialog.Title>
+                <div className=''>
+                  {children}
                 </div>
               </Dialog.Panel>
             </Transition.Child>

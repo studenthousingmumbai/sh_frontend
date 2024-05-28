@@ -12,8 +12,17 @@
 
 .marqueeContent {
     display: inline-block;
-    padding-left: 100%;
     animation: marquee linear infinite;
+    width: 100%;
+}
+
+.marqueeCloseButton {
+    position: absolute;
+    right: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    z-index: 1;
 }
 
 @keyframes marquee {
