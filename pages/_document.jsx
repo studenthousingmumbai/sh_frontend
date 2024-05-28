@@ -130,8 +130,10 @@ export default function Document() {
       </Script> */}
       
       <body className='h-full'>
-          <Main />
-          <NextScript />
+        <div id="modal-root"></div>
+        <Main />
+        <NextScript />
+        {/* Add this div for the portal */}
       </body>
     </Html>
   )
