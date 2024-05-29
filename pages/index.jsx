@@ -24,6 +24,7 @@ import { Reviews } from '../components/Homepage/Testimonials';
 import WhatsAppButton from '../components/common/WhatsappButton';
 import Modal from '../components/common/Modal';
 import Carousel from '../components/common/Carousel';
+import { heroPageModalCTAButton } from '../constants'
 
 export default function Home() {
 	const [open, setOpen] = useState(true); 
@@ -61,22 +62,19 @@ export default function Home() {
 							]}
 						/>
 						<div className='flex justify-center sm:justify-end gap-4'>
-							<Link href='/listings'>
-								<a
-									href="#"
-									className="inline-flex items-center text-center justify-center rounded-md border border-transparent px-2 py-1 sm:px-4 sm:py-2  text-sm sm:text-base font-medium text-gray-700 shadow-sm bg-[#ffcc29] hover:bg-[#fad45a]"
-								>
-									Book Now
-								</a>
-							</Link>
-							<Link href='/contact-us'>
-								<a
-									href="#"
-									className="inline-flex items-center text-center justify-center rounded-md border border-transparent px-2 py-1 sm:px-4 sm:py-2 text-sm sm:text-base font-medium text-gray-700 shadow-sm bg-[#ffcc29] hover:bg-[#fad45a]"
-								>
-									Learn More
-								</a>
-							</Link>
+							<a
+								href={heroPageModalCTAButton.visit}
+								target='_blank'
+								className="inline-flex items-center text-center cursor-pointer select-none justify-center rounded-md border border-transparent px-2 py-1 sm:px-4 sm:py-2  text-sm sm:text-base font-medium text-gray-700 shadow-sm bg-[#ffcc29] hover:bg-[#fad45a]"
+							>
+								Visit us now
+							</a>
+							<a
+								href={`tel:${heroPageModalCTAButton?.call}`}
+								className="inline-flex items-center text-center justify-center rounded-md border border-transparent px-2 py-1 sm:px-4 sm:py-2 text-sm sm:text-base font-medium text-gray-700 shadow-sm bg-[#ffcc29] hover:bg-[#fad45a]"
+							>
+								Call now
+							</a>
 						</div>
 					</div>
 				</Modal>
