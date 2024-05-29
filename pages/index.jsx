@@ -54,8 +54,10 @@ export default function Home() {
 					<div className='flex flex-col gap-4'>
 						<Carousel 
 							images={[
-								'https://t4.ftcdn.net/jpg/02/19/66/93/360_F_219669327_v12pBKc7TB62E3uCJrgRRkDhfVENK3z5.jpg',
-								'https://www.lendi.org/images/amenties/hostel/h1.jpg'
+								'/HomeCarousel/banner_1.jpeg',
+								'/HomeCarousel/banner_2.jpeg',
+								'/HomeCarousel/banner_3.jpeg',
+								'/HomeCarousel/banner_4.jpeg',
 							]}
 						/>
 						<div className='flex justify-center sm:justify-end gap-4'>
