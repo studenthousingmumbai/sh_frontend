@@ -50,7 +50,7 @@ const Carousel = ({
           leaveTo={direction === 'next' ? 'translate-x-full' : '-translate-x-full'}
           className={`absolute top-0 left-0 object-cover w-full h-full`}
         >
-          <img src={image} alt={`carousel-img-${index}`} className='h-full w-full object-cover'/>
+          <img src={image} alt={`carousel-img-${index}`} className='h-full w-full object-contain'/>
         </Transition>
       ))}
       {!hideArrows && (

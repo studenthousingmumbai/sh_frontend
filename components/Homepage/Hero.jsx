@@ -63,12 +63,12 @@ const navigation = [
           </div>
           
           {/* right male and female banners for medium and below screens */}
-          <div className='lg:hidden flex flex-col gap-4 sm:gap-6 h-1/2 z-50 mb-6'>
+          <div className='lg:hidden flex flex-col gap-4 sm:gap-6 h-1/2 mb-6'>
             <Link href={{ pathname: '/listings', query: { gender: 'female' } }}>
-              <div className='relative z-[1] w-full h-1/2 hover:scale-[1.04] cursor-pointer transition-all rounded-lg bg-female-banner bg-[bottom_right_-1rem] bg-no-repeat bg-contain'>
+              <div className='relative z-0 w-full h-1/2 hover:scale-[1.04] cursor-pointer transition-all rounded-lg bg-female-banner bg-[bottom_right_-1rem] bg-no-repeat bg-contain'>
                 <div className='absolute z-[-1] left-0 bg-[#f8c14c] h-full w-1/2 rounded-l-lg rounded-r-lg transition-all lg2:rounded-r-none'></div>
-                <div className='flex flex-col justify-center h-full pl-3 xs:pl-4 sm:pl-6 '>
-                  <div className='font-bold text-xl xs:text-2xl sm:text-3xl md:text-4xl uppercase leading-9 md:pl-0.5'>Girls</div>
+                <div className='flex flex-col justify-center h-full pl-3 xs:pl-4 sm:pl-6'>
+                  <div className='font-bold text-xl xs:text-2xl sm:text-3xl md:text-4xl uppercase leading-9 md:pl-0.5'>girls</div>
                   <div className='text-2xl xs:text-3xl sm:text-4xl md:text-5xl uppercase leading-3 xs:leading-5 sm:leading-6 md:leading-9'>hostels</div>
                   <div className='text-[10px] xs:text-xs sm:text-sm md:text-base pl-0.5 mt-1'>click here to explore now</div>
                   <div className='flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#088b05] cursor-pointer my-2 xs:my-3 sm:my-2'>
@@ -80,7 +80,7 @@ const navigation = [
 
           {/* right male and female banners for large and above screens */}
             <Link href={{ pathname: '/listings', query: { gender: 'male' } }}>
-              <div className='relative z-[1] w-full h-1/2 hover:scale-[1.04] cursor-pointer transition-all rounded-lg bg-male-banner bg-[bottom_right_-1rem] bg-no-repeat bg-contain'>
+              <div className='relative z-0 w-full h-1/2 hover:scale-[1.04] cursor-pointer transition-all rounded-lg bg-male-banner bg-[bottom_right_-1rem] bg-no-repeat bg-contain'>
                 <div className='absolute z-[-1] left-0 bg-[#f8c14c] h-full w-1/2 rounded-l-lg rounded-r-lg transition-all lg2:rounded-r-none'></div>
                 <div className='flex flex-col justify-center h-full pl-3 xs:pl-4 sm:pl-6 '>
                   <div className='font-bold text-xl xs:text-2xl sm:text-3xl md:text-4xl uppercase leading-9 md:pl-0.5'>Boys</div>
@@ -97,7 +97,7 @@ const navigation = [
           {/* right male and female banners for large and above screens */}
           <div className='hidden lg:flex flex-col gap-6 w-1/3 h-full'>
             <Link href={{ pathname: '/listings', query: { gender: 'female' } }}>
-              <div className="relative z-[1] w-full h-1/2 hover:scale-[1.04] cursor-pointer transition-all rounded-lg bg-female-banner-cropped bg-[bottom_right_-2rem] bg-no-repeat bg-contain">
+              <div className="relative z-0 w-full h-1/2 hover:scale-[1.04] cursor-pointer transition-all rounded-lg bg-female-banner-cropped bg-[bottom_right_-2rem] bg-no-repeat bg-contain">
                 <div className='absolute z-[-1] left-0 bg-gradient-to-r from-[#f8c14c] to-yellow-100 lg2:bg-none lg2:bg-[#f8c14c] h-full w-full lg2:w-3/12 rounded-l-lg rounded-r-lg transition-all lg2:rounded-r-none'></div>
                 
                 <div className='lg2:flex hidden flex-col justify-center h-full w-full pl-10'>
@@ -123,7 +123,7 @@ const navigation = [
             </Link>
 
             <Link href={{ pathname: '/listings', query: { gender: 'male' } }}>
-              <div className="relative z-[1] w-full h-1/2 hover:scale-[1.04] cursor-pointer transition-all rounded-lg bg-male-banner-cropped bg-[bottom_right_-4rem] bg-no-repeat bg-contain">
+              <div className="relative z-0 w-full h-1/2 hover:scale-[1.04] cursor-pointer transition-all rounded-lg bg-male-banner-cropped bg-[bottom_right_-4rem] bg-no-repeat bg-contain">
                 <div className='absolute z-[-1] left-0 bg-gradient-to-r from-[#f8c14c] to-yellow-100 lg2:bg-none lg2:bg-[#f8c14c] h-full w-full lg2:w-3/12 rounded-l-lg rounded-r-lg transition-all lg2:rounded-r-none'></div>
                 
                 <div className='lg2:flex hidden flex-col justify-center h-full w-full pl-10'>

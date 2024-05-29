@@ -32,6 +32,10 @@ a {
   box-sizing: border-box;
 }
 
+.modal-open {
+  overflow-y: hidden;
+}
+
 /* 
 @media (prefers-color-scheme: dark) {
   html {
