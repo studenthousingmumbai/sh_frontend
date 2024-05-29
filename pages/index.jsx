@@ -51,7 +51,7 @@ export default function Home() {
 			</Head>
 			
 			<div className='z-50'>
-				<Modal open={open} onClose={() => setOpen(false)}>
+				<Modal open={open} onClose={() => setOpen(false)} title={'New property announcement'}>
 					<div className='flex flex-col gap-4'>
 						<Carousel 
 							images={[
