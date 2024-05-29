@@ -10,7 +10,7 @@ export default function Layout(props) {
       <div className={`z-40 ${props?.open === false ? 'relative sticky top-0' : ''}`}>
         {marqueeOpen && (
           <Marquee
-            text={"This is some sample marquee text"}
+            text={"Accepting bookings for academic year 2024-2025 now!"}
             marqueeOpen={marqueeOpen}
             setMarqueeOpen={setMarqueeOpen}
           />
