@@ -1,9 +1,5 @@
 import { useState, useEffect } from 'react';  
 import Head from 'next/head'
-import Link from 'next/link'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import Header from '../components/Header';
 import Hero from '../components/Homepage/Hero';
 import Features from '../components/Homepage/Features';
 import Awards from '../components/Homepage/Awards';
@@ -11,23 +7,20 @@ import Amenities from '../components/Homepage/Amenities';
 
 // import Reviews from '../components/Homepage/Reviews';
 import Faqs from '../components/Homepage/Faqs';
-import Footer from '../components/Footer';
-import Team from '../components/Homepage/Team';
-import Content from '../components/Homepage/Content';
-import Stats from '../components/Homepage/Stats';
 import Contact from '../components/Homepage/Contact';
 import LogoCloud from '../components/Homepage/LogoCloud';
 import Layout from '../components/Layout'; 
-import Stepper  from '../components/Stepper'; 
-// import Carousel from '../components/Carousel';
 import { Reviews } from '../components/Homepage/Testimonials';
 import WhatsAppButton from '../components/common/WhatsappButton';
 import Modal from '../components/common/Modal';
 import Carousel from '../components/common/Carousel';
-import { heroPageModalCTAButton } from '../constants'
+import { heroPageModalCTAButton } from '../constants';
+import { gql } from "@apollo/client";
+import client from '../apolloClient'; 
 
-export default function Home() {
+export default function Home({ announcementImages }) {
 	const [open, setOpen] = useState(true); 
+	console.log("announcementImages: ", announcementImages);
 
 	useEffect(() => {
 		if (open) {
@@ -35,7 +28,6 @@ export default function Home() {
 		} else {
 			document.body.classList.remove('modal-open');
 		}
-
 		// remove class when component unmounts
 		return () => {
 			document.body.classList.remove('modal-open');
@@ -54,12 +46,7 @@ export default function Home() {
 				<Modal open={open} onClose={() => setOpen(false)} title={'New property announcement'}>
 					<div className='flex flex-col gap-4'>
 						<Carousel 
-							images={[
-								'/HomeCarousel/banner_1.jpeg',
-								'/HomeCarousel/banner_2.jpeg',
-								'/HomeCarousel/banner_3.jpeg',
-								'/HomeCarousel/banner_4.jpeg',
-							]}
+							images={announcementImages}
 						/>
 						<div className='flex justify-center sm:justify-end gap-4'>
 							<a
@@ -97,4 +84,36 @@ export default function Home() {
 			</div>
 		</div>
 	)
+}
+
+export async function getServerSideProps(){
+    try {
+        const { data } = await client.query({
+            query: gql`
+                query Announcement {
+                    announcements {
+                        images {
+                            url
+                        }
+                    }
+                }
+            `
+        });
+		const { announcements } = data;
+		const { images } = announcements[0]; 
+		const announcementImages = images.map(image => image.url); 
+
+        return {
+            props: {
+                announcementImages
+            }, 
+        };
+    } 
+    catch (error) {
+        return {
+            props: {
+                announcementImages: []
+            },
+        };
+    }
 }
