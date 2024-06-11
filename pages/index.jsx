@@ -43,22 +43,22 @@ export default function Home({ announcementImages }) {
 			</Head>
 			
 			<div className='z-50'>
-				<Modal open={open} onClose={() => setOpen(false)} title={'New property announcement'}>
+				<Modal open={open} onClose={() => setOpen(false)} title={'Queen sized beds, first time in hostel industry at:'}>
 					<div className='flex flex-col gap-4'>
 						<Carousel 
 							images={announcementImages}
 						/>
-						<div className='flex justify-center sm:justify-end gap-4'>
+						<div className='flex justify-center gap-4 '>
 							<a
 								href={heroPageModalCTAButton.visit}
 								target='_blank'
-								className="inline-flex items-center text-center cursor-pointer select-none justify-center rounded-md border border-transparent px-2 py-1 sm:px-4 sm:py-2  text-sm sm:text-base font-medium text-gray-700 shadow-sm bg-[#ffcc29] hover:bg-[#fad45a]"
+								className="inline-flex items-center text-center w-[40%] sm:w-[30%] cursor-pointer select-none justify-center rounded-md border border-transparent px-2 py-1 sm:px-4 sm:py-2 text-sm sm:text-base font-medium text-gray-700 shadow-sm bg-[#ffcc29] hover:bg-[#fad45a]"
 							>
 								Visit us now
 							</a>
 							<a
 								href={`tel:${heroPageModalCTAButton?.call}`}
-								className="inline-flex items-center text-center justify-center rounded-md border border-transparent px-2 py-1 sm:px-4 sm:py-2 text-sm sm:text-base font-medium text-gray-700 shadow-sm bg-[#ffcc29] hover:bg-[#fad45a]"
+								className="inline-flex items-center text-center w-[40%] sm:w-[30%] justify-center rounded-md border border-transparent px-2 py-1 sm:px-4 sm:py-2 text-sm sm:text-base font-medium text-gray-700 shadow-sm bg-[#ffcc29] hover:bg-[#fad45a]"
 							>
 								Call now
 							</a>
