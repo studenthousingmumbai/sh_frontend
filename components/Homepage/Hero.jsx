@@ -33,6 +33,7 @@ const navigation = [
                   '/banner_1.png',
                   '/banner_2.png', 
                   '/banner_3.png', 
+                  '/banner_5.png'
                 ]}
                 width="w-full"
                 height="h-full"

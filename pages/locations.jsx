@@ -441,6 +441,80 @@ export default function Example() {
                             </dl>   
                         </div>
                     </div>
+
+                    <div className="bg-white py-16 px-4 sm:px-6 lg:col-span-3 lg:py-8 lg:px-8 xl:pl-12">
+                        <div className="mx-auto max-w-lg">
+                            <h2 className="font-bold text-2xl lg:text-2xl lg1:text-2xl text-start lg:text-start text-[#FBCF5F]">
+                                Elita by Student Housing,
+                            </h2>
+                            <dl className="mt-8 text-base text-gray-500">
+                                <div>
+                                    <dt className="sr-only">Postal address</dt>
+                                    <dd>
+                                        <a href="https://maps.app.goo.gl/uXRKXxb8gEDv73VcA?g_st=ic" target="_blank" className="mt-6 max-w-3xl text-base text-indigo-500 underline">
+                                            6th floor, B wing, 45, Juhu Residency, Near Mukesh Patel, Opp. Club Millenium Juhu, Gulmohar Road Juhu, Vile Parle West, Mumbai, Maharashtra 400058
+                                        </a>
+                                    </dd>
+                                </div>
+                                <div className="mt-6">
+                                    <dt className="sr-only">Phone number</dt>
+                                    <dd className="flex mb-3">
+                                        <PhoneIcon className="h-6 w-6 flex-shrink-0 text-gray-400" aria-hidden="true" />
+                                        <span className="ml-3"> +91-8779003845</span>
+                                    </dd>
+                                </div>
+                                 <div className="mt-3">
+                                    <dt className="sr-only">Email</dt>
+                                    <dd className="flex">
+                                        <EnvelopeIcon className="h-6 w-6 flex-shrink-0 text-gray-400" aria-hidden="true" />
+                                        <span className="ml-3">info@studenthousing.co.in</span>
+                                    </dd>
+                                    <dd className="flex">                                       
+                                        <span className="ml-3">Working hours: Monday- Sunday 10am- 8pm</span>
+                                    </dd> 
+                                </div>
+                            </dl>   
+                        </div>
+                    </div>
+                </div>
+                
+                <div className="relative mx-auto max-w-7xl lg:grid lg:grid-cols-5 h-full">
+                    <div className="bg-gray-50 py-16 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-8 xl:pr-12">
+                        <div className="mx-auto max-w-lg">
+                            <h2 className="font-bold text-2xl lg:text-2xl lg1:text-2xl text-start lg:text-start text-[#FBCF5F]">
+                                Avenue by Student Housing,
+                            </h2>
+                            <dl className="mt-8 text-base text-gray-500">
+                                <div>
+                                    <dt className="sr-only">Postal address</dt>
+                                    <dd>
+                                        <a href="https://maps.app.goo.gl/8awC6jMzXegVpg3N7?g_st=ic" target="_blank" className="mt-6 max-w-3xl text-base text-indigo-500 underline">
+                                            Avenue, Pujara house, 10th NS Road Juhu., next to Shetty Towers, Nutan Laxmi Society, JVPD Scheme, W, Mumbai, Maharashtra 400049
+                                        </a>
+                                    </dd>
+                                </div>
+                                <div className="mt-6">
+                                    <dt className="sr-only">Phone number</dt>
+                                    <dd className="flex mb-3">
+                                        <PhoneIcon className="h-6 w-6 flex-shrink-0 text-gray-400" aria-hidden="true" />
+                                        <span className="ml-3"> +91-8779003845</span>
+                                    </dd>
+                                </div>
+                                 <div className="mt-3">
+                                    <dt className="sr-only">Email</dt>
+                                    <dd className="flex">
+                                        <EnvelopeIcon className="h-6 w-6 flex-shrink-0 text-gray-400" aria-hidden="true" />
+                                        <span className="ml-3">info@studenthousing.co.in</span>
+                                    </dd>
+                                    <dd className="flex">                                       
+                                        <span className="ml-3">Working hours: Monday- Sunday 10am- 8pm</span>
+                                    </dd> 
+                                </div>
+                            </dl>   
+                        </div>
+                    </div>
+
+                    <div className="bg-white py-16 px-4 sm:px-6 lg:col-span-3 lg:py-8 lg:px-8 xl:pl-12"></div>
                 </div>
             </div>
         </Layout>
