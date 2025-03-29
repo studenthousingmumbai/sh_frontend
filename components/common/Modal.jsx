@@ -1,22 +1,22 @@
-import { Fragment, useState, useEffect } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import { CheckIcon } from '@heroicons/react/24/outline'
-import ReactDOM from 'react-dom'
+import { Fragment, useState, useEffect } from "react";
+import { Dialog, Transition } from "@headlessui/react";
+import { CheckIcon } from "@heroicons/react/24/outline";
+import ReactDOM from "react-dom";
 
 export default function Example({ open, onClose, title, children }) {
-  const [mounted, setMounted] = useState(false)
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
-  if (!mounted) return null
+  if (!mounted) return null;
 
-  const modalRoot = document.getElementById('modal-root')
-  if (!modalRoot) return null
+  const modalRoot = document.getElementById("modal-root");
+  if (!modalRoot) return null;
 
   return ReactDOM.createPortal(
-    <Transition.Root show={open} as={Fragment} className='z-1'>
+    <Transition.Root show={open} as={Fragment} className="z-1">
       <Dialog as="div" className="absolute z-1000" onClose={onClose}>
         <Transition.Child
           as={Fragment}
@@ -42,18 +42,19 @@ export default function Example({ open, onClose, title, children }) {
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
               <Dialog.Panel className="relative flex flex-col transform rounded-lg p-4 bg-white text-left shadow-xl transition-all sm:w-full sm:max-w-xl w-full">
-                <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900 mb-3">
-                  {title || 'Title'}
+                <Dialog.Title
+                  as="h3"
+                  className="text-lg font-medium leading-6 text-gray-900 mb-3"
+                >
+                  {title || "Title"}
                 </Dialog.Title>
-                <div className=''>
-                  {children}
-                </div>
+                <div className="">{children}</div>
               </Dialog.Panel>
             </Transition.Child>
           </div>
         </div>
       </Dialog>
-    </Transition.Root>, 
+    </Transition.Root>,
     modalRoot
-  )
+  );
 }
