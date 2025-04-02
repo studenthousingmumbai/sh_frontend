@@ -1,4 +1,4 @@
-import HeroBanner from "../../../components/components/hero-banner/HeroBanner";
+import HeroBanner from "../../../components/components/HeroBanner/HeroBanner";
 import Queries from "../../../components/components/queries/Queries";
 import Quote from "../../../components/components/quote/Quote";
 import Layout from "../../../components/Layout";
