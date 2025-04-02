@@ -118,3 +118,7 @@ a {
     @apply bg-background text-foreground;
   }
 }
+
+.pageTitle {
+  @apply font-[700] text-[60px] text-black;
+}
