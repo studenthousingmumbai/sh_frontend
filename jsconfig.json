@@ -8,5 +8,5 @@
       // Add more aliases as needed
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/CarouselList.jsx"]
 }
