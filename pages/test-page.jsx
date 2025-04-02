@@ -2,6 +2,13 @@ import { useState } from "react";
 import CarouselList from "../components/CarouselList";
 import ImageViewerCarousel from "../components/ImageViewerCarousel";
 import { Card, CardContent } from "../components/components/ui/card";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "../components/components/ui/accordion";
+import FaqAccordion from "../components/FaqAccordion";
 
 const items = [
   {
@@ -49,6 +56,26 @@ const images = [
   "/banner_5.png",
 ];
 
+const faqItems = [
+  {
+    id: "item-1",
+    question: "Is it accessible?",
+    answer: "Yes. It adheres to the WAI-ARIA design pattern.",
+  },
+  {
+    id: "item-2",
+    question: "Is it styled?",
+    answer:
+      "Yes. It comes with default styles that matches the other components' aesthetic.",
+  },
+  {
+    id: "item-3",
+    question: "Is it animated?",
+    answer:
+      "Yes. It's animated by default, but you can disable it if you prefer.",
+  },
+];
+
 export default function Home() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
@@ -58,6 +85,7 @@ export default function Home() {
 
   return (
     <div className="w-full">
+      <FaqAccordion faqs={faqItems} className="mt-4 px-6 rounded-lg" />
       <div className="w-full px-20 ">
         <div className="mb-12">
           {/* Hostels list carousel */}
