@@ -89,6 +89,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ["Inter var", ...defaultTheme.fontFamily.sans],
+        cedarville: ["Cedarville Cursive", "cursive"],
       },
       spacing: {
         "1/2": "50%",
