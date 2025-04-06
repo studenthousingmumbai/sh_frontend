@@ -9,9 +9,12 @@ export default function CarouselSize({
   items,
   renderItem,
   absolutePosition = false,
+  componentName,
 }) {
   const [api, setApi] = useState();
   const [current, setCurrent] = useState(0);
+
+  console.log(componentName);
 
   useEffect(() => {
     if (!api) {
@@ -38,13 +41,17 @@ export default function CarouselSize({
         {items.map((item, index) => (
           <CarouselItem
             key={index}
-            className="md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
+            className={`${
+              componentName === "student-testimonials"
+                ? "basis-full md:basis-1/2 flex justify-center items-center"
+                : "basis-full md:basis-1/2 md:basis-1/2 lg:basis-1/3 2xl:basis-1/5"
+            }`}
           >
             {renderItem(item)}
           </CarouselItem>
         ))}
       </CarouselContent>
-      {/* <div className="flex justify-center gap-2 mt-4">
+      <div className="flex justify-center gap-2 mt-4">
         <button
           onClick={() => api?.scrollTo(current - 1)}
           className={`rounded-md bg-[#F8C14C] hover:bg-[#F8C14C]/80 p-2 ${
@@ -92,7 +99,7 @@ export default function CarouselSize({
             />
           </svg>
         </button>
-      </div> */}
+      </div>
     </Carousel>
   );
 }

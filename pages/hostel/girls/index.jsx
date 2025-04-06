@@ -7,6 +7,9 @@ import SectionTitle from "../../../components/SectionTitle";
 import OurRooms from "../../../components/OurRooms";
 import WhyChoose from "../../../components/WhyChoose";
 import RoomOptionsAndPricing from "../../../components/RoomOptionsAndPricing";
+import Occupancy from "../../../components/Occupancy";
+import Ameities from "../../../components/Amenities";
+import StudentTestimonials from "../../../components/StudentTestimonials";
 
 const faqItems = [
   {
@@ -38,7 +41,6 @@ export default function GirlsHostel() {
         }
         image={"/hero-banner/girls-hostel-hero-banner.png"}
       />
-      <SectionTitle title={"Our Rooms"} className={"my-9"} />
       <OurRooms />
 
       <div className="my-14 mx-12 lg:mx-48 border border-black opacity-10" />
@@ -47,15 +49,16 @@ export default function GirlsHostel() {
       <div className="my-9" />
       <Quote />
 
-      <SectionTitle
-        title={"Room Options And Pricing"}
-        className={"my-9 responsiveCenterPadding"}
-      />
       <RoomOptionsAndPricing />
+
+      <Occupancy />
 
       <Queries />
 
-      <SectionTitle title={"FAQ"} className={"my-9"} />
+      <Ameities />
+
+      <StudentTestimonials />
+
       <FAQ faqs={faqItems} />
     </Layout>
   );
