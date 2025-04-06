@@ -11,8 +11,8 @@ import SectionTitle from "./SectionTitle";
 
 function FAQ({ faqs, className }) {
   return (
-    <div>
-      <SectionTitle title={"FAQ"} className={"my-9"} />
+    <div className="py-12">
+      <SectionTitle title={"FAQ"} className={"mb-9"} />
 
       <div className="max-w-3xl mx-auto flex flex-col justify-center items-center">
         <Accordion

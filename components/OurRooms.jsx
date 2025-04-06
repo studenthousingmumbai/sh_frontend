@@ -13,10 +13,11 @@ export default function () {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   return (
-    <div>
-      <SectionTitle title={"Our Rooms"} className={"my-9"} />
+    <div className="relative py-12">
+      <div className="absolute inset-0 bg-[url(/bg-pattern-2.png)] bg-no-repeat z-0" />
+      <SectionTitle title={"Our Rooms"} className={"mb-9"} />
 
-      <div className="flex flex-col responsiveCenterPadding gap-6 ">
+      <div className="flex flex-col responsiveCenterPadding gap-6 z-10 ">
         {/* Image viewer carousel */}
         <ImageViewerCarousel
           images={images}

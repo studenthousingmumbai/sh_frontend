@@ -43,7 +43,36 @@ export default function RoomOptionsAndPricing({ title, subTitle, image }) {
     },
   ];
   return (
-    <div className="my-12">
+    <div className="relative py-12">
+      {/* Graphics - Positioned Behind */}
+      <div className="absolute inset-0 w-full h-full -z-10">
+        <img
+          src="/graphic-moneyverse-bussines-calendar.png"
+          className="absolute top-10 left-10 rotate-6 w-28"
+        />
+        <img
+          src="/graphic-moneyverse-credit-card.png"
+          className="absolute top-20 right-16 -rotate-12 w-24"
+        />
+        <img
+          src="/graphic-moneyverse-folder.png"
+          className="absolute bottom-10 left-1/4 rotate-3 w-20"
+        />
+        <img
+          src="/graphic-moneyverse-gifts.png"
+          className="absolute bottom-5 right-10 -rotate-6 w-32"
+        />
+        <img
+          src="/graphic-moneyverse-save-money.png"
+          className="absolute top-1/3 left-1/3 rotate-12 w-28"
+        />
+        <img
+          src="/graphic-moneyverse-transaction-approved.png"
+          className="absolute bottom-1/3 right-1/4 -rotate-3 w-24"
+        />
+      </div>
+
+      {/* Main Content */}
       <SectionTitle
         title={"Room Options And Pricing"}
         className={"mb-9 responsiveCenterPadding"}
@@ -52,7 +81,7 @@ export default function RoomOptionsAndPricing({ title, subTitle, image }) {
         <CarouselList
           items={items}
           renderItem={(item) => (
-            <Card className="shadow-sm rounded-[16px] ">
+            <Card className="shadow-sm rounded-[16px]">
               <CardContent className="flex p-4">
                 <div className="flex flex-col gap-3 overflow-hidden">
                   <div className="h-64 md:h-48 relative rounded-[14px] overflow-hidden">
@@ -73,7 +102,7 @@ export default function RoomOptionsAndPricing({ title, subTitle, image }) {
                       <MapPin />
                       <div>{item.location}</div>
                     </div>
-                    <p className="text-lg font-semibold ">
+                    <p className="text-lg font-semibold">
                       Starting from {item.price}
                     </p>
                     <p className="text-lg">

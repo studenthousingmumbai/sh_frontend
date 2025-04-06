@@ -1,6 +1,4 @@
 import CarouselList from "./CarouselList";
-import { Card, CardContent } from "./components/ui/card";
-import { MapPin } from "lucide-react";
 import SectionTitle from "./SectionTitle";
 
 export default function StudentTestimonials({ title, subTitle, image }) {
@@ -43,15 +41,26 @@ export default function StudentTestimonials({ title, subTitle, image }) {
     },
   ];
   return (
-    <div>
-      <SectionTitle title={"Student Testimonials"} className={"my-9"} />
+    <div className="relative py-12">
+      <div className="absolute inset-0 bg-[url(/bg-pattern-1.png)] z-0" />
 
-      <div className="px-12 lg:px-0">
+      <SectionTitle
+        title={"Student Testimonials"}
+        className={"mb-9 responsiveCenterPadding z-10"}
+      />
+
+      <div className="px-12 lg:px-0 z-20">
         <CarouselList
           items={items}
           componentName={"student-testimonials"}
           renderItem={(item) => (
-            <div className="bg-[#F8C14C]/10 p-6 rounded-lg xl:max-w-[845px]">
+            <div className="relative bg-[#F8C14C]/10 p-6 rounded-lg xl:max-w-[845px]">
+              <div className="absolute inset-x-0 mx-auto top-5 w-[91px] h-[70px] lg:translate-x-0">
+                <img
+                  src="/double-quotes.png"
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <p className="text-gray-700 italic mb-6 text-center">
                 "This hostel is absolutely superb, the team is friendly,
                 helpful, full of knowledge and goes the extra mile. The rooms

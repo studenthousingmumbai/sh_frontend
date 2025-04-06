@@ -1,6 +1,8 @@
 export default function Queries({ title, subTitle, image }) {
   return (
-    <div className="h-auto lg:h-[440px] bg-[linear-gradient(to_left,#F8C14C,#F8C14C33)] flex flex-col lg:flex-row responsiveCenterPadding">
+    <div className="relative h-auto lg:h-[440px] bg-[linear-gradient(to_left,#F8C14C,#F8C14C33)] flex flex-col lg:flex-row responsiveCenterPadding">
+      <div className="absolute inset-0 bg-[url(/bg-pattern-2.png)] bg-no-repeat z-0" />
+
       {/* Text Content */}
       <div className="lg:w-1/2 py-12 flex flex-col justify-center items-start gap-4 order-2 lg:order-1">
         {/* Title */}

@@ -1,7 +1,5 @@
 import SectionTitle from "./SectionTitle";
 
-function renderOptions() {}
-
 export default function WhyChoose() {
   const options = [
     {
@@ -37,7 +35,7 @@ export default function WhyChoose() {
     },
   ];
   return (
-    <div className="responsiveCenterPadding flex flex-col md:flex-row gap-8 md:gap-4">
+    <div className="responsiveCenterPadding flex flex-col md:flex-row gap-8 md:gap-4 pb-12">
       <div className="w-full md:w-2/6">
         <SectionTitle title={"Why Choose Our Girls' Hostel?"} />
       </div>

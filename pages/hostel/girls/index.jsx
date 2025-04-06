@@ -46,18 +46,17 @@ export default function GirlsHostel() {
       <div className="my-14 mx-12 lg:mx-48 border border-black opacity-10" />
       <WhyChoose />
 
-      <div className="my-9" />
       <Quote />
 
       <RoomOptionsAndPricing />
 
       <Occupancy />
 
-      <Queries />
-
       <Ameities />
 
       <StudentTestimonials />
+
+      <Queries />
 
       <FAQ faqs={faqItems} />
     </Layout>
