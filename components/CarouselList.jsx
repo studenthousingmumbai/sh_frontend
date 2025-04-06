@@ -28,7 +28,7 @@ export default function CarouselSize({
   return (
     <Carousel
       opts={{
-        align: "start",
+        // align: "start",
         loop: true,
       }}
       className="w-full"
@@ -44,7 +44,7 @@ export default function CarouselSize({
           </CarouselItem>
         ))}
       </CarouselContent>
-      <div className="flex justify-center gap-2 mt-4">
+      {/* <div className="flex justify-center gap-2 mt-4">
         <button
           onClick={() => api?.scrollTo(current - 1)}
           className={`rounded-md bg-[#F8C14C] hover:bg-[#F8C14C]/80 p-2 ${
@@ -92,7 +92,7 @@ export default function CarouselSize({
             />
           </svg>
         </button>
-      </div>
+      </div> */}
     </Carousel>
   );
 }

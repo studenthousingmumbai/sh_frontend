@@ -1,8 +1,6 @@
-import { Button } from "./components/ui/button";
-
 export default function Queries({ title, subTitle, image }) {
   return (
-    <div className="h-auto lg:h-[440px] bg-[linear-gradient(to_left,#F8C14C,#F8C14C33)] flex flex-col lg:flex-row px-12 lg:px-48">
+    <div className="h-auto lg:h-[440px] bg-[linear-gradient(to_left,#F8C14C,#F8C14C33)] flex flex-col lg:flex-row responsiveCenterPadding">
       {/* Text Content */}
       <div className="lg:w-1/2 py-12 flex flex-col justify-center items-start gap-4 order-2 lg:order-1">
         {/* Title */}
@@ -16,7 +14,9 @@ export default function Queries({ title, subTitle, image }) {
           amenities, pricing, or anything else, our team is ready to assist you.
         </div>
 
-        <Button>Reach Out to Us Anytime!</Button>
+        <button className="bg-[#F8C14C] hover:bg-[#F8C14C]/80 text-black font-[600] px-4 py-2 rounded-[8px] mr-2">
+          Reach Out to Us Anytime!
+        </button>
       </div>
 
       {/* Image Section */}

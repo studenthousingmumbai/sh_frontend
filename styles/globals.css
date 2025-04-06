@@ -120,5 +120,9 @@ a {
 }
 
 .pageTitle {
-  @apply font-[700] text-[60px] text-black;
+  @apply font-[700] text-[32px] md:text-[48px] lg:text-[60px] text-black;
+}
+
+.responsiveCenterPadding {
+  @apply px-6 sm:px-12 md:px-32 lg:px-48;
 }
