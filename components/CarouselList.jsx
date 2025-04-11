@@ -4,12 +4,14 @@ import {
   CarouselContent,
   CarouselItem,
 } from "./components/ui/carousel";
+import { motion } from "framer-motion";
 
 export default function CarouselSize({
   items,
   renderItem,
   absolutePosition = false,
   componentName,
+  autoScroll,
 }) {
   const [api, setApi] = useState();
   const [current, setCurrent] = useState(0);
@@ -28,6 +30,18 @@ export default function CarouselSize({
     });
   }, [api]);
 
+  const intervalTime = 2000; // Adjust the interval as needed (5000ms = 5 seconds)
+
+  useEffect(() => {
+    if (autoScroll) {
+      const interval = setInterval(() => {
+        api?.scrollTo(current + 1);
+      }, intervalTime);
+
+      return () => clearInterval(interval);
+    }
+  }, [api, current, autoScroll]);
+
   return (
     <Carousel
       opts={{
@@ -38,6 +52,16 @@ export default function CarouselSize({
       setApi={setApi}
     >
       <CarouselContent>
+        {/* <motion.div
+          className="flex w-max"
+          animate={{ x: ["0%", "-100%"] }}
+          transition={{
+            ease: "linear",
+            duration: 20,
+            repeat: Infinity,
+            repeatType: "loop",
+          }}
+        > */}
         {items.map((item, index) => (
           <CarouselItem
             key={index}
@@ -50,6 +74,7 @@ export default function CarouselSize({
             {renderItem(item)}
           </CarouselItem>
         ))}
+        {/* </motion.div> */}
       </CarouselContent>
       <div className="flex justify-center gap-2 mt-4">
         <button

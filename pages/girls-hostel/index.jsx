@@ -1,15 +1,14 @@
-import HeroBanner from "../../../components/HeroBanner";
-import Queries from "../../../components/Queries";
-import Quote from "../../../components/Quote";
-import Layout from "../../../components/Layout";
-import FAQ from "../../../components/FaqAccordion";
-import SectionTitle from "../../../components/SectionTitle";
-import OurRooms from "../../../components/OurRooms";
-import WhyChoose from "../../../components/WhyChoose";
-import RoomOptionsAndPricing from "../../../components/RoomOptionsAndPricing";
-import Occupancy from "../../../components/Occupancy";
-import Ameities from "../../../components/Amenities";
-import StudentTestimonials from "../../../components/StudentTestimonials";
+import HeroBanner from "../../components/HeroBanner";
+import Queries from "../../components/Queries";
+import Quote from "../../components/Quote";
+import Layout from "../../components/Layout";
+import FAQ from "../../components/FaqAccordion";
+import OurRooms from "../../components/OurRooms";
+import WhyChoose from "../../components/WhyChoose";
+import RoomOptionsAndPricing from "../../components/RoomOptionsAndPricing";
+import Occupancy from "../../components/Occupancy";
+import Ameities from "../../components/Amenities";
+import StudentTestimonials from "../../components/StudentTestimonials";
 
 const faqItems = [
   {
@@ -54,14 +53,14 @@ const ourRoomsData = {
   name: "Aster A by Student Housing",
   location: "Vile Parle West, Mumbai",
   startingFromCost: "42,000",
-  gender: "boy",
+  gender: "girl",
 };
 
-export default function BoysHostel() {
+export default function GirlsHostel() {
   return (
     <Layout>
       <HeroBanner
-        title={"Boys Hostel"}
+        title={"Girls Hostel"}
         subTitle={
           "Find the perfect stay with modern amenities, security, and a friendly community."
         }
@@ -70,7 +69,7 @@ export default function BoysHostel() {
       <OurRooms data={ourRoomsData} />
 
       <div className="my-14 mx-12 lg:mx-48 border border-black opacity-10" />
-      <WhyChoose gender="boy" />
+      <WhyChoose gender="girl" />
 
       <Quote />
 
