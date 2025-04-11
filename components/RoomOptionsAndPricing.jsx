@@ -3,7 +3,12 @@ import { Card, CardContent } from "../components/components/ui/card";
 import { MapPin } from "lucide-react";
 import SectionTitle from "./SectionTitle";
 
-export default function RoomOptionsAndPricing({ title, subTitle, image }) {
+export default function RoomOptionsAndPricing({
+  title,
+  subTitle,
+  image,
+  sectionTitle,
+}) {
   const items = [
     {
       title: "Avenue by Student Housing",
@@ -74,7 +79,7 @@ export default function RoomOptionsAndPricing({ title, subTitle, image }) {
 
       {/* Main Content */}
       <SectionTitle
-        title={"Room Options And Pricing"}
+        title={sectionTitle}
         className={"mb-9 responsiveCenterPadding"}
       />
       <div className="px-12 lg:px-0">

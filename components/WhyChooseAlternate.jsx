@@ -1,6 +1,4 @@
-import SectionTitle from "./SectionTitle";
-
-export default function WhyChoose({ gender }) {
+export default function WhyChooseAlternate() {
   const options = [
     {
       title: "Safe & Secure",
@@ -35,15 +33,8 @@ export default function WhyChoose({ gender }) {
     },
   ];
   return (
-    <div className="responsiveCenterPadding flex flex-col md:flex-row gap-8 md:gap-4 pb-12">
-      <div className="w-full md:w-2/6">
-        <SectionTitle
-          title={`Why Choose ${
-            gender.charAt(0).toUpperCase() + String(gender).slice(1)
-          }s' Hostel?`}
-        />
-      </div>
-      <div className="w-full md:w-4/6 grid grid-cols-2 gap-6 md:gap-8">
+    <div className="responsiveCenterPadding md:gap-4 pb-12">
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
         {options.map((items) => (
           <div className="flex gap-4">
             <div className="w-2/12 h-[64px] rounded-[8px] flex justify-center items-center bg-[linear-gradient(to_left,#FEF7E7,#FFFBF4)]">

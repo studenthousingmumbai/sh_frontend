@@ -9,6 +9,8 @@ import RoomOptionsAndPricing from "../../../components/RoomOptionsAndPricing";
 import Occupancy from "../../../components/Occupancy";
 import Ameities from "../../../components/Amenities";
 import StudentTestimonials from "../../../components/StudentTestimonials";
+import BestHotelsNear from "../../../components/BestHotelsNear";
+import WhyChooseAlternate from "../../../components/WhyChooseAlternate";
 
 const faqItems = [
   {
@@ -60,16 +62,16 @@ export default function GirlsHostel() {
   return (
     <Layout>
       <HeroBanner
-        title={"Girls Hostel"}
+        title={"Hostels Near Mithibai College"}
         subTitle={
           "Find the perfect stay with modern amenities, security, and a friendly community."
         }
-        image={"/hero-banner/girls-hostel-hero-banner.png"}
+        image={"/hero-banner/hostel-near-college-hero-banner.png"}
       />
-      <OurRooms data={ourRoomsData} />
+      <BestHotelsNear data={ourRoomsData} />
 
-      <div className="my-14 mx-12 lg:mx-48 border border-black opacity-10" />
-      <WhyChoose gender="girl" />
+      <div className="my-8 md:my-14 mx-12 lg:mx-48 border border-black opacity-10" />
+      <WhyChooseAlternate />
 
       <Quote />
 

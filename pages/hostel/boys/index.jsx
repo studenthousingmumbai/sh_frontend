@@ -3,6 +3,7 @@ import Queries from "../../../components/Queries";
 import Quote from "../../../components/Quote";
 import Layout from "../../../components/Layout";
 import FAQ from "../../../components/FaqAccordion";
+import SectionTitle from "../../../components/SectionTitle";
 import OurRooms from "../../../components/OurRooms";
 import WhyChoose from "../../../components/WhyChoose";
 import RoomOptionsAndPricing from "../../../components/RoomOptionsAndPricing";
@@ -53,14 +54,14 @@ const ourRoomsData = {
   name: "Aster A by Student Housing",
   location: "Vile Parle West, Mumbai",
   startingFromCost: "42,000",
-  gender: "girl",
+  gender: "boy",
 };
 
-export default function GirlsHostel() {
+export default function BoysHostel() {
   return (
     <Layout>
       <HeroBanner
-        title={"Girls Hostel"}
+        title={"Boys Hostel"}
         subTitle={
           "Find the perfect stay with modern amenities, security, and a friendly community."
         }
@@ -69,7 +70,7 @@ export default function GirlsHostel() {
       <OurRooms data={ourRoomsData} />
 
       <div className="my-14 mx-12 lg:mx-48 border border-black opacity-10" />
-      <WhyChoose gender="girl" />
+      <WhyChoose gender="boy" />
 
       <Quote />
 

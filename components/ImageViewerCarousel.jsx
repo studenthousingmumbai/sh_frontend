@@ -54,11 +54,9 @@ export default function ImageViewerCarousel({
                   key={index}
                   className="w-full h-full flex justify-center items-center rounded-lg"
                 >
-                  <Image
+                  <img
                     src={image}
                     alt={`Image ${index + 1}`}
-                    width={600}
-                    height={400}
                     className="object-contain w-full h-full rounded-lg"
                   />
                 </CarouselItem>
