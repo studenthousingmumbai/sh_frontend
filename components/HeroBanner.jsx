@@ -2,7 +2,7 @@ export default function HeroBanner({ title, subTitle, image }) {
   return (
     <div className="h-auto lg:h-[440px] bg-[linear-gradient(to_left,#F8C14C,#F8C14C33)] flex flex-col lg:flex-row">
       {/* Text Content */}
-      <div className="lg:w-1/2 p-8 lg:pl-48 flex flex-col justify-center items-start gap-4">
+      <div className="lg:w-1/2 p-6 sm:pl-12 md:pl-32 lg:pl-48 flex flex-col justify-center items-start gap-4">
         {/* Title */}
         <div className="font-[700] text-[48px] md:text-[56px] lg:text-[72px] leading-[100%]">
           {title}
