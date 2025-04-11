@@ -36,7 +36,7 @@ export default function Example() {
 
   return (
     <Popover
-      className={`bg-white mb-3 transition-shadow duration-500 ease-in-out shadow-sm ${
+      className={`bg-white transition-shadow duration-500 ease-in-out shadow-sm ${
         scrolled ? "shadow-md" : ""
       }`}
     >

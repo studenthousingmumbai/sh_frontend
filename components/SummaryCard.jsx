@@ -1,12 +1,13 @@
 import { MapPin } from "lucide-react";
 import { truncateText } from "../utils/truncateText";
+import Link from "next/link";
 
 export default function SummaryCard({
-  name,
+  hostelName,
   location,
   startingFromCost,
-  description,
-
+  hostelDescription1,
+  hostelListingLink,
   gender,
 }) {
   return (
@@ -19,11 +20,11 @@ export default function SummaryCard({
         <img src={gender === "girl" ? "/girl.png" : "/boy.png"} />
       </div>
 
-      <div className="font-[600] text-2xl leading-[150%]">{name}</div>
+      <div className="font-[600] text-2xl leading-[150%]">{hostelName}</div>
 
       <div className="flex gap-2 font-[600] text-[#F8C14C]">
         <MapPin />
-        <div>{location}</div>
+        <div>{location || "Vile Parle West, Mumbai"}</div>
       </div>
 
       <div className="font-[700] text-lg leading-[170%]">
@@ -31,16 +32,21 @@ export default function SummaryCard({
       </div>
 
       <div className="font-[400] text-lg leading-[150%]">
-        {truncateText(description, 30)}
+        {truncateText(hostelDescription1, 30)}
       </div>
 
       <div className="mt-4 flex justify-around">
-        <button className="bg-[#F8C14C] hover:bg-[#F8C14C]/80 text-black font-[600] px-4 py-2 rounded-[8px] flex-1 mr-2">
-          Book Now
-        </button>
-        <button className="bg-white border border-[#F8C14C] hover:text-[#F8C14C] text-black font-[600] px-4 py-2 rounded-[8px] flex-1">
-          Know More
-        </button>
+        <Link href={hostelListingLink || "#"} className="flex-1 mr-2">
+          <button className="w-full bg-[#F8C14C] hover:bg-[#F8C14C]/80 text-black font-[600] px-4 py-2 rounded-[8px]">
+            Book Now
+          </button>
+        </Link>
+
+        <Link href={"/contact-us"} className="flex-1">
+          <button className="w-full bg-white border border-[#F8C14C] hover:text-[#F8C14C] text-black font-[600] px-4 py-2 rounded-[8px]">
+            Know More
+          </button>
+        </Link>
       </div>
     </div>
   );
