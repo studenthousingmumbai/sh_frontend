@@ -1,10 +1,12 @@
+import Link from "next/link";
+
 export default function Queries({ title, subTitle, image }) {
   return (
     <div className="relative h-auto lg:h-[440px] bg-[linear-gradient(to_left,#F8C14C,#F8C14C33)] flex flex-col lg:flex-row responsiveCenterPadding">
       <div className="absolute inset-0 bg-[url(/bg-pattern-2.png)] bg-no-repeat z-0" />
 
       {/* Text Content */}
-      <div className="lg:w-1/2 py-12 flex flex-col justify-center items-start gap-4 order-2 lg:order-1">
+      <div className="lg:w-1/2 py-12 flex flex-col justify-center items-start gap-4 order-2 lg:order-1 z-20">
         {/* Title */}
         <div className="font-[700] text-[36px] md:text-[42px] lg:text-[48px] leading-[100%]">
           Got some queries?
@@ -16,9 +18,11 @@ export default function Queries({ title, subTitle, image }) {
           amenities, pricing, or anything else, our team is ready to assist you.
         </div>
 
-        <button className="bg-[#F8C14C] hover:bg-[#F8C14C]/80 text-black font-[600] px-4 py-2 rounded-[8px] mr-2">
-          Reach Out to Us Anytime!
-        </button>
+        <Link href={"/contact-us"}>
+          <button className="bg-[#F8C14C] hover:bg-[#F8C14C]/80 text-black font-[600] px-4 py-2 rounded-[8px] mr-2">
+            Reach Out to Us Anytime!
+          </button>
+        </Link>
       </div>
 
       {/* Image Section */}

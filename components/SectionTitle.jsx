@@ -1,5 +1,4 @@
 export default function SectionTitle({ title, className }) {
-  console.log(className);
   return (
     <div className={`${className} flex flex-col justify-center items-center`}>
       <div className={` pageTitle flex flex-col`}>

@@ -16,45 +16,61 @@ export default function Blogs({ blogs }) {
         </div>
         <div className="w-[80%] mx-auto my-12">
           {/* flex layout */}
-          <div className="flex flex-col lg:flex-row gap-4">
-            {blogs.map((blog, index) => (
-              <div
-                className="border border-gray-200 rounded-lg p-4 flex flex-col justify-between hover:scale-[1.01] hover:shadow-md hover:border-gray-400 transform transition duration-300 ease-in-out"
-                key={index}
-              >
-                {/* blog image */}
-                <div className="rounded-lg">
-                  <img
-                    className="rounded-lg"
-                    src={blog?.coverPhoto?.url}
-                    alt="blog_image"
-                  />
-                </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {blogs.map((blog, index) => {
+              let colSpanClass = "";
 
-                <div>
-                  {/* created at */}
-                  <div className="mt-3 sm:mt-4 text-xs md:text-base font-semibold text-brandColor">
-                    {moment(blog.createdOn).format("ll")}
+              if (index % 4 === 3) {
+                // Every 4th item (0, 4, 8, ...) takes full width
+                colSpanClass = "col-span-full";
+              } else if (index % 4 === 1 || index % 4 === 2) {
+                // Two items in one row (1st and 2nd in the 4-item cycle)
+                colSpanClass = "sm:col-span-1 lg:col-span-1";
+              } else {
+                // Three items in one row (3rd in the cycle)
+                colSpanClass = "sm:col-span-1 lg:col-span-1";
+              }
+
+              return (
+                <div
+                  className={`${colSpanClass} border border-gray-200 rounded-lg p-4 flex flex-col justify-between hover:scale-[1.01] hover:shadow-md hover:border-gray-400 transform transition duration-300 ease-in-out`}
+                  key={index}
+                >
+                  {/* blog image */}
+                  <div className="rounded-lg w-full h-full">
+                    <img
+                      className="rounded-lg  w-full h-full object-cover"
+                      src={blog?.coverPhoto?.url}
+                      alt="blog_image"
+                    />
                   </div>
 
-                  {/* title */}
-                  <div className="mt-2 sm:mt-3 font-bold text-sm sm:text-lg md:text-2xl">
-                    {blog.title}
+                  <div>
+                    {/* created at */}
+                    <div className="mt-3 sm:mt-4 text-xs md:text-base font-semibold text-brandColor">
+                      {moment(blog.createdOn).format("ll")}
+                    </div>
+
+                    {/* title */}
+                    <div className="mt-2 sm:mt-3 font-bold text-sm sm:text-lg md:text-2xl">
+                      {blog.title}
+                    </div>
+
+                    {/* description */}
+                    <div className="mt-2 sm:mt-3 flex-grow text-sm sm:text-base">
+                      {blog.description}
+                    </div>
                   </div>
 
-                  {/* description */}
-                  <div className="mt-2 sm:mt-3 flex-grow text-sm sm:text-base">
-                    {blog.description}
+                  {/* link to */}
+                  <div className="mt-3 text-brandColor font-semibold self-start text-xs sm:text-base">
+                    <Link href={`/blogs/${blog.id}`}>Read more...</Link>
                   </div>
                 </div>
-
-                {/* link to */}
-                <div className="mt-3 text-brandColor font-semibold self-start text-xs sm:text-base">
-                  <Link href={`/blogs/${blog.id}`}>Read more...</Link>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
+          ;
         </div>
       </div>
     </Layout>
