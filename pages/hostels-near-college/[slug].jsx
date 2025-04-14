@@ -12,6 +12,8 @@ import WhyChooseAlternate from "../../components/WhyChooseAlternate";
 import apis from "../../lib/apis";
 import useApi from "../../hooks/useApi";
 import { useEffect, useRef, useState } from "react";
+import { gql } from "@apollo/client";
+import client from "../../apolloClient";
 
 const faqItems = [
   {
@@ -61,7 +63,14 @@ const mock = {
   ],
 };
 
-export default function HostelsNearCollege({ all_listings, total, gender }) {
+export default function HostelsNearCollege({
+  all_listings,
+  total,
+  gender,
+  listingDetails,
+}) {
+  console.log("Listing details: ", listingDetails);
+
   const { getAllListings } = useApi();
   const is_mounted = useRef(false);
   const [listings, setListings] = useState(all_listings);
@@ -133,23 +142,63 @@ export default function HostelsNearCollege({ all_listings, total, gender }) {
 export async function getServerSideProps(context) {
   const { query } = context;
   const { gender } = query;
+  const { slug } = context.params;
+  console.log("Slug: ", slug);
 
-  // Fetch data from external API
-  const { listings: all_listings, total } = await apis.getAllListings(
-    process.env.NEXT_PUBLIC_API_BASE_URL,
-    {
-      filters: gender ? { publish: true, gender } : { publish: true },
-      skip: 0,
-      limit: 0,
-    }
-  );
+  try {
+    // Fetch data from external API
+    const { listings: all_listings, total } = await apis.getAllListings(
+      process.env.NEXT_PUBLIC_API_BASE_URL,
+      {
+        filters: gender ? { publish: true, gender } : { publish: true },
+        skip: 0,
+        limit: 0,
+      }
+    );
 
-  // Pass data to the page via props
-  return {
-    props: {
-      all_listings,
-      total,
-      gender: (gender && gender) || null,
-    },
-  };
+    const { data } = await client.query({
+      query: gql`
+        query FilterHostelsNearCollege($slug: String!) {
+          hostelsNearColleges(first: 1, skip: 0, where: { slug: $slug }) {
+            collegeName
+            slug
+            hostelName
+            images {
+              url
+              id
+            }
+            hostelListingLink
+            description1
+            description2
+          }
+        }
+      `,
+      variables: {
+        slug,
+      },
+    });
+    console.log("Data: ", data);
+    const { hostelsNearColleges } = data;
+    const listingDetails = hostelsNearColleges[0];
+
+    // Pass data to the page via props
+    return {
+      props: {
+        listingDetails,
+        all_listings: all_listings,
+        total,
+        gender: (gender && gender) || null,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return {
+      props: {
+        listingDetails: null,
+        all_listings: [],
+        total: 0,
+        gender: (gender && gender) || null,
+      },
+    };
+  }
 }
