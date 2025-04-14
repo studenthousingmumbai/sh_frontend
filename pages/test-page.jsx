@@ -47,6 +47,12 @@ const items = [
     price: "₹42,000",
     image: "/banner_5.png",
   },
+  {
+    title: "Avenue by Student Housing",
+    location: "Vile Parle West, Mumbai",
+    price: "₹42,000",
+    image: "/banner_1.png",
+  },
 ];
 
 const images = [

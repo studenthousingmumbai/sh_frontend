@@ -55,7 +55,7 @@ export default function ImageViewerCarousel({
                   className="w-full h-full flex justify-center items-center rounded-lg"
                 >
                   <img
-                    src={image}
+                    src={image?.url}
                     alt={`Image ${index + 1}`}
                     className="object-contain w-full h-full rounded-lg"
                   />

@@ -70,6 +70,8 @@ export default function HostelsNearCollege({
   listingDetails,
 }) {
   console.log("Listing details: ", listingDetails);
+  console.log("gender", gender);
+  console.log("all listings", all_listings);
 
   const { getAllListings } = useApi();
   const is_mounted = useRef(false);
@@ -107,14 +109,14 @@ export default function HostelsNearCollege({
   return (
     <Layout>
       <HeroBanner
-        title={`Hostels Near ${mock.collegeName}`}
+        title={`Hostels Near ${listingDetails.collegeName}`}
         subTitle={
           "Find the perfect stay with modern amenities, security, and a friendly community."
         }
         // image={"/hero-banner/hostel-near-college-hero-banner.png"}
-        image={mock.images[0]}
+        image={listingDetails.images[0]?.url}
       />
-      <BestHotelsNear data={mock} />
+      <BestHotelsNear data={listingDetails} />
 
       <div className="my-8 md:my-14 mx-12 lg:mx-48 border border-black opacity-10" />
       <WhyChooseAlternate />
@@ -122,7 +124,7 @@ export default function HostelsNearCollege({
       <Quote />
 
       <RoomOptionsAndPricing
-        sectionTitle={`Hostels Near ${mock.collegeName}`}
+        sectionTitle={`Hostels Near ${listingDetails.collegeName}`}
         data={listings}
       />
 
