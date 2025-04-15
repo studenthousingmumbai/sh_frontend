@@ -15,25 +15,7 @@ import { useEffect, useRef, useState } from "react";
 import { gql } from "@apollo/client";
 import client from "../../apolloClient";
 
-const faqItems = [
-  {
-    id: "item-1",
-    question: "Is it accessible?",
-    answer: "Yes. It adheres to the WAI-ARIA design pattern.",
-  },
-  {
-    id: "item-2",
-    question: "Is it styled?",
-    answer:
-      "Yes. It comes with default styles that matches the other components' aesthetic.",
-  },
-  {
-    id: "item-3",
-    question: "Is it animated?",
-    answer:
-      "Yes. It's animated by default, but you can disable it if you prefer.",
-  },
-];
+
 
 const mock = {
   slug: "sss",
@@ -70,6 +52,27 @@ export default function HostelsNearCollege({
   listingDetails,
 }) {
   console.log("Listing details: ", listingDetails);
+
+
+  const faqItems = [
+    {
+      id: "item-1",
+      question: "Is it accessible?",
+      answer: "Yes. It adheres to the WAI-ARIA design pattern.",
+    },
+    {
+      id: "item-2",
+      question: "Is it styled?",
+      answer:
+        "Yes. It comes with default styles that matches the other components' aesthetic.",
+    },
+    {
+      id: "item-3",
+      question: "Is it animated?",
+      answer:
+        "Yes. It's animated by default, but you can disable it if you prefer.",
+    },
+  ];
 
   const { getAllListings } = useApi();
   const is_mounted = useRef(false);
@@ -184,7 +187,7 @@ export async function getServerSideProps(context) {
     // Pass data to the page via props
     return {
       props: {
-        listingDetails,
+        listingDetails: listingDetails ?? null,
         all_listings: all_listings,
         total,
         gender: (gender && gender) || null,
