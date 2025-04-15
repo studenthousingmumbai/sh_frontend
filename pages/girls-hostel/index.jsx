@@ -54,6 +54,13 @@ const ourRoomsData = {
   location: "Vile Parle West, Mumbai",
   startingFromCost: "42,000",
   gender: "girl",
+  hostelName: "Aster A by Student Housing",
+  hostelListingLink: "#",
+  hostelDescription1:
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed nunc et libero finibus interdum. Nam augue urna, dapibus et consectetur sed, ullamcorper in nunc. Vestibulum maximus nunc nec arcu",
+  hostelDescription2: "fdsalkjsadg",
+  location: "Ville Parle",
+  startingFromCost: "₹42,000",
 };
 
 export default function GirlsHostel() {

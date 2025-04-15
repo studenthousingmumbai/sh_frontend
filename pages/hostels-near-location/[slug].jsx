@@ -110,9 +110,9 @@ export default function HostelsNearLocation({
           "Find the perfect stay with modern amenities, security, and a friendly community."
         }
         // image={"/hero-banner/hostel-near-college-hero-banner.png"}
-        image={mock.images[0]}
+        image={listingData.images[0]}
       />
-      <BestHotelsNearLocation data={mock} />
+      <BestHotelsNearLocation data={listingData} />
 
       <div className="my-8 md:my-14 mx-12 lg:mx-48 border border-black opacity-10" />
       <WhyChooseAlternate />
