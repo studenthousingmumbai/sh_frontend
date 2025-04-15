@@ -3,8 +3,9 @@ import { truncateText } from "../utils/truncateText";
 import Link from "next/link";
 
 export default function SummaryCard({
+  id,
   hostelName,
-  location,
+  address,
   startingFromCost,
   description2,
   gender,
@@ -14,10 +15,10 @@ export default function SummaryCard({
       {gender && (
         <div
           className={`absolute top-0 right-0 ${
-            gender === "girl" ? "bg-[#FFAEDF]" : "bg-[#99D0FF]"
+            gender === "female" ? "bg-[#FFAEDF]" : "bg-[#99D0FF]"
           } p-2.5 rounded-tr-[12px] rounded-bl-[12px]`}
         >
-          <img src={gender === "girl" ? "/girl.png" : "/boy.png"} />
+          <img src={gender === "female" ? "/girl.png" : "/boy.png"} />
         </div>
       )}
 
@@ -25,7 +26,7 @@ export default function SummaryCard({
 
       <div className="flex gap-2 font-[600] text-[#F8C14C]">
         <MapPin />
-        <div>{location || "-"}</div>
+        <div>{`${address?.line_1} ${address?.line_2} ${address?.city}`}</div>
       </div>
 
       <div className="font-[700] text-lg leading-[170%]">
@@ -37,7 +38,7 @@ export default function SummaryCard({
       </div>
 
       <div className="mt-4 flex justify-around">
-        <Link href={"#"} className="flex-1 mr-2">
+        <Link href={`/listing/${id}`} className="flex-1 mr-2">
           <button className="w-full bg-[#F8C14C] hover:bg-[#F8C14C]/80 text-black font-[600] px-4 py-2 rounded-[8px]">
             Book Now
           </button>

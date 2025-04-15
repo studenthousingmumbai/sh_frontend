@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import HeroBanner from "../../components/HeroBanner";
 import Queries from "../../components/Queries";
 import Quote from "../../components/Quote";
@@ -9,6 +10,9 @@ import RoomOptionsAndPricing from "../../components/RoomOptionsAndPricing";
 import Occupancy from "../../components/Occupancy";
 import Ameities from "../../components/Amenities";
 import StudentTestimonials from "../../components/StudentTestimonials";
+import apis from "../../lib/apis";
+import { useRouter } from "next/navigation";
+import useApi from "../../hooks/useApi";
 
 const faqItems = [
   {
@@ -63,7 +67,10 @@ const ourRoomsData = {
   startingFromCost: "₹42,000",
 };
 
-export default function BoysHostel() {
+export default function BoysHostel({ all_listings, total, gender }) {
+  const router = useRouter();
+  const [listings, setListings] = useState(all_listings);
+
   return (
     <Layout>
       <HeroBanner
@@ -71,16 +78,16 @@ export default function BoysHostel() {
         subTitle={
           "Find the perfect stay with modern amenities, security, and a friendly community."
         }
-        image={"/hero-banner/girls-hostel-hero-banner.png"}
+        image={"/hero-banner/boys-hostel-hero-banner.png"}
       />
-      <OurRooms data={ourRoomsData} />
+      <OurRooms data={listings[0]} />
 
       <div className="my-14 mx-12 lg:mx-48 border border-black opacity-10" />
       <WhyChoose gender="boy" />
 
       <Quote />
 
-      <RoomOptionsAndPricing />
+      <RoomOptionsAndPricing data={listings} />
 
       <Occupancy />
 
@@ -93,4 +100,30 @@ export default function BoysHostel() {
       <FAQ faqs={faqItems} />
     </Layout>
   );
+}
+
+export async function getServerSideProps(context) {
+  console.log("Get server side props called!");
+  const { query } = context;
+
+  // Fetch data from external API
+  const { listings: all_listings, total } = await apis.getAllListings(
+    process.env.NEXT_PUBLIC_API_BASE_URL,
+    {
+      filters: { publish: true, gender: "male" },
+      skip: 0,
+      limit: 0,
+    }
+  );
+
+  console.log("All listings: ", all_listings, " total: ", total);
+
+  // Pass data to the page via props
+  return {
+    props: {
+      all_listings,
+      total,
+      gender: "male",
+    },
+  };
 }

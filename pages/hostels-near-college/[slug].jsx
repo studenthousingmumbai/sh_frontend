@@ -15,8 +15,6 @@ import { useEffect, useRef, useState } from "react";
 import { gql } from "@apollo/client";
 import client from "../../apolloClient";
 
-
-
 const mock = {
   slug: "sss",
   collegeName: "Mithibai College",
@@ -55,7 +53,6 @@ export default function HostelsNearCollege({
   console.log("gender", gender);
   console.log("all listings", all_listings);
 
-
   const faqItems = [
     {
       id: "item-1",
@@ -82,33 +79,6 @@ export default function HostelsNearCollege({
   const [loading, setLoading] = useState(false);
   const [listingGender, setListingGender] = useState("all");
 
-  const fetchListings = async (filters = {}, skip = 0, limit = 0) => {
-    setLoading(true);
-
-    const { listings: all_listings, total } = await getAllListings({
-      filters,
-      skip,
-      limit,
-    });
-
-    console.log("Fetched all listings: ", all_listings);
-
-    setListings(all_listings);
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    if (!is_mounted.current) {
-      is_mounted.current = true;
-    } else {
-      if (listingGender === "all") {
-        fetchListings({ publish: true });
-      } else {
-        fetchListings({ gender: listingGender, publish: true });
-      }
-    }
-  }, [listingGender]);
-
   return (
     <Layout>
       <HeroBanner
@@ -116,8 +86,7 @@ export default function HostelsNearCollege({
         subTitle={
           "Find the perfect stay with modern amenities, security, and a friendly community."
         }
-        // image={"/hero-banner/hostel-near-college-hero-banner.png"}
-        image={listingDetails.images[0]?.url}
+        image={"/hero-banner/hostel-near-college-hero-banner.png"}
       />
       <BestHotelsNear data={listingDetails} />
 

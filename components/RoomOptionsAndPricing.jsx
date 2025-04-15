@@ -79,7 +79,7 @@ export default function RoomOptionsAndPricing({ sectionTitle, data }) {
                       <div>{`${item.address?.line_1} ${item.address?.line_2}, ${item.address?.city}`}</div>
                     </div>
                     <p className="text-lg font-semibold flex-1">
-                      Starting from {item.price}
+                      Starting from ₹{item.price}
                     </p>
                     <p className="text-lg flex-grow  flex-1">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.

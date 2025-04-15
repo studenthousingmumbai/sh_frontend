@@ -74,33 +74,6 @@ export default function HostelsNearLocation({
   const { getAllListings } = useApi();
   const is_mounted = useRef(false);
   const [listings, setListings] = useState(all_listings);
-  const [loading, setLoading] = useState(false);
-  const [listingGender, setListingGender] = useState("all");
-
-  const fetchListings = async (filters = {}, skip = 0, limit = 0) => {
-    setLoading(true);
-
-    const { listings: all_listings, total } = await getAllListings({
-      filters,
-      skip,
-      limit,
-    });
-
-    setListings(all_listings);
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    if (!is_mounted.current) {
-      is_mounted.current = true;
-    } else {
-      if (listingGender === "all") {
-        fetchListings({ publish: true });
-      } else {
-        fetchListings({ gender: listingGender, publish: true });
-      }
-    }
-  }, [listingGender]);
 
   return (
     <Layout>
@@ -109,10 +82,9 @@ export default function HostelsNearLocation({
         subTitle={
           "Find the perfect stay with modern amenities, security, and a friendly community."
         }
-        // image={"/hero-banner/hostel-near-college-hero-banner.png"}
-        image={listingData.images[0]}
+        image={"/hero-banner/hostel-near-location-hero-banner.png"}
       />
-      <BestHotelsNearLocation data={listingData} />
+      <BestHotelsNearLocation data={listingDetails} />
 
       <div className="my-8 md:my-14 mx-12 lg:mx-48 border border-black opacity-10" />
       <WhyChooseAlternate />
@@ -172,6 +144,7 @@ export async function getServerSideProps(context) {
     console.log("Data: ", data);
     const { hostelsNearLocations } = data;
     const listingDetails = hostelsNearLocations[0];
+    console.log("listing details", listingDetails);
 
     // Pass data to the page via props
     return {

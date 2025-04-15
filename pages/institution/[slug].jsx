@@ -107,8 +107,7 @@ export default function Institutions({
         subTitle={
           "Find the perfect stay with modern amenities, security, and a friendly community."
         }
-        // image={"/hero-banner/hostel-near-college-hero-banner.png"}
-        image={mock.images[0]}
+        image={"/hero-banner/institution-hero-banner.png"}
       />
       <Ameities />
 

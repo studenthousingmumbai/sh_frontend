@@ -7,13 +7,14 @@ const nextConfig = {
   // },
   images: {
     domains: [
-      'd22y2gqvewxrcl.cloudfront.net', 
-      'google.com', 
-      'i.pinimg.com', 
-      'www.iconinc.co.uk',
-      'media.graphassets.com'
-    ]
-  }
-}
+      "d22y2gqvewxrcl.cloudfront.net",
+      "google.com",
+      "i.pinimg.com",
+      "www.iconinc.co.uk",
+      "media.graphassets.com",
+      "student-housing-data-bucket.s3.ap-south-1.amazonaws.com",
+    ],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

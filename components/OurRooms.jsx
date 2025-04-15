@@ -14,7 +14,11 @@ export default function ({ data }) {
       <div className="flex flex-col responsiveCenterPadding gap-6 z-10">
         {/* Image viewer carousel */}
         <ImageViewerCarousel
-          images={data.images}
+          images={data.images?.map((imgs) => {
+            return {
+              url: imgs,
+            };
+          })}
           startIndex={1}
           isOpen={isDialogOpen}
           onOpenChange={setIsDialogOpen}
@@ -54,7 +58,18 @@ export default function ({ data }) {
 
         <div className="flex  flex-col md:flex-row gap-6 z-30">
           <div className="w-full md:w-5/12">
-            <SummaryCard {...data} />
+            <SummaryCard
+              {...data}
+              description2={data.description}
+              hostelName={data.name}
+              startingFromCost={data.price}
+              gender={data.gender}
+              address={{
+                line_1: "Test",
+                line_2: "Test",
+                city: "Mumbai",
+              }}
+            />
           </div>
           <div className="w-full md:w-7/12 font-[400] text-lg leading-[150%]">
             {data.description}
