@@ -90,12 +90,12 @@ export default function RoomOptionsAndPricing({ sectionTitle, data }) {
                         href={`/listing/${item.id}`}
                         className="flex-1 mr-2"
                       >
-                        <button className="w-full bg-[#F8C14C] hover:bg-[#F8C14C]/80 text-black text-sm md:text-base font-semibold px-4 py-2 rounded-[8px]">
+                        <button className="w-full bg-[#F8C14C] hover:bg-[#F8C14C]/80 text-black text-sm  font-semibold px-4 py-2 rounded-[8px]">
                           Book Now
                         </button>
                       </Link>
                       <Link href={"/contact-us"} className="flex-1">
-                        <button className="w-full bg-white border border-[#F8C14C] hover:text-[#F8C14C] text-sm md:text-base text-black font-semibold px-4 py-2 rounded-[8px]">
+                        <button className="w-full bg-white border border-[#F8C14C] hover:text-[#F8C14C] text-sm  text-black font-semibold px-4 py-2 rounded-[8px]">
                           Know More
                         </button>
                       </Link>

@@ -6,6 +6,8 @@ import SectionTitle from "./SectionTitle";
 export default function BestHotelsNearLocation({ data }) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
+  console.log("Best Hostels newar lcat", data);
+
   return (
     <div className="relative py-12 responsiveCenterPadding">
       <div className="absolute inset-0 bg-[url(/bg-pattern-2.png)] bg-no-repeat z-0" />

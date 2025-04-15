@@ -16,8 +16,6 @@ export default function CarouselSize({
   const [api, setApi] = useState();
   const [current, setCurrent] = useState(0);
 
-  console.log(componentName);
-
   useEffect(() => {
     if (!api) {
       return;
@@ -68,7 +66,7 @@ export default function CarouselSize({
             className={`${
               componentName === "student-testimonials"
                 ? "basis-full md:basis-1/2 flex justify-center items-center"
-                : "basis-full md:basis-1/2 lg:basis-1/3 2xl:basis-1/5"
+                : "basis-full md:basis-1/2 lg:basis-1/3 2xl:basis-1/4"
             }`}
           >
             {renderItem(item)}
