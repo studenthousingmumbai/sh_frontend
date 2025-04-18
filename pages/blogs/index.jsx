@@ -5,7 +5,6 @@ import moment from "moment/moment";
 import Link from "next/link";
 
 export default function Blogs({ blogs }) {
-  console.log(blogs);
   return (
     <Layout>
       <div className="">
@@ -18,22 +17,10 @@ export default function Blogs({ blogs }) {
           {/* flex layout */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {blogs.map((blog, index) => {
-              let colSpanClass = "";
-
-              if (index % 4 === 3) {
-                // Every 4th item (0, 4, 8, ...) takes full width
-                colSpanClass = "col-span-full";
-              } else if (index % 4 === 1 || index % 4 === 2) {
-                // Two items in one row (1st and 2nd in the 4-item cycle)
-                colSpanClass = "sm:col-span-1 lg:col-span-1";
-              } else {
-                // Three items in one row (3rd in the cycle)
-                colSpanClass = "sm:col-span-1 lg:col-span-1";
-              }
-
               return (
-                <div
-                  className={`${colSpanClass} border border-gray-200 rounded-lg p-4 flex flex-col justify-between hover:scale-[1.01] hover:shadow-md hover:border-gray-400 transform transition duration-300 ease-in-out`}
+                <Link
+                  href={`/blogs/${blog.id}`}
+                  className={`border border-gray-200 rounded-lg p-4 flex flex-col justify-between hover:scale-[1.01] hover:shadow-md hover:border-gray-400 transform transition duration-300 ease-in-out`}
                   key={index}
                 >
                   {/* blog image */}
@@ -64,9 +51,9 @@ export default function Blogs({ blogs }) {
 
                   {/* link to */}
                   <div className="mt-3 text-brandColor font-semibold self-start text-xs sm:text-base">
-                    <Link href={`/blogs/${blog.id}`}>Read more...</Link>
+                    Read more...
                   </div>
-                </div>
+                </Link>
               );
             })}
           </div>
