@@ -51,6 +51,7 @@ export default function StudentTestimonials({ title, subTitle, image }) {
 
       <div className="px-12 lg:px-0 z-20">
         <CarouselList
+          autoScroll={true}
           items={items}
           componentName={"student-testimonials"}
           renderItem={(item) => (
