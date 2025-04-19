@@ -144,6 +144,9 @@ export async function getServerSideProps(context) {
             hostelListingLink
             description1
             description2
+            gender
+            price
+            address
           }
         }
       `,

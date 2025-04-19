@@ -13,7 +13,7 @@ export default function InstitutionImageCollage({ images }) {
       </div>
 
       <div className="w-[40%] h-[192px] absolute bottom-0 right-0 overflow-hidden rounded-tl-[8px] rounded-tr-[8px] rounded-br-[8px] rounded-bl-[999px]">
-        <img className="w-full h-full object-cover" src={images[1]} />
+        <img className="w-full h-full object-cover" src={images[2]} />
       </div>
     </div>
   );
