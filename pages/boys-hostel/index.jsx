@@ -19,7 +19,7 @@ export default function BoysHostel({ all_listings, total, gender }) {
   const [randomFaqs, setRandomFaqs] = useState([]);
 
   useLayoutEffect(() => {
-    setRandomFaqs(pickRandomFaqs(3));
+    setRandomFaqs(pickRandomFaqs(6));
   }, []);
 
   return (

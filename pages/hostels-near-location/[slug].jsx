@@ -28,7 +28,7 @@ export default function HostelsNearLocation({
   const [randomFaqs, setRandomFaqs] = useState([]);
 
   useLayoutEffect(() => {
-    setRandomFaqs(pickRandomFaqs(3));
+    setRandomFaqs(pickRandomFaqs(6));
   }, []);
 
   return (
