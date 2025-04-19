@@ -31,22 +31,19 @@ export default function ImageViewerCarousel({
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="w-full bg-transparent p-0 shadow-none border-none [&>button:last-child]:hidden">
+      <DialogContent className="w-full max-w-3xl mx-auto bg-transparent p-0 shadow-none border-none [&>button:last-child]:hidden flex  items-center justify-center">
         <Carousel
           opts={{
             align: "start",
             loop: true,
             startIndex,
           }}
-          className="w-full"
+          className="w-full max-w-3xl mx-auto"
           setApi={setApi}
         >
           <CarouselContent>
             {images.map((image, index) => (
-              <CarouselItem
-                key={index}
-                className="w-full h-full flex justify-center items-center"
-              >
+              <CarouselItem key={index}>
                 <Image
                   src={image.url}
                   alt={`Image ${index + 1}`}
