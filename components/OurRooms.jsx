@@ -60,10 +60,7 @@ export default function ({ data }) {
           <div className="w-full md:w-5/12">
             <SummaryCard
               {...data}
-              description2={data.description}
-              hostelName={data.name}
-              startingFromCost={data.price}
-              gender={data.gender}
+              hostelDescription={data.description}
               address={{
                 line_1: "Test",
                 line_2: "Test",

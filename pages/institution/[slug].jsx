@@ -93,6 +93,8 @@ export default function Institutions({
   gender,
   listingDetails,
 }) {
+  console.log("listing details", listingDetails);
+  console.log("all listing", all_listings);
   return (
     <Layout>
       <HeroBanner

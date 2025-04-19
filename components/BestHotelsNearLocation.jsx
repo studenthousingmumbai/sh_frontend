@@ -6,6 +6,8 @@ import SectionTitle from "./SectionTitle";
 export default function BestHotelsNearLocation({ data }) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
+  console.log("data", data);
+
   return (
     <div className="relative py-12 responsiveCenterPadding">
       <div className="absolute inset-0 bg-[url(/bg-pattern-2.png)] bg-no-repeat z-0" />
@@ -34,7 +36,12 @@ export default function BestHotelsNearLocation({ data }) {
         </div>
         <div className="flex flex-col justify-between gap-4 z-30 w-full xl:w-5/12">
           <div className="w-full">
-            <SummaryCard {...data} />
+            <SummaryCard
+              {...data}
+              address={{
+                line_1: data.address,
+              }}
+            />
           </div>
           <div className="font-semibold text-2xl">Compatible For</div>
           <div className="flex flex-col lg:flex-row gap-6 z-20">
