@@ -57,7 +57,6 @@ export default function Blogs({ blogs }) {
               );
             })}
           </div>
-          ;
         </div>
       </div>
     </Layout>

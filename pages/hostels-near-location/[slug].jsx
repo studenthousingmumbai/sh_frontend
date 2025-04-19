@@ -132,6 +132,9 @@ export async function getServerSideProps(context) {
             }
             hostelListingLink
             hostelDescription
+            gender
+            price
+            address
           }
         }
       `,

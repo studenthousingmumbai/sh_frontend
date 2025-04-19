@@ -127,22 +127,56 @@ export async function getServerSideProps(context) {
   const { query } = context;
   const { gender } = query;
 
-  // Fetch data from external API
-  const { listings: all_listings, total } = await apis.getAllListings(
-    process.env.NEXT_PUBLIC_API_BASE_URL,
-    {
-      filters: gender ? { publish: true, gender } : { publish: true },
-      skip: 0,
-      limit: 0,
-    }
-  );
+  try {
+    // Fetch data from external API
+    const { listings: all_listings, total } = await apis.getAllListings(
+      process.env.NEXT_PUBLIC_API_BASE_URL,
+      {
+        filters: gender ? { publish: true, gender } : { publish: true },
+        skip: 0,
+        limit: 0,
+      }
+    );
 
-  // Pass data to the page via props
-  return {
-    props: {
-      all_listings,
-      total,
-      gender: (gender && gender) || null,
-    },
-  };
+    const { data } = await client.query({
+      query: gql`
+        query Institution($slug: String!) {
+          institutions(where: { slug: $slug }, first: 1, skip: 0) {
+            slug
+            collegeName
+            aboutCollege
+            collegeSellingPoints {
+              title
+              description
+            }
+          }
+        }
+      `,
+      variables: {
+        slug,
+      },
+    });
+    const { institutions } = data;
+    const listingDetails = institutions[0];
+
+    // Pass data to the page via props
+    return {
+      props: {
+        listingDetails,
+        all_listings,
+        total,
+        gender: (gender && gender) || null,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return {
+      props: {
+        listingDetails: null,
+        all_listings: [],
+        total: 0,
+        gender: (gender && gender) || null,
+      },
+    };
+  }
 }

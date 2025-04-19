@@ -80,9 +80,10 @@ export default function RoomOptionsAndPricing({ sectionTitle, data }) {
                     <p className="text-lg font-semibold flex-1">
                       Starting from ₹{item.price}
                     </p>
-                    <p className="text-lg flex-grow  flex-1">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Nunc tincidunt tristique...
+                    <p className="text-lg flex-grow flex-1">
+                      {item.description.length > 100
+                        ? `${item.description.slice(0, 100)}...`
+                        : item.description}
                     </p>
                     <div className="mt-4 flex justify-around">
                       <Link
