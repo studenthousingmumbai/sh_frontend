@@ -31,10 +31,16 @@ export default function BestHotelsNear({ data }) {
       <div className="flex flex-col xl:flex-row z-10 mt-9 gap-6">
         <div className="flex flex-col gap-6 z-30 w-full xl:w-5/12">
           <div className="w-full ">
-            <SummaryCard {...data} />
+            <SummaryCard
+              {...data}
+              address={{
+                line_1: data.address,
+              }}
+              hostelDescription={data.description1}
+            />
           </div>
           <div className="w-full font-[400] text-lg leading-[150%]">
-            {data.description1}
+            {data.description2}
           </div>
         </div>
 

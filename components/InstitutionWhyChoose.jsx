@@ -12,12 +12,12 @@ export default function InstitutionWhyChoose({ data }) {
 
       <div className="flex  flex-col lg:flex-row gap-4">
         <div className="flex flex-col w-full lg:w-1/2 gap-6">
-          {data.whyChoose.map((wChoose) => {
+          {data.collegeSellingPoints.map((wChoose) => {
             return (
               <div className="" key={wChoose.title}>
                 <div className="text-2xl">
                   <span className="font-bold ">{wChoose.title} – </span>
-                  <span>{wChoose.subTitle}</span>
+                  <span>{wChoose.description}</span>
                 </div>
               </div>
             );
@@ -25,7 +25,11 @@ export default function InstitutionWhyChoose({ data }) {
         </div>
         <div className="w-full lg:w-1/2">
           <InstitutionImageCollage
-            images={[data.images[3], data.images[4], data.images[5]]}
+            images={[
+              data?.images[3]?.url,
+              data?.images[4]?.url,
+              data?.images[5]?.url,
+            ]}
           />
         </div>
       </div>

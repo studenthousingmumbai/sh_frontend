@@ -6,10 +6,12 @@ export default function SummaryCard({
   id,
   hostelName,
   address,
-  startingFromCost,
-  description2,
+  price,
+  hostelDescription,
   gender,
+  hostelListingLink,
 }) {
+  console.log("address", address);
   return (
     <div className="relative w-full h-full rounded-2xl border border-[rgba(0,0,0,0.10)] p-4 flex flex-col gap-2 bg-white">
       {gender && (
@@ -26,19 +28,24 @@ export default function SummaryCard({
 
       <div className="flex gap-2 font-[600] text-[#F8C14C]">
         <MapPin />
-        <div>{`${address?.line_1} ${address?.line_2} ${address?.city}`}</div>
+        <div>{`${address?.line_1} ${address?.line_2 || ""} ${
+          address?.city || ""
+        }`}</div>
       </div>
 
       <div className="font-[700] text-lg leading-[170%]">
-        Starting from ₹{startingFromCost}
+        Starting from ₹{price}
       </div>
 
       <div className="font-[400] text-lg leading-[150%]">
-        {truncateText(description2, 30)}
+        {truncateText(hostelDescription, 30)}
       </div>
 
       <div className="mt-4 flex justify-around">
-        <Link href={`/listing/${id}`} className="flex-1 mr-2">
+        <Link
+          href={id ? `/listing/${id}` : hostelListingLink}
+          className="flex-1 mr-2"
+        >
           <button className="w-full bg-[#F8C14C] hover:bg-[#F8C14C]/80 text-black font-[600] px-4 py-2 rounded-[8px]">
             Book Now
           </button>

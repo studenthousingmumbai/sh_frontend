@@ -38,7 +38,7 @@ const navigation = {
     },
     {
       name: "Linkedin",
-      href: "#",
+      href: "https://in.linkedin.com/company/student-housing-india",
       icon: (props) => (
         <svg
           viewBox="0 0 24 24"

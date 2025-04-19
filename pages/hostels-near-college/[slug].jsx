@@ -1,3 +1,4 @@
+import React, { useLayoutEffect, useState } from "react";
 import HeroBanner from "../../components/HeroBanner";
 import Queries from "../../components/Queries";
 import Quote from "../../components/Quote";
@@ -10,38 +11,9 @@ import StudentTestimonials from "../../components/StudentTestimonials";
 import BestHotelsNear from "../../components/BestHotelsNear";
 import WhyChooseAlternate from "../../components/WhyChooseAlternate";
 import apis from "../../lib/apis";
-import useApi from "../../hooks/useApi";
-import { useEffect, useRef, useState } from "react";
 import { gql } from "@apollo/client";
 import client from "../../apolloClient";
-
-const mock = {
-  slug: "sss",
-  collegeName: "Mithibai College",
-  hostelName: "Aster A by Student Housing",
-  hostelListingLink: "#",
-  hostelDescription1:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed nunc et libero finibus interdum. Nam augue urna, dapibus et consectetur sed, ullamcorper in nunc. Vestibulum maximus nunc nec arcu",
-  hostelDescription2:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed nunc et libero finibus interdum. Nam augue urna, dapibus et consectetur sed, ullamcorper in nunc. Vestibulum maximus nunc nec arcu egestas, congue sollicitudin nibh pellentesque. Praesent porttitor nibh id velit gravida, sit amet vehicula dui dictum. Nullam ornare quam sed enim volutpat, vel posuere sem porta. Fusce tempus, velit id condimentum mollis, libero est maximus diam, luctus tristique orci arcu vulputate erat. Nulla fermentum nulla ac rutrum finibus. Morbi in nibh aliquam odio ultricies viverra ac ut diam",
-  images: [
-    "/hostels/girls-rooms-img-1.png",
-    "/hostels/girls-rooms-img-2.png",
-    "/hostels/girls-rooms-img-3.png",
-    "/hostels/girls-rooms-img-1.png",
-    "/hostels/girls-rooms-img-2.png",
-    "/hostels/girls-rooms-img-3.png",
-    "/hostels/girls-rooms-img-1.png",
-    "/hostels/girls-rooms-img-2.png",
-    "/hostels/girls-rooms-img-3.png",
-    "/hostels/girls-rooms-img-1.png",
-    "/hostels/girls-rooms-img-2.png",
-    "/hostels/girls-rooms-img-3.png",
-    "/hostels/girls-rooms-img-1.png",
-    "/hostels/girls-rooms-img-2.png",
-    "/hostels/girls-rooms-img-3.png",
-  ],
-};
+import { pickRandomFaqs } from "../../utils/faqs";
 
 export default function HostelsNearCollege({
   all_listings,
@@ -53,31 +25,12 @@ export default function HostelsNearCollege({
   console.log("gender", gender);
   console.log("all listings", all_listings);
 
-  const faqItems = [
-    {
-      id: "item-1",
-      question: "Is it accessible?",
-      answer: "Yes. It adheres to the WAI-ARIA design pattern.",
-    },
-    {
-      id: "item-2",
-      question: "Is it styled?",
-      answer:
-        "Yes. It comes with default styles that matches the other components' aesthetic.",
-    },
-    {
-      id: "item-3",
-      question: "Is it animated?",
-      answer:
-        "Yes. It's animated by default, but you can disable it if you prefer.",
-    },
-  ];
-
-  const { getAllListings } = useApi();
-  const is_mounted = useRef(false);
   const [listings, setListings] = useState(all_listings);
-  const [loading, setLoading] = useState(false);
-  const [listingGender, setListingGender] = useState("all");
+  const [randomFaqs, setRandomFaqs] = useState([]);
+
+  useLayoutEffect(() => {
+    setRandomFaqs(pickRandomFaqs(6));
+  }, []);
 
   return (
     <Layout>
@@ -108,7 +61,7 @@ export default function HostelsNearCollege({
 
       <Queries />
 
-      <FAQ faqs={faqItems} />
+      <FAQ faqs={randomFaqs} />
     </Layout>
   );
 }
