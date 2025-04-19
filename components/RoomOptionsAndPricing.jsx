@@ -5,7 +5,6 @@ import SectionTitle from "./SectionTitle";
 import Link from "next/link";
 
 export default function RoomOptionsAndPricing({ sectionTitle, data }) {
-  console.log(data);
   return (
     <div className="relative py-12">
       {/* Graphics - Positioned Behind */}

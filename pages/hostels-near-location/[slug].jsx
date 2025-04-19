@@ -14,6 +14,7 @@ import useApi from "../../hooks/useApi";
 import BestHotelsNearLocation from "../../components/BestHotelsNearLocation";
 import { gql } from "@apollo/client";
 import client from "../../apolloClient";
+import InterestedEnquireForm from "../../components/InterestedEnquireForm";
 
 const faqItems = [
   {
@@ -69,8 +70,6 @@ export default function HostelsNearLocation({
   gender,
   listingDetails,
 }) {
-  console.log("Listing details: ", listingDetails);
-
   const { getAllListings } = useApi();
   const is_mounted = useRef(false);
   const [listings, setListings] = useState(all_listings);
@@ -99,7 +98,7 @@ export default function HostelsNearLocation({
 
       <StudentTestimonials />
 
-      <Queries />
+      <InterestedEnquireForm />
 
       <FAQ faqs={faqItems} />
     </Layout>
@@ -110,7 +109,6 @@ export async function getServerSideProps(context) {
   const { query } = context;
   const { gender } = query;
   const { slug } = context.params;
-  console.log("Slug: ", slug);
 
   try {
     // Fetch data from external API
@@ -141,10 +139,8 @@ export async function getServerSideProps(context) {
         slug,
       },
     });
-    console.log("Data: ", data);
     const { hostelsNearLocations } = data;
     const listingDetails = hostelsNearLocations[0];
-    console.log("listing details", listingDetails);
 
     // Pass data to the page via props
     return {

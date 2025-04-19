@@ -6,8 +6,6 @@ import SectionTitle from "./SectionTitle";
 export default function BestHotelsNearLocation({ data }) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  console.log("Best Hostels newar lcat", data);
-
   return (
     <div className="relative py-12 responsiveCenterPadding">
       <div className="absolute inset-0 bg-[url(/bg-pattern-2.png)] bg-no-repeat z-0" />
@@ -26,7 +24,7 @@ export default function BestHotelsNearLocation({ data }) {
           >
             <div className="absolute inset-0 rounded-lg bg-gradient-to-b from-[rgba(0,0,0,0.10)] to-[rgba(0,0,0,0.50)] z-50" />
             <div className="absolute right-8 bottom-6 font-[600] text-[32px] leading-[150%] text-white z-50">
-              {data.images?.length > 3 && `+${data.images?.length - 3}`}
+              {data.images?.length > 1 && `+${data.images?.length - 1}`}
             </div>
             <img
               src={"/hostels/image.png"}
