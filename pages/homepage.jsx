@@ -27,27 +27,27 @@ const images = [
 const institutions = [
   {
     title: "NMIMS university",
-    image: "/banner_1.png",
+    image: "/institutions/NMIMS.webp",
   },
   {
     title: "Mukesh Patel college",
-    image: "/banner_2.png",
+    image: "/institutions/mukesh-patel.webp",
   },
   {
     title: "Narsee Monjee",
-    image: "/banner_3.png",
+    image: "/institutions/NM.jpg",
   },
   {
     title: "Mithibai College",
-    image: "/banner_5.png",
+    image: "/institutions/mithibai.webp",
   },
   {
     title: "Atlas University",
-    image: "/banner_5.png",
+    image: "/institutions/atlas.webp",
   },
   {
     title: "HR college",
-    image: "/banner_5.png",
+    image: "/institutions/hr.jpg",
   },
 ];
 
@@ -234,7 +234,7 @@ const HeroSection = () => {
       {/* Content on Top */}
       <div className="absolute inset-0 flex flex-col lg:flex-row items-center justify-around px-8 py-16 text-white">
         {/* Left Section: Text */}
-        <div className="max-w-lg">
+        <div className="max-w-lg mb-3">
           <h1 className="text-6xl font-bold mb-4">
             Find Your Perfect Student Home
           </h1>
@@ -261,7 +261,7 @@ const HeroSection = () => {
         <div className="flex flex-col space-y-6">
           <Link href="/girls-hostel">
             <div
-              className="relative w-96 h-64 bg-pink-500 rounded-lg overflow-hidden flex items-end p-4 border border-[#FE019A] border-4 hover:scale-[1.06] cursor-pointer transition-all"
+              className="relative w-full h-48 lg:w-96 lg:h-64 bg-pink-500 rounded-lg overflow-hidden flex items-end p-4 border border-[#FE019A] border-4 hover:scale-[1.06] cursor-pointer transition-all"
               style={{
                 backgroundImage: "url('/hero-girl.png')",
                 backgroundSize: "cover",
@@ -271,12 +271,13 @@ const HeroSection = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
               <div className="relative z-10 flex justify-between items-center w-full">
                 <h3 className="text-lg font-semibold">Girls Hostel</h3>
-
-                <img
-                  src="/arrow-up-right.png"
-                  alt="Arrow Right"
-                  className="w-6 h-6"
-                />
+                <div className="flex items-center justify-center p-3 rounded-md bg-[#F8C14C]">
+                  <img
+                    src="/arrow-up-right.png"
+                    alt="Arrow Right"
+                    className="w-6 h-6"
+                  />
+                </div>
               </div>
             </div>
           </Link>
@@ -284,7 +285,7 @@ const HeroSection = () => {
           {/* Boys Hostel Card */}
           <Link href="/boys-hostel">
             <div
-              className="relative w-96 h-64 bg-blue-500 rounded-lg overflow-hidden flex items-end p-4 border border-[#0088FC] border-4 hover:scale-[1.04] cursor-pointer transition-all"
+              className="relative w-full h-48 lg:w-96 lg:h-64 w-96 h-64 bg-blue-500 rounded-lg overflow-hidden flex items-end p-4 border border-[#0088FC] border-4 hover:scale-[1.04] cursor-pointer transition-all"
               style={{
                 backgroundImage: "url('/hero-boy.png')",
                 backgroundSize: "cover",
@@ -294,11 +295,13 @@ const HeroSection = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
               <div className="relative z-10 flex justify-between items-center w-full">
                 <h3 className="text-lg font-semibold">Boys Hostel</h3>
-                <img
-                  src="/arrow-up-right.png"
-                  alt="Arrow Right"
-                  className="w-6 h-6"
-                />
+                <div className="flex items-center justify-center p-3 rounded-md bg-[#F8C14C]">
+                  <img
+                    src="/arrow-up-right.png"
+                    alt="Arrow Right"
+                    className="w-6 h-6"
+                  />
+                </div>
               </div>
             </div>
           </Link>
@@ -314,6 +317,7 @@ const InistitutionsSection = () => {
       <SectionTitle title={"Institutions"} className={"mb-9"} />
       {/* Institutions list carousel */}
       <CarouselList
+        autoScroll={true}
         items={institutions}
         renderItem={(item) => (
           <div className="text-center">
@@ -350,7 +354,7 @@ function AboutSection({ data }) {
           />
         </div>
 
-        <div className="flex flex-col w-full lg:w-1/2 gap-6">
+        <div className="flex flex-col  lg:w-1/2 gap-6">
           {/* <div className="font-semibold text-4xl">{data.collegeName}</div> */}
           <div className="font-[500] text-lg mb-3">
             At Student Housing, we provide safe, comfortable, and well-equipped
@@ -369,6 +373,12 @@ function AboutSection({ data }) {
           <p className="font-[500] text-lg mb-3">
             📍 Want to know more about us?
           </p>
+
+          <Link href="/about-us">
+            <button className="rounded-md py-4 px-4 text-sm font-semibold text-white shadow-sm text-gray-700 bg-[#eba510] hover:bg-[#e0a82f]">
+              Learn More
+            </button>
+          </Link>
         </div>
       </div>
     </div>
