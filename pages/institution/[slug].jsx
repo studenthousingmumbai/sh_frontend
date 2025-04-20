@@ -8,26 +8,11 @@ import StudentTestimonials from "../../components/StudentTestimonials";
 import apis from "../../lib/apis";
 import ExcellenceEducationStudentLife from "../../components/ExcellenceEducationStudentLife";
 import InstitutionWhyChoose from "../../components/InstitutionWhyChoose";
-
-const faqItems = [
-  {
-    id: "item-1",
-    question: "Is it accessible?",
-    answer: "Yes. It adheres to the WAI-ARIA design pattern.",
-  },
-  {
-    id: "item-2",
-    question: "Is it styled?",
-    answer:
-      "Yes. It comes with default styles that matches the other components' aesthetic.",
-  },
-  {
-    id: "item-3",
-    question: "Is it animated?",
-    answer:
-      "Yes. It's animated by default, but you can disable it if you prefer.",
-  },
-];
+import client from "../../apolloClient";
+import { gql } from "@apollo/client";
+import { pickRandomFaqs } from "../../utils/faqs";
+import { useLayoutEffect, useState } from "react";
+import InterestedEnquireForm from "../../components/InterestedEnquireForm";
 
 const mock = {
   slug: "sss",
@@ -93,19 +78,28 @@ export default function Institutions({
   gender,
   listingDetails,
 }) {
+  console.log("listing details", listingDetails);
+  console.log("all listing", all_listings);
+
+  const [randomFaqs, setRandomFaqs] = useState([]);
+
+  useLayoutEffect(() => {
+    setRandomFaqs(pickRandomFaqs(6));
+  }, []);
+
   return (
     <Layout>
       <HeroBanner
-        title={mock.collegeName}
+        title={listingDetails.collegeName}
         subTitle={
           "Find the perfect stay with modern amenities, security, and a friendly community."
         }
         image={"/hero-banner/institution-hero-banner.png"}
       />
 
-      <ExcellenceEducationStudentLife data={mock} />
+      <ExcellenceEducationStudentLife data={listingDetails} />
 
-      <InstitutionWhyChoose data={mock} />
+      <InstitutionWhyChoose data={listingDetails} />
 
       <Ameities />
 
@@ -116,9 +110,9 @@ export default function Institutions({
         data={all_listings}
       />
 
-      <Queries />
+      <InterestedEnquireForm />
 
-      <FAQ faqs={faqItems} />
+      <FAQ faqs={randomFaqs} />
     </Layout>
   );
 }
@@ -126,6 +120,9 @@ export default function Institutions({
 export async function getServerSideProps(context) {
   const { query } = context;
   const { gender } = query;
+  const { slug } = context.params;
+
+  console.log("slug", slug);
 
   try {
     // Fetch data from external API
@@ -148,6 +145,10 @@ export async function getServerSideProps(context) {
             collegeSellingPoints {
               title
               description
+            }
+            images {
+              id
+              url
             }
           }
         }

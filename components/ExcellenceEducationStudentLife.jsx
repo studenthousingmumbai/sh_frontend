@@ -13,13 +13,17 @@ export default function ExcellenceEducationStudentLife({ data }) {
       <div className="flex text-white flex-col lg:flex-row gap-4">
         <div className="w-full lg:w-1/2">
           <InstitutionImageCollage
-            images={[data.images[0], data.images[1], data.images[2]]}
+            images={[
+              data?.images[0]?.url,
+              data?.images[1]?.url,
+              data?.images[2]?.url,
+            ]}
           />
         </div>
 
         <div className="flex flex-col w-full lg:w-1/2 gap-6">
           <div className="font-semibold text-4xl">About {data.collegeName}</div>
-          <div className="font-[500] text-lg">{data.hostelDescription1}</div>
+          <div className="font-[500] text-lg">{data.aboutCollege}</div>
         </div>
       </div>
     </div>
