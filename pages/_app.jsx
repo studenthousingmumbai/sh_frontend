@@ -1,7 +1,9 @@
 import "../styles/globals.css";
+import "../styles/nprogress.css";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import TopProgressBar from "../components/TopProgressBar";
 
 function FacebookPixel() {
   const router = useRouter();
@@ -46,6 +48,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <GoogleOAuthProvider clientId={google_client_id}>
       <FacebookPixel />
+      <TopProgressBar />
       <Component {...pageProps} />
     </GoogleOAuthProvider>
   );
