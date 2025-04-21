@@ -26,9 +26,9 @@ export default function SummaryCard({
 
       <div className="font-[600] text-2xl leading-[150%]">{hostelName}</div>
 
-      <div className="flex gap-2 font-[600] text-[#F8C14C]">
+      <div className="flex gap-2 font-[600] text-[#F8C14C] w-[90%]">
         <MapPin />
-        <div>{`${address?.line_1} ${address?.line_2 || ""} ${
+        <div>{`${address?.line_1 || "-"} ${address?.line_2 || ""} ${
           address?.city || ""
         }`}</div>
       </div>

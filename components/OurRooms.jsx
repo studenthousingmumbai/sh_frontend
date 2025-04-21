@@ -6,6 +6,8 @@ import SectionTitle from "./SectionTitle";
 export default function ({ data }) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
+  console.log(data);
+
   return (
     <div className="relative py-12">
       <div className="absolute inset-0 bg-[url(/bg-pattern-2.png)] bg-no-repeat z-0" />
@@ -62,9 +64,9 @@ export default function ({ data }) {
               {...data}
               hostelDescription={data.description}
               address={{
-                line_1: "Test",
-                line_2: "Test",
-                city: "Mumbai",
+                line_1: `${data?.address?.line_1}, `,
+                line_2: `${data?.address?.line_2}, `,
+                city: `${data?.address?.city}`,
               }}
             />
           </div>
