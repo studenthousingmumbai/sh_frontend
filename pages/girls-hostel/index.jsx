@@ -10,7 +10,7 @@ import Occupancy from "../../components/Occupancy";
 import Ameities from "../../components/Amenities";
 import StudentTestimonials from "../../components/StudentTestimonials";
 import apis from "../../lib/apis";
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { pickRandomFaqs } from "../../utils/faqs";
 
 export default function GirlsHostel({ all_listings, total, gender }) {
