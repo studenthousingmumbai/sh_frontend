@@ -22,6 +22,8 @@ export default function BoysHostel({ all_listings, total, gender }) {
     setRandomFaqs(pickRandomFaqs(6));
   }, []);
 
+  console.log(listings[0]);
+
   return (
     <Layout>
       <HeroBanner
