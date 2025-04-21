@@ -413,7 +413,7 @@ const ReferSection = () => {
 const BlogsSection = () => {
   const [blogs, setBlogs] = useState([]);
   useLayoutEffect(() => {
-    // Fetch data from external API
+    // Fetch data from external - API
     fetchBlogs();
   }, []);
 
