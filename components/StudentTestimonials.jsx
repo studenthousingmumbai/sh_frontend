@@ -124,67 +124,30 @@ export default function StudentTestimonials({ title, subTitle, image }) {
       rating: 5,
     },
   ];
-  const items = [
-    {
-      title: "Avenue by Student Housing",
-      location: "Vile Parle West, Mumbai",
-      price: "₹42,000",
-      image: "/banner_1.png",
-    },
-    {
-      title: "Crescenzo",
-      location: "Vile Parle West, Mumbai",
-      price: "₹42,000",
-      image: "/banner_2.png",
-    },
-    {
-      title: "Anand",
-      location: "Vile Parle West, Mumbai",
-      price: "₹42,000",
-      image: "/banner_3.png",
-    },
-    {
-      title: "Avenue by Student Housing",
-      location: "Vile Parle West, Mumbai",
-      price: "₹42,000",
-      image: "/banner_5.png",
-    },
-    {
-      title: "Crescenzo",
-      location: "Vile Parle West, Mumbai",
-      price: "₹42,000",
-      image: "/banner_5.png",
-    },
-    {
-      title: "Anand",
-      location: "Vile Parle West, Mumbai",
-      price: "₹42,000",
-      image: "/banner_5.png",
-    },
-  ];
+
   return (
-    <div className="relative py-12">
+    <div className="relative py-6 sm:py-12">
       <div className="absolute inset-0 bg-[url(/bg-pattern-1.png)] z-0" />
 
       <SectionTitle
         title={"Student Testimonials"}
-        className={"mb-9 responsiveCenterPadding z-10"}
+        className={"mb-6 sm:mb-9 responsiveCenterPadding z-10"}
       />
 
-      <div className="px-12 lg:px-0 z-20">
+      <div className="px-4 sm:px-6 lg:px-0 z-20">
         <CarouselList
           autoScroll={true}
           items={reviews}
           componentName={"student-testimonials"}
           renderItem={(item) => (
-            <div className="relative bg-[#F8C14C]/10 p-6 rounded-lg xl:max-w-[845px]">
-              <div className="absolute inset-x-0 mx-auto top-5 w-[91px] h-[70px] lg:translate-x-0">
+            <div className="relative bg-[#F8C14C]/10 p-4 sm:p-6 rounded-lg xl:max-w-[845px]">
+              <div className="absolute inset-x-0 mx-auto top-5 w-[70px] h-[50px] sm:w-[91px] sm:h-[70px] lg:translate-x-0">
                 <img
                   src="/double-quotes.png"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <p className="text-gray-700 italic mb-6 text-center">
+              <p className="text-gray-700 italic mb-4 sm:mb-6 text-center">
                 {item.body}
               </p>
               <div className="flex flex-col items-center gap-2">
