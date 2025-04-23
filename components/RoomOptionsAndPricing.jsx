@@ -41,17 +41,17 @@ export default function RoomOptionsAndPricing({ sectionTitle, data }) {
         className={"mb-9 responsiveCenterPadding"}
       />
 
-      <div className="px-12 lg:px-0">
+      <div className="px-4 sm:px-6 lg:px-0">
         <CarouselList
           items={data || []}
           autoScroll
           renderItem={(item) => (
             <Card className="shadow-sm rounded-[16px] h-full flex flex-col">
-              <CardContent className="flex flex-col p-4 h-full">
+              <CardContent className="flex flex-col p-3 sm:p-4 h-full">
                 <div className="flex flex-col gap-3 overflow-hidden h-full">
-                  <div className="h-64 md:h-48 relative rounded-[14px] overflow-hidden">
+                  <div className="h-48 sm:h-64 md:h-48 relative rounded-[14px] overflow-hidden">
                     <div
-                      className={`absolute top-0 right-0  ${
+                      className={`absolute top-0 right-0 ${
                         item.gender === "female"
                           ? "bg-[#FFAEDF]"
                           : "bg-[#99D0FF]"
@@ -70,17 +70,17 @@ export default function RoomOptionsAndPricing({ sectionTitle, data }) {
                     />
                   </div>
                   <div className="flex flex-col gap-1.5 flex-grow">
-                    <h3 className="font-[600] text-2xl truncate flex-1">
+                    <h3 className="font-[600] text-xl sm:text-2xl truncate flex-1">
                       {item.name}
                     </h3>
                     <div className="flex gap-2 font-[600] text-[#F8C14C] flex-1">
                       <MapPin />
                       <div>{`${item.address?.line_1} ${item.address?.line_2}, ${item.address?.city}`}</div>
                     </div>
-                    <p className="text-lg font-semibold flex-1">
+                    <p className="text-base sm:text-lg font-semibold flex-1">
                       Starting from ₹{item.price}
                     </p>
-                    <p className="text-lg flex-grow flex-1">
+                    <p className="text-sm sm:text-lg flex-grow flex-1">
                       {item.description.length > 100
                         ? `${item.description.slice(0, 100)}...`
                         : item.description}
@@ -90,12 +90,12 @@ export default function RoomOptionsAndPricing({ sectionTitle, data }) {
                         href={`/listing/${item.id}`}
                         className="flex-1 mr-2"
                       >
-                        <button className="w-full bg-[#F8C14C] hover:bg-[#F8C14C]/80 text-black text-sm  font-semibold px-4 py-2 rounded-[8px]">
+                        <button className="w-full bg-[#F8C14C] hover:bg-[#F8C14C]/80 text-black text-sm font-semibold px-4 py-2 rounded-[8px]">
                           Book Now
                         </button>
                       </Link>
                       <Link href={"/contact-us"} className="flex-1">
-                        <button className="w-full bg-white border border-[#F8C14C] hover:text-[#F8C14C] text-sm  text-black font-semibold px-4 py-2 rounded-[8px]">
+                        <button className="w-full bg-white border border-[#F8C14C] hover:text-[#F8C14C] text-sm text-black font-semibold px-4 py-2 rounded-[8px]">
                           Know More
                         </button>
                       </Link>

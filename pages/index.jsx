@@ -120,7 +120,10 @@ function Journey() {
       <div className="absolute inset-0 bg-[url(/bg-pattern-1.png)] z-10" />
 
       <div className="w-full md:w-2/6 z-20">
-        <SectionTitle title={"Journey of Success"} className={"text-white"} />
+        <SectionTitle
+          title={"Journey of Success"}
+          className={"text-white mb-9"}
+        />
       </div>
       <div className="w-full md:w-4/6 grid grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 z-30">
         {options.map((item) => (
@@ -135,7 +138,9 @@ function Journey() {
               <div className="font-semibold text-[20px] text-white lg:text-[30px]">
                 {item.title}
               </div>
-              <div className="text-sm text-gray-400">{item.description}</div>
+              <div className="hidden md:block text-sm text-gray-400">
+                {item.description}
+              </div>
             </div>
           </div>
         ))}
@@ -143,18 +148,17 @@ function Journey() {
     </div>
   );
 }
-
 function USPsSection() {
   return (
     <section className="py-12 bg-gray-50">
       <div className="max-w-5xl mx-auto px-4">
         <SectionTitle title={"USPs"} className={"mb-9"} />
 
-        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+        <div className="grid gap-6 grid-cols-2 sm:grid-cols-2 md:grid-cols-3">
           {usps.map(({ title, icon, desc, image }) => (
             <div
               key={title}
-              className="group relative h-64 rounded-lg overflow-hidden cursor-pointer"
+              className="group relative h-56 sm:h-64 rounded-lg overflow-hidden cursor-pointer"
             >
               {/* Hover‐state background + overlay + text */}
               <div
@@ -172,13 +176,15 @@ function USPsSection() {
               <div
                 className="
                   absolute bottom-0 left-0 right-0 
-                  p-6 
+                  p-4 sm:p-6 
                   text-white 
                   opacity-0 group-hover:opacity-100 
                   transition"
               >
-                <h3 className="text-xl font-semibold mb-1">{title}</h3>
-                <p className="text-sm">{desc}</p>
+                <h3 className="text-lg sm:text-xl font-semibold mb-1">
+                  {title}
+                </h3>
+                <p className="text-xs sm:text-sm">{desc}</p>
               </div>
 
               {/* Default white card content */}
@@ -187,21 +193,23 @@ function USPsSection() {
                   relative z-10 
                   bg-white rounded-lg shadow 
                   h-full flex flex-col items-center text-center 
-                  p-6 
+                  p-4 sm:p-6 
                   group-hover:opacity-0 
                   transition"
               >
                 <div
                   className="
                     bg-gradient-to-l from-[#F8C14C80] to-[#F8C14C33] 
-                    p-3 rounded-lg mb-3 inline-flex 
+                    p-2 sm:p-3 rounded-lg mb-2 sm:mb-3 inline-flex 
                     items-center justify-center
                   "
                 >
-                  <span className="text-2xl">{icon}</span>
+                  <span className="text-xl sm:text-2xl">{icon}</span>
                 </div>
-                <h3 className="text-lg font-semibold mb-2">{title}</h3>
-                <p className="text-sm text-gray-600">{desc}</p>
+                <h3 className="text-base sm:text-lg font-semibold mb-1 sm:mb-2">
+                  {title}
+                </h3>
+                <p className="text-xs sm:text-sm text-gray-600">{desc}</p>
               </div>
             </div>
           ))}
@@ -239,10 +247,10 @@ const HeroSection = () => {
       <div className="absolute inset-0 flex flex-col lg:flex-row items-center justify-around px-8 py-16 text-white">
         {/* Left Section: Text */}
         <div className="max-w-lg mb-3">
-          <h1 className="text-6xl font-bold mb-4">
+          <h1 className="text-4xl sm:text-6xl font-bold mb-4">
             Find Your Perfect Student Home
           </h1>
-          <p className="text-lg mb-6">
+          <p className="text-base sm:text-lg mb-6">
             Explore verified hostels for boys & girls near your campus.
           </p>
           <div className="flex space-x-2">
@@ -260,7 +268,6 @@ const HeroSection = () => {
               ))}
           </div>
         </div>
-
         {/* Right Section: Cards */}
         <div className="flex flex-col space-y-6">
           <Link href="/girls-hostel">
@@ -391,20 +398,25 @@ function AboutSection({ data }) {
 
 const ReferSection = () => {
   return (
-    <div className="flex flex-col lg:flex-row w-full p-6 py-32 bg-refer-and-earn-banner bg-cover bg-no-repeat gap-4 lg:gap-0">
+    <div className="flex flex-col lg:flex-row w-full p-6 py-16 sm:py-24 bg-refer-and-earn-banner bg-cover bg-no-repeat gap-4 lg:gap-0">
       <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-end justify-center gap-4 lg:gap-8">
-        <div className="w-[70%] text-[41px] leading-[52px] text-center lg:text-left font-semibold">
+        {/* Title */}
+        <div className="w-full sm:w-[80%] lg:w-[70%] text-2xl sm:text-3xl lg:text-[41px] leading-7 sm:leading-9 lg:leading-[52px] text-center lg:text-left font-semibold">
           Earn Rewards While Helping Your Friends!
         </div>
-        <div className="w-[70%] text-xl font-semibold text-center lg:text-left">
+
+        {/* Description */}
+        <div className="w-full sm:w-[80%] lg:w-[70%] text-sm sm:text-lg lg:text-xl font-medium text-center lg:text-left">
           Share the comfort! Invite your friends to our hostels, and for every
           successful booking through your referral, you both earn exciting
           rewards. The more you refer, the more you earn.
         </div>
-        <div className="w-[70%] text-center lg:text-left">
+
+        {/* Button */}
+        <div className="w-full sm:w-[80%] lg:w-[70%] text-center lg:text-left">
           <Link
             href="/refer-and-earn"
-            className="rounded-md py-4 px-4 text-sm font-semibold text-white shadow-sm text-gray-700 bg-[#eba510] hover:bg-[#e0a82f]"
+            className="rounded-md py-3 sm:py-4 px-4 text-sm sm:text-base font-semibold text-white shadow-sm bg-[#eba510] hover:bg-[#e0a82f]"
           >
             Refer Now!
           </Link>
