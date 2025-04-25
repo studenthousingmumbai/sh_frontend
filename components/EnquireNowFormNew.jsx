@@ -4,15 +4,15 @@ import useApi from "../hooks/useApi";
 const initialValues = {
   firstName: "",
   lastName: "",
-  contact: "",
-  address: "",
-  lookingForBoysGirlsHostel: "",
+  phone: "",
+  email: "",
+  message: "",
 };
 
 export default function EnquireNowFormNew({ open, setOpen }) {
   const [values, setValues] = useState(initialValues);
   const [success, setSuccess] = useState(false);
-  const { referAndEarn } = useApi();
+  const { contactUs } = useApi();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,64 +23,62 @@ export default function EnquireNowFormNew({ open, setOpen }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    return;
-
-    const response = await referAndEarn(values);
+    const response = await contactUs({
+      name: `${firstName} ${lastName}`,
+      email,
+      phone,
+      message,
+    });
 
     if (typeof response !== "string") {
       console.log("Error occured while sending email!");
     } else {
       setSuccess(true);
-      // router.push('/thank-you');
+      router.push("/thank-you");
     }
   };
 
   return (
     <div className="w-full flex justify-center lg:justify-start items-center">
       <form action="submit" onSubmit={handleSubmit}>
-        <div className="flex gap-2">
-          <input
-            name="firstName"
-            id="firstName"
-            type="text"
-            className="outline-none rounded-md w-full mt-4 border-gray-300 bg-gray-100 focus:outline-none text-xs py-3"
-            placeholder="First Name *"
-            onChange={handleChange}
-          />
-          <input
-            name="lastName"
-            id="lastName"
-            type="text"
-            className="outline-none rounded-md w-full mt-4 border-gray-300 bg-gray-100 focus:outline-none text-xs py-3"
-            placeholder="Last Name *"
-            onChange={handleChange}
-          />
-        </div>
         <input
-          name="contact"
-          id="contact"
+          onChange={handleChange}
           type="text"
+          name="firstName"
+          id="firstName"
+          autoComplete="name"
+          className="outline-none rounded-md w-full mt-4 border-gray-300 bg-gray-100 focus:outline-none text-xs py-3"
+          placeholder="Full name *"
+          required={true}
+        />
+        <input
+          onChange={handleChange}
+          type="text"
+          name="lastName"
+          id="lastName"
+          autoComplete="name"
+          className="outline-none rounded-md w-full mt-4 border-gray-300 bg-gray-100 focus:outline-none text-xs py-3"
+          placeholder="Last name *"
+          required={true}
+        />
+        <input
+          name="phone"
+          id="phone"
+          type="text"
+          autoComplete="phone"
           className="outline-none rounded-md w-full mt-4 border-gray-300 bg-gray-100 focus:outline-none text-xs py-3"
           placeholder="Contact Number *"
           onChange={handleChange}
         />
-        <input
-          name="address"
-          id="address"
-          type="text"
-          className="outline-none rounded-md w-full mt-4 border-gray-300 bg-gray-100 focus:outline-none text-xs py-3"
-          placeholder="Your City/Address? *"
-          onChange={handleChange}
-        />
-        <input
-          name="lookingForBoysGirlsHostel"
-          id="lookingForBoysGirlsHostel"
-          type="text"
-          className="outline-none rounded-md w-full mt-4 border-gray-300 bg-gray-100 focus:outline-none text-xs py-3"
-          placeholder="Looking for Girls or Boys Hostel *"
-          onChange={handleChange}
-        />
 
+        <textarea
+          name="message"
+          id="message"
+          type="text"
+          className="outline-none rounded-md w-full mt-4 border-gray-300 bg-gray-100 focus:outline-none text-xs py-3"
+          placeholder="Message *"
+          onChange={handleChange}
+        />
         <button
           type="submit"
           className="w-full mt-6 bg-brandColor py-3 rounded-lg font-semibold text-sm"

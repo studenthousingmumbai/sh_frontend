@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Dialog, DialogContent } from "@components/components/ui/dialog";
 import {
   Carousel,
@@ -16,22 +16,46 @@ export default function ImageViewerCarousel({
 }) {
   const [api, setApi] = useState();
   const [current, setCurrent] = useState(0);
+  const intervalRef = useRef(null);
 
   useEffect(() => {
-    if (!api) {
-      return;
-    }
+    if (!api) return;
 
     setCurrent(api.selectedScrollSnap());
 
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap());
-    });
+    const onSelect = () => setCurrent(api.selectedScrollSnap());
+    api.on("select", onSelect);
+
+    // Autoplay logic
+    startAutoplay();
+
+    return () => {
+      api.off("select", onSelect);
+      stopAutoplay();
+    };
   }, [api]);
+
+  const startAutoplay = () => {
+    stopAutoplay(); // Clear if already running
+    intervalRef.current = setInterval(() => {
+      if (api) api.scrollNext();
+    }, 4000); // 4 seconds between slides (you can make it slower by increasing)
+  };
+
+  const stopAutoplay = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="w-full max-w-3xl mx-auto bg-transparent p-0 shadow-none border-none [&>button:last-child]:hidden flex  items-center justify-center">
+      <DialogContent
+        className="w-full max-w-3xl mx-auto bg-transparent p-0 shadow-none border-none [&>button:last-child]:hidden flex  items-center justify-center"
+        onMouseEnter={stopAutoplay}
+        onMouseLeave={startAutoplay}
+      >
         <Carousel
           opts={{
             align: "start",

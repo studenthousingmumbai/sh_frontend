@@ -37,8 +37,8 @@ export default function Ameities() {
       <div className="w-full md:w-4/6 grid grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 z-30">
         {options.map((items) => (
           <div className="flex flex-col gap-4">
-            <div className="w-[68px] h-[64px] rounded-[8px] flex justify-center items-center bg-[linear-gradient(to_left,#FEF7E7,#FFFBF4)]">
-              <div className="w-[36px] h-[54px]">
+            <div className="w-[52px] md:w-[68px] h-[54px] md:h-[64px] rounded-[8px] flex justify-center items-center bg-[linear-gradient(to_left,#FEF7E7,#FFFBF4)]">
+              <div className="w-[28px] md:w-[36px] h-[48px] md:h-[54px]">
                 <img
                   src={items.image}
                   className="w-full h-full object-contain"
@@ -47,7 +47,7 @@ export default function Ameities() {
             </div>
 
             <div className="flex flex-col w-10/12">
-              <div className="font-semibold text-[20px] text-white lg:text-[30px]">
+              <div className="font-semibold text-lg md:text-[20px] text-white lg:text-[30px]">
                 {items.title}
               </div>
             </div>

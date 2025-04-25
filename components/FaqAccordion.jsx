@@ -11,7 +11,7 @@ import SectionTitle from "./SectionTitle";
 
 function FAQ({ faqs, className }) {
   return (
-    <div className="py-12">
+    <div className="py-12 responsiveCenterPadding">
       <SectionTitle title={"FAQ"} className={"mb-9"} />
 
       <div className="max-w-3xl mx-auto flex flex-col justify-center items-center">
@@ -26,8 +26,10 @@ function FAQ({ faqs, className }) {
               value={faq.id}
               className="rounded-lg border border-[rgba(0,0,0,0.08)] bg-[linear-gradient(to_left,#FEF7E7,#FFFBF4)] [&>div]:border-0"
             >
-              <AccordionTrigger className="flex w-full items-center justify-between px-6 py-4 text-left hover:no-underline">
-                <span className="text-base font-medium">{faq.question}</span>
+              <AccordionTrigger className="flex w-full items-center justify-between px-4 md:px-6 py-2.5 md:py-4 text-left hover:no-underline">
+                <span className="text-sm md:text-base font-medium">
+                  {faq.question}
+                </span>
               </AccordionTrigger>
 
               <AccordionContent>

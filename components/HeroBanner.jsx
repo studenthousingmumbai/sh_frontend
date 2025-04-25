@@ -4,7 +4,7 @@ export default function HeroBanner({ title, subTitle, image }) {
       {/* Text Content */}
       <div className="lg:w-1/2 p-6 py-12 sm:pl-12 md:pl-32 lg:pl-48 flex flex-col justify-center items-start gap-4">
         {/* Title */}
-        <div className="font-[700] text-[44px] md:text-[52px] lg:text-[62px] xl:text-[72px] leading-[100%]">
+        <div className="font-[700] text-[36px] md:text-[52px] lg:text-[62px] xl:text-[72px] leading-[100%]">
           {title}
         </div>
 

@@ -325,7 +325,10 @@ const HeroSection = () => {
 const InistitutionsSection = () => {
   return (
     <div className="mb-12 mt-12">
-      <SectionTitle title={"Institutions"} className={"mb-9"} />
+      <SectionTitle
+        title={"Institutions Near Our Hostels"}
+        className={"mb-9"}
+      />
       {/* Institutions list carousel */}
       <CarouselList
         autoScroll={true}

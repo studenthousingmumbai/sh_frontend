@@ -46,8 +46,8 @@ export default function WhyChoose({ gender }) {
       <div className="w-full md:w-4/6 grid grid-cols-2 gap-6 md:gap-8">
         {options.map((items) => (
           <div className="flex gap-4">
-            <div className="w-2/12 h-[64px] rounded-[8px] flex justify-center items-center bg-[linear-gradient(to_left,#FEF7E7,#FFFBF4)]">
-              <div className="w-[32px] h-[54px]">
+            <div className="w-2/10 h-[54px] md:w-2/12 md:h-[64px] rounded-[8px] flex justify-center items-center bg-[linear-gradient(to_left,#FEF7E7,#FFFBF4)]">
+              <div className="w-[28px] h-[46px] md:w-[32px] md:h-[54px]">
                 <img
                   src={items.image}
                   className="w-full h-full object-contain"
@@ -56,7 +56,7 @@ export default function WhyChoose({ gender }) {
             </div>
 
             <div className="flex flex-col w-10/12">
-              <div className=" font-[600] text-[24px]  lg:text-[32px] leading-[150%]">
+              <div className="font-[600] text-[16px] md:text-[24px] lg:text-[32px] leading-[150%]">
                 {items.title}
               </div>
               <div className="hidden md:block font-[400] text-[18px] leading-[150%]">

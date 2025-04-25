@@ -70,7 +70,7 @@ export default function ({ data }) {
               }}
             />
           </div>
-          <div className="w-full md:w-7/12 font-[400] text-lg leading-[150%]">
+          <div className="w-full md:w-7/12 font-[400] text-sm md:text-lg leading-[150%]">
             {data.description}
           </div>
         </div>

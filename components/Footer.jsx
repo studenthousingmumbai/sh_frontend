@@ -237,7 +237,7 @@ export default function Example() {
         Footer
       </h2>
       <div className="relative mx-auto max-w-7xl px-6 py-14 lg:px-8 z-10">
-        <div className="flex flex-col md:flex-row gap-16 justify-between">
+        <div className="flex flex-col md:flex-row gap-12 md:gap-16 justify-between">
           <div className="space-y-8">
             <div className="w-[170px] h-[80px]">
               <img
@@ -264,7 +264,7 @@ export default function Example() {
             </div> */}
           </div>
 
-          <div className="text-lg text-white">
+          <div className="text-sm md:text-lg text-white">
             Our hostels are designed to provide a safe, comfortable, and vibrant
             living space for students. With modern amenities, 24x7 security, and
             a focus on community living, we ensure a home away from home
@@ -273,30 +273,49 @@ export default function Example() {
           </div>
         </div>
 
-        <div className="mt-14 border-y border-white/10 py-8 flex flex-col md:flex-row gap-8 md:gap-4 text-white w-full">
+        <div className="mt-8 md:mt-14 border-y border-white/10 py-8 flex flex-col md:flex-row gap-8 md:gap-4 text-white w-full">
           <div className="flex flex-col justify-start gap-3.5 w-full md:w-1/2">
             <div className="font-semibold text-2xl">Get in touch</div>
-
-            <div className="text-base w-[40%]">
+            <div className="text-sm md:text-base w-full md:w-[40%]">
               Ganga Niwas, Next to SBI Bank, Across NMIMS University, VM Road
               Juhu, Vile Parle West, Mumbai- (56)
             </div>
+            <div className="flex gap-2.5">
+              <PhoneIcon className="w-5 h-5 md:w-6 md:h-6" />
+              <Link
+                href="tel:+91-9819780000"
+                className="text-[#F8C14C] text-sm md:text-base"
+              >
+                +91-9819780000
+              </Link>
+            </div>
+            <div className="flex gap-2.5">
+              <PhoneIcon className="w-5 h-5 md:w-6 md:h-6" />
+              <Link
+                href="tel:+91-9004033884"
+                className="text-[#F8C14C] text-sm md:text-base"
+              >
+                +91-9004033884
+              </Link>
+            </div>
 
             <div className="flex gap-2.5">
-              <PhoneIcon />
-              <div className="text-[#F8C14C]">+91-9819780000</div>
+              <PhoneIcon className="w-5 h-5 md:w-6 md:h-6" />
+              <Link
+                href="tel:+91-8779003845"
+                className="text-[#F8C14C] text-sm md:text-base"
+              >
+                +91-8779003845
+              </Link>
             </div>
             <div className="flex gap-2.5">
-              <PhoneIcon />
-              <div className="text-[#F8C14C]">+91-9004033884</div>
-            </div>
-            <div className="flex gap-2.5">
-              <PhoneIcon />
-              <div className="text-[#F8C14C]">+91-8779003845</div>
-            </div>
-            <div className="flex gap-2.5">
-              <MailIcon />
-              <div className="text-[#F8C14C]">info@studenthousing.co.in</div>
+              <MailIcon className="w-5 h-5 md:w-6 md:h-6" />
+              <Link
+                href="mailto:+91-8779003845"
+                className="text-[#F8C14C] text-sm md:text-base"
+              >
+                info@studenthousing.co.in
+              </Link>
             </div>
           </div>
 
@@ -305,7 +324,7 @@ export default function Example() {
               <div className="font-semibold text-2xl">Quick Links</div>
               <div>
                 {/* <h3 className="text-sm font-semibold leading-6 text-white">Company</h3> */}
-                <ul role="list" className="mt-6 space-y-4">
+                <ul role="list" className="mt-4 md:mt-6 space-y-2 md:space-y-4">
                   {navigation.quickLinks.map((item) => (
                     <li key={item.name}>
                       <Link href={item.href} legacyBehavior>
@@ -322,7 +341,7 @@ export default function Example() {
               <div className="font-semibold text-2xl">Support</div>
               <div>
                 {/* <h3 className="text-sm font-semibold leading-6 text-white">Company</h3> */}
-                <ul role="list" className="mt-6 space-y-4">
+                <ul role="list" className="mt-4 md:mt-6 space-y-2 md:space-y-4">
                   {navigation.support.map((item) => (
                     <li key={item.name}>
                       <Link href={item.href} legacyBehavior>
@@ -335,7 +354,7 @@ export default function Example() {
                 </ul>
               </div>
 
-              <div className="flex space-x-6 mt-6">
+              <div className="flex gap-6 flex-wrap justify-start mt-6">
                 {navigation.social.map((item) => (
                   <a
                     key={item.name}

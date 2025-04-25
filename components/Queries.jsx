@@ -1,12 +1,13 @@
 import Link from "next/link";
+import EnquireNowFormNew from "./EnquireNowFormNew";
 
 export default function Queries({ title, subTitle, image }) {
   return (
-    <div className="relative h-auto lg:h-[440px] bg-[linear-gradient(to_left,#F8C14C,#F8C14C33)] flex flex-col lg:flex-row responsiveCenterPadding">
+    <div className="relative bg-[linear-gradient(to_left,#F8C14C,#F8C14C33)] flex flex-col lg:flex-row responsiveCenterPadding">
       <div className="absolute inset-0 bg-[url(/bg-pattern-2.png)] bg-no-repeat z-0" />
 
       {/* Text Content */}
-      <div className="lg:w-1/2 py-12 flex flex-col justify-center items-start gap-4 order-2 lg:order-1 z-20">
+      <div className="lg:w-1/2 py-7 lg:py-auto flex flex-col justify-center items-start gap-4 z-20">
         {/* Title */}
         <div className="font-[700] text-[36px] md:text-[42px] lg:text-[48px] leading-[100%]">
           Got some queries?
@@ -26,17 +27,11 @@ export default function Queries({ title, subTitle, image }) {
       </div>
 
       {/* Image Section */}
-      <div className="lg:w-1/2  w-full rounded-tl-[9999px] overflow-hidden order-1 lg:order-2">
-        <img
-          src={"/question-mark.png"}
-          alt="girls-hostel-hero-banner"
-          className="w-full h-full object-cover hidden lg:block"
-        />
-        <img
-          src={"/question-mark-mobile.png"}
-          alt="girls-hostel-hero-banner"
-          className="w-full h-full object-cover block lg:hidden"
-        />
+      <div className="lg:w-1/2 w-full flex flex-col justify-center items-center overflow-hidden z-20 lg:mt-auto py-10 lg:py-auto">
+        <div className="bg-white w-full md:w-[80%] lg:w-[70%] p-6 rounded-2xl flex flex-col justify-center items-center">
+          <div className="font-semibold text-2xl">Enquire Now</div>
+          <EnquireNowFormNew open={true} />
+        </div>
       </div>
     </div>
   );

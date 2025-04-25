@@ -42,7 +42,7 @@ export default function HostelsNearLocation({
       />
       <BestHotelsNearLocation data={listingDetails} />
 
-      <div className="my-8 md:my-14 mx-12 lg:mx-48 border border-black opacity-10" />
+      <div className="mt-4 mb-8 md:my-14 mx-12 lg:mx-48 border border-black opacity-10" />
       <WhyChooseAlternate />
 
       <Quote />

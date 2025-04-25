@@ -39,7 +39,7 @@ export default function BestHotelsNear({ data }) {
               hostelDescription={data.description1}
             />
           </div>
-          <div className="w-full font-[400] text-lg leading-[150%]">
+          <div className="w-full font-[400] text-sm md:text-lg leading-[150%]">
             {data.description2}
           </div>
         </div>
