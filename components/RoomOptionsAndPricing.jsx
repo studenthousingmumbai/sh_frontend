@@ -70,17 +70,17 @@ export default function RoomOptionsAndPricing({ sectionTitle, data }) {
                     />
                   </div>
                   <div className="flex flex-col gap-1.5 flex-grow">
-                    <h3 className="font-[600] text-xl sm:text-2xl truncate flex-1">
+                    <h3 className="font-[600] text-lg md:text-2xl truncate flex-1">
                       {item.name}
                     </h3>
-                    <div className="flex gap-2 font-[600] text-[#F8C14C] flex-1">
-                      <MapPin />
+                    <div className="flex gap-2 font-[600] text-[#F8C14C] flex-1 items-center text-sm md:text-base">
+                      <MapPin className="w-3.5 h-3.5 md:w-6 md:h-6" />
                       <div>{`${item.address?.line_1} ${item.address?.line_2}, ${item.address?.city}`}</div>
                     </div>
-                    <p className="text-base sm:text-lg font-semibold flex-1">
+                    <p className=" text-base md:text-lg font-semibold flex-1">
                       Starting from ₹{item.price}
                     </p>
-                    <p className="text-sm sm:text-lg flex-grow flex-1">
+                    <p className="text-sm md:text-lg flex-grow flex-1">
                       {item.description.length > 100
                         ? `${item.description.slice(0, 100)}...`
                         : item.description}
@@ -90,12 +90,12 @@ export default function RoomOptionsAndPricing({ sectionTitle, data }) {
                         href={`/listing/${item.id}`}
                         className="flex-1 mr-2"
                       >
-                        <button className="w-full bg-[#F8C14C] hover:bg-[#F8C14C]/80 text-black text-sm font-semibold px-4 py-2 rounded-[8px]">
+                        <button className="w-full h-full bg-[#F8C14C] hover:bg-[#F8C14C]/80 text-black font-[600] px-2.5 py-1 md:px-4 md:py-2 text-sm md:text-base rounded-[8px]">
                           Book Now
                         </button>
                       </Link>
                       <Link href={"/contact-us"} className="flex-1">
-                        <button className="w-full bg-white border border-[#F8C14C] hover:text-[#F8C14C] text-sm text-black font-semibold px-4 py-2 rounded-[8px]">
+                        <button className="w-full h-full bg-white border border-[#F8C14C] hover:text-[#F8C14C] text-black font-[600] px-2.5 py-1 md:px-4 md:py-2 text-sm md:text-base rounded-[8px]">
                           Know More
                         </button>
                       </Link>

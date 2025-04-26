@@ -75,9 +75,6 @@ export default function Home({ announcementImages }) {
 
       <div className="z-40">
         <Layout open={open}>
-          <span className="fixed bottom-[25px] right-[20px] z-[1000]">
-            <WhatsAppButton message={""} />
-          </span>
           <Hero />
           <LogoCloud />
           <Features />

@@ -15,7 +15,7 @@ export default function InstitutionWhyChoose({ data }) {
           {data.collegeSellingPoints.map((wChoose) => {
             return (
               <div className="" key={wChoose.title}>
-                <div className="text-2xl">
+                <div className="text-lg md:text-2xl">
                   <span className="font-bold ">{wChoose.title} – </span>
                   <span>{wChoose.description}</span>
                 </div>
@@ -23,7 +23,7 @@ export default function InstitutionWhyChoose({ data }) {
             );
           })}
         </div>
-        <div className="w-full lg:w-1/2">
+        <div className="w-full lg:w-1/2 mt-5 lg:mt-auto">
           <InstitutionImageCollage
             images={[
               data?.images[3]?.url,

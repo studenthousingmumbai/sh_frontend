@@ -21,8 +21,10 @@ export default function ExcellenceEducationStudentLife({ data }) {
           />
         </div>
 
-        <div className="flex flex-col w-full lg:w-1/2 gap-6">
-          <div className="font-semibold text-4xl">About {data.collegeName}</div>
+        <div className="flex flex-col w-full lg:w-1/2 gap-6 mt-5 lg:mt-auto">
+          <div className="font-semibold text-3xl lg:text-4xl">
+            About {data.collegeName}
+          </div>
           <div className="font-[500] text-lg">{data.aboutCollege}</div>
         </div>
       </div>

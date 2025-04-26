@@ -16,7 +16,7 @@ export default function Blogs({ blogs }) {
         <div className="w-[80%] mx-auto my-12">
           {/* flex layout */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {blogs.map((blog, index) => {
+            {[...blogs].reverse().map((blog, index) => {
               return (
                 <Link
                   href={`/blogs/${blog.id}`}

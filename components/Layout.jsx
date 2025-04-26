@@ -9,6 +9,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import useApi from "../hooks/useApi";
 import { Dialog, DialogContent, DialogTitle } from "./components/ui/dialog";
 import EnquireNowFormNew from "./EnquireNowFormNew";
+import WhatsAppButton from "./common/WhatsappButton";
 
 export default function Layout(props) {
   const [marqueeOpen, setMarqueeOpen] = useState(true);
@@ -46,6 +47,9 @@ export default function Layout(props) {
 
   return (
     <div className="">
+      <span className="fixed bottom-[25px] right-[20px] z-[1000]">
+        <WhatsAppButton message={""} />
+      </span>
       <Dialog onOpenChange={setEnquireNowOpen} open={enquireNowOpen}>
         <DialogContent>
           <DialogTitle>Enquire Now</DialogTitle>
@@ -66,19 +70,17 @@ export default function Layout(props) {
         )}
         <Header />
       </div>
-      <div className="fixed top-1/2 -translate-y-1/2 right-0 z-50">
-        <button
-          className="w-44 h-12 p-3 bg-[#F8C14C] text-black font-semibold transform rotate-90 origin-top-right shadow-md"
-          style={{
-            border: "1px solid #00000029",
-            boxShadow: "0px 4px 20px #00000014",
-            clipPath: "polygon(0 0, 100% 0, 90% 100%, 10% 100%)",
-          }}
-          onClick={() => setEnquireNowOpen(true)}
-        >
-          Enquire now
-        </button>
-      </div>
+      <button
+        className="fixed top-1/2 right-5 z-50 w-44 h-12 p-3 bg-[#F8C14C] text-black font-semibold rotate-90 origin-right shadow-md"
+        style={{
+          border: "1px solid #00000029",
+          boxShadow: "0px 4px 20px #00000014",
+          clipPath: "polygon(0 0, 100% 0, 90% 100%, 10% 100%)",
+        }}
+        onClick={() => setEnquireNowOpen(true)}
+      >
+        Enquire now
+      </button>
       <div className="z-30">{props.children}</div>
       <Footer />
     </div>
