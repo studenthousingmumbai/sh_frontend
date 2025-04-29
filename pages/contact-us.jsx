@@ -5,6 +5,7 @@ import { CheckCircleIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import Layout from "../components/Layout";
 import useApi from "../hooks/useApi";
 import Head from "next/head";
+import Link from "next/link";
 
 export default function Example() {
   const router = useRouter();
@@ -86,21 +87,27 @@ export default function Example() {
                         className="h-6 w-6 flex-shrink-0 text-gray-400"
                         aria-hidden="true"
                       />
-                      <span className="ml-3"> +91-9819780000</span>
+                      <Link href="tel:+91-9819780000" className="ml-3">
+                        +91-9819780000
+                      </Link>
                     </dd>
                     <dd className="flex">
                       <PhoneIcon
                         className="h-6 w-6 flex-shrink-0 text-gray-400"
                         aria-hidden="true"
                       />
-                      <span className="ml-3"> +91-9004033884</span>
+                      <Link href="tel:+91-9004033884" className="ml-3">
+                        +91-9004033884
+                      </Link>
                     </dd>
                     <dd className="flex">
                       <PhoneIcon
                         className="h-6 w-6 flex-shrink-0 text-gray-400"
                         aria-hidden="true"
                       />
-                      <span className="ml-3"> +91-8779003845</span>
+                      <Link href="tel:+91-8779003845" className="ml-3">
+                        +91-8779003845
+                      </Link>
                     </dd>
                   </div>
                   <div className="mt-3">
@@ -110,7 +117,12 @@ export default function Example() {
                         className="h-6 w-6 flex-shrink-0 text-gray-400"
                         aria-hidden="true"
                       />
-                      <span className="ml-3">info@studenthousing.co.in</span>
+                      <Link
+                        href="mailto:info@studenthousing.co.in"
+                        className="ml-3"
+                      >
+                        info@studenthousing.co.in
+                      </Link>
                     </dd>
                   </div>
                 </dl>
