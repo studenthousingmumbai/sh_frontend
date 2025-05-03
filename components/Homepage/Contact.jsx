@@ -1,31 +1,31 @@
-import { useRouter } from 'next/router';
-import { useState } from 'react';
-import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline'
-import { CheckCircleIcon, XMarkIcon } from '@heroicons/react/20/solid'
-import useApi from '../../hooks/useApi';
+import { useRouter } from "next/router";
+import { useState } from "react";
+import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
+import { CheckCircleIcon, XMarkIcon } from "@heroicons/react/20/solid";
+import useApi from "../../hooks/useApi";
+import Link from "next/link";
 
 export default function Example() {
   const router = useRouter();
-  const [email,setEmail] = useState("");
-  const [name,setName] = useState("");
-  const [phone,setPhone] = useState("");
-  const [message,setMessage] = useState("");
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
   const [success, setSuccess] = useState(false);
   const { contactUs } = useApi();
 
-  const handleSendMessage = async (e) => { 
-    e.preventDefault(); 
+  const handleSendMessage = async (e) => {
+    e.preventDefault();
 
-    const response = await contactUs({ name, email, phone, message }); 
+    const response = await contactUs({ name, email, phone, message });
 
-    if(typeof response !== 'string') {
-        console.log("Error occured while sending email!");
-    } else { 
-        setSuccess(true);
-        router.push('/thank-you');
+    if (typeof response !== "string") {
+      console.log("Error occured while sending email!");
+    } else {
+      setSuccess(true);
+      router.push("/thank-you");
     }
-  }
-
+  };
 
   return (
     <div className="bg-gray-50 pb-5">
@@ -36,7 +36,10 @@ export default function Example() {
           <div className="grid grid-cols-1 lg:grid-cols-3">
             {/* Contact information */}
             <div className="relative overflow-hidden bg-yellow-400 py-10 px-6 sm:px-10 xl:p-12 rounded-lg">
-              <div className="pointer-events-none absolute inset-0 sm:hidden" aria-hidden="true">
+              <div
+                className="pointer-events-none absolute inset-0 sm:hidden"
+                aria-hidden="true"
+              >
                 <svg
                   className="absolute inset-0 h-full w-full"
                   width={343}
@@ -132,34 +135,64 @@ export default function Example() {
                   </defs>
                 </svg>
               </div>
-              <img src='sh-diamond-logo.png' className='h-[200px] w-[200px]'/>
+              <img src="sh-diamond-logo.png" className="h-[200px] w-[200px]" />
 
-              <h3 className="text-lg font-medium text-white">Get in touch with us</h3>
-              <a href="https://goo.gl/maps/j4Hyw1hUb3heq8K86" target="_blank" className="mt-6 max-w-3xl text-base text-indigo-50 underline">
-                Ganga Niwas, Next to SBI Bank, Across NMIMS University, VM Road Juhu, Vile Parle West, Mumbai- (56)
+              <h3 className="text-lg font-medium text-white">
+                Get in touch with us
+              </h3>
+              <a
+                href="https://goo.gl/maps/j4Hyw1hUb3heq8K86"
+                target="_blank"
+                className="mt-6 max-w-3xl text-base text-indigo-50 underline"
+              >
+                Ganga Niwas, Next to SBI Bank, Across NMIMS University, VM Road
+                Juhu, Vile Parle West, Mumbai- (56)
               </a>
               <dl className="mt-8 space-y-6">
                 <dt>
                   <span className="sr-only">Phone number</span>
                 </dt>
                 <dd className="flex text-base text-indigo-50">
-                  <PhoneIcon className="h-6 w-6 flex-shrink-0 text-indigo-200" aria-hidden="true" />
-                  <span className="ml-3">+91-9819780000</span>
+                  <PhoneIcon
+                    className="h-6 w-6 flex-shrink-0 text-indigo-200"
+                    aria-hidden="true"
+                  />
+                  <Link href="tel:+91-9819780000" className="ml-3">
+                    +91-9819780000
+                  </Link>
                 </dd>
                 <dd className="flex text-base text-indigo-50">
-                  <PhoneIcon className="h-6 w-6 flex-shrink-0 text-indigo-200" aria-hidden="true" />
-                  <span className="ml-3">+91-9004033884</span>
+                  <PhoneIcon
+                    className="h-6 w-6 flex-shrink-0 text-indigo-200"
+                    aria-hidden="true"
+                  />
+                  <Link href="tel:+91-9004033884" className="ml-3">
+                    +91-9004033884
+                  </Link>
                 </dd>
                 <dd className="flex text-base text-indigo-50">
-                  <PhoneIcon className="h-6 w-6 flex-shrink-0 text-indigo-200" aria-hidden="true" />
-                  <span className="ml-3"> +91-8779003845</span>
+                  <PhoneIcon
+                    className="h-6 w-6 flex-shrink-0 text-indigo-200"
+                    aria-hidden="true"
+                  />
+                  <Link href="tel:+91-8779003845" className="ml-3">
+                    +91-8779003845
+                  </Link>
                 </dd>
                 <dt>
                   <span className="sr-only">Email</span>
                 </dt>
                 <dd className="flex text-base text-indigo-50">
-                  <EnvelopeIcon className="h-6 w-6 flex-shrink-0 text-indigo-200" aria-hidden="true" />
-                  <span className="ml-3">info@studenthousing.co.in</span>
+                  <EnvelopeIcon
+                    className="h-6 w-6 flex-shrink-0 text-indigo-200"
+                    aria-hidden="true"
+                  />
+                  <Link
+                    href="mailto:info@studenthousing.co.in"
+                    className="ml-3"
+                  >
+                    info@studenthousing.co.in
+                  </Link>
                 </dd>
               </dl>
               {/* <ul role="list" className="mt-8 flex space-x-12">
@@ -226,15 +259,21 @@ export default function Example() {
             {/* Contact form */}
             <div className="py-10 px-6 sm:px-10 lg:col-span-2 xl:p-12">
               <h3 className="text-lg font-medium text-gray-900">Write to us</h3>
-              <form className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8  mb-3" onSubmit={handleSendMessage}>
-                <div className='sm:col-span-2'>
-                  <label htmlFor="first-name" className="block text-sm font-medium text-gray-900">
+              <form
+                className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8  mb-3"
+                onSubmit={handleSendMessage}
+              >
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="first-name"
+                    className="block text-sm font-medium text-gray-900"
+                  >
                     Full Name
                   </label>
                   <div className="mt-1">
                     <input
                       value={name}
-                      onChange={e => setName(e.target.value)}
+                      onChange={(e) => setName(e.target.value)}
                       type="text"
                       name="first-name"
                       id="first-name"
@@ -259,13 +298,16 @@ export default function Example() {
                   </div>
                 </div> */}
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-900">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-900"
+                  >
                     Email
                   </label>
                   <div className="mt-1">
                     <input
                       value={email}
-                      onChange={e => setEmail(e.target.value)}
+                      onChange={(e) => setEmail(e.target.value)}
                       id="email"
                       name="email"
                       type="email"
@@ -277,14 +319,17 @@ export default function Example() {
                 </div>
                 <div>
                   <div className="flex justify-between">
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-900">
+                    <label
+                      htmlFor="phone"
+                      className="block text-sm font-medium text-gray-900"
+                    >
                       Phone
                     </label>
                   </div>
                   <div className="mt-1">
                     <input
                       value={phone}
-                      onChange={e => setPhone(e.target.value)}
+                      onChange={(e) => setPhone(e.target.value)}
                       type="text"
                       name="phone"
                       id="phone"
@@ -310,7 +355,10 @@ export default function Example() {
                 </div> */}
                 <div className="sm:col-span-2">
                   <div className="flex justify-between">
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-900">
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-medium text-gray-900"
+                    >
                       Message
                     </label>
                     <span id="message-max" className="text-sm text-gray-500">
@@ -320,13 +368,13 @@ export default function Example() {
                   <div className="mt-1">
                     <textarea
                       value={message}
-                      onChange={e => setMessage(e.target.value)}
+                      onChange={(e) => setMessage(e.target.value)}
                       id="message"
                       name="message"
                       rows={4}
                       className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                       aria-describedby="message-max"
-                      defaultValue={''}
+                      defaultValue={""}
                       required={true}
                     />
                   </div>
@@ -370,5 +418,5 @@ export default function Example() {
         </div>
       </div>
     </div>
-  )
+  );
 }

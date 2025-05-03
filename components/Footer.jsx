@@ -311,7 +311,7 @@ export default function Example() {
             <div className="flex gap-2.5">
               <MailIcon className="w-5 h-5 md:w-6 md:h-6" />
               <Link
-                href="mailto:+91-8779003845"
+                href="mailto:info@studenthousing.co.in"
                 className="text-[#F8C14C] text-sm md:text-base"
               >
                 info@studenthousing.co.in

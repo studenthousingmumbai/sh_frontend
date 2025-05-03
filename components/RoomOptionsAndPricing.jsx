@@ -49,7 +49,10 @@ export default function RoomOptionsAndPricing({ sectionTitle, data }) {
             <Card className="shadow-sm rounded-[16px] h-full flex flex-col">
               <CardContent className="flex flex-col p-3 sm:p-4 h-full">
                 <div className="flex flex-col gap-3 overflow-hidden h-full">
-                  <div className="h-48 sm:h-64 md:h-48 relative rounded-[14px] overflow-hidden">
+                  <Link
+                    className="h-48 sm:h-64 md:h-48 relative rounded-[14px] overflow-hidden"
+                    href={`/listing/${item.id}`}
+                  >
                     <div
                       className={`absolute top-0 right-0 ${
                         item.gender === "female"
@@ -68,23 +71,29 @@ export default function RoomOptionsAndPricing({ sectionTitle, data }) {
                       alt={item.name}
                       className="w-full h-full object-cover rounded-[14px]"
                     />
-                  </div>
+                  </Link>
                   <div className="flex flex-col gap-1.5 flex-grow">
-                    <h3 className="font-[600] text-lg md:text-2xl truncate flex-1">
-                      {item.name}
-                    </h3>
-                    <div className="flex gap-2 font-[600] text-[#F8C14C] flex-1 items-center text-sm md:text-base">
-                      <MapPin className="w-3.5 h-3.5 md:w-6 md:h-6" />
-                      <div>{`${item.address?.line_1} ${item.address?.line_2}, ${item.address?.city}`}</div>
-                    </div>
-                    <p className=" text-base md:text-lg font-semibold flex-1">
-                      Starting from ₹{item.price}
-                    </p>
-                    <p className="text-sm md:text-lg flex-grow flex-1">
-                      {item.description.length > 100
-                        ? `${item.description.slice(0, 100)}...`
-                        : item.description}
-                    </p>
+                    <Link
+                      className="flex flex-col gap-1.5 flex-grow"
+                      href={`/listing/${item.id}`}
+                    >
+                      <h3 className="font-[600] text-lg md:text-2xl truncate flex-1">
+                        {item.name}
+                      </h3>
+                      <div className="flex gap-2 font-[600] text-[#F8C14C] flex-1 items-center text-sm md:text-base">
+                        <MapPin className="w-3.5 h-3.5 md:w-6 md:h-6" />
+                        <div>{`${item.address?.line_1} ${item.address?.line_2}, ${item.address?.city}`}</div>
+                      </div>
+                      <p className=" text-base md:text-lg font-semibold flex-1">
+                        Starting from ₹{item.price}
+                      </p>
+                      <p className="text-sm md:text-lg flex-grow flex-1">
+                        {item.description.length > 100
+                          ? `${item.description.slice(0, 100)}...`
+                          : item.description}
+                      </p>
+                    </Link>
+
                     <div className="mt-4 flex justify-around">
                       <Link
                         href={`/listing/${item.id}`}

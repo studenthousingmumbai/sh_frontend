@@ -4,6 +4,7 @@ import { CheckCircleIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import Layout from "../components/Layout";
 import styles from "../styles/Home.module.css";
 import useApi from "../hooks/useApi";
+import Link from "next/link";
 
 export default function Example() {
   const [email, setEmail] = useState("");
@@ -61,7 +62,10 @@ export default function Example() {
                       className="h-6 w-6 flex-shrink-0 text-gray-400"
                       aria-hidden="true"
                     />
-                    <span className="ml-3"> +91-9819780000</span>
+                    <Link href="tel:+91-9819780000" className="ml-3">
+                      {" "}
+                      +91-9819780000
+                    </Link>
                   </dd>
                 </div>
                 <div className="mt-3">
@@ -71,7 +75,12 @@ export default function Example() {
                       className="h-6 w-6 flex-shrink-0 text-gray-400"
                       aria-hidden="true"
                     />
-                    <span className="ml-3">info@studenthousing.co.in</span>
+                    <Link
+                      href="mailto:info@studenthousing.co.in"
+                      className="ml-3"
+                    >
+                      info@studenthousing.co.in
+                    </Link>
                   </dd>
                   <dd className="flex">
                     <span className="ml-3">Working hours: Open 24 Hours</span>
@@ -109,7 +118,9 @@ export default function Example() {
                       className="h-6 w-6 flex-shrink-0 text-gray-400"
                       aria-hidden="true"
                     />
-                    <span className="ml-3"> +91-9004033884</span>
+                    <Link href="tel:+91-9004033884" className="ml-3">
+                      +91-9004033884
+                    </Link>
                   </dd>
                 </div>
                 <div className="mt-3">
@@ -119,7 +130,12 @@ export default function Example() {
                       className="h-6 w-6 flex-shrink-0 text-gray-400"
                       aria-hidden="true"
                     />
-                    <span className="ml-3">info@studenthousing.co.in</span>
+                    <Link
+                      href="mailto:info@studenthousing.co.in"
+                      className="ml-3"
+                    >
+                      info@studenthousing.co.in
+                    </Link>
                   </dd>
                   <dd className="flex">
                     <span className="ml-3">
@@ -160,7 +176,9 @@ export default function Example() {
                       className="h-6 w-6 flex-shrink-0 text-gray-400"
                       aria-hidden="true"
                     />
-                    <span className="ml-3"> +91-9029923757</span>
+                    <Link href="tel:+91-9029923757" className="ml-3">
+                      +91-9029923757
+                    </Link>
                   </dd>
                 </div>
                 <div className="mt-3">
@@ -170,7 +188,12 @@ export default function Example() {
                       className="h-6 w-6 flex-shrink-0 text-gray-400"
                       aria-hidden="true"
                     />
-                    <span className="ml-3">info@studenthousing.co.in</span>
+                    <Link
+                      href="mailto:info@studenthousing.co.in"
+                      className="ml-3"
+                    >
+                      info@studenthousing.co.in
+                    </Link>
                   </dd>
                   <dd className="flex">
                     <span className="ml-3">Monday- Sunday 10am- 8pm</span>
@@ -207,7 +230,9 @@ export default function Example() {
                       className="h-6 w-6 flex-shrink-0 text-gray-400"
                       aria-hidden="true"
                     />
-                    <span className="ml-3"> +91-9833797217</span>
+                    <Link href="tel:+91-9833797217" className="ml-3">
+                      +91-9833797217
+                    </Link>
                   </dd>
                 </div>
                 <div className="mt-3">
@@ -217,7 +242,12 @@ export default function Example() {
                       className="h-6 w-6 flex-shrink-0 text-gray-400"
                       aria-hidden="true"
                     />
-                    <span className="ml-3">info@studenthousing.co.in</span>
+                    <Link
+                      href="mailto:info@studenthousing.co.in"
+                      className="ml-3"
+                    >
+                      info@studenthousing.co.in
+                    </Link>
                   </dd>
                   <dd className="flex">
                     <span className="ml-3">
@@ -259,7 +289,9 @@ export default function Example() {
                       className="h-6 w-6 flex-shrink-0 text-gray-400"
                       aria-hidden="true"
                     />
-                    <span className="ml-3"> +91-8779003845</span>
+                    <Link href="tel:+91-8779003845" className="ml-3">
+                      +91-8779003845
+                    </Link>
                   </dd>
                 </div>
                 <div className="mt-3">
@@ -269,7 +301,12 @@ export default function Example() {
                       className="h-6 w-6 flex-shrink-0 text-gray-400"
                       aria-hidden="true"
                     />
-                    <span className="ml-3">info@studenthousing.co.in</span>
+                    <Link
+                      href="mailto:info@studenthousing.co.in"
+                      className="ml-3"
+                    >
+                      info@studenthousing.co.in
+                    </Link>
                   </dd>
                   <dd className="flex">
                     <span className="ml-3">Working hours: Open 24 Hours</span>
@@ -307,7 +344,9 @@ export default function Example() {
                       className="h-6 w-6 flex-shrink-0 text-gray-400"
                       aria-hidden="true"
                     />
-                    <span className="ml-3"> +91-9029930227</span>
+                    <Link href="tel:+91-9029930227" className="ml-3">
+                      +91-9029930227
+                    </Link>
                   </dd>
                 </div>
                 <div className="mt-3">
@@ -317,7 +356,12 @@ export default function Example() {
                       className="h-6 w-6 flex-shrink-0 text-gray-400"
                       aria-hidden="true"
                     />
-                    <span className="ml-3">info@studenthousing.co.in</span>
+                    <Link
+                      href="mailto:info@studenthousing.co.in"
+                      className="ml-3"
+                    >
+                      info@studenthousing.co.in
+                    </Link>
                   </dd>
                   <dd className="flex">
                     <span className="ml-3">
@@ -358,7 +402,9 @@ export default function Example() {
                       className="h-6 w-6 flex-shrink-0 text-gray-400"
                       aria-hidden="true"
                     />
-                    <span className="ml-3"> +91-8779003845</span>
+                    <Link href="tel:+91-8779003845" className="ml-3">
+                      +91-8779003845
+                    </Link>
                   </dd>
                 </div>
                 <div className="mt-3">
@@ -368,7 +414,12 @@ export default function Example() {
                       className="h-6 w-6 flex-shrink-0 text-gray-400"
                       aria-hidden="true"
                     />
-                    <span className="ml-3">info@studenthousing.co.in</span>
+                    <Link
+                      href="mailto:info@studenthousing.co.in"
+                      className="ml-3"
+                    >
+                      info@studenthousing.co.in
+                    </Link>
                   </dd>
                   <dd className="flex">
                     <span className="ml-3">
@@ -407,7 +458,9 @@ export default function Example() {
                       className="h-6 w-6 flex-shrink-0 text-gray-400"
                       aria-hidden="true"
                     />
-                    <span className="ml-3"> +91-9867373030</span>
+                    <Link href="tel:+91-9867373030" className="ml-3">
+                      +91-9867373030
+                    </Link>
                   </dd>
                 </div>
                 <div className="mt-3">
@@ -417,7 +470,12 @@ export default function Example() {
                       className="h-6 w-6 flex-shrink-0 text-gray-400"
                       aria-hidden="true"
                     />
-                    <span className="ml-3">info@studenthousing.co.in</span>
+                    <Link
+                      href="mailto:info@studenthousing.co.in"
+                      className="ml-3"
+                    >
+                      info@studenthousing.co.in
+                    </Link>
                   </dd>
                   <dd className="flex">
                     <span className="ml-3">
@@ -458,7 +516,9 @@ export default function Example() {
                       className="h-6 w-6 flex-shrink-0 text-gray-400"
                       aria-hidden="true"
                     />
-                    <span className="ml-3"> +91-8779003845</span>
+                    <Link href="tel:+91-8779003845" className="ml-3">
+                      +91-8779003845
+                    </Link>
                   </dd>
                 </div>
                 <div className="mt-3">
@@ -468,7 +528,12 @@ export default function Example() {
                       className="h-6 w-6 flex-shrink-0 text-gray-400"
                       aria-hidden="true"
                     />
-                    <span className="ml-3">info@studenthousing.co.in</span>
+                    <Link
+                      href="mailto:info@studenthousing.co.in"
+                      className="ml-3"
+                    >
+                      info@studenthousing.co.in
+                    </Link>
                   </dd>
                   <dd className="flex">
                     <span className="ml-3">
@@ -508,7 +573,9 @@ export default function Example() {
                       className="h-6 w-6 flex-shrink-0 text-gray-400"
                       aria-hidden="true"
                     />
-                    <span className="ml-3"> +91-9324208885</span>
+                    <Link href="tel:+91-9324208885" className="ml-3">
+                      +91-9324208885
+                    </Link>
                   </dd>
                 </div>
                 <div className="mt-3">
@@ -518,7 +585,12 @@ export default function Example() {
                       className="h-6 w-6 flex-shrink-0 text-gray-400"
                       aria-hidden="true"
                     />
-                    <span className="ml-3">info@studenthousing.co.in</span>
+                    <Link
+                      href="mailto:info@studenthousing.co.in"
+                      className="ml-3"
+                    >
+                      info@studenthousing.co.in
+                    </Link>
                   </dd>
                   <dd className="flex">
                     <span className="ml-3">
@@ -558,7 +630,9 @@ export default function Example() {
                       className="h-6 w-6 flex-shrink-0 text-gray-400"
                       aria-hidden="true"
                     />
-                    <span className="ml-3"> +91-8779003845</span>
+                    <Link href="tel:+91-8779003845" className="ml-3">
+                      +91-8779003845
+                    </Link>
                   </dd>
                 </div>
                 <div className="mt-3">
@@ -568,7 +642,12 @@ export default function Example() {
                       className="h-6 w-6 flex-shrink-0 text-gray-400"
                       aria-hidden="true"
                     />
-                    <span className="ml-3">info@studenthousing.co.in</span>
+                    <Link
+                      href="mailto:info@studenthousing.co.in"
+                      className="ml-3"
+                    >
+                      info@studenthousing.co.in
+                    </Link>
                   </dd>
                   <dd className="flex">
                     <span className="ml-3">
@@ -607,7 +686,9 @@ export default function Example() {
                       className="h-6 w-6 flex-shrink-0 text-gray-400"
                       aria-hidden="true"
                     />
-                    <span className="ml-3"> +91-8779003845</span>
+                    <Link href="tel:+91-8779003845" className="ml-3">
+                      +91-8779003845
+                    </Link>
                   </dd>
                 </div>
                 <div className="mt-3">
@@ -617,7 +698,12 @@ export default function Example() {
                       className="h-6 w-6 flex-shrink-0 text-gray-400"
                       aria-hidden="true"
                     />
-                    <span className="ml-3">info@studenthousing.co.in</span>
+                    <Link
+                      href="mailto:info@studenthousing.co.in"
+                      className="ml-3"
+                    >
+                      info@studenthousing.co.in
+                    </Link>
                   </dd>
                   <dd className="flex">
                     <span className="ml-3">
@@ -658,7 +744,9 @@ export default function Example() {
                       className="h-6 w-6 flex-shrink-0 text-gray-400"
                       aria-hidden="true"
                     />
-                    <span className="ml-3"> +91-8779003845</span>
+                    <Link href="tel:+91-8779003845" className="ml-3">
+                      +91-8779003845
+                    </Link>
                   </dd>
                 </div>
                 <div className="mt-3">
@@ -668,7 +756,12 @@ export default function Example() {
                       className="h-6 w-6 flex-shrink-0 text-gray-400"
                       aria-hidden="true"
                     />
-                    <span className="ml-3">info@studenthousing.co.in</span>
+                    <Link
+                      href="mailto:info@studenthousing.co.in"
+                      className="ml-3"
+                    >
+                      info@studenthousing.co.in
+                    </Link>
                   </dd>
                   <dd className="flex">
                     <span className="ml-3">
