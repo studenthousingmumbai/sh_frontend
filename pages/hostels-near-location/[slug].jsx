@@ -15,6 +15,7 @@ import { gql } from "@apollo/client";
 import client from "../../apolloClient";
 import InterestedEnquireForm from "../../components/InterestedEnquireForm";
 import { pickRandomFaqs } from "../../utils/faqs";
+import Head from "next/head";
 
 export default function HostelsNearLocation({
   all_listings,
@@ -33,6 +34,26 @@ export default function HostelsNearLocation({
 
   return (
     <Layout>
+      <Head>
+        {listingDetails &&
+          listingDetails.metatags.length > 0 &&
+          listingDetails.metatags.map((tag) =>
+            tag.metaName ? (
+              <meta name="description" content={tag.content} />
+            ) : tag.metaProperty ? (
+              <meta property={tag.metaProperty} content={tag.content} />
+            ) : null
+          )}
+
+        {listingDetails && listingDetails.schemaMarkup && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: listingDetails.schemaMarkup,
+            }}
+          />
+        )}
+      </Head>
       <HeroBanner
         title={"Find your perfect hostel!"}
         subTitle={
@@ -87,6 +108,12 @@ export async function getServerSideProps(context) {
               url
               id
             }
+            metaTags {
+              metaName
+              metaContent
+              metaProperty
+            }
+            schemaMarkup
             hostelListingLink
             hostelDescription
             gender

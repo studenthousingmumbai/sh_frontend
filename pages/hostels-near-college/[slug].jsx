@@ -14,6 +14,7 @@ import apis from "../../lib/apis";
 import { gql } from "@apollo/client";
 import client from "../../apolloClient";
 import { pickRandomFaqs } from "../../utils/faqs";
+import Head from "next/head";
 
 export default function HostelsNearCollege({
   all_listings,
@@ -21,10 +22,6 @@ export default function HostelsNearCollege({
   gender,
   listingDetails,
 }) {
-  console.log("Listing details: ", listingDetails);
-  console.log("gender", gender);
-  console.log("all listings", all_listings);
-
   const [listings, setListings] = useState(all_listings);
   const [randomFaqs, setRandomFaqs] = useState([]);
 
@@ -34,6 +31,26 @@ export default function HostelsNearCollege({
 
   return (
     <Layout>
+      <Head>
+        {listingDetails &&
+          listingDetails.metatags.length > 0 &&
+          listingDetails.metatags.map((tag) =>
+            tag.metaName ? (
+              <meta name="description" content={tag.content} />
+            ) : tag.metaProperty ? (
+              <meta property={tag.metaProperty} content={tag.content} />
+            ) : null
+          )}
+
+        {listingDetails && listingDetails.schemaMarkup && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: listingDetails.schemaMarkup,
+            }}
+          />
+        )}
+      </Head>
       <HeroBanner
         title={`Hostels Near ${listingDetails.collegeName}`}
         subTitle={
@@ -94,6 +111,12 @@ export async function getServerSideProps(context) {
               url
               id
             }
+            metaTags {
+              metaName
+              metaContent
+              metaProperty
+            }
+            schemaMarkup
             hostelListingLink
             description1
             description2

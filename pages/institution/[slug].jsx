@@ -13,6 +13,7 @@ import { gql } from "@apollo/client";
 import { pickRandomFaqs } from "../../utils/faqs";
 import { useLayoutEffect, useState } from "react";
 import InterestedEnquireForm from "../../components/InterestedEnquireForm";
+import Head from "next/head";
 
 const mock = {
   slug: "sss",
@@ -41,7 +42,6 @@ const mock = {
     "/hostels/girls-rooms-img-2.png",
     "/hostels/girls-rooms-img-3.png",
   ],
-
   whyChoose: [
     {
       title: "Academic Excellence",
@@ -78,9 +78,6 @@ export default function Institutions({
   gender,
   listingDetails,
 }) {
-  console.log("listing details", listingDetails);
-  console.log("all listing", all_listings);
-
   const [randomFaqs, setRandomFaqs] = useState([]);
 
   useLayoutEffect(() => {
@@ -89,6 +86,26 @@ export default function Institutions({
 
   return (
     <Layout>
+      <Head>
+        {listingDetails &&
+          listingDetails.metatags.length > 0 &&
+          listingDetails.metatags.map((tag) =>
+            tag.metaName ? (
+              <meta name="description" content={tag.content} />
+            ) : tag.metaProperty ? (
+              <meta property={tag.metaProperty} content={tag.content} />
+            ) : null
+          )}
+
+        {listingDetails && listingDetails.schemaMarkup && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: listingDetails.schemaMarkup,
+            }}
+          />
+        )}
+      </Head>
       <HeroBanner
         title={listingDetails.collegeName}
         subTitle={
@@ -146,6 +163,12 @@ export async function getServerSideProps(context) {
               title
               description
             }
+            metaTags {
+              metaName
+              metaContent
+              metaProperty
+            }
+            schemaMarkup
             images {
               id
               url
