@@ -32,9 +32,9 @@ export default function HostelsNearCollege({
   return (
     <Layout>
       <Head>
-        {listingDetails &&
-          listingDetails.metatags.length > 0 &&
-          listingDetails.metatags.map((tag) =>
+        {listingDetails && 
+          listingDetails.metaTags.length > 0 &&
+          listingDetails.metaTags.map((tag) =>
             tag.metaName ? (
               <meta name="description" content={tag.content} />
             ) : tag.metaProperty ? (
