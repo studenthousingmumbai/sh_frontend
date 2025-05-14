@@ -18,6 +18,7 @@ export default function Listing({
   images,
   location,
   video_link,
+  slug,
 }) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -41,14 +42,14 @@ export default function Listing({
 
       <div
         className="hidden lg:flex w-full rounded-md p-4 transition-all ease-in-out duration-300 hover:shadow-md hover:cursor-pointer border border-1 border-gray-300 hover:border-gray-400 hover:scale-[1.01] shadow-sm group"
-        onClick={() => router.push(`/listing/${id}`)}
+        onClick={() => router.push(`/listing/${slug}`)}
       >
         <div className="rounded-xl bg-gray-300 w-[700px] h-[300px] mr-6 relative">
           {/* <div className='bg-[rgba(0,0,0,0.3)] absolute top-0 left-0 w-full h-full rounded-md'></div> */}
           <img
             className="w-full h-full object-cover rounded-md"
             src={
-              images[0] ||
+              images[0].url ||
               "https://movi.com.tr/wp-content/uploads/2021/08/placeholder-home.png"
             }
           />
@@ -137,7 +138,7 @@ export default function Listing({
             <button
               type="button"
               className="mr-3 inline-flex items-center rounded-md border border-transparent bg-[#FFCC29] px-4 py-2 text-sm lg1:text-base font-medium text-black shadow-sm hover:bg-[#fad45a] focus:outline-none focus:ring-2 focus:ring-[#fad45a] focus:ring-offset-2"
-              onClick={() => router.push(`/listing/${id}`)}
+              onClick={() => router.push(`/listing/${slug}`)}
             >
               Book Now
             </button>
@@ -172,14 +173,14 @@ export default function Listing({
 
       <div
         className="flex flex-col lg:hidden w-full rounded-md p-6 hover:shadow-xl border-2 border-gray-200 transition-all ease-in-out duration-300 hover:cursor-pointer group"
-        onClick={() => router.push(`/listing/${id}`)}
+        onClick={() => router.push(`/listing/${slug}`)}
       >
         <div className="rounded-xl bg-gray-300 w-full h-[350px] mr-3 relative">
           <div className="bg-[rgba(0,0,0,0.3)] absolute top-0 left-0 w-full h-full rounded-md"></div>
           <img
             className="w-full h-full object-cover rounded-md"
             src={
-              images[0] ||
+              images[0].url ||
               "https://movi.com.tr/wp-content/uploads/2021/08/placeholder-home.png"
             }
           />
@@ -269,7 +270,7 @@ export default function Listing({
               <button
                 type="button"
                 className="w-full lg:w-auto inline-flex items-center justify-center rounded-md border border-transparent bg-[#FFCC29] px-4 py-2 text-xs sm:text-base font-medium text-black shadow-sm hover:bg-[#fad45a] focus:outline-none focus:ring-2 focus:ring-[#fad45a] focus:ring-offset-2"
-                onClick={() => router.push(`/listing/${id}`)}
+                onClick={() => router.push(`/listing/${slug}`)}
               >
                 Book Now
               </button>

@@ -12,6 +12,8 @@ import VideoPlayer from "../../components/common/VideoPlayer";
 import apis from "../../lib/apis";
 import { ChevronDownIcon } from "@heroicons/react/24/outline/";
 import { FaBed } from "react-icons/fa";
+import client from "../../apolloClient";
+import { gql } from "@apollo/client";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -105,7 +107,7 @@ function Faqs({ faqs }) {
 export default function Example({ listing: Listing }) {
   const router = useRouter();
   // const { isReady } = router;
-  const { id } = router.query;
+  const { slug } = router.query;
   const [listing, setListing] = useState(Listing);
   // const { getListing } = useApi();
   const { isAuthenticated } = withAuth();
@@ -114,8 +116,6 @@ export default function Example({ listing: Listing }) {
   const [watchVideoOpen, setWatchVideoOpen] = useState(false);
   // const [selectedImage, setSelectedImage] = useState("");
   // const [selectedImageOpen, setSelectedImageOpen] = useState(false);
-
-  console.log("Listing : ", listing);
 
   // useEffect(() => {
   //   if(isReady){
@@ -132,7 +132,7 @@ export default function Example({ listing: Listing }) {
 
   const handleBooknow = () => {
     if (isAuthenticated) {
-      router.push(`/booking/${id}`);
+      router.push(`/booking/${slug}`);
     } else {
       setOpen(true);
     }
@@ -222,7 +222,7 @@ export default function Example({ listing: Listing }) {
                         listing.images &&
                         listing.images.map((image) => (
                           <Tab
-                            key={image}
+                            key={image.id}
                             className="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4"
                           >
                             {({ selected }) => (
@@ -230,7 +230,7 @@ export default function Example({ listing: Listing }) {
                                 {/* <span className="sr-only"> {image.name} </span> */}
                                 <span className="absolute inset-0 overflow-hidden rounded-md">
                                   <img
-                                    src={image}
+                                    src={image.url}
                                     alt="Listing Image"
                                     className="h-full w-full object-cover object-center"
                                   />
@@ -257,12 +257,12 @@ export default function Example({ listing: Listing }) {
                       listing.images.map((image) => (
                         <Tab.Panel key={image.id}>
                           <img
-                            src={image}
+                            src={image.url}
                             alt={"Listing Image"}
                             className="h-full w-full object-cover object-center sm:rounded-lg"
                             onClick={() => {
-                              setSelectedImage(image);
-                              setSelectedImageOpen(true);
+                              // setSelectedImage(image.url);
+                              // setSelectedImageOpen(true);
                             }}
                           />
                         </Tab.Panel>
@@ -458,20 +458,80 @@ export default function Example({ listing: Listing }) {
 
 export async function getServerSideProps(context) {
   console.log("Get server side props called!");
-  const { id } = context.params;
+  const { slug } = context.params;
 
-  // Fetch data from external API
-  const listing = await apis.getListing(
-    process.env.NEXT_PUBLIC_API_BASE_URL,
-    id
-  );
-
-  console.log("Listing: ", listing);
-
-  // Pass data to the page via props
-  return {
-    props: {
-      listing,
-    },
-  };
+  try {
+    const { data } = await client.query({
+      query: gql`
+        query HostelsOrder($slug: String!) {
+          hostelsOrders(first: 1000) {
+            hostel(where: { slug: $slug }) {
+              name
+              slug
+              description
+              address {
+                line1
+                line2
+                city
+                state
+                zip
+              }
+              amenities
+              images {
+                url
+                id
+              }
+              metatags {
+                metaName
+                metaContent
+                metaProperty
+              }
+              schemaMarkup
+              mapEmbed
+              total_price
+              price
+              gender
+              foodMenu {
+                id
+                url
+              }
+              video_link
+              faqs {
+                question
+                answer
+              }
+              occupancies {
+                price
+                description
+                total_beds
+                period
+              }
+              collegesNearby {
+                name
+                distance
+              }
+            }
+          }
+        }
+      `,
+      variables: {
+        slug,
+      },
+    });
+    console.log("Data: ", data);
+    const { hostelsOrders } = data;
+    const hostels = hostelsOrders[0].hostel;
+    return {
+      props: {
+        listing: hostels[0] || null,
+      },
+    };
+  } catch (e) {
+    console.error("Error fetching data:", e);
+    return {
+      props: {
+        listing: null,
+      },
+    };
+  }
 }
