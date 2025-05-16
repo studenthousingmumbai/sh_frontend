@@ -49,7 +49,7 @@ export default function Listing({
           <img
             className="w-full h-full object-cover rounded-md"
             src={
-              images[0].url ||
+              images[0]?.url ||
               "https://movi.com.tr/wp-content/uploads/2021/08/placeholder-home.png"
             }
           />
@@ -180,7 +180,7 @@ export default function Listing({
           <img
             className="w-full h-full object-cover rounded-md"
             src={
-              images[0].url ||
+              images[0]?.url ||
               "https://movi.com.tr/wp-content/uploads/2021/08/placeholder-home.png"
             }
           />

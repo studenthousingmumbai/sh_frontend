@@ -169,6 +169,21 @@ module.exports = {
           5: "hsl(var(--chart-5))",
         },
       },
+      fontSize: {
+        cardTitleFontSize: "48px",
+        cardSubTitleFontSize: "18px",
+        cardSubTitleFontSizeExtraSmall: "14px",
+        cardTitleFontSizeMobile: "36px",
+        cardTitleFontSizeMobileExtraSmall: "32px",
+        cardSubTitleFontSizeMobile: "16px",
+      },
+      fontWeight: {
+        cardTitleFontWeight: "700",
+        cardSubTitleFontWeight: "500",
+      },
+      opacity: {
+        cardSubTitleOpacity: "70%",
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

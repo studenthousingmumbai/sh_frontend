@@ -126,3 +126,15 @@ a {
 .responsiveCenterPadding {
   @apply px-6 sm:px-12 md:px-24 lg:px-32 xl:px-48;
 }
+
+.section-y-padding {
+  @apply py-12 lg:py-16;
+}
+
+.card-title {
+  @apply text-cardTitleFontSizeMobileExtraSmall xs:text-cardTitleFontSizeMobile md:text-cardTitleFontSize font-cardTitleFontWeight;
+}
+
+.card-subtitle {
+  @apply text-cardSubTitleFontSizeExtraSmall xs:text-cardSubTitleFontSizeMobile md:text-cardSubTitleFontSize font-cardSubTitleFontWeight opacity-cardSubTitleOpacity;
+}
