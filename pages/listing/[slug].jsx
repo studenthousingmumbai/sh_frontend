@@ -435,7 +435,7 @@ export default function Example({ listing: Listing }) {
               <Occupancies occupancies={listing?.occupancies} />
             </div>
 
-            <div className="flex gap-10">
+            <div className="flex flex-col lg:flex-row gap-10">
               {listing?.collegesNearby?.length > 0 && (
                 <div className="mb-6 flex-1 flex flex-col gap-6">
                   <div>
