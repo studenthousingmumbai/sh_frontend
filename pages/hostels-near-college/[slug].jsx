@@ -32,7 +32,7 @@ export default function HostelsNearCollege({
   return (
     <Layout>
       <Head>
-        {listingDetails && 
+        {listingDetails &&
           listingDetails.metaTags.length > 0 &&
           listingDetails.metaTags.map((tag) =>
             tag.metaName ? (
