@@ -4,9 +4,9 @@ export default function HeroBanner({ title, subTitle, image }) {
       {/* Text Content */}
       <div className="lg:w-1/2 p-6 py-12 sm:pl-12 md:pl-32 lg:pl-48 flex flex-col justify-center items-start gap-4">
         {/* Title */}
-        <div className="font-[700] text-[36px] md:text-[52px] lg:text-[62px] xl:text-[72px] leading-[100%]">
+        <h1 className="font-[700] text-[36px] md:text-[52px] lg:text-[62px] xl:text-[72px] leading-[100%]">
           {title}
-        </div>
+        </h1>
 
         {/* Subtitle */}
         <div className="font-[600] text-[14px] md:text-[16px] lg:text-[22px] leading-[150%] opacity-70">

@@ -36,8 +36,8 @@ export default function HostelsNearLocation({
     <Layout>
       <Head>
         {listingDetails &&
-          listingDetails.metatags.length > 0 &&
-          listingDetails.metatags.map((tag) =>
+          listingDetails.metaTags.length > 0 &&
+          listingDetails.metaTags.map((tag) =>
             tag.metaName ? (
               <meta name="description" content={tag.content} />
             ) : tag.metaProperty ? (
@@ -55,7 +55,7 @@ export default function HostelsNearLocation({
         )}
       </Head>
       <HeroBanner
-        title={"Find your perfect hostel!"}
+        title={`Hostels Near ${listingDetails.locationName}`}
         subTitle={
           "Find the perfect stay with modern amenities, security, and a friendly community."
         }
@@ -103,6 +103,7 @@ export async function getServerSideProps(context) {
         query HostelsNearLocation($slug: String!) {
           hostelsNearLocations(where: { slug: $slug }, first: 1000, skip: 0) {
             slug
+            locationName
             hostelName
             images {
               url

@@ -130,6 +130,9 @@ export default function Example({ listing: Listing }) {
   //   setListing(Listing)
   // }
 
+  console.log("Listing collegesNearby", listing?.collegesNearby);
+  console.log("Listing foodMenu", listing?.foodMenu);
+
   const handleBooknow = () => {
     if (isAuthenticated) {
       router.push(`/booking/${slug}`);
@@ -149,8 +152,8 @@ export default function Example({ listing: Listing }) {
     <>
       <Head>
         {listing &&
-          listing.metatags.length > 0 &&
-          listing.metatags.map((tag) => (
+          listing?.metatags.length > 0 &&
+          listing?.metatags.map((tag) => (
             <>
               <title>{tag.title}</title>
               <meta name="description" content={tag.description} />
@@ -199,7 +202,7 @@ export default function Example({ listing: Listing }) {
           onClose={setWatchVideoOpen}
           open={watchVideoOpen}
         >
-          <VideoPlayer videoLink={listing.video_link} width={"w-[550px]"} />
+          <VideoPlayer videoLink={listing?.video_link} width={"w-[550px]"} />
         </Modal>
 
         {/* <Modal open={selectedImageOpen} onClose={() => setSelectedImageOpen(false)}>
@@ -218,57 +221,53 @@ export default function Example({ listing: Listing }) {
                   {/* Image selector */}
                   <div className="mx-auto mt-6  w-full max-w-2xl sm:block lg:max-w-none">
                     <Tab.List className="grid grid-cols-4 gap-6">
-                      {listing &&
-                        listing.images &&
-                        listing.images.map((image) => (
-                          <Tab
-                            key={image.id}
-                            className="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4"
-                          >
-                            {({ selected }) => (
-                              <>
-                                {/* <span className="sr-only"> {image.name} </span> */}
-                                <span className="absolute inset-0 overflow-hidden rounded-md">
-                                  <img
-                                    src={image.url}
-                                    alt="Listing Image"
-                                    className="h-full w-full object-cover object-center"
-                                  />
-                                </span>
-                                <span
-                                  className={classNames(
-                                    selected
-                                      ? "ring-indigo-500"
-                                      : "ring-transparent",
-                                    "pointer-events-none absolute inset-0 rounded-md ring-2 ring-offset-2"
-                                  )}
-                                  aria-hidden="true"
+                      {listing?.images?.map((image) => (
+                        <Tab
+                          key={image.id}
+                          className="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4"
+                        >
+                          {({ selected }) => (
+                            <Tab>
+                              {/* <span className="sr-only"> {image.name} </span> */}
+                              <span className="absolute inset-0 overflow-hidden rounded-md">
+                                <img
+                                  src={image.url}
+                                  alt="Listing Image"
+                                  className="h-full w-full object-cover object-center"
                                 />
-                              </>
-                            )}
-                          </Tab>
-                        ))}
+                              </span>
+                              <span
+                                className={classNames(
+                                  selected
+                                    ? "ring-indigo-500"
+                                    : "ring-transparent",
+                                  "pointer-events-none absolute inset-0 rounded-md ring-2 ring-offset-2"
+                                )}
+                                aria-hidden="true"
+                              />
+                            </Tab>
+                          )}
+                        </Tab>
+                      ))}
                     </Tab.List>
                   </div>
 
                   <Tab.Panels className="aspect-w-1 aspect-h-1 w-full">
-                    {listing &&
-                      listing.images &&
-                      listing.images.map((image) => (
-                        <Tab.Panel key={image.id}>
-                          <img
-                            src={image.url}
-                            alt={"Listing Image"}
-                            className="h-full w-full object-cover object-center sm:rounded-lg"
-                            onClick={() => {
-                              // setSelectedImage(image.url);
-                              // setSelectedImageOpen(true);
-                            }}
-                          />
-                        </Tab.Panel>
-                      ))}
+                    {listing?.images?.map((image) => (
+                      <Tab.Panel key={image.id}>
+                        <img
+                          src={image.url}
+                          alt={"Listing Image"}
+                          className="h-full w-full object-cover object-center sm:rounded-lg"
+                          onClick={() => {
+                            // setSelectedImage(image.url);
+                            // setSelectedImageOpen(true);
+                          }}
+                        />
+                      </Tab.Panel>
+                    ))}
 
-                    {listing.images && listing.images.length === 0 && (
+                    {listing?.images?.length === 0 && (
                       <img
                         src="https://movi.com.tr/wp-content/uploads/2021/08/placeholder-home.png"
                         alt={"Listing Image"}
@@ -281,20 +280,20 @@ export default function Example({ listing: Listing }) {
                 {/* Product info */}
                 <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
                   <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-                    {listing.name}
+                    {listing?.name}
                   </h1>
 
                   <div className="mt-3">
                     <h2 className="sr-only">Listing description</h2>
                     <h2 className="text-xl tracking-tight text-gray-600 font-medium">
-                      {listing && listing.description}
+                      {listing?.description}
                     </h2>
                   </div>
 
                   <div className="mt-3">
                     <h5 className="sr-only">Listing address</h5>
                     <p className="text-md tracking-tight text-gray-600">
-                      {listing && listing.address && listing.address.line_1}
+                      {listing?.address?.line_1}
                     </p>
                   </div>
 
@@ -359,7 +358,7 @@ export default function Example({ listing: Listing }) {
                     </h1>
                     <p className="text-3xl tracking-tight text-gray-900">
                       ₹
-                      {parseInt(listing.price).toLocaleString("en-IN", {
+                      {parseInt(listing?.price).toLocaleString("en-IN", {
                         maximumFractionDigits: 2,
                       })}
                       /-
@@ -372,9 +371,9 @@ export default function Example({ listing: Listing }) {
                     </h1>
                     <div className="flex flex-wrap">
                       {listing &&
-                        listing.amenities &&
-                        listing.amenities.length !== 0 &&
-                        listing.amenities.map((amenity, index) => (
+                        listing?.amenities &&
+                        listing?.amenities.length !== 0 &&
+                        listing?.amenities.map((amenity, index) => (
                           <span className="text-sm mb-2 mr-2 inline-flex items-center rounded-full bg-amenitiesPillBg px-2.5 py-0.5 text-xs font-semibold text-amenitiesPillText border border-amenitiesPillBorder">
                             {amenity}
                           </span>
@@ -433,11 +432,71 @@ export default function Example({ listing: Listing }) {
                   <div className="border-[5px] w-[60px] border-b border-brandColor "></div>
                 </div>
               </div>
-              <Occupancies occupancies={listing.occupancies} />
+              <Occupancies occupancies={listing?.occupancies} />
             </div>
 
+            <div className="flex flex-col lg:flex-row gap-10">
+              {listing?.collegesNearby?.length > 0 && (
+                <div className="mb-6 flex-1 flex flex-col gap-6">
+                  <div>
+                    <h2 className="text-2xl font-bold tracking-tight text-gray-900 w-full mb-3">
+                      Colleges Nearby
+                    </h2>
+                    <div className="border-[5px] w-[60px] border-b border-brandColor "></div>
+                  </div>
+
+                  <div className="flex flex-col gap-4">
+                    {listing?.collegesNearby?.map((clgs) => (
+                      <div
+                        key={clgs.name}
+                        className="flex items-center font-bold"
+                      >
+                        <span className="whitespace-nowrap">{clgs.name}</span>
+                        <span className="flex-grow border-b border-dashed border-black mx-4"></span>
+                        <span className="whitespace-nowrap">
+                          {clgs.distance} M
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {listing?.mapEmbed && (
+                <div className="mb-6 flex-1 flex flex-col gap-6">
+                  <div>
+                    <h2 className="text-2xl font-bold tracking-tight text-gray-900 w-full mb-3">
+                      Locate On Map
+                    </h2>
+                    <div className="border-[5px] w-[60px] border-b border-brandColor "></div>
+                  </div>
+                  <div
+                    className="w-full h-full"
+                    dangerouslySetInnerHTML={{ __html: listing?.mapEmbed }}
+                  />
+                </div>
+              )}
+            </div>
+
+            {listing?.foodMenu?.url && (
+              <div className="flex flex-col">
+                <div className="mb-6">
+                  <h2 className="text-2xl font-bold tracking-tight text-gray-900 w-full mb-3">
+                    Food Menu
+                  </h2>
+                  <div className="border-[5px] w-[60px] border-b border-brandColor "></div>
+                </div>
+
+                <div className="w-full">
+                  <img
+                    className="w-full h-full object-cover"
+                    src={listing?.foodMenu.url}
+                  ></img>
+                </div>
+              </div>
+            )}
+
             <div className="mt-12 mb-12">
-              <Faqs faqs={listing.faqs} />
+              <Faqs faqs={listing?.faqs} />
             </div>
 
             <Modal
@@ -446,7 +505,7 @@ export default function Example({ listing: Listing }) {
               onClose={() => setLocationOpen(false)}
             >
               <div className="mb-3 w-full h-[500px] bg-gray-200">
-                <GoogleMap location={listing.location} />
+                <GoogleMap location={listing?.location} />
               </div>
             </Modal>
           </main>
