@@ -13,34 +13,34 @@ const OurStory = () => {
     2016: {
       content:
         "Expanded to 100+ beds across 5+ hostels for boys and girls, driven by strong customer support and reviews.",
-      image: "/assets/about-us/our-story.jpg",
+      image: "/about-us/our-story.png",
     },
     2019: {
       content: "Grew to a 50+ member team, serving 1,000+ happy students.",
-      image: "/about-us/our-story.jpg",
+      image: "/about-us/our-story.png",
     },
     2020: {
       content:
         'Won "Best Student Housing of India" by Indian Education Awards in Bangalore.',
-      image: "/about-us/our-story.jpg",
+      image: "/about-us/our-story.png",
     },
     2021: {
       content: "Faced COVID-19 challenges but bounced back stronger.",
-      image: "/about-us/our-story.jpg",
+      image: "/about-us/our-story.png",
     },
     2022: {
       content: "Increased capacity to 300+ beds despite pandemic setbacks.",
-      image: "/about-us/our-story.jpg",
+      image: "/about-us/our-story.png",
     },
     2023: {
       content:
         "Launched Avenue by Student Housing — Mumbai’s most luxurious student hostel with an infinity pool; community grew to 4,000+ students.",
-      image: "/about-us/our-story.jpg",
+      image: "/about-us/our-story.png",
     },
     2024: {
       content:
         "Introduced Elita by Student Housing, featuring hostel rooms 4x larger than average, with premium amenities including a Pickleball court and a 4,000+ sq. ft. fitness centre; crossed 800+ beds.",
-      image: "/about-us/our-story.jpg",
+      image: "/about-us/our-story.png",
     },
     2025: {
       content: `Celebrating 10 years with two premium launches:
@@ -48,7 +48,7 @@ const OurStory = () => {
 •	Atlantis (Vile Parle West): 200+ bed exclusive girls’ hostel near NMIMS.
 Total capacity reached 1,100+ beds.
 `,
-      image: "/about-us/team/our-story.jpg",
+      image: "/about-us/our-story.png",
     },
   };
 
@@ -112,16 +112,16 @@ Total capacity reached 1,100+ beds.
               duration={0.1}
               className="relative bg-white p-6 rounded-lg shadow-lg z-30 max-w-fit mx-auto mt-6" // Higher z-index for content
             >
-              <div className="overflow-hidden rounded-lg w-auto h-[400px]">
+              <div className="relative overflow-hidden rounded-lg w-[765px] h-[400px]">
                 <Image
                   src={years[active]?.image}
                   alt="Selected Year"
-                  className="rounded-lg mb-4 hover:scale-105 duration-500"
+                  className="rounded-lg  hover:scale-105  w-full h-full duration-500 object-cover"
                   width={765}
                   height={400}
                 />
               </div>
-              <div className="text-center text-[18px] font-normal text-darkText max-w-[765px] mt-2">
+              <div className="text-center text-[18px] font-normal text-darkText max-w-[765px] mt-3">
                 {years[active]?.content}
               </div>
             </MotionDiv>
@@ -171,7 +171,7 @@ Total capacity reached 1,100+ beds.
                 key={active}
                 className="relative flex flex-col bg-white p-2 md:p-6 rounded-lg shadow-lg z-30 mx-auto gap-3" // Higher z-index for content
               >
-                <div className="overflow-hidden rounded-md w-full">
+                <div className="overflow-hidden rounded-md w-full h-5/6">
                   <img
                     src={years[active]?.image}
                     alt="Selected Year"
