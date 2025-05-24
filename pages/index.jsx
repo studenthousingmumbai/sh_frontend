@@ -564,7 +564,7 @@ const Homepage = ({ announcementImages, listings }) => {
         <Modal
           open={open}
           onClose={() => setOpen(false)}
-          title={"Queen sized beds, first time in hostel industry at:"}
+          title={"Luxury 15 storey Girls Hostel, next to NMIMS Mumbai at: "}
         >
           <div className="flex flex-col gap-4">
             <Carousel images={announcementImages} />

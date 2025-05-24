@@ -60,7 +60,11 @@ export async function getServerSideProps(context) {
       query: gql`
         query HostelsOrder${gender ? "($gender: Gender)" : ""} {
           hostelsOrders(first: 1000) {
-            hostel${gender ? "(where: { gender: $gender })" : ""} {
+            hostel${
+              gender
+                ? "(where: { gender: $gender }, first: 1000)"
+                : "(first: 1000)"
+            } {
               name
               slug
               description

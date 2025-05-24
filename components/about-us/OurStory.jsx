@@ -13,34 +13,34 @@ const OurStory = () => {
     2016: {
       content:
         "Expanded to 100+ beds across 5+ hostels for boys and girls, driven by strong customer support and reviews.",
-      image: "/assets/about-us/team/raviraj-team.png",
+      image: "/assets/about-us/our-story.jpg",
     },
     2019: {
       content: "Grew to a 50+ member team, serving 1,000+ happy students.",
-      image: "/assets/about-us/team/raviraj-team.png",
+      image: "/about-us/our-story.jpg",
     },
     2020: {
       content:
         'Won "Best Student Housing of India" by Indian Education Awards in Bangalore.',
-      image: "/assets/about-us/team/raviraj-team.png",
+      image: "/about-us/our-story.jpg",
     },
     2021: {
       content: "Faced COVID-19 challenges but bounced back stronger.",
-      image: "/assets/about-us/team/raviraj-team.png",
+      image: "/about-us/our-story.jpg",
     },
     2022: {
       content: "Increased capacity to 300+ beds despite pandemic setbacks.",
-      image: "/assets/about-us/team/raviraj-team.png",
+      image: "/about-us/our-story.jpg",
     },
     2023: {
       content:
         "Launched Avenue by Student Housing — Mumbai’s most luxurious student hostel with an infinity pool; community grew to 4,000+ students.",
-      image: "/assets/about-us/team/raviraj-team.png",
+      image: "/about-us/our-story.jpg",
     },
     2024: {
       content:
         "Introduced Elita by Student Housing, featuring hostel rooms 4x larger than average, with premium amenities including a Pickleball court and a 4,000+ sq. ft. fitness centre; crossed 800+ beds.",
-      image: "/assets/about-us/team/raviraj-team.png",
+      image: "/about-us/our-story.jpg",
     },
     2025: {
       content: `Celebrating 10 years with two premium launches:
@@ -48,7 +48,7 @@ const OurStory = () => {
 •	Atlantis (Vile Parle West): 200+ bed exclusive girls’ hostel near NMIMS.
 Total capacity reached 1,100+ beds.
 `,
-      image: "/assets/about-us/team/raviraj-team.png",
+      image: "/about-us/team/our-story.jpg",
     },
   };
 

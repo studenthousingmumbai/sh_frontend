@@ -50,16 +50,14 @@ const DrivenByExpertise = () => {
             key={index}
             className="flex flex-col gap-3 justify-start items-start hover-scale"
           >
-            <div className="w-full h-80 relative">
-              <Image
-                src={val.img}
-                alt="expertise-image"
-                fill
-                objectFit="cover"
-                quality={100}
-                className=" rounded-lg"
-              />
-            </div>
+            <Image
+              src={val.img}
+              width={500}
+              height={500}
+              alt="expertise-image"
+              quality={100}
+              className="rounded-lg object-cover"
+            />
             <div className="text-lg font-semibold mt-3">{val.title}</div>
             <div className="text">{val.subtitle}</div>
           </MotionDiv>

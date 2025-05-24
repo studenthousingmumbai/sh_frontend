@@ -71,6 +71,7 @@ const genderOptions = [
 
 export default function Listings({ all_listings, total, gender }) {
   console.log("All listings: ", all_listings);
+  console.log("Gender: ", gender);
 
   const router = useRouter();
   const { getAllListings } = useApi();
@@ -102,8 +103,12 @@ export default function Listings({ all_listings, total, gender }) {
       const { data } = await client.query({
         query: gql`
         query HostelsOrder${gender ? "($gender: Gender)" : ""} {
-          hostelsOrders(first: 1000) {
-            hostel${gender ? "(where: { gender: $gender })" : ""} {
+          hostelsOrders(first: 1) {
+            hostel${
+              gender
+                ? "(where: { gender: $gender }, first: 1000)"
+                : "(first: 1000)"
+            } {
               name
               slug
               description
@@ -332,13 +337,13 @@ export default function Listings({ all_listings, total, gender }) {
           </div>
 
           <div className="w-full lg:w-3/4">
-            <div className="mb-2 mt-2 lg:mt-0">
+            {/* <div className="mb-2 mt-2 lg:mt-0">
               <Search
                 api_endpoint={`${process.env.NEXT_PUBLIC_API_BASE_URL}/listing/search-listings`}
                 placeholder="Search Listings"
                 onResult={handleSearch}
               />
-            </div>
+            </div> */}
 
             <div className="mb-3">
               {listings.length !== 0 && searchQuery === "" && (
@@ -424,8 +429,12 @@ export async function getServerSideProps(context) {
     const { data } = await client.query({
       query: gql`
         query HostelsOrder${gender ? "($gender: Gender)" : ""} {
-          hostelsOrders(first: 1000) {
-            hostel${gender ? "(where: { gender: $gender })" : ""} {
+          hostelsOrders(first: 1) {
+            hostel${
+              gender
+                ? "(where: { gender: $gender }, first: 1000)"
+                : "(first: 1000)"
+            } {
               name
               slug
               description
@@ -484,7 +493,7 @@ export async function getServerSideProps(context) {
     return {
       props: {
         all_listings: hostels ?? null,
-        total: 10,
+        total: hostels.length,
         gender: (gender && gender) || null,
       },
     };
