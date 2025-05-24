@@ -34,7 +34,7 @@ export default function BestHotelsNear({ data }) {
             <SummaryCard
               {...data}
               address={{
-                line_1: data.address,
+                line_1: data.address.line1,
               }}
               hostelDescription={data.description1}
             />

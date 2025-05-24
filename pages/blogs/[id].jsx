@@ -10,6 +10,7 @@ export default function Blog({ blog }) {
     <Layout>
       <Head>
         {blog &&
+          blog.metatags &&
           blog.metatags.length > 0 &&
           blog.metatags.map((tag) =>
             tag.metaName ? (

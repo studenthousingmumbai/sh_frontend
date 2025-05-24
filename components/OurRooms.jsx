@@ -18,7 +18,7 @@ export default function ({ data }) {
         <ImageViewerCarousel
           images={data.images?.map((imgs) => {
             return {
-              url: imgs,
+              url: imgs.url,
             };
           })}
           startIndex={1}
@@ -28,7 +28,7 @@ export default function ({ data }) {
         <div className="h-auto md:h-[500px] flex flex-col md:flex-row gap-6 rounded-lg overflow-hidden z-20">
           <div className="w-full md:w-[60%] h-[233px] md:h-auto rounded-lg cursor-pointer overflow-hidden">
             <img
-              src={data.images[0]}
+              src={data.images[0].url}
               className="w-full h-full object-cover rounded-lg hover:scale-105 transition-all duration-500"
             />
           </div>
@@ -36,7 +36,7 @@ export default function ({ data }) {
           <div className="flex flex-col h-full gap-6 w-full md:w-[40%]">
             <div className="h-[157px] md:h-1/2 rounded-lg cursor-pointer overflow-hidden">
               <img
-                src={data.images[1]}
+                src={data.images[1].url}
                 className="w-full h-full object-cover rounded-lg hover:scale-105 transition-all duration-500"
               />
             </div>
@@ -51,7 +51,7 @@ export default function ({ data }) {
                 {data.images.length > 3 && `+${data.images.length - 3}`}
               </div>
               <img
-                src={data.images[2]}
+                src={data.images[2].url}
                 className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-all duration-500"
               />
             </div>
@@ -64,9 +64,13 @@ export default function ({ data }) {
               {...data}
               hostelDescription={data.description}
               address={{
-                line_1: `${data?.address?.line_1}, `,
-                line_2: `${data?.address?.line_2}, `,
-                city: `${data?.address?.city}`,
+                line_1: `${
+                  data?.address?.line1 ? data?.address.line1 + "," : ""
+                } `,
+                line_2: `${
+                  data?.address?.line2 ? data?.address.line2 + "," : ""
+                } `,
+                city: `${data?.address?.city ? data?.address.city : ""}`,
               }}
             />
           </div>
