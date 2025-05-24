@@ -18,9 +18,6 @@ import { pickRandomFaqs } from "../../utils/faqs";
 import Head from "next/head";
 
 export default function HostelsNearLocation({ all_listings, listingDetails }) {
-  const { getAllListings } = useApi();
-  const is_mounted = useRef(false);
-  const [listings, setListings] = useState(all_listings);
   const [randomFaqs, setRandomFaqs] = useState([]);
 
   useLayoutEffect(() => {
@@ -63,7 +60,10 @@ export default function HostelsNearLocation({ all_listings, listingDetails }) {
 
       <Quote />
 
-      <RoomOptionsAndPricing sectionTitle={"Explore More"} data={listings} />
+      <RoomOptionsAndPricing
+        sectionTitle={"Explore More"}
+        data={all_listings}
+      />
 
       <Occupancy />
 

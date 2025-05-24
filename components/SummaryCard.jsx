@@ -45,7 +45,7 @@ export default function SummaryCard({
 
       <div className="mt-4 flex justify-around">
         <Link
-          href={slug ? `/listing/${slug}` : hostelListingLink}
+          href={hostelListingLink ? hostelListingLink : `/listing/${slug}`}
           className="flex-1 mr-2"
         >
           <button className="w-full h-full bg-[#F8C14C] hover:bg-[#F8C14C]/80 text-black font-[600] px-2.5 py-1 md:px-4 md:py-2 text-sm md:text-base rounded-[8px]">
