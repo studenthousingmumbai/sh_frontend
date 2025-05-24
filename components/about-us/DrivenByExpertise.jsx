@@ -5,22 +5,22 @@ import { motionConfigDivs } from "../../utils/motionConstants";
 const DrivenByExpertise = () => {
   const values = [
     {
-      img: "/assets/about-us/team/Mr. Ravi B Darira-Managing-Director.png",
+      img: "/about-us/team/kamlesh-bhatena--founder-chief-managing-director.png",
       title: "Mr. Kamlesh Bhathena",
       subtitle: "Founder and Chief Managing Director",
     },
     {
-      img: "/assets/about-us/team/Mr.-Prashant-Mungekar---General-Manager.png",
+      img: "/about-us/team/rakesh-bhatena---director-and-finance.png",
       title: "Mr. Rakesh Bhathena",
       subtitle: "Director and Finance",
     },
     {
-      img: "/assets/about-us/team/Mr. Gaurav Darira - Managing Director.png",
+      img: "/about-us/team/nipa-bhatena-co-founder-sales.png",
       title: "Mrs. Nipa Bhathena",
       subtitle: "Co-Founder and Sales",
     },
     {
-      img: "/assets/about-us/team/Mr. Monojit Karmakar _ Certification & Product Development.png",
+      img: "/about-us/team/gaurav-bhatena---director-and-marketing.png",
       title: "Mr. Gaurav Bhathena",
       subtitle: "Director and Marketing",
     },
