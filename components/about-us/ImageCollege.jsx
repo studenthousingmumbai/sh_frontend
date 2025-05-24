@@ -24,11 +24,13 @@ export default function ImageCollage({
           direction={direction}
           delay={0.3}
           duration={0.5}
-          className="overflow-hidden"
+          width={319}
+          height={378}
+          className="relative w-[319px] h-[378px] overflow-hidden"
         >
           <Image
             alt="about-us-image"
-            className="hover:scale-105 duration-500"
+            className="hover:scale-105 duration-500 w-full h-full object-cover"
             src={image1}
             width={319}
             height={378}
@@ -43,11 +45,13 @@ export default function ImageCollage({
           direction={direction}
           delay={0.4}
           duration={0.5}
-          className="overflow-hidden"
+          width={319}
+          height={378}
+          className="relative w-[319px] h-[378px] overflow-hidden"
         >
           <Image
-            className="hover:scale-105 duration-500"
             alt="about-us-image"
+            className="hover:scale-105 duration-500 w-full h-full object-cover"
             src={image2}
             width={319}
             height={378}
@@ -62,11 +66,13 @@ export default function ImageCollage({
           direction={direction}
           delay={0.5}
           duration={0.5}
-          className="overflow-hidden"
+          width={357}
+          height={300}
+          className="relative w-[357px] h-[300px] overflow-hidden"
         >
           <Image
-            className="hover:scale-105 duration-500"
             alt="about-us-image"
+            className="hover:scale-105 duration-500 w-full h-full object-cover"
             src={image3}
             width={357}
             height={300}

@@ -449,12 +449,14 @@ export default function Example({ listing: Listing }) {
                     <h2 className="text-2xl font-bold tracking-tight text-gray-900 w-full mb-3">
                       Locate On Map
                     </h2>
-                    <div className="border-[5px] w-[60px] border-b border-brandColor "></div>
+                    <div className="border-[5px] w-[60px] border-b border-brandColor"></div>
                   </div>
-                  <div
-                    className="w-full h-full"
-                    dangerouslySetInnerHTML={{ __html: listing?.mapEmbed }}
-                  />
+                  <div className="w-full aspect-auto max-w-full overflow-hidden rounded-lg">
+                    <div
+                      className="w-full h-full"
+                      dangerouslySetInnerHTML={{ __html: listing?.mapEmbed }}
+                    />
+                  </div>
                 </div>
               )}
             </div>
