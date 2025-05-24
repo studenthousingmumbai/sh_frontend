@@ -30,7 +30,7 @@ const DrivenByExpertise = () => {
     <div className="relative w-full flex flex-col justify-center items-center section-y-padding mx-auto responsiveCenterPadding">
       <div className="flex flex-col justify-center items-center">
         <MotionDiv {...motionConfigDivs} className="card-title text-center">
-          Individual Roles & Pictures
+          Our Team
         </MotionDiv>
         <MotionDiv
           {...motionConfigDivs}

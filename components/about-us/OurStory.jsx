@@ -59,8 +59,8 @@ Total capacity reached 1,100+ beds.
       {/* desktop screens */}
       <div className="hidden md:flex md:flex-col">
         {/* Content */}
-        <div className="w-full flex flex-col justify-center items-center bg-primaryBg section-y-padding relative">
-          <div className="flex flex-col justify-center items-center mx-auto responsiveCenterPadding z-20 ">
+        <div className="w-full flex flex-col justify-center items-center bg-primaryBg section-y-padding relative responsiveCenterPadding">
+          <div className="flex flex-col justify-center items-center mx-auto  z-20 ">
             <MotionDiv {...motionConfigDivs} className="card-title">
               <SectionTitle title={"Our Story"} className={"mb-9 "} />
             </MotionDiv>
@@ -86,7 +86,7 @@ Total capacity reached 1,100+ beds.
               delay={0.2}
               className="relative w-full mt-9"
             >
-              <div className="flex justify-center gap-4 md:gap-9 text-lg md:text-2xl">
+              <div className="flex flex-wrap justify-center gap-4 md:gap-9 text-lg md:text-2xl">
                 {Object.keys(years).map((yr) => (
                   <div
                     key={yr}
@@ -112,11 +112,11 @@ Total capacity reached 1,100+ beds.
               duration={0.1}
               className="relative bg-white p-6 rounded-lg shadow-lg z-30 max-w-fit mx-auto mt-6" // Higher z-index for content
             >
-              <div className="relative overflow-hidden rounded-lg w-[765px] h-[400px]">
+              <div className="relative overflow-hidden rounded-lg w-full h-[400px]">
                 <Image
                   src={years[active]?.image}
                   alt="Selected Year"
-                  className="rounded-lg  hover:scale-105  w-full h-full duration-500 object-cover"
+                  className="rounded-lg  hover:scale-105 w-full h-full duration-500 object-cover"
                   width={765}
                   height={400}
                 />
@@ -141,11 +141,15 @@ Total capacity reached 1,100+ beds.
               delay={0.2}
               className="text-center opacity-75 mt-3"
             >
-              Established in {active}, RAVIRAJ began its journey with a vision
-              to revolutionize the electrical industry. From our humble
-              beginnings, we have grown into a leading manufacturer of
-              high-performance cables and electrical components, known for our
-              dedication to quality and customer satisfaction.
+              Established in {active}, with a dream to provide all students with
+              the BEST, only. Mr. Kamlesh Bhathena, the founder, noticed a
+              pattern of emptiness around the outstation students that were
+              studying in Mumbai regarding the absence of proper facilities that
+              could house them and give all round solutions. No doubt, there
+              were housing options, but none that could completely give them a
+              hassle-free year, with all quality services and amenities under
+              one roof. Started with 1 hostel- Bharat by Student Housing with 30
+              beds, in Vile Parle West, Mumbai.
             </MotionDiv>
 
             {/* Timeline with clickable years */}

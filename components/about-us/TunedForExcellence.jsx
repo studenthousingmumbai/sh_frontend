@@ -67,7 +67,7 @@ const TunedForExcellence = () => {
       <MotionDiv
         {...motionConfigDivs}
         direction="fade-in"
-        className="grid grid-cols-2 md:grid-cols-3 mt-16 gap-8 md:gap-24 max-w-mobile md:max-w-none"
+        className="grid grid-cols-2 md:grid-cols-3 mt-16 gap-8 md:gap-24 justify-center max-w-mobile md:max-w-none"
       >
         {values.map((val, index) => (
           <div
