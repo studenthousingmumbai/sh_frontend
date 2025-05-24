@@ -15,69 +15,7 @@ import { useLayoutEffect, useState } from "react";
 import InterestedEnquireForm from "../../components/InterestedEnquireForm";
 import Head from "next/head";
 
-const mock = {
-  slug: "sss",
-  collegeName: "Mithibai College",
-  locationName: "Mithibai College",
-  hostelName: "Aster A by Student Housing",
-  hostelListingLink: "#",
-  hostelDescription1:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed nunc et libero finibus interdum. Nam augue urna, dapibus et consectetur sed, ullamcorper in nunc. Vestibulum maximus nunc nec arcu",
-  hostelDescription2:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed nunc et libero finibus interdum. Nam augue urna, dapibus et consectetur sed, ullamcorper in nunc. Vestibulum maximus nunc nec arcu egestas, congue sollicitudin nibh pellentesque. Praesent porttitor nibh id velit gravida, sit amet vehicula dui dictum. Nullam ornare quam sed enim volutpat, vel posuere sem porta. Fusce tempus, velit id condimentum mollis, libero est maximus diam, luctus tristique orci arcu vulputate erat. Nulla fermentum nulla ac rutrum finibus. Morbi in nibh aliquam odio ultricies viverra ac ut diam",
-  images: [
-    "/hostels/girls-rooms-img-1.png",
-    "/hostels/girls-rooms-img-2.png",
-    "/hostels/girls-rooms-img-3.png",
-    "/hostels/girls-rooms-img-1.png",
-    "/hostels/girls-rooms-img-2.png",
-    "/hostels/girls-rooms-img-3.png",
-    "/hostels/girls-rooms-img-1.png",
-    "/hostels/girls-rooms-img-2.png",
-    "/hostels/girls-rooms-img-3.png",
-    "/hostels/girls-rooms-img-1.png",
-    "/hostels/girls-rooms-img-2.png",
-    "/hostels/girls-rooms-img-3.png",
-    "/hostels/girls-rooms-img-1.png",
-    "/hostels/girls-rooms-img-2.png",
-    "/hostels/girls-rooms-img-3.png",
-  ],
-  whyChoose: [
-    {
-      title: "Academic Excellence",
-      subTitle:
-        "A top-ranked institution with highly qualified faculty and a strong curriculum",
-    },
-
-    {
-      title: "State-of-the-Art Facilities",
-      subTitle:
-        "A top-ranked institution with highly qualified faculty and a strong curriculum",
-    },
-    {
-      title: "Vibrant Campus Life",
-      subTitle:
-        "A top-ranked institution with highly qualified faculty and a strong curriculum",
-    },
-    {
-      title: "Industry Exposure",
-      subTitle:
-        "A top-ranked institution with highly qualified faculty and a strong curriculum",
-    },
-    {
-      title: "Prime Location",
-      subTitle:
-        "A top-ranked institution with highly qualified faculty and a strong curriculum",
-    },
-  ],
-};
-
-export default function Institutions({
-  all_listings,
-  total,
-  gender,
-  listingDetails,
-}) {
+export default function Institutions({ all_listings, listingDetails }) {
   const [randomFaqs, setRandomFaqs] = useState([]);
 
   useLayoutEffect(() => {
@@ -142,15 +80,67 @@ export async function getServerSideProps(context) {
   console.log("slug", slug);
 
   try {
+    const gender = null;
     // Fetch data from external API
-    const { listings: all_listings, total } = await apis.getAllListings(
-      process.env.NEXT_PUBLIC_API_BASE_URL,
-      {
-        filters: gender ? { publish: true, gender } : { publish: true },
-        skip: 0,
-        limit: 0,
-      }
-    );
+    const { data: hostelsData } = await client.query({
+      query: gql`
+        query HostelsOrder${gender ? "($gender: Gender)" : ""} {
+          hostelsOrders(first: 1000) {
+            hostel${gender ? "(where: { gender: $gender })" : ""} {
+              name
+              slug
+              description
+              address {
+                line1
+                line2
+                city
+                state
+                zip
+              }
+              amenities
+              images {
+                url
+                id
+              }
+              metatags {
+                metaName
+                metaContent
+                metaProperty
+              }
+              schemaMarkup
+              mapEmbed
+              total_price
+              price
+              gender
+              foodMenu {
+                id
+                url
+              }
+              video_link
+              faqs {
+                question
+                answer
+              }
+              occupancies {
+                price
+                description
+                total_beds
+                period
+              }
+              collegesNearby {
+                name
+                distance
+              }
+            }
+          }
+        }
+      `,
+      variables: {
+        gender,
+      },
+    });
+    const { hostelsOrders } = hostelsData;
+    const all_listings = hostelsOrders[0].hostel;
 
     const { data } = await client.query({
       query: gql`
@@ -188,8 +178,6 @@ export async function getServerSideProps(context) {
       props: {
         listingDetails,
         all_listings,
-        total,
-        gender: (gender && gender) || null,
       },
     };
   } catch (error) {
@@ -198,8 +186,6 @@ export async function getServerSideProps(context) {
       props: {
         listingDetails: null,
         all_listings: [],
-        total: 0,
-        gender: (gender && gender) || null,
       },
     };
   }

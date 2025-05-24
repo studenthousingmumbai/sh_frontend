@@ -3,7 +3,7 @@ import { truncateText } from "../utils/truncateText";
 import Link from "next/link";
 
 export default function SummaryCard({
-  id,
+  slug,
   hostelName,
   address,
   price,
@@ -30,8 +30,8 @@ export default function SummaryCard({
 
       <div className="flex justify-start items-center gap-2 font-[600] text-[#F8C14C] text-sm md:text-base w-[90%]">
         <MapPin className="w-3.5 h-3.5 md:w-6 md:h-6" />
-        <div>{`${address?.line_1 || "-"} ${address?.line_2 || ""} ${
-          address?.city || ""
+        <div>{`${address?.line_1 ?? "-"} ${address?.line_2 ?? ""} ${
+          address?.city ?? ""
         }`}</div>
       </div>
 
@@ -45,7 +45,7 @@ export default function SummaryCard({
 
       <div className="mt-4 flex justify-around">
         <Link
-          href={id ? `/listing/${id}` : hostelListingLink}
+          href={slug ? `/listing/${slug}` : hostelListingLink}
           className="flex-1 mr-2"
         >
           <button className="w-full h-full bg-[#F8C14C] hover:bg-[#F8C14C]/80 text-black font-[600] px-2.5 py-1 md:px-4 md:py-2 text-sm md:text-base rounded-[8px]">

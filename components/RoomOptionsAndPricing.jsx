@@ -51,7 +51,7 @@ export default function RoomOptionsAndPricing({ sectionTitle, data }) {
                 <div className="flex flex-col gap-3 overflow-hidden h-full">
                   <Link
                     className="h-48 sm:h-64 md:h-48 relative rounded-[14px] overflow-hidden"
-                    href={`/listing/${item.id}`}
+                    href={`/listing/${item.slug}`}
                   >
                     <div
                       className={`absolute top-0 right-0 ${
@@ -67,7 +67,11 @@ export default function RoomOptionsAndPricing({ sectionTitle, data }) {
                       />
                     </div>
                     <img
-                      src={item.images[0]}
+                      src={
+                        item.images &&
+                        item.images.length > 0 &&
+                        item.images[0].url
+                      }
                       alt={item.name}
                       className="w-full h-full object-cover rounded-[14px]"
                     />
@@ -75,14 +79,14 @@ export default function RoomOptionsAndPricing({ sectionTitle, data }) {
                   <div className="flex flex-col gap-1.5 flex-grow">
                     <Link
                       className="flex flex-col gap-1.5 flex-grow"
-                      href={`/listing/${item.id}`}
+                      href={`/listing/${item.slug}`}
                     >
                       <h3 className="font-[600] text-lg md:text-2xl truncate flex-1">
                         {item.name}
                       </h3>
                       <div className="flex gap-2 font-[600] text-[#F8C14C] flex-1 items-center text-sm md:text-base">
                         <MapPin className="w-3.5 h-3.5 md:w-6 md:h-6" />
-                        <div>{`${item.address?.line_1} ${item.address?.line_2}, ${item.address?.city}`}</div>
+                        <div>{`${item.address?.line1} ${item.address?.line2}, ${item.address?.city}`}</div>
                       </div>
                       <p className=" text-base md:text-lg font-semibold flex-1">
                         Starting from ₹{item.price}
@@ -96,7 +100,7 @@ export default function RoomOptionsAndPricing({ sectionTitle, data }) {
 
                     <div className="mt-4 flex justify-around">
                       <Link
-                        href={`/listing/${item.id}`}
+                        href={`/listing/${item.slug}`}
                         className="flex-1 mr-2"
                       >
                         <button className="w-full h-full bg-[#F8C14C] hover:bg-[#F8C14C]/80 text-black font-[600] px-2.5 py-1 md:px-4 md:py-2 text-sm md:text-base rounded-[8px]">

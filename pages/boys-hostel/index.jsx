@@ -12,17 +12,15 @@ import Ameities from "../../components/Amenities";
 import StudentTestimonials from "../../components/StudentTestimonials";
 import apis from "../../lib/apis";
 import { pickRandomFaqs } from "../../utils/faqs";
+import client from "../../apolloClient";
+import { gql } from "@apollo/client";
 
-export default function BoysHostel({ all_listings, total, gender }) {
-  const [listings, setListings] = useState(all_listings);
-
+export default function BoysHostel({ all_listings }) {
   const [randomFaqs, setRandomFaqs] = useState([]);
 
   useLayoutEffect(() => {
     setRandomFaqs(pickRandomFaqs(6));
   }, []);
-
-  console.log(listings[0]);
 
   return (
     <Layout>
@@ -33,14 +31,14 @@ export default function BoysHostel({ all_listings, total, gender }) {
         }
         image={"/hero-banner/boys-hostel-hero-banner.png"}
       />
-      <OurRooms data={listings[0]} />
+      <OurRooms data={all_listings[0]} />
 
       <div className="my-14 mx-12 lg:mx-48 border border-black opacity-10" />
       <WhyChoose gender="boy" />
 
       <Quote />
 
-      <RoomOptionsAndPricing data={listings} />
+      <RoomOptionsAndPricing data={all_listings} />
 
       <Occupancy />
 
@@ -56,27 +54,78 @@ export default function BoysHostel({ all_listings, total, gender }) {
 }
 
 export async function getServerSideProps(context) {
-  console.log("Get server side props called!");
-  const { query } = context;
-
-  // Fetch data from external API
-  const { listings: all_listings, total } = await apis.getAllListings(
-    process.env.NEXT_PUBLIC_API_BASE_URL,
-    {
-      filters: { publish: true, gender: "male" },
-      skip: 0,
-      limit: 0,
-    }
-  );
-
-  console.log("All listings: ", all_listings, " total: ", total);
-
-  // Pass data to the page via props
-  return {
-    props: {
-      all_listings,
-      total,
-      gender: "male",
-    },
-  };
+  try {
+    const gender = "male";
+    const { data } = await client.query({
+      query: gql`
+        query HostelsOrder${gender ? "($gender: Gender)" : ""} {
+          hostelsOrders(first: 1000) {
+            hostel${gender ? "(where: { gender: $gender })" : ""} {
+              name
+              slug
+              description
+              address {
+                line1
+                line2
+                city
+                state
+                zip
+              }
+              amenities
+              images {
+                url
+                id
+              }
+              metatags {
+                metaName
+                metaContent
+                metaProperty
+              }
+              schemaMarkup
+              mapEmbed
+              total_price
+              price
+              gender
+              foodMenu {
+                id
+                url
+              }
+              video_link
+              faqs {
+                question
+                answer
+              }
+              occupancies {
+                price
+                description
+                total_beds
+                period
+              }
+              collegesNearby {
+                name
+                distance
+              }
+            }
+          }
+        }
+      `,
+      variables: {
+        gender,
+      },
+    });
+    const { hostelsOrders } = data;
+    const hostels = hostelsOrders[0].hostel;
+    return {
+      props: {
+        all_listings: hostels ?? null,
+      },
+    };
+  } catch (e) {
+    console.error("Error fetching data:", e);
+    return {
+      props: {
+        all_listings: null,
+      },
+    };
+  }
 }

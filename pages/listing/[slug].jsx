@@ -14,6 +14,7 @@ import { ChevronDownIcon } from "@heroicons/react/24/outline/";
 import { FaBed } from "react-icons/fa";
 import client from "../../apolloClient";
 import { gql } from "@apollo/client";
+import ImageViewerCarousel from "../../components/ImageViewerCarousel";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -22,31 +23,32 @@ function classNames(...classes) {
 function Occupancies({ occupancies }) {
   return (
     <div className="flex flex-wrap mb-3">
-      {occupancies.map((occupancy) => (
-        <div className="border border-gray-300 p-6 rounded-lg mr-3 mb-3 grow bg-gray-50">
-          <div className="flex items-center justify-center mb-3">
-            <div className="p-3 rounded-full shadow-md bg-white">
-              <FaBed className="text-brandColor w-6 h-6" />
+      {occupancies &&
+        occupancies.map((occupancy) => (
+          <div className="border border-gray-300 p-6 rounded-lg mr-3 mb-3 grow bg-gray-50">
+            <div className="flex items-center justify-center mb-3">
+              <div className="p-3 rounded-full shadow-md bg-white">
+                <FaBed className="text-brandColor w-6 h-6" />
+              </div>
+              <div className="">
+                &nbsp; X{" "}
+                <span className="text-brandColor font-bold text-xl">
+                  {occupancy.total_beds}
+                </span>
+              </div>
             </div>
-            <div className="">
-              &nbsp; X{" "}
-              <span className="text-brandColor font-bold text-xl">
-                {occupancy.total_beds}
-              </span>
+            <div className="font-semibold text-center">
+              {" "}
+              {occupancy.description}{" "}
+            </div>
+            <div className="flex items-center justify-center">
+              ₹&nbsp;
+              <div className="text-xl font-bold">
+                {occupancy.price} / {occupancy.period}
+              </div>
             </div>
           </div>
-          <div className="font-semibold text-center">
-            {" "}
-            {occupancy.description}{" "}
-          </div>
-          <div className="flex items-center justify-center">
-            ₹&nbsp;
-            <div className="text-xl font-bold">
-              {occupancy.price} / {occupancy.period}
-            </div>
-          </div>
-        </div>
-      ))}
+        ))}
     </div>
   );
 }
@@ -114,6 +116,9 @@ export default function Example({ listing: Listing }) {
   const [open, setOpen] = useState(false);
   const [locationOpen, setLocationOpen] = useState(false);
   const [watchVideoOpen, setWatchVideoOpen] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
   // const [selectedImage, setSelectedImage] = useState("");
   // const [selectedImageOpen, setSelectedImageOpen] = useState(false);
 
@@ -147,6 +152,18 @@ export default function Example({ listing: Listing }) {
 
     setLocationOpen(true);
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) =>
+        listing?.images && listing.images.length > 0
+          ? (prevIndex + 1) % listing.images.length
+          : 0
+      );
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [listing?.images]);
 
   return (
     <>
@@ -217,65 +234,30 @@ export default function Example({ listing: Listing }) {
               {/* Product */}
               <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
                 {/* Image gallery */}
-                <Tab.Group as="div" className="flex flex-col-reverse">
-                  {/* Image selector */}
-                  <div className="mx-auto mt-6  w-full max-w-2xl sm:block lg:max-w-none">
-                    <Tab.List className="grid grid-cols-4 gap-6">
-                      {listing?.images?.map((image) => (
-                        <Tab
-                          key={image.id}
-                          className="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4"
-                        >
-                          {({ selected }) => (
-                            <Tab>
-                              {/* <span className="sr-only"> {image.name} </span> */}
-                              <span className="absolute inset-0 overflow-hidden rounded-md">
-                                <img
-                                  src={image.url}
-                                  alt="Listing Image"
-                                  className="h-full w-full object-cover object-center"
-                                />
-                              </span>
-                              <span
-                                className={classNames(
-                                  selected
-                                    ? "ring-indigo-500"
-                                    : "ring-transparent",
-                                  "pointer-events-none absolute inset-0 rounded-md ring-2 ring-offset-2"
-                                )}
-                                aria-hidden="true"
-                              />
-                            </Tab>
-                          )}
-                        </Tab>
-                      ))}
-                    </Tab.List>
-                  </div>
-
-                  <Tab.Panels className="aspect-w-1 aspect-h-1 w-full">
-                    {listing?.images?.map((image) => (
-                      <Tab.Panel key={image.id}>
-                        <img
-                          src={image.url}
-                          alt={"Listing Image"}
-                          className="h-full w-full object-cover object-center sm:rounded-lg"
-                          onClick={() => {
-                            // setSelectedImage(image.url);
-                            // setSelectedImageOpen(true);
-                          }}
-                        />
-                      </Tab.Panel>
-                    ))}
-
-                    {listing?.images?.length === 0 && (
-                      <img
-                        src="https://movi.com.tr/wp-content/uploads/2021/08/placeholder-home.png"
-                        alt={"Listing Image"}
-                        className="h-full w-full object-cover object-center sm:rounded-lg"
-                      />
+                <div className="flex flex-col">
+                  <ImageViewerCarousel
+                    images={listing?.images?.map((imgs) => {
+                      return {
+                        url: imgs.url,
+                      };
+                    })}
+                    startIndex={1}
+                    isOpen={isDialogOpen}
+                    onOpenChange={setIsDialogOpen}
+                  />
+                  <div className="relative">
+                    <img
+                      src={listing?.images[currentImageIndex]?.url}
+                      className="w-full h-auto cursor-pointer bg-blend-darken rounded-lg object-cover transform transition-transform duration-300 group-hover:scale-105"
+                      onClick={() => setIsDialogOpen(true)}
+                    />
+                    {listing?.images?.length > 1 && (
+                      <div className="absolute bottom-2 right-2 bg-black bg-opacity-70 text-white text-lg px-3 py-2 rounded">
+                        +{listing.images.length - 1}
+                      </div>
                     )}
-                  </Tab.Panels>
-                </Tab.Group>
+                  </div>
+                </div>
 
                 {/* Product info */}
                 <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">

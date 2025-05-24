@@ -17,12 +17,7 @@ import InterestedEnquireForm from "../../components/InterestedEnquireForm";
 import { pickRandomFaqs } from "../../utils/faqs";
 import Head from "next/head";
 
-export default function HostelsNearLocation({
-  all_listings,
-  total,
-  gender,
-  listingDetails,
-}) {
+export default function HostelsNearLocation({ all_listings, listingDetails }) {
   const { getAllListings } = useApi();
   const is_mounted = useRef(false);
   const [listings, setListings] = useState(all_listings);
@@ -90,14 +85,68 @@ export async function getServerSideProps(context) {
 
   try {
     // Fetch data from external API
-    const { listings: all_listings, total } = await apis.getAllListings(
-      process.env.NEXT_PUBLIC_API_BASE_URL,
-      {
-        filters: gender ? { publish: true, gender } : { publish: true },
-        skip: 0,
-        limit: 0,
-      }
-    );
+    const gender = null;
+    // Fetch data from external API
+    const { data: hostelsData } = await client.query({
+      query: gql`
+        query HostelsOrder${gender ? "($gender: Gender)" : ""} {
+          hostelsOrders(first: 1000) {
+            hostel${gender ? "(where: { gender: $gender })" : ""} {
+              name
+              slug
+              description
+              address {
+                line1
+                line2
+                city
+                state
+                zip
+              }
+              amenities
+              images {
+                url
+                id
+              }
+              metatags {
+                metaName
+                metaContent
+                metaProperty
+              }
+              schemaMarkup
+              mapEmbed
+              total_price
+              price
+              gender
+              foodMenu {
+                id
+                url
+              }
+              video_link
+              faqs {
+                question
+                answer
+              }
+              occupancies {
+                price
+                description
+                total_beds
+                period
+              }
+              collegesNearby {
+                name
+                distance
+              }
+            }
+          }
+        }
+      `,
+      variables: {
+        gender,
+      },
+    });
+    const { hostelsOrders } = hostelsData;
+    const all_listings = hostelsOrders[0].hostel;
+
     const { data } = await client.query({
       query: gql`
         query HostelsNearLocation($slug: String!) {
@@ -135,8 +184,6 @@ export async function getServerSideProps(context) {
       props: {
         listingDetails,
         all_listings,
-        total,
-        gender: (gender && gender) || null,
       },
     };
   } catch (error) {
@@ -145,8 +192,6 @@ export async function getServerSideProps(context) {
       props: {
         listingDetails: null,
         all_listings: [],
-        total: 0,
-        gender: (gender && gender) || null,
       },
     };
   }
