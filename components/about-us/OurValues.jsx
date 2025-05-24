@@ -56,7 +56,7 @@ const OurValues = () => {
           {values.map((val, index) => (
             <div key={index} className="flex gap-4 md:gap-6">
               {/* icon */}
-              <div className="hidden md:flex justify-center items-center min-w-20 max-w-20 w-20 h-10 rounded-lg relative bg-[#F8C14C]">
+              <div className="hidden md:flex justify-center items-center min-w-[40px] h-10 rounded-lg relative bg-[#F8C14C]">
                 <Image
                   src={val.icon}
                   alt={`${val.title} icon`}
@@ -67,7 +67,7 @@ const OurValues = () => {
                 />
               </div>
 
-              <div className="flex md:hidden justify-center items-center min-w-20 max-w-20 h-10 rounded-lg relative bg-[#F8C14C]">
+              <div className="flex md:hidden justify-center items-center min-w-[40px] h-10 rounded-lg relative bg-[#F8C14C]">
                 <Image
                   src={val.icon}
                   alt={`${val.title} icon`}
