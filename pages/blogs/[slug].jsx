@@ -4,6 +4,7 @@ import Layout from "../../components/Layout";
 import styles from "../../styles/BlogContent.module.css";
 import moment from "moment/moment";
 import Head from "next/head";
+import Link from "next/link";
 
 export default function Blog({ blog }) {
   return (
@@ -33,7 +34,8 @@ export default function Blog({ blog }) {
         {/* page route */}
         <div className="text-xs sm:text-sm md:text-base">
           <span className="text-brandColor">
-            Home&nbsp;&nbsp;/&nbsp;&nbsp;Blogs&nbsp;&nbsp;/&nbsp;&nbsp;
+            <Link href="/">Home&nbsp;&nbsp;</Link>/&nbsp;&nbsp;
+            <Link href="/blogs">Blogs&nbsp;&nbsp;</Link>/&nbsp;&nbsp;
           </span>
           <span>{blog.title}</span>
         </div>
@@ -89,13 +91,12 @@ export default function Blog({ blog }) {
 // }
 
 export async function getServerSideProps(context) {
-  const { id } = context.params;
-
+  const { slug } = context.params;
   try {
     const { data } = await client.query({
       query: gql`
-        query Blogs($id: ID!) {
-          blogs(where: { id: $id }) {
+        query Blogs($slug: String!) {
+          blogs(where: { slug: $slug }) {
             createdAt
             createdOn
             coverPhoto {
@@ -119,12 +120,10 @@ export async function getServerSideProps(context) {
         }
       `,
       variables: {
-        id,
+        slug,
       },
     });
     const { blogs } = data;
-    console.log("Pulled blog: ", blogs);
-
     return {
       props: {
         blog: blogs[0],
