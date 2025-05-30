@@ -82,6 +82,58 @@ const nextConfig = {
         destination: "/listing/elita-by-student-housing",
         permanent: true,
       },
+      {
+        source: "/blogs/cls1hevce3z9t0bpgyrjbk3ws",
+        destination: "/blogs/student-housing-ville-parle",
+        permanent: true,
+      },
+      {
+        source: "/blogs/clsbf8pmn3dkd09o49mv8lgml",
+        destination:
+          "/blogs/hostels-in-vile-parle-west-the-benefits-of-living-close-to-campus",
+        permanent: true,
+      },
+      {
+        source: "/blogs/cltwmpwy00rcn07pe82jb8pug",
+        destination:
+          "/blogs/student-housing-a-girls-hostel-near-nmims-with-premium-facilities",
+        permanent: true,
+      },
+      {
+        source: "/blogs/cm4tjmq3b0hsn07o4h8zx97qp",
+        destination:
+          "/blogs/why-staying-in-a-hostel-is-the-best-choice-for-students",
+        permanent: true,
+      },
+      {
+        source: "/blogs/cm50pp0lc2wmu07pmb4fw6ctt",
+        destination: "/blogs/ultimate-guide-selecting-best-student-hostel",
+        permanent: true,
+      },
+      {
+        source: "/blogs/cm50q44pc2wzu07pmhvci68w7",
+        destination:
+          "/blogs/top-reasons-hostels-perfect-for-outstation-students",
+        permanent: true,
+      },
+      {
+        source: "/blogs/cm550cgms1rd107po9r67w1xa",
+        destination:
+          "/blogs/12-comfortable-hostel-life-tips-for-enhancing-your-experience",
+        permanent: true,
+      },
+      {
+        source: "/blogs/cm5al9l5i40z207pq1vs9689t",
+        destination:
+          "/blogs/tips-for-making-friends-in-hostels-building-network",
+        permanent: true,
+      },
+      {
+        source: "/blogs/cm5gbdjwn0f4q07png9sfeghj",
+        destination:
+          "/blogs/the-comprehensive-hostel-packing-checklist-for-students",
+        permanent: true,
+      },
     ];
   },
   images: {

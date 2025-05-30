@@ -19,7 +19,7 @@ export default function Blogs({ blogs }) {
             {[...blogs].reverse().map((blog, index) => {
               return (
                 <Link
-                  href={`/blogs/${blog.id}`}
+                  href={`/blogs/${blog.slug}`}
                   className={`border border-gray-200 rounded-lg p-4 flex flex-col justify-between hover:scale-[1.01] hover:shadow-md hover:border-gray-400 transform transition duration-300 ease-in-out`}
                   key={index}
                 >
@@ -79,6 +79,7 @@ export async function getServerSideProps() {
             publishedAt
             title
             updatedAt
+            slug
           }
         }
       `,
