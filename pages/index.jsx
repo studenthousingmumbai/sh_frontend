@@ -440,7 +440,7 @@ const BlogsSection = () => {
     const { data } = await client.query({
       query: gql`
         query Blogs {
-          blogs(first: 3) {
+          blogs(first: 3, orderBy: createdAt_DESC) {
             coverPhoto {
               url
             }
@@ -448,6 +448,7 @@ const BlogsSection = () => {
             createdOn
             description
             id
+            slug
             publishedAt
             title
             updatedAt
@@ -469,7 +470,7 @@ const BlogsSection = () => {
           {blogs.map((blog, index) => {
             return (
               <Link
-                href={`/blogs/${blog.id}`}
+                href={`/blogs/${blog.slug}`}
                 className={`border bg-white border-gray-200 rounded-lg p-4 flex flex-col justify-between hover:scale-[1.01] hover:shadow-md hover:border-gray-400 transform transition duration-300 ease-in-out`}
                 key={index}
               >
