@@ -47,7 +47,7 @@ export default function HostelsNearLocation({ all_listings, listingDetails }) {
         )}
       </Head>
       <HeroBanner
-        title={`Hostels Near ${listingDetails.locationName}`}
+        title={`Hostels In ${listingDetails.locationName}`}
         subTitle={
           "Find the perfect stay with modern amenities, security, and a friendly community."
         }
