@@ -440,7 +440,7 @@ const BlogsSection = () => {
     const { data } = await client.query({
       query: gql`
         query Blogs {
-          blogs(first: 3) {
+          blogs(first: 3, orderBy: createdAt_DESC) {
             coverPhoto {
               url
             }
@@ -448,6 +448,7 @@ const BlogsSection = () => {
             createdOn
             description
             id
+            slug
             publishedAt
             title
             updatedAt
@@ -469,7 +470,7 @@ const BlogsSection = () => {
           {blogs.map((blog, index) => {
             return (
               <Link
-                href={`/blogs/${blog.id}`}
+                href={`/blogs/${blog.slug}`}
                 className={`border bg-white border-gray-200 rounded-lg p-4 flex flex-col justify-between hover:scale-[1.01] hover:shadow-md hover:border-gray-400 transform transition duration-300 ease-in-out`}
                 key={index}
               >
@@ -512,9 +513,9 @@ const BlogsSection = () => {
   );
 };
 
-const Homepage = ({ announcementImages }) => {
+const Homepage = ({ announcementImages, listings }) => {
   const [randomFaqs, setRandomFaqs] = useState([]);
-  const [listings, setListings] = useState([]);
+  // const [listings, setListings] = useState([]);
   const [open, setOpen] = useState(true);
 
   useEffect(() => {
@@ -529,23 +530,23 @@ const Homepage = ({ announcementImages }) => {
     };
   }, [open]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     // Fetch data from external API and set random faqs
     setRandomFaqs(pickRandomFaqs(6));
-    fetchListings();
+    // fetchListings();
   }, []);
 
-  const fetchListings = async () => {
-    const { listings: all_listings, total } = await apis.getAllListings(
-      process.env.NEXT_PUBLIC_API_BASE_URL,
-      {
-        filters: { publish: true },
-        skip: 0,
-        limit: 0,
-      }
-    );
-    setListings(all_listings);
-  };
+  // const fetchListings = async () => {
+  //   const { listings: all_listings, total } = await apis.getAllListings(
+  //     process.env.NEXT_PUBLIC_API_BASE_URL,
+  //     {
+  //       filters: { publish: true },
+  //       skip: 0,
+  //       limit: 0,
+  //     }
+  //   );
+  //   setListings(all_listings);
+  // };
 
   return (
     <>
@@ -564,7 +565,7 @@ const Homepage = ({ announcementImages }) => {
         <Modal
           open={open}
           onClose={() => setOpen(false)}
-          title={"Queen sized beds, first time in hostel industry at:"}
+          title={"Luxury 15 storey Girls Hostel, next to NMIMS Mumbai at: "}
         >
           <div className="flex flex-col gap-4">
             <Carousel images={announcementImages} />
@@ -633,15 +634,80 @@ export async function getServerSideProps() {
     const { images } = announcements[0];
     const announcementImages = images.map((image) => image.url);
 
+    const gender = null;
+    const { data: hostelsData } = await client.query({
+      query: gql`
+        query HostelsOrder${gender ? "($gender: Gender)" : ""} {
+          hostelsOrders(first: 1000) {
+            hostel${gender ? "(where: { gender: $gender })" : ""} {
+              name
+              slug
+              description
+              address {
+                line1
+                line2
+                city
+                state
+                zip
+              }
+              amenities
+              images {
+                url
+                id
+              }
+              metatags {
+                metaName
+                metaContent
+                metaProperty
+              }
+              schemaMarkup
+              mapEmbed
+              total_price
+              price
+              gender
+              foodMenu {
+                id
+                url
+              }
+              video_link
+              faqs {
+                question
+                answer
+              }
+              occupancies {
+                price
+                description
+                total_beds
+                period
+              }
+              collegesNearby {
+                name
+                distance
+              }
+            }
+          }
+        }
+      `,
+      variables: {
+        gender,
+      },
+    });
+    console.log("Hostels query data: ", hostelsData);
+    const { hostelsOrders } = hostelsData;
+    const hostels = hostelsOrders[0].hostel;
+
     return {
       props: {
         announcementImages,
+        listings: hostels,
       },
     };
   } catch (error) {
+    console.error("Error fetching data:", error);
     return {
       props: {
         announcementImages: [],
+        listings: [],
       },
     };
   }

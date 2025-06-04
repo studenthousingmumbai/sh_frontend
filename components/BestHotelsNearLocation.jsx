@@ -5,14 +5,11 @@ import SectionTitle from "./SectionTitle";
 
 export default function BestHotelsNearLocation({ data }) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-  console.log("data", data);
-
   return (
     <div className="relative py-12 responsiveCenterPadding">
       <div className="absolute inset-0 bg-[url(/bg-pattern-2.png)] bg-no-repeat z-0" />
       <SectionTitle
-        title={"Best Hostel Near Mithibai College"}
+        title={`Best Hostel Near ${data.locationName}`}
         className={"mb-9 z-10"}
       />
 
@@ -29,7 +26,7 @@ export default function BestHotelsNearLocation({ data }) {
               {data.images?.length > 1 && `+${data.images?.length - 1}`}
             </div>
             <img
-              src={"/hostels/image.png"}
+              src={data.images[0]?.url}
               className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-all duration-500"
             />
           </div>

@@ -66,17 +66,19 @@ export default function ImageViewerCarousel({
           setApi={setApi}
         >
           <CarouselContent>
-            {images.map((image, index) => (
-              <CarouselItem key={index}>
-                <Image
-                  src={image.url}
-                  alt={`Image ${index + 1}`}
-                  width={600}
-                  height={400}
-                  className="object-contain w-full h-full"
-                />
-              </CarouselItem>
-            ))}
+            {images &&
+              images.length > 0 &&
+              images.map((image, index) => (
+                <CarouselItem key={index}>
+                  <Image
+                    src={image.url}
+                    alt={`Image ${index + 1}`}
+                    width={600}
+                    height={400}
+                    className="object-contain w-full h-full"
+                  />
+                </CarouselItem>
+              ))}
           </CarouselContent>
           <div className="flex justify-center gap-2 mt-4">
             <button
