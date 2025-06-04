@@ -1,18 +1,31 @@
-import { Head, Html, Main, NextScript } from 'next/document';
+import { Head, Html, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
     <Html className="h-full bg-white antialiased" lang="en">
       <Head>
         {/* <title>Student Housing</title> */}
-        <link rel="stylesheet" href="https://rsms.me/inter/inter.css"/>
-        <link rel="preconnect" href="https://fonts.googleapis.com"/>
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700;900&display=swap" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="true"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700;900&display=swap"
+          rel="stylesheet"
+        />
         <meta name="description" content="Student Housing in Mumbai" />
-        <meta name="google-site-verification" content="TdH2yMKePDJB-Vb8XETapJ-ad9iQF7dCnPKwIk0PJQw" />
+        <meta
+          name="google-site-verification"
+          content="TdH2yMKePDJB-Vb8XETapJ-ad9iQF7dCnPKwIk0PJQw"
+        />
         <link rel="icon" href="/sh_logo.png" />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-DEFDC3GBPL"></script>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-DEFDC3GBPL"
+        ></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -42,9 +55,12 @@ export default function Document() {
           }}
         />
 
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75045456-1"></script>
         <script
-            dangerouslySetInnerHTML={{
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=UA-75045456-1"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
@@ -54,7 +70,8 @@ export default function Document() {
             `,
           }}
         />
-        <script type="text/javascript"
+        <script
+          type="text/javascript"
           dangerouslySetInnerHTML={{
             __html: `
               (function(c,l,a,r,i,t,y){
@@ -65,7 +82,10 @@ export default function Document() {
             `,
           }}
         />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-925883133"></script>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-925883133"
+        ></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -128,13 +148,13 @@ export default function Document() {
           })(window, document, "clarity", "script", "hf3i0kvqqu");
         `}
       </Script> */}
-      
-      <body className='h-full'>
+
+      <body className="h-full">
         <div id="modal-root"></div>
         <Main />
         <NextScript />
         {/* Add this div for the portal */}
       </body>
     </Html>
-  )
+  );
 }
