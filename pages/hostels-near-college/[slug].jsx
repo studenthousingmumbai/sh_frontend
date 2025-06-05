@@ -30,9 +30,9 @@ export default function HostelsNearCollege({ all_listings, listingDetails }) {
           listingDetails.metaTags.length > 0 &&
           listingDetails.metaTags.map((tag) =>
             tag.metaName ? (
-              <meta name="description" content={tag.content} />
+              <meta name={tag.metaName} content={tag.metaContent} />
             ) : tag.metaProperty ? (
-              <meta property={tag.metaProperty} content={tag.content} />
+              <meta property={tag.metaProperty} content={tag.metaContent} />
             ) : null
           )}
 
