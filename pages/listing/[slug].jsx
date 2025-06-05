@@ -170,12 +170,13 @@ export default function Example({ listing: Listing }) {
       <Head>
         {listing &&
           listing?.metatags.length > 0 &&
-          listing?.metatags.map((tag) => (
-            <>
-              <title>{tag.title}</title>
-              <meta name="description" content={tag.description} />
-            </>
-          ))}
+          listing?.metatags.map((tag) =>
+            tag.metaName ? (
+              <meta name="description" content={tag.content} />
+            ) : tag.metaProperty ? (
+              <meta property={tag.metaProperty} content={tag.content} />
+            ) : null
+          )}
       </Head>
 
       <Layout>
