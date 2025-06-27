@@ -13,7 +13,10 @@ const PhoneNumberInput = ({ initialValue, onChange, required }) => {
 
   return (
     <div>
-      <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+      <label
+        htmlFor="phone"
+        className="block text-sm font-medium text-gray-700"
+      >
         Phone number
       </label>
       <div className="mt-1 relative">
@@ -30,7 +33,7 @@ const PhoneNumberInput = ({ initialValue, onChange, required }) => {
           onChange={handleInputChange}
           type="text"
           maxLength="10"
-          required={required}
+          required={true}
           className="block w-full appearance-none rounded-md border border-gray-300 pl-14 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
         />
       </div>

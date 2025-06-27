@@ -10,7 +10,7 @@ const navigation = {
   support: [
     { name: "Terms and Conditions", href: "/terms-and-conditions" },
     { name: "Refer & Earn", href: "/refer-and-earn" },
-    { name: "Privacy Policy", href: "#" },
+    { name: "Privacy Policy", href: "/privacy-policy" },
   ],
   company: [
     { name: "About Us", href: "/about-us" },

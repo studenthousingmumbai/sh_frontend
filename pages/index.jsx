@@ -32,6 +32,7 @@ const institutions = [
   {
     title: "NMIMS university",
     image: "/institutions/NMIMS.webp",
+    
   },
   {
     title: "Mukesh Patel college",
@@ -109,7 +110,7 @@ function Journey() {
         "Choose from a variety of 20+ hostels across prime student locations, offering modern amenities and a secure living environment.",
     },
     {
-      title: "4000+ Happy Students",
+      title: "4500+ Happy Students",
       icon: "😊",
       description:
         "Join a thriving community of 4000+ students who have found their perfect home away from home with us.",
@@ -152,7 +153,7 @@ function USPsSection() {
   return (
     <section className="py-12 bg-gray-50">
       <div className="max-w-5xl mx-auto px-4">
-        <SectionTitle title={"USPs"} className={"mb-9"} />
+        <SectionTitle title={"Why Choose Us"} className={"mb-9"} />
 
         <div className="grid gap-6 grid-cols-2 sm:grid-cols-2 md:grid-cols-3">
           {usps.map(({ title, icon, desc, image }) => (
@@ -597,7 +598,10 @@ const Homepage = ({ announcementImages, listings }) => {
         <HeroSection />
         <USPsSection />
         <Quote />
-        <RoomOptionsAndPricing sectionTitle={`Our Rooms`} data={listings} />
+        <RoomOptionsAndPricing
+          sectionTitle={`Our premium student hostels`}
+          data={listings}
+        />
         <Journey />
         <Awards />
         <StudentTestimonials />

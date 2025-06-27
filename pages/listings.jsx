@@ -81,7 +81,7 @@ export default function Listings({ all_listings, total, gender }) {
   const [loading, setLoading] = useState(false);
   // const { gender } = router.query;
   const is_mounted = useRef(false);
-  const [listingGender, setListingGender] = useState("male");
+  const [listingGender, setListingGender] = useState("all");
 
   //   const fetchListings = async (filters = {}, skip = 0, limit = 0) => {
   //     setLoading(true);

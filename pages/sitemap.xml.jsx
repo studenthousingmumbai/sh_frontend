@@ -18,6 +18,7 @@ const static_pages = [
   "refer-and-earn",
   "boys-hostel",
   "girls-hostel",
+  "privacy-policy",
 ];
 
 const fetchAllListings = async () => {

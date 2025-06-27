@@ -47,14 +47,14 @@ export default function Example() {
               <span className="sr-only">Your Company</span>
               <Link href="/" legacyBehavior>
                 <img
-                  className="w-[150px] h-[70px] cursor-pointer"
-                  src="/sh_logo.png"
+                  className="w-auto h-[100px] cursor-pointer"
+                  src="/SH.png"
                   alt=""
                 />
               </Link>
-              <span className="text-[8px]">
+              {/* <span className="text-[8px]">
                 Student Housing India Private Limited
-              </span>
+              </span> */}
             </a>
           </div>
           <div className="-my-2 -mr-2 lg:hidden">
@@ -239,7 +239,7 @@ export default function Example() {
                   <Link href="/" legacyBehavior>
                     <img
                       className="w-[150px] h-[70px] cursor-pointer"
-                      src="/sh_logo.png"
+                      src="/SH.png"
                       alt=""
                     />
                   </Link>
