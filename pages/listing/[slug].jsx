@@ -177,6 +177,7 @@ export default function Example({ listing: Listing }) {
               <meta property={tag.metaProperty} content={tag.metaContent} />
             ) : null
           )}
+        {listing && listing.pageTitle && <title>{listing.pageTitle}</title>}
       </Head>
 
       <Layout>
@@ -513,6 +514,7 @@ export async function getServerSideProps(context) {
               name
               slug
               description
+              pageTitle
               address {
                 line1
                 line2

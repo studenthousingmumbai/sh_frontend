@@ -32,7 +32,6 @@ const institutions = [
   {
     title: "NMIMS university",
     image: "/institutions/NMIMS.webp",
-    
   },
   {
     title: "Mukesh Patel college",

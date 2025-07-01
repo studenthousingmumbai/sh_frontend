@@ -43,6 +43,9 @@ export default function Institutions({ all_listings, listingDetails }) {
             }}
           />
         )}
+        {listingDetails && listingDetails.pageTitle && (
+          <title>{listingDetails.pageTitle}</title>
+        )}
       </Head>
       <HeroBanner
         title={listingDetails.collegeName}
@@ -151,6 +154,7 @@ export async function getServerSideProps(context) {
         query Institution($slug: String!) {
           institutions(where: { slug: $slug }, first: 1, skip: 0) {
             slug
+            pageTitle
             collegeName
             aboutCollege
             collegeSellingPoints {

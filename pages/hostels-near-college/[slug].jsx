@@ -44,6 +44,10 @@ export default function HostelsNearCollege({ all_listings, listingDetails }) {
             }}
           />
         )}
+
+        {listingDetails && listingDetails.pageTitle && (
+          <title>{listingDetails.pageTitle}</title>
+        )}
       </Head>
       <HeroBanner
         title={`Hostels Near ${listingDetails.collegeName}`}
@@ -171,6 +175,7 @@ export async function getServerSideProps(context) {
             gender
             price
             address
+            pageTitle
           }
         }
       `,
