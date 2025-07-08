@@ -2,7 +2,7 @@ import apis from "../lib/apis";
 import client from "../apolloClient";
 import { gql } from "@apollo/client";
 
-const base_url = "https://studenthousing.co.in";
+const base_url = "https://www.studenthousing.co.in";
 const static_pages = [
   "contact-us",
   "about-us",
