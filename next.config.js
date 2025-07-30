@@ -143,6 +143,7 @@ const nextConfig = {
       "i.pinimg.com",
       "www.iconinc.co.uk",
       "media.graphassets.com",
+      "ap-south-1.graphassets.com",
       "student-housing-data-bucket.s3.ap-south-1.amazonaws.com",
     ],
   },
