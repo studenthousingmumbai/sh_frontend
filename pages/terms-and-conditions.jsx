@@ -9,7 +9,7 @@ const rules = [
   "Students are required to give their consent about continuing the paying guest facilities in the next year, when asked by Host. Rent for the next academic year is required to be paid in the month of April.",
   "Host reserve its right to cancel admission of undeserving students without giving any reason or shift to some other Location.",
   "Host reserves its right to increase Rent, if necessary every year.",
-  "Refund is only possible in case of College Admission is cancelled or if there is any medical emergency. In both cases proper documents are required.",
+  "Refund is not possible in any scenario- even during withdrawal of college admission and medical cases.",
   "Host will not be responsible for any mishap happening.",
   "Paying guest accommodation in premises is tentative, which depends on availability of premises .",
   "Student residing in the flat shall strictly observe all the Rules and Regulations in force from time to time. Breach of rules / regulations may invite rustication / fine",

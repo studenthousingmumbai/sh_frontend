@@ -97,7 +97,7 @@ const usps = [
 function Journey() {
   const options = [
     {
-      title: "800+ Beds",
+      title: "1,100+ Beds",
       icon: "🛏️",
       description:
         "Plenty of accommodation options with over 800 comfortable and well-maintained beds, ensuring a safe and cozy stay for students.",
@@ -373,7 +373,7 @@ function AboutSection({ data }) {
           <div className="font-[500] text-lg mb-3">
             At Student Housing, we provide safe, comfortable, and well-equipped
             hostels designed for students looking for a hassle-free living
-            experience. With 800+ beds across 20+ hostels, we ensure a vibrant
+            experience. With 1,100+ beds across 20+ hostels, we ensure a vibrant
             and secure environment where students can focus on their studies
             while enjoying premium amenities. Our commitment to quality, safety,
             and convenience has made us the preferred choice for 4,000+ happy
