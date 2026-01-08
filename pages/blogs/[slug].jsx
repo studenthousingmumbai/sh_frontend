@@ -115,6 +115,7 @@ export async function getServerSideProps(context) {
             description
             publishedAt
             title
+            pageTitle
             updatedAt
           }
         }
