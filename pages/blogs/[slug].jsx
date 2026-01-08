@@ -10,6 +10,10 @@ export default function Blog({ blog }) {
   return (
     <Layout>
       <Head>
+
+         <title>{blog.pageTitle || blog.title}</title>
+
+        
         {blog &&
           blog.metatags &&
           blog.metatags.length > 0 &&
