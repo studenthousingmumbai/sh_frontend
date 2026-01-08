@@ -8,24 +8,39 @@ import Link from "next/link";
 
 export default function Blog({ blog }) {
   return (
-    
+    <>
       <Head>
+        <title>{blog.pageTitle || blog.title}</title>
 
-         <title>{blog.pageTitle || blog.title}</title>
+        {blog.description && (
+          <meta name="description" content={blog.description} />
+        )}
 
-        
-        {blog &&
-          blog.metatags &&
-          blog.metatags.length > 0 &&
-          blog.metatags.map((tag) =>
-            tag.metaName ? (
-              <meta name={tag.metaName} content={tag.metaContent} />
-            ) : tag.metaProperty ? (
-              <meta property={tag.metaProperty} content={tag.metaContent} />
-            ) : null
-          )}
+        {blog.metaTags?.map((tag, index) => {
+          if (tag.metaProperty) {
+            return (
+              <meta
+                key={index}
+                property={tag.metaProperty}
+                content={tag.metaContent}
+              />
+            );
+          }
 
-        {blog && blog.schemaMarkup && (
+          if (tag.metaName && tag.metaName !== "Title") {
+            return (
+              <meta
+                key={index}
+                name={tag.metaName}
+                content={tag.metaContent}
+              />
+            );
+          }
+
+          return null;
+        })}
+
+        {blog.schemaMarkup && (
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
@@ -34,6 +49,8 @@ export default function Blog({ blog }) {
           />
         )}
       </Head>
+
+      
     <Layout>
       <div className="w-[70%] md:w-[65%] lg:w-[55%] mx-auto py-16 lg:py-20">
         {/* page route */}
