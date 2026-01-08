@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export default function Blog({ blog }) {
   return (
-    <Layout>
+    
       <Head>
 
          <title>{blog.pageTitle || blog.title}</title>
@@ -34,6 +34,7 @@ export default function Blog({ blog }) {
           />
         )}
       </Head>
+    <Layout>
       <div className="w-[70%] md:w-[65%] lg:w-[55%] mx-auto py-16 lg:py-20">
         {/* page route */}
         <div className="text-xs sm:text-sm md:text-base">
