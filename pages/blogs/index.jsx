@@ -78,6 +78,7 @@ export async function getServerSideProps() {
             id
             publishedAt
             title
+            pageTitle
             updatedAt
             slug
           }
