@@ -16,7 +16,7 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700;900&display=swap"
           rel="stylesheet"
         />
-        <meta name="description" content="Student Housing in Mumbai" />
+       
         <meta
           name="google-site-verification"
           content="TdH2yMKePDJB-Vb8XETapJ-ad9iQF7dCnPKwIk0PJQw"
