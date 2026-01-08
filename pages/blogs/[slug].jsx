@@ -7,39 +7,28 @@ import Head from "next/head";
 import Link from "next/link";
 
 export default function Blog({ blog }) {
+  if (!blog) return null;
+
   return (
-    <>
+    <Layout>
       <Head>
+        {/* ✅ PAGE TITLE */}
         <title>{blog.pageTitle || blog.title}</title>
 
-        {blog.description && (
-          <meta name="description" content={blog.description} />
+        {/* ✅ META TAGS */}
+        {blog.metaTags?.map((tag, index) =>
+          tag.metaName ? (
+            <meta key={index} name={tag.metaName} content={tag.metaContent} />
+          ) : tag.metaProperty ? (
+            <meta
+              key={index}
+              property={tag.metaProperty}
+              content={tag.metaContent}
+            />
+          ) : null
         )}
 
-        {blog.metaTags?.map((tag, index) => {
-          if (tag.metaProperty) {
-            return (
-              <meta
-                key={index}
-                property={tag.metaProperty}
-                content={tag.metaContent}
-              />
-            );
-          }
-
-          if (tag.metaName && tag.metaName !== "Title") {
-            return (
-              <meta
-                key={index}
-                name={tag.metaName}
-                content={tag.metaContent}
-              />
-            );
-          }
-
-          return null;
-        })}
-
+        {/* ✅ SCHEMA MARKUP */}
         {blog.schemaMarkup && (
           <script
             type="application/ld+json"
@@ -50,10 +39,8 @@ export default function Blog({ blog }) {
         )}
       </Head>
 
-      
-    <Layout>
       <div className="w-[70%] md:w-[65%] lg:w-[55%] mx-auto py-16 lg:py-20">
-        {/* page route */}
+        {/* Breadcrumb */}
         <div className="text-xs sm:text-sm md:text-base">
           <span className="text-brandColor">
             <Link href="/">Home&nbsp;&nbsp;</Link>/&nbsp;&nbsp;
@@ -62,64 +49,39 @@ export default function Blog({ blog }) {
           <span>{blog.title}</span>
         </div>
 
-        {/* blog content */}
+        {/* Cover Image */}
         <div className="rounded-xl mt-5 md:mt-10 w-full">
-          <img className="rounded-xl w-full" src={blog.coverPhoto.url} />
+          <img
+            className="rounded-xl w-full"
+            src={blog.coverPhoto.url}
+            alt={blog.title}
+          />
         </div>
+
+        {/* Date */}
         <div className="mt-3 md:mt-5 text-sm md:text-lg text-brandColor font-[500]">
           {moment(blog.createdOn).format("ll")}
         </div>
 
+        {/* Content */}
         <div
           className={styles["blog-content"]}
           dangerouslySetInnerHTML={{ __html: blog.content.html }}
-        ></div>
+        />
       </div>
     </Layout>
   );
 }
 
-// export async function getStaticPaths() {
-//     try {
-//         const { data } = await client.query({
-//             query: gql`
-//                 query Blogs {
-//                     blogs {
-//                         id
-//                     }
-//                 }
-//             `,
-//         });
-//         const { blogs } = data;
-
-//         console.log("Blog ids: ", blogs);
-
-//         // Generate the paths array based on the fetched IDs
-//         const paths = blogs.map((blog) => ({
-//             params: { id: blog.id },
-//         }));
-
-//         return {
-//             paths,
-//             fallback: false,
-//         };
-//     } catch (error) {
-//         console.error('Error fetching data:', error);
-//         return {
-//             paths: [],
-//             fallback: false,
-//         };
-//     }
-// }
-
-export async function getServerSideProps(context) {
-  const { slug } = context.params;
+export async function getServerSideProps({ params }) {
   try {
     const { data } = await client.query({
       query: gql`
-        query Blogs($slug: String!) {
+        query Blog($slug: String!) {
           blogs(where: { slug: $slug }) {
-            createdAt
+            title
+            pageTitle
+            description
             createdOn
             coverPhoto {
               url
@@ -133,27 +95,21 @@ export async function getServerSideProps(context) {
               metaProperty
             }
             schemaMarkup
-            id
-            description
-            publishedAt
-            title
-            pageTitle
-            updatedAt
           }
         }
       `,
       variables: {
-        slug,
+        slug: params.slug,
       },
     });
-    const { blogs } = data;
+
     return {
       props: {
-        blog: blogs[0],
+        blog: data.blogs[0] || null,
       },
     };
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error(error);
     return {
       props: {
         blog: null,
