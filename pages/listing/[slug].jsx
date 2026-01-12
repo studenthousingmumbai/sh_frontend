@@ -489,7 +489,7 @@ export default function Example({ listing: Listing }) {
               open={locationOpen}
               onClose={() => setLocationOpen(false)}
             >
-              <div className="mb-3 w-full h-[500px] bg-gray-200">
+              <div className="mb-3 w-full h-[450px] bg-gray-200">
                 {listing?.mapEmbed && (
   <div className="w-full h-[450px] rounded-md overflow-hidden">
     <div
