@@ -14,6 +14,7 @@ import apis from "../../lib/apis";
 import { pickRandomFaqs } from "../../utils/faqs";
 import client from "../../apolloClient";
 import { gql } from "@apollo/client";
+import Head from "next/head";
 
 export default function BoysHostel({ all_listings }) {
   const [randomFaqs, setRandomFaqs] = useState([]);
@@ -23,6 +24,16 @@ export default function BoysHostel({ all_listings }) {
   }, []);
 
   return (
+    <>
+
+      <Head>
+  <title>Boys Hostel in India | Student Housing</title>
+  <meta
+    name="description"
+    content="Find verified boys hostels with modern amenities, safety, and flexible stays across major cities in India."
+  />
+</Head>
+      
     <Layout>
       <HeroBanner
         title={"Boys Hostel"}
@@ -50,6 +61,7 @@ export default function BoysHostel({ all_listings }) {
 
       <FAQ faqs={randomFaqs} />
     </Layout>
+    </>
   );
 }
 
