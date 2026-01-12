@@ -310,7 +310,7 @@ export default function Listing({
   open={open}
   onClose={() => setOpen(false)}
 >
-  <div className="mb-3 w-full h-[500px]">
+  <div className="mb-3 w-full h-[500px] overflow-hidden">
     {mapEmbed ? (
       <div
         className="w-full h-full"
