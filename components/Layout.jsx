@@ -56,20 +56,18 @@ export default function Layout(props) {
           <EnquireNowFormNew />
         </DialogContent>
       </Dialog>
-      <div
-        className={`z-40 ${
-          props?.open === false ? "relative sticky top-0" : ""
-        }`}
-      >
-        {marqueeOpen && (
-          <Marquee
-            text={marqueeText}
-            marqueeOpen={marqueeOpen}
-            setMarqueeOpen={setMarqueeOpen}
-          />
-        )}
-        <Header />
-      </div>
+      
+       <div className="fixed top-0 left-0 w-full z-[1200]">
+  {marqueeOpen && (
+    <Marquee
+      text={marqueeText}
+      marqueeOpen={marqueeOpen}
+      setMarqueeOpen={setMarqueeOpen}
+    />
+  )}
+  <Header />
+</div>
+      
       <button
         className="fixed top-1/2 right-5 z-50 w-44 h-12 p-3 bg-[#F8C14C] text-black font-semibold rotate-90 origin-right shadow-md"
         style={{
@@ -81,7 +79,11 @@ export default function Layout(props) {
       >
         Enquire now
       </button>
-      <div className="z-30">{props.children}</div>
+      
+      <div className="pt-[185px] z-30">
+  {props.children}
+</div>
+      
       <Footer />
     </div>
   );
