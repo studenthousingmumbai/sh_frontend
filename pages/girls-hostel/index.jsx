@@ -14,6 +14,7 @@ import { useLayoutEffect, useState } from "react";
 import { pickRandomFaqs } from "../../utils/faqs";
 import client from "../../apolloClient";
 import { gql } from "@apollo/client";
+import Head from "next/head";
 
 export default function GirlsHostel({ all_listings }) {
   const [randomFaqs, setRandomFaqs] = useState([]);
@@ -23,6 +24,16 @@ export default function GirlsHostel({ all_listings }) {
   }, []);
 
   return (
+    <>
+
+      <Head>
+  <title>Girls Hostel in India | Safe Student Housing</title>
+  <meta
+    name="description"
+    content="Explore safe and secure girls hostels with premium facilities and trusted management across India."
+  />
+</Head>
+      
     <Layout>
       <HeroBanner
         title={"Girls Hostel"}
@@ -50,6 +61,7 @@ export default function GirlsHostel({ all_listings }) {
 
       <FAQ faqs={randomFaqs} />
     </Layout>
+    </>
   );
 }
 
