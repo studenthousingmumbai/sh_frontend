@@ -374,6 +374,7 @@ export default function Listings({ all_listings, total, gender }) {
                     price={listing.price}
                     amenities={listing.amenities}
                     address={listing.address}
+                    mapEmbed={listing.mapEmbed}
                     location={listing.location}
                     video_link={listing.video_link}
                     slug={listing.slug}
