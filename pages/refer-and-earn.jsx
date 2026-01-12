@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Layout from '../components/Layout'
 import useApi from '../hooks/useApi'
 import { CheckCircleIcon, XMarkIcon } from '@heroicons/react/20/solid'
+import Head from "next/head";
 
 export default function ReferAndEarn() {
   const initialValues = {
@@ -58,6 +59,16 @@ export default function ReferAndEarn() {
   }
 
   return (
+
+    <>
+      <Head>
+  <title>Refer & Earn Rewards | Student Housing</title>
+  <meta
+    name="description"
+    content="Refer your friends to Student Housing and earn exciting rewards on every successful booking."
+  />
+</Head>
+    
     <Layout>
         <div className='flex flex-col lg:flex-row w-full p-6 bg-refer-and-earn-banner bg-cover bg-no-repeat gap-4 lg:gap-0'>
             <div className='w-full lg:w-1/2 flex flex-col items-center lg:items-end justify-center gap-4 lg:gap-8'>
@@ -154,5 +165,6 @@ export default function ReferAndEarn() {
           *T&C apply.
         </div>
     </Layout>
+    </>
   )
 }
