@@ -7,7 +7,6 @@ import { Disclosure, Tab } from "@headlessui/react";
 import Layout from "../../components/Layout";
 import useApi from "../../hooks/useApi";
 import withAuth from "../../hooks/withAuth";
-import GoogleMap from "../../components/common/GoogleMap";
 import VideoPlayer from "../../components/common/VideoPlayer";
 import apis from "../../lib/apis";
 import { ChevronDownIcon } from "@heroicons/react/24/outline/";
@@ -491,7 +490,14 @@ export default function Example({ listing: Listing }) {
               onClose={() => setLocationOpen(false)}
             >
               <div className="mb-3 w-full h-[500px] bg-gray-200">
-                <GoogleMap location={listing?.location} />
+                {listing?.mapEmbed && (
+  <div className="w-full h-[500px] rounded-md overflow-hidden">
+    <div
+      className="w-full h-full"
+      dangerouslySetInnerHTML={{ __html: listing.mapEmbed }}
+    />
+  </div>
+)}
               </div>
             </Modal>
           </main>
