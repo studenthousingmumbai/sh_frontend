@@ -491,7 +491,7 @@ export default function Example({ listing: Listing }) {
             >
               <div className="mb-3 w-full h-[500px] bg-gray-200">
                 {listing?.mapEmbed && (
-  <div className="w-full h-[500px] rounded-md overflow-hidden">
+  <div className="w-full h-[450px] rounded-md overflow-hidden">
     <div
       className="w-full h-full"
       dangerouslySetInnerHTML={{ __html: listing.mapEmbed }}
