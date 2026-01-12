@@ -3,9 +3,22 @@ import client from "../../apolloClient";
 import Layout from "../../components/Layout";
 import moment from "moment/moment";
 import Link from "next/link";
+import Head from "next/head";
 
 export default function Blogs({ blogs }) {
   return (
+
+    <>
+
+       <Head>
+        <title>Student Housing Blogs | Hostel Living & Student Tips</title>
+        <meta
+          name="description"
+          content="Read articles on student hostels, accommodation tips, city guides, and student living experiences by Student Housing."
+        />
+      </Head>
+      
+    
     <Layout>
       <div className="">
         <div className="relative flex items-center w-full h-[400px] bg-blog-landscape bg-cover bg-center bg-no-repeat">
@@ -60,6 +73,7 @@ export default function Blogs({ blogs }) {
         </div>
       </div>
     </Layout>
+    </>
   );
 }
 
