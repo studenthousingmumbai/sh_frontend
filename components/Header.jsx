@@ -6,6 +6,22 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import useAuth from "../hooks/useAuth";
 import withAuth from "../hooks/withAuth";
 
+
+const hostels = [
+  { name: "Aston - South Mumbai", href: "/listing/aston-by-student-housing" },
+  { name: "Atlantis - Juhu, Mumbai", href: "/listing/atlantis-by-student-housing" },
+  { name: "Avenue - Juhu, Mumbai", href: "/listing/avenue-by-student-housing" },
+  { name: "Arcadia - Andheri, Mumbai", href: "/listing/arcadia-by-student-housing" },
+  { name: "Elita - Juhu, Mumbai", href: "/listing/elita-by-student-housing-boys" },
+  { name: "Anand - Vile Parle, Mumbai", href: "/listing/anand-by-student-housing" },
+  { name: "Crescenzo - Vile Parle, Mumbai", href: "/listing/crescenzo-by-student-housing" },
+  { name: "Ganga Niwas - Vile Parle, Mumbai", href: "/listing/ganga-niwas-by-student-housing" },
+  { name: "Bharat - Vile Parle, Mumbai", href: "/listing/bharat-by-student-housing" },
+  { name: "Shradha Suman - Vile Parle, Mumbai", href: "/listing/shradha-suman-by-student-housing" },
+  { name: "Kapadia - Vile Parle, Mumbai", href: "/listing/kapadia-by-student-housing" },
+  { name: "Moti Mahal - Vile Parle, Mumbai", href: "/listing/moti-mahal-by-student-housing" },
+];
+
 const userNavigation = [
   { name: "Your Profile", href: "/profile" },
   { name: "Order History", href: "/order-history" },
@@ -65,6 +81,9 @@ export default function Example() {
           </div>
 
           <Popover.Group as="nav" className="hidden space-x-10 lg:flex">
+
+            {/*
+            
             <Link href="/" legacyBehavior>
               <a
                 href="#"
@@ -73,15 +92,47 @@ export default function Example() {
                 Home
               </a>
             </Link>
+*/}
+            <div className="relative group">
+  {/* MAIN LINK (CLICK WORKS) */}
+  <Link href="/listings" legacyBehavior>
+    <a className="flex items-center gap-1 text-base font-medium text-gray-500 hover:text-gray-900">
+      Explore Hostels
+      <svg
+        className="h-4 w-4 transition-transform duration-200 group-hover:rotate-180"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M19 9l-7 7-7-7"
+        />
+      </svg>
+    </a>
+  </Link>
 
-            <Link href="/listings" legacyBehavior>
-              <a
-                href="#"
-                className="text-base font-medium text-gray-500 hover:text-gray-900"
-              >
-                Explore Hostels
-              </a>
-            </Link>
+  {/* DROPDOWN (HOVER ONLY) */}
+  <div className="absolute left-0 mt-3 w-80 rounded-xl bg-white shadow-xl ring-1 ring-black/5
+                  opacity-0 invisible group-hover:opacity-100 group-hover:visible
+                  transition-all duration-200 z-[1100]">
+    <div className="h-[190px] overflow-y-auto py-2">
+      {hostels.map((hostel) => (
+        <Link key={hostel.href} href={hostel.href} legacyBehavior>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+          >
+            {hostel.name}
+          </a>
+        </Link>
+      ))}
+    </div>
+  </div>
+</div>
 
             <Link href="/about-us" legacyBehavior>
               <a
@@ -196,6 +247,7 @@ export default function Example() {
               </div>
             )) || (
               <>
+                 {/* 
                 <Link href="/signin" legacyBehavior>
                   <a
                     href="#"
@@ -213,6 +265,8 @@ export default function Example() {
                     Sign up
                   </a>
                 </Link>
+
+                */}
               </>
             )}
           </div>
