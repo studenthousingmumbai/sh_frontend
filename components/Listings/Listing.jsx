@@ -17,6 +17,7 @@ export default function Listing({
   address,
   images,
   location,
+  mapEmbed, 
   video_link,
   slug,
 }) {
