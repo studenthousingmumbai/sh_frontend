@@ -1,7 +1,17 @@
 import Layout from "../components/Layout";
+import Head from "next/head";
 
 const PrivacyPolicy = () => {
   return (
+<>
+      <Head>
+        <title>Privacy Policy | Student Housing</title>
+        <meta
+          name="description"
+          content="Read the Privacy Policy of Student Housing India Pvt. Ltd. to understand how we collect, use, and protect your personal information."
+        />
+      </Head>
+    
     <Layout>
       <div className="text-gray-800 px-6 py-12 max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-4">Privacy Policy</h1>
@@ -179,6 +189,8 @@ const PrivacyPolicy = () => {
         </Section>
       </div>
     </Layout>
+</>
+  
   );
 };
 
