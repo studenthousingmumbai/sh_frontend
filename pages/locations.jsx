@@ -5,6 +5,7 @@ import Layout from "../components/Layout";
 import styles from "../styles/Home.module.css";
 import useApi from "../hooks/useApi";
 import Link from "next/link";
+import Head from "next/head";
 
 export default function Example() {
   const [email, setEmail] = useState("");
@@ -15,6 +16,16 @@ export default function Example() {
   const { locations } = useApi();
 
   return (
+    <>
+
+      <Head>
+  <title>Student Hostel Locations Across India | Student Housing</title>
+  <meta
+    name="description"
+    content="Browse student housing and hostel locations across major cities and educational hubs in India."
+  />
+</Head>
+      
     <Layout>
       <div className="relative flex justify-center bg-gray-100 items-center my-auto h-[500px] ">
         <img
@@ -777,5 +788,6 @@ export default function Example() {
         </div>
       </div>
     </Layout>
+    </>
   );
 }
