@@ -31,7 +31,7 @@ export default function Example({ open, onClose, title, children }) {
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-y-auto">
-          <div className="flex min-h-full justify-center p-4 text-center items-center sm:p-0">
+          <div className="flex justify-center p-4 text-center items-start pt-[260px] sm:pt-[220px]">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
