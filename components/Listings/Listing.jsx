@@ -5,7 +5,6 @@ import {
   MapPinIcon,
 } from "@heroicons/react/24/outline";
 import Modal from "../../components/common/Modal";
-import GoogleMap from "../common/GoogleMap";
 import VideoPlayer from "../common/VideoPlayer";
 
 export default function Listing({
@@ -306,15 +305,25 @@ export default function Listing({
         </div>
       </div>
 
-      <Modal
-        title={"View Location On Map"}
-        open={open}
-        onClose={() => setOpen(false)}
-      >
-        <div className="mb-3 w-full h-[500px] bg-gray-200">
-          <GoogleMap location={location} />
-        </div>
-      </Modal>
+     <Modal
+  title={"View Location On Map"}
+  open={open}
+  onClose={() => setOpen(false)}
+>
+  <div className="mb-3 w-full h-[500px]">
+    {mapEmbed ? (
+      <div
+        className="w-full h-full"
+        dangerouslySetInnerHTML={{ __html: mapEmbed }}
+      />
+    ) : (
+      <p className="text-center text-gray-500 mt-10">
+        Map not available
+      </p>
+    )}
+  </div>
+</Modal>
+
     </div>
   );
 }
