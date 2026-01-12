@@ -1,5 +1,6 @@
 import React from "react";
 import Layout from "../components/Layout";
+import Head from "next/head";
 
 const rules = [
   "Accommodation is available only to out-station student as a paying guest.",
@@ -42,6 +43,16 @@ const rules = [
 
 export default function TermsAndConditions() {
   return (
+<>
+      <Head>
+        <title>Terms & Conditions | Student Housing</title>
+        <meta
+          name="description"
+          content="Read the hostel rules, regulations, and terms & conditions applicable to students staying at Student Housing hostels across India."
+        />
+      </Head>
+
+    
     <Layout>
       <h1 className="text-3xl capitalize font-semibold mx-auto max-w-7xl px-6 lg:px-8 mb-5">
         Hostel Rules and policies
@@ -52,5 +63,6 @@ export default function TermsAndConditions() {
         ))}
       </ul>
     </Layout>
+</>
   );
 }
