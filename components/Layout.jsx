@@ -99,7 +99,7 @@ const canonicalUrl = canonical || fallbackCanonical;
       </button>
       
       <div className="pt-[185px] z-30">
-  {props.children}
+  {children}
 </div>
       
       <Footer />
