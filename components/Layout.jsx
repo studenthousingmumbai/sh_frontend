@@ -1,3 +1,5 @@
+import Head from "next/head";
+import { useRouter } from "next/router";
 import Header from "./Header";
 import Footer from "./Footer";
 import Marquee from "./MarqeeText";
@@ -11,11 +13,21 @@ import { Dialog, DialogContent, DialogTitle } from "./components/ui/dialog";
 import EnquireNowFormNew from "./EnquireNowFormNew";
 import WhatsAppButton from "./common/WhatsappButton";
 
-export default function Layout(props) {
+export default function Layout({ children, canonical }) {
   const [marqueeOpen, setMarqueeOpen] = useState(true);
   const [marqueeText, setMarqueeText] = useState("");
   const isMounted = useRef(false);
   const [enquireNowOpen, setEnquireNowOpen] = useState(false);
+
+  
+  const router = useRouter();
+
+const fallbackCanonical = (
+  "https://www.studenthousing.co.in" +
+  (router.asPath === "/" ? "" : router.asPath)
+).split("?")[0];
+
+const canonicalUrl = canonical || fallbackCanonical;
 
   useEffect(() => {
     if (!isMounted.current) {
@@ -46,6 +58,12 @@ export default function Layout(props) {
   };
 
   return (
+
+    <>
+    <Head>
+      <link rel="canonical" href={canonicalUrl} />
+    </Head>
+    
     <div className="">
       <span className="fixed bottom-[25px] right-[20px] z-[1000]">
         <WhatsAppButton message={""} />
@@ -86,5 +104,7 @@ export default function Layout(props) {
       
       <Footer />
     </div>
+   </>
+      
   );
 }
