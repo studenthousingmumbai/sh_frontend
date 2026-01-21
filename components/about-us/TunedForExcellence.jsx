@@ -49,7 +49,7 @@ const TunedForExcellence = () => {
       <MotionDiv
         {...motionConfigDivs}
         delay={0.4}
-        className="absolute inset-x-0 -bottom-4 h-full bg-[url('/assets/page-header-graphic-3.png')] bg-bottom bg-no-repeat select-none"
+        className="absolute inset-x-0 -bottom-4 h-full bg-none select-none"
       ></MotionDiv>
       <div className="flex flex-col justify-center items-center mx-auto responsive-max-width">
         <MotionDiv {...motionConfigDivs} className="text-center card-title">
