@@ -198,10 +198,10 @@ export default function Example() {
   return (
     <>
       <Head>
-        <title>Book Student Housing Mumbai in Vile Parle, Juhu</title>
+        <title>Student Housing FAQs | Booking, Amenities, Rooms & Support</title>
         <meta
           name="description"
-          content="Student housing Mumbai in Vile Parle, Juhu offers a full fledge facilities to the students for their comfortable stay.  We offer competitive prices with impeccable services. 24 hrs helpline and on call doctor services makes student's life easy and stressfree."
+          content="Find answers to common questions about booking, room options, amenities, safety & students living at Student Housing. Clear guidance for students & parents"
         />
       </Head>
       <Layout>
