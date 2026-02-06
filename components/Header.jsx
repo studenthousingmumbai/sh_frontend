@@ -22,6 +22,30 @@ const hostels = [
   { name: "Moti Mahal - Vile Parle, Mumbai", href: "/listing/moti-mahal-by-student-housing" },
 ];
 
+const hostelsNearLocation = [
+  { name: "Hostels in Andheri", href: "/hostels-near-location/hostel-in-andheri" },
+  { name: "Hostels in Vile Parle", href: "/hostels-near-location/hostel-in-vile-parle" },
+  { name: "Hostels in Juhu", href: "/hostels-near-location/hostel-in-juhu" },
+  { name: "Hostels in Santacruz", href: "/hostels-near-location/hostel-in-santacruz" },
+  { name: "Hostels in Bandra", href: "/hostels-near-location/hostel-in-bandra" },
+];
+
+const hostelsNearCollege = [
+  { name: "NMIMS Mumbai", href: "/hostels-near-college/hostels-near-nmims-mumbai" },
+  { name: "Mukesh Patel College", href: "/hostels-near-college/hostels-near-mukesh-patel-college-mumbai" },
+  { name: "Atlas University", href: "/hostels-near-college/hostels-near-atlas-university-mumbai" },
+  { name: "Bombay Flying Club", href: "/hostels-near-college/hostels-near-bombay-flying-club-mumbai" },
+  { name: "DJ Sanghvi College", href: "/hostels-near-college/hostels-near-dj-sanghvi-college-mumbai" },
+  { name: "Mithibai College", href: "/hostels-near-college/hostels-near-mithibai-college-mumbai" },
+  { name: "Narsee Monjee College", href: "/hostels-near-college/hostels-near-narsee-monjee-college-mumbai" },
+  { name: "UPG College", href: "/hostels-near-college/hostels-near-upg-college-mumbai" },
+  { name: "L.S. Raheja College", href: "/hostels-near-college/hostels-near-ls-raheja-college-mumbai" },
+  { name: "Cooper Hospital College", href: "/hostels-near-college/hostels-near-cooper-hospital-college-mumbai" },
+  { name: "SNDT University", href: "/hostels-near-college/hostels-near-sndt-university-mumbai" },
+  { name: "JK Shah Andheri", href: "/hostels-near-college/hostels-near-jk-shah-andheri-mumbai" },
+];
+
+
 const userNavigation = [
   { name: "Your Profile", href: "/profile" },
   { name: "Order History", href: "/order-history" },
@@ -133,6 +157,72 @@ export default function Example() {
     </div>
   </div>
 </div>
+
+
+            <div className="relative group">
+  <span className="flex cursor-pointer items-center gap-1 text-base font-medium text-gray-500 hover:text-gray-900">
+    Stay Near Campus
+    <svg
+      className="h-4 w-4 transition-transform group-hover:rotate-180"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+    </svg>
+  </span>
+
+  <div className="absolute left-0 mt-3 w-72 rounded-xl bg-white shadow-xl ring-1 ring-black/5
+                  opacity-0 invisible group-hover:opacity-100 group-hover:visible
+                  transition-all duration-200 z-[1100]">
+    <div className="max-h-[260px] overflow-y-auto py-2">
+      {hostelsNearCollege.map((item) => (
+        <Link key={item.href} href={item.href} legacyBehavior>
+          <a
+            target="_blank"
+            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+          >
+            {item.name}
+          </a>
+        </Link>
+      ))}
+    </div>
+  </div>
+</div>
+
+
+
+            <div className="relative group">
+  <span className="flex cursor-pointer items-center gap-1 text-base font-medium text-gray-500 hover:text-gray-900">
+    Explore by Area
+    <svg
+      className="h-4 w-4 transition-transform group-hover:rotate-180"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+    </svg>
+  </span>
+
+  <div className="absolute left-0 mt-3 w-64 rounded-xl bg-white shadow-xl ring-1 ring-black/5
+                  opacity-0 invisible group-hover:opacity-100 group-hover:visible
+                  transition-all duration-200 z-[1100]">
+    <div className="py-2">
+      {hostelsNearLocation.map((item) => (
+        <Link key={item.href} href={item.href} legacyBehavior>
+          <a
+            target="_blank"
+            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+          >
+            {item.name}
+          </a>
+        </Link>
+      ))}
+    </div>
+  </div>
+</div>
+
 
             <Link href="/about-us" legacyBehavior>
               <a
