@@ -1,3 +1,4 @@
+"use client";
 import { Fragment, useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -62,6 +63,7 @@ export default function Example() {
   const { logout } = useAuth();
   const user = useAuth.user;
   const [scrolled, setScrolled] = useState(false);
+    const [openMobileMenu, setOpenMobileMenu] = useState(null);
 
   const scrollHandler = () => {
     setScrolled(window.scrollY > 0);
@@ -397,64 +399,145 @@ export default function Example() {
               </div>
             </div>
             <div className="space-y-6 py-6 px-5">
-              <div className="grid grid-cols-2 gap-y-4 gap-x-8">
-                <Link href="/" legacyBehavior>
-                  <a
-                    href="#"
-                    className="text-base font-medium text-gray-500 hover:text-gray-900"
-                  >
-                    Home
-                  </a>
-                </Link>
-                <Link href="/listings" legacyBehavior>
-                  <a className="text-base font-medium text-gray-900 hover:text-gray-700">
-                    Explore Homes
-                  </a>
-                </Link>
-                <Link href="/about-us" legacyBehavior>
-                  <a className="text-base font-medium text-gray-900 hover:text-gray-700">
-                    About Us
-                  </a>
-                </Link>
-                <Link href="/contact-us" legacyBehavior>
-                  <a className="text-base font-medium text-gray-900 hover:text-gray-700">
-                    Contact Us
-                  </a>
-                </Link>
-                <Link href="/blogs" legacyBehavior>
-                  <a
-                    href="#"
-                    className="text-base font-medium text-gray-500 hover:text-gray-900"
-                  >
-                    Blogs
-                  </a>
-                </Link>
+            <div className="space-y-5">
 
-                <Link href="/refer-and-earn" legacyBehavior>
-                  <a
-                    href="#"
-                    className="text-base font-medium text-gray-500 hover:text-gray-900"
-                  >
-                    Refer & Earn
-                  </a>
-                </Link>
-                {/* <Link href='/terms-and-conditions'> 
-                  <a
-                    href="#"
-                    className="text-base font-medium text-gray-500 hover:text-gray-900"
-                  >
-                    Terms & Conditions
-                  </a>
-                </Link> */}
-                <Link href="/faqs" legacyBehavior>
-                  <a
-                    href="#"
-                    className="text-base font-medium text-gray-500 hover:text-gray-900"
-                  >
-                    FAQs
-                  </a>
-                </Link>
-              </div>
+  {/* Explore Hostels (main link) */}
+
+
+  {/* Our Hostels */}
+  <div>
+    <button
+      onClick={() =>
+        setOpenMobileMenu(openMobileMenu === "hostels" ? null : "hostels")
+      }
+      className="flex w-full items-center justify-between text-base font-semibold text-gray-900"
+    >
+      Explore Hostels
+      <svg
+        className={`h-4 w-4 transition-transform duration-200 ${
+          openMobileMenu === "hostels" ? "rotate-180" : ""
+        }`}
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+      </svg>
+    </button>
+
+    {openMobileMenu === "hostels" && (
+      <div className="mt-3 space-y-2 pl-4">
+        {hostels.map((hostel) => (
+          <Link key={hostel.href} href={hostel.href} legacyBehavior>
+            <a className="block text-sm text-gray-700 hover:text-gray-900">
+              {hostel.name}
+            </a>
+          </Link>
+        ))}
+      </div>
+    )}
+  </div>
+
+  {/* Stay Near Campus */}
+  <div>
+    <button
+      onClick={() =>
+        setOpenMobileMenu(openMobileMenu === "college" ? null : "college")
+      }
+      className="flex w-full items-center justify-between text-base font-semibold text-gray-900"
+    >
+      Stay Near Campus
+      <svg
+        className={`h-4 w-4 transition-transform duration-200 ${
+          openMobileMenu === "college" ? "rotate-180" : ""
+        }`}
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+      </svg>
+    </button>
+
+    {openMobileMenu === "college" && (
+      <div className="mt-3 space-y-2 pl-4">
+        {hostelsNearCollege.map((item) => (
+          <Link key={item.href} href={item.href} legacyBehavior>
+            <a className="block text-sm text-gray-700 hover:text-gray-900">
+              {item.name}
+            </a>
+          </Link>
+        ))}
+      </div>
+    )}
+  </div>
+
+  {/* Explore by Area */}
+  <div>
+    <button
+      onClick={() =>
+        setOpenMobileMenu(openMobileMenu === "area" ? null : "area")
+      }
+      className="flex w-full items-center justify-between text-base font-semibold text-gray-900"
+    >
+      Explore by Area
+      <svg
+        className={`h-4 w-4 transition-transform duration-200 ${
+          openMobileMenu === "area" ? "rotate-180" : ""
+        }`}
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+      </svg>
+    </button>
+
+    {openMobileMenu === "area" && (
+      <div className="mt-3 space-y-2 pl-4">
+        {hostelsNearLocation.map((item) => (
+          <Link key={item.href} href={item.href} legacyBehavior>
+            <a className="block text-sm text-gray-700 hover:text-gray-900">
+              {item.name}
+            </a>
+          </Link>
+        ))}
+      </div>
+    )}
+  </div>
+
+  {/* Static links */}
+  <Link href="/about-us" legacyBehavior>
+    <a className="block text-base font-semibold text-gray-900">
+      About Us
+    </a>
+  </Link>
+
+  <Link href="/contact-us" legacyBehavior>
+    <a className="block text-base font-semibold text-gray-900">
+      Contact Us
+    </a>
+  </Link>
+
+  <Link href="/blogs" legacyBehavior>
+    <a className="block text-base font-semibold text-gray-900">
+      Blogs
+    </a>
+  </Link>
+
+  <Link href="/refer-and-earn" legacyBehavior>
+    <a className="block text-base font-semibold text-gray-900">
+      Refer & Earn
+    </a>
+  </Link>
+
+  <Link href="/faqs" legacyBehavior>
+    <a className="block text-base font-semibold text-gray-900">
+      FAQs
+    </a>
+  </Link>
+
+</div>
 
               {!isAuthenticated && (
                 <div>
