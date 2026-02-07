@@ -538,7 +538,7 @@ export default function Example() {
   </Link>
 
 </div>
-
+              {/*
               {!isAuthenticated && (
                 <div>
                   <Link href="/signup" legacyBehavior>
@@ -559,7 +559,7 @@ export default function Example() {
                   </p>
                 </div>
               )}
-
+*/}
               {isAuthenticated && (
                 <div>
                   <div className="mb-3">
