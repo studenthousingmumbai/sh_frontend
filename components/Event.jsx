@@ -5,15 +5,15 @@ export default function CommunityImageSection() {
 
   // 👉 ADD YOUR IMAGE URLS HERE (8–10 images)
   const images = [
-    "/Events/IMG_5415.webp",
-    "/Events/IMG_5419.webp",
-    "/Events/IMG_5427.webp",
-    "/Events/IMG_5444.webp",
-    "/Events/IMG_7464.webp",
-    "/Events/IMG_7505.webp",
-    "/Events/549A6884.webp",
-    "/Events/549A7204.webp",
-    "/Events/549A7313.webp"
+    "/IMG_5415.webp",
+    "/IMG_5419.webp",
+    "/IMG_5427.webp",
+    "/IMG_5444.webp",
+    "/IMG_7464.webp",
+    "/IMG_7505.webp",
+    "/549A6884.webp",
+    "/549A7204.webp",
+    "/549A7313.webp"
   ];
 
   // Duplicate for seamless looping
