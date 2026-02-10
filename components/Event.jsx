@@ -67,7 +67,7 @@ export default function CommunityImageSection() {
       className="
         absolute
         left-[24%]
-        md:left-[8%]
+        md:left-[0%]
         -bottom-4
         h-[6px]
         w-40
