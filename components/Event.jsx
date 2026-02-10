@@ -56,7 +56,7 @@ export default function CommunityImageSection() {
       <div className="px-4 sm:px-16">
 
         {/* Heading (NO ICON) */}
-      <div className="mb-12">
+    <div className="flex md:justify-center mb-12">
   <div className="relative inline-block text-left md:text-center">
     <h2 className="text-3xl md:text-5xl font-bold text-black">
       Community Highlights @ Student Housing
@@ -73,10 +73,12 @@ export default function CommunityImageSection() {
         w-40
         bg-[#F8C14C]
         rounded-full
+        md:-translate-x-1/2
       "
     />
   </div>
 </div>
+
 
 
 
