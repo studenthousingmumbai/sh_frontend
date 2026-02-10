@@ -73,7 +73,6 @@ export default function CommunityImageSection() {
         w-40
         bg-[#F8C14C]
         rounded-full
-        md:-translate-x-1/2
       "
     />
   </div>
