@@ -21,6 +21,12 @@ import Modal from "../components/common/Modal";
 import { heroPageModalCTAButton } from "../constants";
 import WhatsAppButton from "../components/common/WhatsappButton";
 
+
+const Event = dynamic(
+  () => import("../components/Event"),
+  { ssr: false }
+);
+
 const images = [
   "/banner_1.png",
   "/banner_2.png",
@@ -604,6 +610,7 @@ const Homepage = ({ announcementImages, listings }) => {
         <Journey />
         <Awards />
         <StudentTestimonials />
+        <Event />
         <AboutSection />
         <ReferSection />
         <InistitutionsSection />
