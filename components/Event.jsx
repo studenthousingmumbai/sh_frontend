@@ -58,9 +58,9 @@ export default function CommunityImageSection() {
         {/* Heading (NO ICON) */}
        <div className="mb-12">
   <div className="relative inline-block">
-    <h2 className="text-3xl md:text-5xl font-extrabold text-black">
-      Community Highlights @ Student Housing
-    </h2>
+   <h2 className="text-3xl md:text-5xl font-bold text-black text-center">
+  Community Highlights @ Student Housing
+</h2>
 
     {/* Yellow underline */}
     <span
@@ -69,7 +69,7 @@ export default function CommunityImageSection() {
         left-0
         -bottom-3
         h-[5px]
-        w-24
+        w-34
         bg-[#F8C14C]
         rounded-full
       "
