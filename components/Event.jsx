@@ -56,11 +56,27 @@ export default function CommunityImageSection() {
       <div className="px-4 sm:px-16">
 
         {/* Heading (NO ICON) */}
-        <div className="text-center mb-10">
-          <h2 className="text-2xl font-semibold tracking-wide">
-            Community Highlights @ Student Housing
-          </h2>
-        </div>
+       <div className="mb-12">
+  <div className="relative inline-block">
+    <h2 className="text-3xl md:text-5xl font-extrabold text-black">
+      Community Highlights @ Student Housing
+    </h2>
+
+    {/* Yellow underline */}
+    <span
+      className="
+        absolute
+        left-0
+        -bottom-3
+        h-[5px]
+        w-24
+        bg-[#F8C14C]
+        rounded-full
+      "
+    />
+  </div>
+</div>
+
 
         {/* Auto-scrolling image feed */}
         <div
