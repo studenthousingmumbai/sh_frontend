@@ -66,7 +66,7 @@ export default function CommunityImageSection() {
     <span
       className="
         absolute
-        left-1/2
+        left-[8%]
         -translate-x-1/2
         -bottom-4
         h-[6px]
