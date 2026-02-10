@@ -56,8 +56,8 @@ export default function CommunityImageSection() {
       <div className="px-4 sm:px-16">
 
         {/* Heading (NO ICON) */}
-       <div className="flex justify-center mb-12">
-  <div className="relative inline-block text-center">
+      <div className="mb-12">
+  <div className="relative inline-block text-left md:text-center">
     <h2 className="text-3xl md:text-5xl font-bold text-black">
       Community Highlights @ Student Housing
     </h2>
@@ -66,8 +66,8 @@ export default function CommunityImageSection() {
     <span
       className="
         absolute
-        left-[8%]
-        -translate-x-1/2
+        left-[24%]
+        md:left-[8%]
         -bottom-4
         h-[6px]
         w-40
@@ -77,6 +77,7 @@ export default function CommunityImageSection() {
     />
   </div>
 </div>
+
 
 
 
