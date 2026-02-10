@@ -20,7 +20,7 @@ import Head from "next/head";
 import Modal from "../components/common/Modal";
 import { heroPageModalCTAButton } from "../constants";
 import WhatsAppButton from "../components/common/WhatsappButton";
-
+import dynamic from "next/dynamic";
 
 const Event = dynamic(
   () => import("../components/Event"),
