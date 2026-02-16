@@ -106,7 +106,7 @@ function Journey() {
       title: "1,100+ Beds",
       icon: "🛏️",
       description:
-        "Plenty of accommodation options with over 800 comfortable and well-maintained beds, ensuring a safe and cozy stay for students.",
+        "Plenty of accommodation options with over 1100+ comfortable and well-maintained beds, ensuring a safe and cozy stay for students.",
     },
     {
       title: "20+ Hostels",
