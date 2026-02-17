@@ -274,7 +274,7 @@ export default function Example({ listing: Listing }) {
                   </div>
 
                   <div className="mt-3">
-                    <h5 className="sr-only">Listing address</h5>
+                    <p className="sr-only">Listing address</p>
                     <p className="text-md tracking-tight text-gray-600">
                       {listing?.address?.line_1}
                     </p>
