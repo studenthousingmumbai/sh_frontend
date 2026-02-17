@@ -51,6 +51,7 @@ export default function ImageViewerCarousel({
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
+  <div className="relative z-[99999]">
       <DialogContent
         className="w-full max-w-3xl mx-auto bg-transparent p-0 shadow-none border-none [&>button:last-child]:hidden flex  items-center justify-center"
         onMouseEnter={stopAutoplay}
