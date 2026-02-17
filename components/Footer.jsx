@@ -229,7 +229,7 @@ export default function Example() {
   return (
     <footer
       className="bg-gray-900 z-10 relative"
-      aria-labelledby="footer-heading"
+      
     >
       <div className="absolute inset-0 bg-[url(/bg-pattern-1.png)] z-0" />
 
