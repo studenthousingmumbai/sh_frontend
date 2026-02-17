@@ -73,9 +73,9 @@ function Faqs({ faqs }) {
                   <>
                     <dt className="text-lg">
                       <Disclosure.Button className="flex w-full items-start justify-between text-left text-gray-400">
-                        <span className="font-medium text-gray-900">
+                        <h3 className="font-medium text-gray-900">
                           {faq.question}
-                        </span>
+                        </h3>
                         <span className="ml-6 flex h-7 items-center">
                           <ChevronDownIcon
                             className={classNames(
@@ -267,10 +267,10 @@ export default function Example({ listing: Listing }) {
                   </h1>
 
                   <div className="mt-3">
-                    <h2 className="sr-only">Listing description</h2>
-                    <h2 className="text-xl tracking-tight text-gray-600 font-medium">
+                    <p className="sr-only">Listing description</p>
+                    <p className="text-xl tracking-tight text-gray-600 font-medium">
                       {listing?.description}
-                    </h2>
+                    </p>
                   </div>
 
                   <div className="mt-3">
@@ -336,9 +336,9 @@ export default function Example({ listing: Listing }) {
                   </div>
 
                   <div className="mt-3 mb-3 ">
-                    <h1 className="uppercase text-lg text-gray-600">
+                    <p className="uppercase text-lg text-gray-600">
                       starting at
-                    </h1>
+                    </p>
                     <p className="text-3xl tracking-tight text-gray-900">
                       ₹
                       {parseInt(listing?.price).toLocaleString("en-IN", {
@@ -349,9 +349,9 @@ export default function Example({ listing: Listing }) {
                   </div>
 
                   <div className="mb-3">
-                    <h1 className="uppercase text-lg text-gray-600 ">
+                    <h2 className="uppercase text-lg text-gray-600 ">
                       Amenities
-                    </h1>
+                    </h2>
                     <div className="flex flex-wrap">
                       {listing &&
                         listing?.amenities &&
