@@ -233,9 +233,9 @@ export default function Example() {
     >
       <div className="absolute inset-0 bg-[url(/bg-pattern-1.png)] z-0" />
 
-      <h2 id="footer-heading" className="sr-only z-10">
+      <p id="footer-heading" className="sr-only z-10">
         Footer
-      </h2>
+      </p>
       <div className="relative mx-auto max-w-7xl px-6 py-14 lg:px-8 z-10">
         <div className="flex flex-col md:flex-row gap-12 md:gap-16 justify-between">
           <div className="space-y-8">
