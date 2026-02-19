@@ -435,7 +435,7 @@ export default function Example() {
         </div> */}
         {/* <div className="mt-16 border-t border-white/10 pt-8 sm:mt-20">
           <p className="text-xs leading-5 text-gray-400">
-            &copy; Student Housing India Private Limited. All rights reserved.
+            &copy; Student Housing India Limited. All rights reserved.
           </p>
         </div> */}
       </div>
