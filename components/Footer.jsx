@@ -372,7 +372,7 @@ export default function Example() {
         </div>
 
         <div className="flex justify-center items-center text-white opacity-80 py-6">
-          © Student Housing India Private Limited. All rights reserved.
+          © Student Housing India Limited. All rights reserved.
         </div>
 
         {/* <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
