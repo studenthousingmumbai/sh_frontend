@@ -514,70 +514,70 @@ export async function getServerSideProps(context) {
   try {
     const { data } = await client.query({
       query: gql`
-        query HostelsOrder($slug: String!) {
-          hostelsOrders(first: 1000) {
-            hostel(where: { slug: $slug }) {
-              name
-              slug
-              description
-              pageTitle
-              address {
-                line1
-                line2
-                city
-                state
-                zip
-              }
-              amenities
-              images {
-                url
-                id
-              }
-              metatags {
-                metaName
-                metaContent
-                metaProperty
-              }
-              schemaMarkup
-              mapEmbed
-              total_price
-              price
-              gender
-              foodMenu {
-                id
-                url
-              }
-              video_link
-              faqs {
-                question
-                answer
-              }
-              occupancies {
-                price
-                description
-                total_beds
-                period
-              }
-              collegesNearby {
-                name
-                distance
-              }
-            }
-          }
-        }
+    query HostelBySlug($slug: String!) {
+  hostel(where: { slug: $slug }) {
+    name
+    slug
+    description
+    pageTitle
+    address {
+      line1
+      line2
+      city
+      state
+      zip
+    }
+    amenities
+    images {
+      url
+      id
+    }
+    metatags {
+      metaName
+      metaContent
+      metaProperty
+    }
+    schemaMarkup
+    mapEmbed
+    total_price
+    price
+    gender
+    foodMenu {
+      id
+      url
+    }
+    video_link
+    faqs {
+      question
+      answer
+    }
+    occupancies {
+      price
+      description
+      total_beds
+      period
+    }
+    collegesNearby {
+      name
+      distance
+    }
+  }
+}
+
       `,
       variables: {
         slug,
       },
     });
     console.log("Data: ", data);
-    const { hostelsOrders } = data;
-    const hostels = hostelsOrders[0].hostel;
-    return {
-      props: {
-        listing: hostels[0] || null,
-      },
-    };
+ const { hostel } = data;
+
+return {
+  props: {
+    listing: hostel || null,
+  },
+};
+
   } catch (e) {
     console.error("Error fetching data:", e);
     return {
