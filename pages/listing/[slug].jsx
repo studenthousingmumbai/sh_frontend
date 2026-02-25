@@ -110,6 +110,24 @@ export default function Example({ listing: Listing }) {
   // const { isReady } = router;
   const { slug } = router.query;
   const [listing, setListing] = useState(Listing);
+
+  const faqSchema =
+  listing?.faqs?.length > 0
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: listing.faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer?.replace(/<[^>]+>/g, ""),
+          },
+        })),
+      }
+    : null;
+
+  
   // const { getListing } = useApi();
   const { isAuthenticated } = withAuth();
   const [open, setOpen] = useState(false);
@@ -167,17 +185,29 @@ export default function Example({ listing: Listing }) {
   return (
     <>
       <Head>
-        {listing &&
-          listing?.metatags.length > 0 &&
-          listing?.metatags.map((tag) =>
-            tag.metaName ? (
-              <meta name={tag.metaName} content={tag.metaContent} />
-            ) : tag.metaProperty ? (
-              <meta property={tag.metaProperty} content={tag.metaContent} />
-            ) : null
-          )}
-        {listing && listing.pageTitle && <title>{listing.pageTitle}</title>}
-      </Head>
+  {listing &&
+    listing?.metatags.length > 0 &&
+    listing?.metatags.map((tag, index) =>
+      tag.metaName ? (
+        <meta key={index} name={tag.metaName} content={tag.metaContent} />
+      ) : tag.metaProperty ? (
+        <meta key={index} property={tag.metaProperty} content={tag.metaContent} />
+      ) : null
+    )}
+
+  {listing && listing.pageTitle && <title>{listing.pageTitle}</title>}
+
+  {/* ✅ FAQ Schema Injection */}
+  {faqSchema && (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(faqSchema),
+      }}
+    />
+  )}
+</Head>
+
 
       <Layout>
         <Modal
