@@ -184,10 +184,10 @@ export default function Example({ listing: Listing }) {
 
   return (
     <>
-      <Head>
+     <Head>
   {listing &&
-    listing?.metatags.length > 0 &&
-    listing?.metatags.map((tag, index) =>
+    listing?.metatags?.length > 0 &&
+    listing.metatags.map((tag, index) =>
       tag.metaName ? (
         <meta key={index} name={tag.metaName} content={tag.metaContent} />
       ) : tag.metaProperty ? (
@@ -195,18 +195,21 @@ export default function Example({ listing: Listing }) {
       ) : null
     )}
 
-  {listing && listing.pageTitle && <title>{listing.pageTitle}</title>}
+  {listing?.pageTitle && <title>{listing.pageTitle}</title>}
 
-  {/* ✅ FAQ Schema Injection */}
-  {faqSchema && (
+  {/* ✅ Schema Markup from Hygraph */}
+  {listing?.schemaMarkup && (
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(faqSchema),
+        __html: listing.schemaMarkup
+          .replace(/<script type="application\/ld\+json">/g, "")
+          .replace(/<\/script>/g, ""),
       }}
     />
   )}
 </Head>
+
 
 
       <Layout>
