@@ -556,16 +556,47 @@ const Homepage = ({ announcementImages, listings }) => {
 
   return (
     <>
-      <Head>
-        <title>
-          Book Hostels in Mumbai For College Students | Student Housing
-        </title>
-        <meta
-          name="description"
-          content="Student housing offers hostels in Mumbai for college students at a reasonable price. A fully functional clean apartment with regular cleaning services. We also provide additional services like meals, laundry and drop off to college."
-        />
-        <link rel="icon" href="/sh_logo.png" />
-      </Head>
+     <Head>
+  <title>
+    Book Hostels in Mumbai For College Students | Student Housing
+  </title>
+
+  <meta
+    name="description"
+    content="Student housing offers hostels in Mumbai for college students at a reasonable price. A fully functional clean apartment with regular cleaning services."
+  />
+
+  <link rel="icon" href="/sh_logo.png" />
+
+  <script async src="//www.instagram.com/embed.js"></script>
+
+  {/* Organization Schema */}
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: "Student Housing India Limited",
+        alternateName: "Student Housing",
+        url: "https://www.studenthousing.co.in/",
+        logo: "https://www.studenthousing.co.in/SH.png",
+        contactPoint: {
+          "@type": "ContactPoint",
+          telephone: "+919819780000",
+          contactType: "customer service",
+          areaServed: "IN",
+        },
+        sameAs: [
+          "https://m.facebook.com/StudentHousingIN",
+          "https://www.instagram.com/studenthousing_mumbai",
+          "https://in.linkedin.com/company/student-housing-india",
+          "https://youtube.com/@studenthousingmumbai1681",
+        ],
+      }),
+    }}
+  />
+</Head>
 
       <div className="z-50">
         <Modal
