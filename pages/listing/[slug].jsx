@@ -275,7 +275,7 @@ export default function Example({ listing: Listing }) {
                         url: imgs.url,
                       };
                     })}
-                    startIndex={1}
+                    startIndex={0}
                     isOpen={isDialogOpen}
                     onOpenChange={setIsDialogOpen}
                   />
