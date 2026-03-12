@@ -185,15 +185,34 @@ export default function Example({ listing: Listing }) {
   return (
     <>
      <Head>
-  {listing &&
-    listing?.metatags?.length > 0 &&
-    listing.metatags.map((tag, index) =>
-      tag.metaName ? (
-        <meta key={index} name={tag.metaName} content={tag.metaContent} />
-      ) : tag.metaProperty ? (
-        <meta key={index} property={tag.metaProperty} content={tag.metaContent} />
-      ) : null
-    )}
+ <Head>
+  {listing?.metatags?.map((tag, index) => {
+    if (tag.metaName === "title") {
+      return <title key={index}>{tag.metaContent}</title>;
+    }
+
+    if (tag.metaName) {
+      return (
+        <meta
+          key={index}
+          name={tag.metaName}
+          content={tag.metaContent}
+        />
+      );
+    }
+
+    if (tag.metaProperty) {
+      return (
+        <meta
+          key={index}
+          property={tag.metaProperty}
+          content={tag.metaContent}
+        />
+      );
+    }
+
+    return null;
+  })}
 
   {listing?.pageTitle && <title>{listing.pageTitle}</title>}
 
