@@ -162,6 +162,7 @@ export async function getServerSideProps(context) {
             images {
               url
               id
+              altText
             }
             metaTags {
               metaName
