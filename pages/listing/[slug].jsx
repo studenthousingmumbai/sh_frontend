@@ -269,16 +269,17 @@ export default function Example({ listing: Listing }) {
               <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
                 {/* Image gallery */}
                 <div className="flex flex-col">
-                  <ImageViewerCarousel
-                    images={listing?.images?.map((imgs) => {
-                      return {
-                        url: imgs.url,
-                      };
-                    })}
-                    startIndex={1}
-                    isOpen={isDialogOpen}
-                    onOpenChange={setIsDialogOpen}
-                  />
+                <ImageViewerCarousel
+  images={listing?.images?.map((imgs) => {
+    return {
+      url: imgs.url,
+      altText: imgs.altText,
+    };
+  })}
+  startIndex={1}
+  isOpen={isDialogOpen}
+  onOpenChange={setIsDialogOpen}
+/>
                   <div className="relative">
                     <img
                       src={listing?.images[currentImageIndex]?.url}
