@@ -70,13 +70,13 @@ export default function ImageViewerCarousel({
               images.length > 0 &&
               images.map((image, index) => (
                 <CarouselItem key={index}>
-                  <Image
-                    src={image.url}
-                    alt={`Image ${index + 1}`}
-                    width={600}
-                    height={400}
-                    className="object-contain w-full h-full"
-                  />
+                 <Image
+  src={image.url}
+  alt={image.altText || `Hostel image ${index + 1}`}
+  width={600}
+  height={400}
+  className="object-contain w-full h-full"
+/>
                 </CarouselItem>
               ))}
           </CarouselContent>
