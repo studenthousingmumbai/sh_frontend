@@ -47,12 +47,13 @@ export default function Listing({
         <div className="rounded-xl bg-gray-300 w-[700px] h-[300px] mr-6 relative">
           {/* <div className='bg-[rgba(0,0,0,0.3)] absolute top-0 left-0 w-full h-full rounded-md'></div> */}
           <img
-            className="w-full h-full object-cover rounded-md"
-            src={
-              images[0]?.url ||
-              "https://movi.com.tr/wp-content/uploads/2021/08/placeholder-home.png"
-            }
-          />
+  className="w-full h-full object-cover rounded-md"
+  src={
+    images[0]?.url ||
+    "https://movi.com.tr/wp-content/uploads/2021/08/placeholder-home.png"
+  }
+  alt={images[0]?.altText || name}
+/>
         </div>
 
         <div className="rounded-md w-full flex flex-col justify-between">
@@ -177,13 +178,14 @@ export default function Listing({
       >
         <div className="rounded-xl bg-gray-300 w-full h-[350px] mr-3 relative">
           <div className="bg-[rgba(0,0,0,0.3)] absolute top-0 left-0 w-full h-full rounded-md"></div>
-          <img
-            className="w-full h-full object-cover rounded-md"
-            src={
-              images[0]?.url ||
-              "https://movi.com.tr/wp-content/uploads/2021/08/placeholder-home.png"
-            }
-          />
+         <img
+  className="w-full h-full object-cover rounded-md"
+  src={
+    images[0]?.url ||
+    "https://movi.com.tr/wp-content/uploads/2021/08/placeholder-home.png"
+  }
+  alt={images[0]?.altText || name}
+/>
         </div>
         <div className="rounded-md w-full flex flex-col justify-between">
           <div className="w-full gap-1 justify-between items-center my-3">
