@@ -281,11 +281,12 @@ export default function Example({ listing: Listing }) {
   onOpenChange={setIsDialogOpen}
 />
                   <div className="relative">
-                    <img
-                      src={listing?.images[currentImageIndex]?.url}
-                      className="w-full h-auto cursor-pointer bg-blend-darken rounded-lg object-cover transform transition-transform duration-300 group-hover:scale-105"
-                      onClick={() => setIsDialogOpen(true)}
-                    />
+                   <img
+  src={listing?.images[currentImageIndex]?.url}
+  alt={listing?.images[currentImageIndex]?.altText || listing?.name}
+  className="w-full h-auto cursor-pointer bg-blend-darken rounded-lg object-cover transform transition-transform duration-300 group-hover:scale-105"
+  onClick={() => setIsDialogOpen(true)}
+/>
                     {listing?.images?.length > 1 && (
                       <div className="absolute bottom-2 right-2 bg-black bg-opacity-70 text-white text-lg px-3 py-2 rounded">
                         +{listing.images.length - 1}
@@ -506,10 +507,11 @@ export default function Example({ listing: Listing }) {
                 </div>
 
                 <div className="w-full">
-                  <img
-                    className="w-full h-full object-cover"
-                    src={listing?.foodMenu.url}
-                  ></img>
+                 <img
+  className="w-full h-full object-cover"
+  src={listing?.foodMenu.url}
+  alt="Student Housing Food Menu"
+/>
                 </div>
               </div>
             )}
