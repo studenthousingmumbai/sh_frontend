@@ -123,6 +123,7 @@ export default function Listings({ all_listings, total, gender }) {
               images {
                 url
                 id
+                altText
               }
               metatags {
                 metaName
@@ -450,6 +451,7 @@ export async function getServerSideProps(context) {
               images {
                 url
                 id
+                altText
               }
               metatags {
                 metaName
