@@ -185,7 +185,6 @@ export default function Example({ listing: Listing }) {
   return (
     <>
      <Head>
- <Head>
   {listing?.metatags?.map((tag, index) => {
     if (tag.metaName === "title") {
       return <title key={index}>{tag.metaContent}</title>;
