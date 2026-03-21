@@ -78,8 +78,7 @@ export default function Example() {
   }, []);
 
   return (
-
-      <>
+    
     <Script id="microsoft-clarity" strategy="afterInteractive">
       {`
         (function(c,l,a,r,i,t,y){
