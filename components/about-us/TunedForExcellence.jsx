@@ -15,7 +15,7 @@ const TunedForExcellence = () => {
     },
     {
       title: "5000+",
-      subtitle: "Hours support",
+      subtitle: "Clients",
     },
   ];
 
