@@ -14,7 +14,7 @@ const OurMission = () => {
           <ImageCollage
             image1="/about-us/IMG_2397.webp"
             image2="/about-us/IMG_5415.webp"
-            image3="/about-us/IMG_2397.webp"
+            image3="/about-us/549A7204.webp"
             component="our-mission"
           />
         </div>
