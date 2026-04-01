@@ -36,9 +36,9 @@ const AboutUsComponent = () => {
       </div>
       <div className="w-full lg:w-1/2 order-1 lg:order-2 mb-0 2sm:mb-24 lg:mb-0">
         <ImageCollage
-          image1="/about-us/asian-indian-group-college-students-having-tea-coffee-together-break-campus-premises-outdoors-having-chit-chat.jpg"
-          image2="/about-us/small-juvenile-bedroom-arrangement.jpg"
-          image3="/about-us/mumbai-skyline-skyscrapers-construction.jpg"
+          image1="/about-us/IMG_7505.webp"
+          image2="/about-us/IMG_5444.webp"
+          image3="/about-us/549A6884.webp"
           component="about-us"
         />
       </div>
