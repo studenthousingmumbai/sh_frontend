@@ -13,7 +13,7 @@ const OurStory = () => {
     2016: {
       content:
         "Expanded to 100+ beds across 5+ hostels for boys and girls, driven by strong customer support and reviews.",
-      image: "/about-us/our-story.png",
+      image: "/about-us/2016.webp",
     },
     2019: {
       content: "Grew to a 50+ member team, serving 1,000+ happy students.",
