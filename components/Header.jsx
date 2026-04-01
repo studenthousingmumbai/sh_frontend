@@ -14,13 +14,13 @@ const hostels = [
   { name: "Atlantis - Juhu, Mumbai", href: "/listing/atlantis-by-student-housing" },
   { name: "Avenue - Juhu, Mumbai", href: "/listing/avenue-by-student-housing" },
   { name: "Arcadia - Andheri, Mumbai", href: "/listing/arcadia-by-student-housing" },
-  { name: "Elita - Juhu, Mumbai", href: "/listing/elita-by-student-housing-boys" },
+  { name: "Elita Boys - Juhu, Mumbai", href: "/listing/elita-by-student-housing-boys" },
+  { name: "Elita Girls - Juhu, Mumbai", href: "/listing/elita-by-student-housing-girls" },
   { name: "Anand - Vile Parle, Mumbai", href: "/listing/anand-by-student-housing" },
   { name: "Crescenzo - Vile Parle, Mumbai", href: "/listing/crescenzo-by-student-housing" },
   { name: "Ganga Niwas - Vile Parle, Mumbai", href: "/listing/ganga-niwas-by-student-housing" },
   { name: "Bharat - Vile Parle, Mumbai", href: "/listing/bharat-by-student-housing" },
   { name: "Shradha Suman - Vile Parle, Mumbai", href: "/listing/shradha-suman-by-student-housing" },
-  { name: "Kapadia - Vile Parle, Mumbai", href: "/listing/kapadia-by-student-housing" },
   { name: "Moti Mahal - Vile Parle, Mumbai", href: "/listing/moti-mahal-by-student-housing" },
 ];
 
