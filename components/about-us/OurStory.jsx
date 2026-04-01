@@ -22,11 +22,11 @@ const OurStory = () => {
     2020: {
       content:
         'Won "Best Student Housing of India" by Indian Education Awards in Bangalore.',
-      image: "/about-us/our-story.png",
+      image: "/about-us/WhatsApp Image 2026-04-01 at 3.56.23 PM.jpeg",
     },
     2021: {
       content: "Faced COVID-19 challenges but bounced back stronger.",
-      image: "/about-us/our-story.png",
+      image: "/about-us/4378868.jpg",
     },
     2022: {
       content: "Increased capacity to 300+ beds despite pandemic setbacks.",
