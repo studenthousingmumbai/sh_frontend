@@ -12,9 +12,9 @@ const OurMission = () => {
       <div className="flex flex-col lg:flex-row section-y-padding mx-auto responsiveCenterPadding gap-4 z-20">
         <div className="w-full order-2 lg:order-1 mt-12 lg:mt-auto">
           <ImageCollage
-            image1="/about-us/hands-stack-business-people.jpg"
-            image2="/about-us/composition-paper-style-isolation-still-life.jpg"
-            image3="/about-us/3d-rendering-arrow-hitting-target.jpg"
+            image1="/about-us/IMG_5419.webp"
+            image2="/about-us/IMG_5415.webp"
+            image3="/about-us/549A7313.webp"
             component="our-mission"
           />
         </div>
