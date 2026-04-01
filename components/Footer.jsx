@@ -277,8 +277,7 @@ export default function Example() {
           <div className="flex flex-col justify-start gap-3.5 w-full md:w-1/2">
             <div className="font-semibold text-2xl">Get in touch</div>
             <div className="text-sm md:text-base w-full md:w-[40%]">
-              Ganga Niwas, Next to SBI Bank, Across NMIMS University, VM Road
-              Juhu, Vile Parle West, Mumbai- (56)
+              Avenue By Student Housing, Shree Krishna building, NS Mankikar Rd, next to Shetty tower, Nutan Laxmi Society, JVPD Scheme, Vile Parle West, Mumbai
             </div>
             <div className="flex gap-2.5">
               <PhoneIcon className="w-5 h-5 md:w-6 md:h-6" />
