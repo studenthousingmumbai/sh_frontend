@@ -40,7 +40,7 @@ const OurStory = () => {
     2024: {
       content:
         "Introduced Elita by Student Housing, featuring hostel rooms 4x larger than average, with premium amenities including a Pickleball court and a 4,000+ sq. ft. fitness centre; crossed 800+ beds.",
-      image: "/about-us/P1049573.webp",
+      image: "/about-us/IMG_3687.webp",
     },
     2025: {
       content: `Celebrating 10 years with two premium launches:
