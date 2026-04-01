@@ -243,7 +243,7 @@ export default function Example() {
               <img
                 className="w-full h-full object-contain"
                 src="/logo-bw.png"
-                alt="Company name"
+                alt="student housing footer logo"
               />
             </div>
             {/* <p className="text-sm leading-6 text-gray-300">
