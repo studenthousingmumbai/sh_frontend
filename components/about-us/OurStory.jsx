@@ -30,7 +30,7 @@ const OurStory = () => {
     },
     2022: {
       content: "Increased capacity to 300+ beds despite pandemic setbacks.",
-      image: "/about-us/our-story.png",
+      image: "/about-us/IMG_5787.png",
     },
     2023: {
       content:
