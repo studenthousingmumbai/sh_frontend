@@ -6,15 +6,15 @@ import { motionConfigDivs } from "../../utils/motionConstants";
 const TunedForExcellence = () => {
   const values = [
     {
-      title: "1100+",
+      title: "1250+",
       subtitle: "Beds",
     },
     {
-      title: "20+",
+      title: "10+",
       subtitle: "No. of Years",
     },
     {
-      title: "4000+",
+      title: "5000+",
       subtitle: "Hours support",
     },
   ];
