@@ -17,7 +17,7 @@ const OurStory = () => {
     },
     2019: {
       content: "Grew to a 50+ member team, serving 1,000+ happy students.",
-      image: "/about-us/2019.webp",
+      image: "/about-us/P1009397.webp",
     },
     2020: {
       content:
@@ -35,12 +35,12 @@ const OurStory = () => {
     2023: {
       content:
         "Launched Avenue by Student Housing — Mumbai’s most luxurious student hostel with an infinity pool; community grew to 4,000+ students.",
-      image: "/about-us/2023.webp",
+      image: "/about-us/IMG_2396.webp",
     },
     2024: {
       content:
         "Introduced Elita by Student Housing, featuring hostel rooms 4x larger than average, with premium amenities including a Pickleball court and a 4,000+ sq. ft. fitness centre; crossed 800+ beds.",
-      image: "/about-us/2024.webp",
+      image: "/about-us/P1049573.webp",
     },
     2025: {
       content: `Celebrating 10 years with two premium launches:
@@ -48,7 +48,7 @@ const OurStory = () => {
 •	Atlantis (Vile Parle West): 200+ bed exclusive girls’ hostel near NMIMS.
 Total capacity reached 1,100+ beds.
 `,
-      image: "/about-us/2025.webp",
+      image: "/about-us/P1013602_.webp",
     },
   };
 
