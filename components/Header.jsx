@@ -104,7 +104,7 @@ export default function Example() {
                 <img
                   className="w-auto h-[100px] cursor-pointer"
                   src="/SH.png"
-                  alt=""
+                  alt="student housing main logo"
                 />
               </Link>
               {/* <span className="text-[8px]">
