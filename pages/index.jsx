@@ -45,7 +45,7 @@ const institutions = [
   },
   {
     title: "Narsee Monjee",
-    image: "/institutions/NM.jpg",
+    image: "/institutions/NM.webp",
   },
   {
     title: "Mithibai College",
@@ -57,7 +57,7 @@ const institutions = [
   },
   {
     title: "HR college",
-    image: "/institutions/hr.jpg",
+    image: "/institutions/hr.webp",
   },
 ];
 
@@ -66,37 +66,37 @@ const usps = [
     title: "Housekeeping",
     icon: "🧹",
     desc: "Daily professional cleaning services to keep your living space spotless and comfortable.",
-    image: "/new-amenities/housekeeping.png", // ← your hover‐image
+    image: "/new-amenities/housekeeping.webp", // ← your hover‐image
   },
   {
     title: "24x7 Security",
     icon: "🔒",
     desc: "Your safety is our top priority with round‑the‑clock surveillance and security systems.",
-    image: "/new-amenities/security.png", // ← your hover‐image
+    image: "/new-amenities/security.webp", // ← your hover‐image
   },
   {
     title: "Indoor Games",
     icon: "🎮",
     desc: "Dedicated entertainment zones for recreation and relaxation.",
-    image: "/am-1.png",
+    image: "/am-1.webp",
   },
   {
     title: "Laundry Services",
     icon: "🧺",
     desc: "Hassle‑free steam ironing, pickup, and drop‑off laundry services to save your time.",
-    image: "/new-amenities/laundry-2.png",
+    image: "/new-amenities/laundry-2.webp",
   },
   {
     title: "College Drop Facility",
     icon: "🚗",
     desc: "An exclusive in‑hostel facility—rides to college in cars at no extra cost.",
-    image: "/pick_and_drop.jpg",
+    image: "/pick_and_drop.webp",
   },
   {
     title: "Turf Facility",
     icon: "⚽",
     desc: "Play your favourite sports any time—you and your hostel‑mates are covered at Student Housing!",
-    image: "/turf-events.png",
+    image: "/turf-events.webp",
   },
 ];
 
@@ -280,7 +280,7 @@ const HeroSection = () => {
             <div
               className="relative w-full h-48 lg:w-96 lg:h-64 bg-pink-500 rounded-lg overflow-hidden flex items-end p-4 border border-[#FE019A] border-4 hover:scale-[1.06] cursor-pointer transition-all"
               style={{
-                backgroundImage: "url('/hero-girl.png')",
+                backgroundImage: "url('/hero-girl.webp')",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
@@ -290,7 +290,7 @@ const HeroSection = () => {
                 <h3 className="text-lg font-semibold">Girls Hostel</h3>
                 <div className="flex items-center justify-center p-3 rounded-md bg-[#F8C14C]">
                   <img
-                    src="/arrow-up-right.png"
+                    src="/arrow-up-right.webp"
                     alt="Arrow Right"
                     className="w-6 h-6"
                   />
@@ -304,7 +304,7 @@ const HeroSection = () => {
             <div
               className="relative w-full h-48 lg:w-96 lg:h-64 w-96 h-64 bg-blue-500 rounded-lg overflow-hidden flex items-end p-4 border border-[#0088FC] border-4 hover:scale-[1.04] cursor-pointer transition-all"
               style={{
-                backgroundImage: "url('/hero-boy.png')",
+                backgroundImage: "url('/hero-boy.webp')",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
@@ -314,7 +314,7 @@ const HeroSection = () => {
                 <h3 className="text-lg font-semibold">Boys Hostel</h3>
                 <div className="flex items-center justify-center p-3 rounded-md bg-[#F8C14C]">
                   <img
-                    src="/arrow-up-right.png"
+                    src="/arrow-up-right.webp"
                     alt="Arrow Right"
                     className="w-6 h-6"
                   />
