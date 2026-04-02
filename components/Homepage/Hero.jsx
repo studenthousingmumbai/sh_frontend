@@ -28,10 +28,10 @@ export default function Example() {
           <Carousel
             slideDuration={5000}
             images={[
-              "/banner_1.webp",
-              "/banner_2.webp",
-              "/banner_3.webp",
-              "/banner_5.webp",
+              "/banner_1.webp?v=3",
+  "/banner_2.webp?v=3",
+  "/banner_3.webp?v=3",
+  "/banner_5.webp?v=3",
             ]}
             width="w-full"
             height="h-full"
