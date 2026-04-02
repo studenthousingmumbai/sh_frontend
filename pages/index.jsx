@@ -103,19 +103,19 @@ const usps = [
 function Journey() {
   const options = [
     {
-      title: "1,100+ Beds",
+      title: "1,250+ Beds",
       icon: "🛏️",
       description:
         "Plenty of accommodation options with over 1100+ comfortable and well-maintained beds, ensuring a safe and cozy stay for students.",
     },
     {
-      title: "20+ Hostels",
+      title: "15+ Locations",
       icon: "🏠",
       description:
         "Choose from a variety of 20+ hostels across prime student locations, offering modern amenities and a secure living environment.",
     },
     {
-      title: "4500+ Happy Students",
+      title: "6000+ Happy Students",
       icon: "😊",
       description:
         "Join a thriving community of 4000+ students who have found their perfect home away from home with us.",
