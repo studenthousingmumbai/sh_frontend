@@ -28,10 +28,10 @@ const Event = dynamic(
 );
 
 const images = [
-  "/banner_1.png",
-  "/banner_2.png",
-  "/banner_3.png",
-  "/banner_5.png",
+  "/banner-1.webp",
+  "/banner-2.webp",
+  "/banner-3.webp",
+  "/banner-5.webp",
 ];
 
 const institutions = [
