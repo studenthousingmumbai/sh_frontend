@@ -14,7 +14,7 @@ const TunedForExcellence = () => {
       subtitle: "No. of Years",
     },
     {
-      title: "5000+",
+      title: "6000+",
       subtitle: "Clients",
     },
   ];
