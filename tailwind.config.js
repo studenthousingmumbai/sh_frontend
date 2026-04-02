@@ -29,10 +29,10 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        "female-banner-cropped": "url('/female-no-bg-cropped.png')",
-        "male-banner-cropped": "url('/male-no-bg-cropped.png')",
-        "female-banner": "url('/female-no-bg.png')",
-        "male-banner": "url('/male-no-bg.png')",
+        "female-banner-cropped": "url('/female-no-bg-cropped.webp')",
+        "male-banner-cropped": "url('/male-no-bg-cropped.webp')",
+        "female-banner": "url('/female-no-bg.webp')",
+        "male-banner": "url('/male-no-bg.webp')",
         "custom-gradient": "linear-gradient(180deg, #ffffff 0%, #fff5d5 99%);",
         "blog-landscape": "url(/landscape_blog_2.jpg)",
         "refer-and-earn-banner": "url(/refer-and-earn-bg.png)",
