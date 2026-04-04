@@ -36,14 +36,10 @@ const hostelsNearCollege = [
   { name: "NMIMS Mumbai", href: "/hostels-near-college/hostels-near-nmims-mumbai" },
   { name: "Mukesh Patel College", href: "/hostels-near-college/hostels-near-mukesh-patel-college-mumbai" },
   { name: "Atlas University", href: "/hostels-near-college/hostels-near-atlas-university-mumbai" },
-  { name: "Bombay Flying Club", href: "/hostels-near-college/hostels-near-bombay-flying-club-mumbai" },
   { name: "DJ Sanghvi College", href: "/hostels-near-college/hostels-near-dj-sanghvi-college-mumbai" },
   { name: "Mithibai College", href: "/hostels-near-college/hostels-near-mithibai-college-mumbai" },
   { name: "Narsee Monjee College", href: "/hostels-near-college/hostels-near-narsee-monjee-college-mumbai" },
   { name: "UPG College", href: "/hostels-near-college/hostels-near-upg-college-mumbai" },
-  { name: "L.S. Raheja College", href: "/hostels-near-college/hostels-near-ls-raheja-college-mumbai" },
-  { name: "Cooper Hospital College", href: "/hostels-near-college/hostels-near-cooper-hospital-college-mumbai" },
-  { name: "SNDT University", href: "/hostels-near-college/hostels-near-sndt-university-mumbai" },
   { name: "JK Shah Andheri", href: "/hostels-near-college/hostels-near-jk-shah-andheri-mumbai" },
 ];
 
