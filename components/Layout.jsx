@@ -12,6 +12,7 @@ import useApi from "../hooks/useApi";
 import { Dialog, DialogContent, DialogTitle } from "./components/ui/dialog";
 import EnquireNowFormNew from "./EnquireNowFormNew";
 import WhatsAppButton from "./common/WhatsappButton";
+ import Script from "next/script";
 
 export default function Layout({ children, canonical }) {
   const [marqueeOpen, setMarqueeOpen] = useState(true);
@@ -60,9 +61,37 @@ const canonicalUrl = canonical || fallbackCanonical;
   return (
 
     <>
-    <Head>
-      <link rel="canonical" href={canonicalUrl} />
-    </Head>
+  
+
+<Head>
+  <link rel="canonical" href={canonicalUrl} />
+</Head>
+
+{/* Meta Pixel */}
+<Script id="facebook-pixel" strategy="afterInteractive">
+  {`
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '983766016309702');
+    fbq('track', 'PageView');
+  `}
+</Script>
+
+{/* NoScript fallback */}
+<noscript>
+  <img
+    height="1"
+    width="1"
+    style={{ display: "none" }}
+    src="https://www.facebook.com/tr?id=983766016309702&ev=PageView&noscript=1"
+  />
+</noscript>
     
     <div className="">
       <span className="fixed bottom-[25px] right-[20px] z-[1000]">
