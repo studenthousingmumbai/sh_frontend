@@ -367,9 +367,9 @@ function AboutSection({ data }) {
         <div className="w-full lg:w-1/2">
           <InstitutionImageCollage
             images={[
-              "/hostels/girls-rooms-img-1.png",
-              "/hostels/girls-rooms-img-2.png",
-              "/hostels/girls-rooms-img-3.png",
+              "/girls-rooms-img-1.webp",
+              "/girls-rooms-img-2.webp",
+              "/girls-rooms-img-3.webp",
             ]}
           />
         </div>
