@@ -390,7 +390,7 @@ export default function Example({ listing: Listing }) {
 
                   <div className="mt-3 mb-3 ">
                     <p className="uppercase text-lg text-gray-600">
-                      starting at
+                      starting from
                     </p>
                     <p className="text-3xl tracking-tight text-gray-900">
                       ₹
