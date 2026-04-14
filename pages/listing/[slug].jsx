@@ -609,6 +609,7 @@ export async function getServerSideProps(context) {
     occupancies {
       price
       description
+      secondaryDescription
       total_beds
       period
     }
