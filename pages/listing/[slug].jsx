@@ -40,6 +40,9 @@ function Occupancies({ occupancies }) {
               {" "}
               {occupancy.description}{" "}
             </div>
+            <div className="text-xs text-gray-500 text-center mt-1 leading-tight">
+  {occupancy.secondaryDescription}
+</div>
             <div className="flex items-center justify-center">
               ₹&nbsp;
               <div className="text-xl font-bold">
