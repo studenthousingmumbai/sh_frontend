@@ -5,6 +5,8 @@ import useAuth from "../hooks/useAuth";
 import { useRouter } from "next/router";
 import withAuth from "../hooks/withAuth";
 import Errors from "../components/common/Errors";
+import Head from "next/head";
+
 
 export default function Signin() {
   const { login, loginErrors } = useAuth();
@@ -30,6 +32,16 @@ export default function Signin() {
 
   return (
     <>
+
+      <Head>
+    <title>Sign In | Student Housing</title>
+    <meta
+      name="description"
+      content="Sign in to your Student Housing account to manage bookings, explore listings, and access your student accommodation dashboard."
+    />
+    <meta name="robots" content="index, follow" />
+  </Head>
+      
       <div className="flex min-h-full">
         <div className="flex flex-1 flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
           <div className="mx-auto w-full max-w-sm lg:w-96">
