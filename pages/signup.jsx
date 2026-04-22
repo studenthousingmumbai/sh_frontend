@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import withAuth from "../hooks/withAuth";
 import Errors from "../components/common/Errors";
 import PhoneNumberInput from "../components/common/PhoneNumberInput";
+import Head from "next/head";
 
 export default function Signup() {
   const router = useRouter();
@@ -50,6 +51,16 @@ export default function Signup() {
 
   return (
     <>
+
+      <Head>
+    <title>Create your Account at Student Housing</title>
+    <meta
+      name="description"
+      content="Create your Student Housing Account to explore hostels and manage bookings easily"
+    />
+    <meta name="robots" content="index, follow" />
+  </Head>
+      
       {/*
           This example requires updating your template:
   
@@ -77,9 +88,9 @@ export default function Signup() {
                 </>
               )) || (
                 <>
-                  <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">
+                  <h1 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">
                     Create a new account
-                  </h2>
+                  </h1>
                   <p className="mt-2 text-sm text-gray-600">
                     Or{" "}
                     <Link href="/signin" legacyBehavior>
