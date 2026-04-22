@@ -8,6 +8,7 @@ import useAuth from '../hooks/useAuth';
 import withAuth from '../hooks/withAuth';
 import { useRouter } from 'next/router';
 import useApi from '../hooks/useApi';
+import Head from "next/head";
 
 const initialvalues = { 
     firstname: "Tanay", 
@@ -106,6 +107,16 @@ export default function Example() {
     }
 
     return (
+
+        <Head>
+    <title>Manage Profile | Student Housing</title>
+    <meta
+      name="description"
+      content="Manage your Student Housing profile, preferences and update account details in one place"
+    />
+    <meta name="robots" content="index, follow" />
+  </Head>
+        
         <ProfileLayout>
             <ProfileSidebar user={user && {firstname: user?.firstname, lastname: user?.lastname}}/>
             <div className="w-full lg:w-3/4 py-6">
