@@ -115,14 +115,17 @@ export default function Example() {
 
              <Head>
     <title>My Booking | Student Housing</title>
-    <meta
+    
+        
+        <ProfileLayout>
+
+            <meta
       name="description"
       content="View your booking history, payments, and past reservations with Student Housing."
     />
     <meta name="robots" content="index, follow" />
   </Head>
-        
-        <ProfileLayout>
+            
             {isAuthenticated && 
                 <>
                     <ProfileSidebar/>
