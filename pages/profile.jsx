@@ -108,7 +108,11 @@ export default function Example() {
 
     return (
 
-        <Head>
+       
+        <ProfileLayout>
+
+
+                 <Head>
     <title>Manage Profile | Student Housing</title>
     <meta
       name="description"
@@ -116,8 +120,7 @@ export default function Example() {
     />
     <meta name="robots" content="index, follow" />
   </Head>
-        
-        <ProfileLayout>
+            
             <ProfileSidebar user={user && {firstname: user?.firstname, lastname: user?.lastname}}/>
             <div className="w-full lg:w-3/4 py-6">
                 <div className='flex flex-col'>
