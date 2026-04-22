@@ -7,6 +7,7 @@ import ProfileSidebar from '../components/common/ProfileSidebar';
 import useApi from '../hooks/useApi';
 import useAuth from '../hooks/useAuth';
 import withAuth from '../hooks/withAuth';
+import Head from "next/head";
 
 // const initialvalues = { 
 //     firstname: "Tanay", 
@@ -111,6 +112,16 @@ export default function Example() {
     }, [isLoading]); 
 
     return (
+
+             <Head>
+    <title>My Booking | Student Housing</title>
+    <meta
+      name="description"
+      content="View your booking history, payments, and past reservations with Student Housing."
+    />
+    <meta name="robots" content="index, follow" />
+  </Head>
+        
         <ProfileLayout>
             {isAuthenticated && 
                 <>
