@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import withAuth from "../hooks/withAuth";
 import Errors from "../components/common/Errors";
 import useApi from "../hooks/useApi";
+import Head from "next/head";
 
 export default function Signin() {
   const router = useRouter();
@@ -34,6 +35,16 @@ export default function Signin() {
 
   return (
     <>
+
+      <Head>
+    <title>Reset Your Password</title>
+    <meta
+      name="description"
+      content="Forgot your password? Update it here to access your account again."
+    />
+    <meta name="robots" content="index, follow" />
+  </Head>
+      
       <div className="flex min-h-full">
         <div className="flex flex-1 flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
           <div className="mx-auto w-full max-w-sm lg:w-96">
@@ -47,9 +58,9 @@ export default function Signin() {
               </Link>
               {!resetEmailSent && (
                 <>
-                  <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">
+                  <h1 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">
                     Forgot Password
-                  </h2>
+                  </h1>
                   <p className="mt-2 text-sm text-gray-600">
                     Enter email address to receive a password reset link
                   </p>
