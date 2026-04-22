@@ -34,10 +34,10 @@ export default function Signin() {
     <>
 
       <Head>
-    <title>Sign In | Student Housing</title>
+    <title>Sign In to Student Housing | Access Your Account</title>
     <meta
       name="description"
-      content="Sign in to your Student Housing account to manage bookings, explore listings, and access your student accommodation dashboard."
+      content="Sign in to your Student Housing account to manage bookings, explore hostel details, and access your profile."
     />
     <meta name="robots" content="index, follow" />
   </Head>
