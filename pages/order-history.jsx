@@ -113,13 +113,11 @@ export default function Example() {
 
     return (
 
-             <Head>
-    <title>My Booking | Student Housing</title>
-    
-        
-        <ProfileLayout>
+            <ProfileLayout>
 
-            <meta
+                <Head>
+    <title>My Booking | Student Housing</title>
+    <meta
       name="description"
       content="View your booking history, payments, and past reservations with Student Housing."
     />
