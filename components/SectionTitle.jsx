@@ -1,7 +1,7 @@
 export default function SectionTitle({ 
   title, 
   className, 
-  tag = "h1" 
+  tag = "h2" 
 }) {
   const Tag = tag;
 
