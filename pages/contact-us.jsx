@@ -58,9 +58,9 @@ export default function Example() {
 
     {/* HERO */}
     <div className="text-center mb-14">
-      <h1 className="text-4xl font-bold text-gray-900">
+      <p className="text-4xl font-bold text-gray-900">
         Let’s Connect 👋
-      </h1>
+      </p>
       <p className="text-gray-500 mt-3 text-lg">
         Have questions about student housing? We’re here to help.
       </p>
