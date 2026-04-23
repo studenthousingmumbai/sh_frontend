@@ -82,9 +82,9 @@ export default function ReferAndEarn() {
 
             <div className='w-full lg:w-1/2 flex justify-center lg:justify-start items-center p-3'>
                 <div className='w-[85%] sm:w-[70%] md:w-[65%] lg:w-[60%] lg2:w-[55%] bg-white rounded-xl lg:ml-24 flex flex-col p-6 items-center'>
-                    <div className='font-semibold text-xl'>
-                        Refer & Earn
-                    </div>
+                   <h1 className='font-semibold text-xl'>
+  Refer & Earn
+</h1>
                     <form action="submit" onSubmit={handleSubmit}>
                         <input name='name' id='name' type="text" className='outline-none rounded-md w-full mt-4 border-gray-300 bg-gray-100 focus:outline-none text-xs py-3' placeholder='Full Name *' onChange={handleChange} />
                         <input name='contact' id='contact' type="text" className='outline-none rounded-md w-full mt-4 border-gray-300 bg-gray-100 focus:outline-none text-xs py-3' placeholder='Contact Number *' onChange={handleChange} />
@@ -126,9 +126,9 @@ export default function ReferAndEarn() {
 
         <div className='w-full flex flex-col justify-center items-center mt-12 lg:mt-16'>
             <div className=''>
-              <span className='text-4xl lg:text-5xl font-bold capitalize'>
-                how to refer your friends
-              </span>
+            <h2 className='text-4xl lg:text-5xl font-bold capitalize'>
+  How to refer your friends
+</h2>
               <div className='border-b-4 border-brandColor mt-3 w-[20%]' />
             </div>
         </div>
