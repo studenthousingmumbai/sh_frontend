@@ -2,6 +2,7 @@ import CountUp from "react-countup";
 import { useEffect, useRef, useState } from "react";
 import MotionDiv from "../MotionDiv";
 import { motionConfigDivs } from "../../utils/motionConstants";
+import SectionTitle from "../SectionTitle";
 
 const TunedForExcellence = () => {
   const values = [
@@ -53,8 +54,8 @@ const TunedForExcellence = () => {
       ></MotionDiv>
       <div className="flex flex-col justify-center items-center mx-auto responsive-max-width">
         <MotionDiv {...motionConfigDivs} className="text-center card-title">
-          Statistics
-        </MotionDiv>
+  <SectionTitle title="Statistics" tag="h2" />
+</MotionDiv>
         <MotionDiv
           {...motionConfigDivs}
           delay={0.2}
