@@ -219,9 +219,12 @@ export default function Example() {
           </div>
         </div>
         <div className="bg-white mb-12">
-          <h1 className="text-3xl capitalize font-semibold mx-auto max-w-7xl pt-4 px-6 lg:px-8">
+          {/*
+          <p className="text-3xl capitalize font-semibold mx-auto max-w-7xl pt-4 px-6 lg:px-8">
             Frequently asked questions
-          </h1>
+          </p>
+*/}
+          
           {faqs.map((faq) => (
             <div className="mx-auto max-w-7xl divide-y divide-gray-900/10 px-6 lg:px-8 pt-12 mb-5">
               <h2 className="text-2xl font-bold leading-10 tracking-tight text-brandColor capitalize">
