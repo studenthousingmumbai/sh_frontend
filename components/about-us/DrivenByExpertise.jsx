@@ -1,6 +1,7 @@
 import Image from "next/image";
 import MotionDiv from "../MotionDiv";
 import { motionConfigDivs } from "../../utils/motionConstants";
+import SectionTitle from "../SectionTitle";
 
 const DrivenByExpertise = () => {
   const values = [
