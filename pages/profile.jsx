@@ -134,7 +134,7 @@ export default function Example() {
                     
                     {/* subheader 1 */}
                     <div className='flex justify-between lg:justify-start items-center mb-6'> 
-                        <h1 className='uppercase text-lg sm:text-2xl'>contact information</h1>
+                        <h2 className='uppercase text-lg sm:text-2xl'>contact information</h2>
                         <img className='h-6 ml-4 cursor-pointer' src="/icon_edit_2_outline.png" alt="" onClick={() => setEditContactInfo(true)} />
                     </div>
 
