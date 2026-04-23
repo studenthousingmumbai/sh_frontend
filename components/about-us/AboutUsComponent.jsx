@@ -11,7 +11,7 @@ const AboutUsComponent = () => {
           {...motionConfigDivs}
           className="card-title flex justify-start"
         >
-          <SectionTitle title={"About Us"} className={"mb-9 "} />
+          <SectionTitle title={"About Us"} as="h1" className={"mb-9 "} />
         </MotionDiv>
 
         <MotionDiv {...motionConfigDivs} delay={0.2} className="">
