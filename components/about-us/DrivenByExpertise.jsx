@@ -29,9 +29,9 @@ const DrivenByExpertise = () => {
   return (
     <div className="relative w-full flex flex-col justify-center items-center section-y-padding mx-auto responsiveCenterPadding">
       <div className="flex flex-col justify-center items-center">
-        <MotionDiv {...motionConfigDivs} className="card-title text-center">
-          Our Team
-        </MotionDiv>
+       <MotionDiv {...motionConfigDivs} className="card-title text-center">
+  <SectionTitle title="Our Team" tag="h2" />
+</MotionDiv>
         <MotionDiv
           {...motionConfigDivs}
           delay={0.2}
