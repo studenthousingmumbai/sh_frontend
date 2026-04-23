@@ -22,9 +22,9 @@ export default function Blogs({ blogs }) {
     <Layout>
       <div className="">
         <div className="relative flex items-center w-full h-[400px] bg-blog-landscape bg-cover bg-center bg-no-repeat">
-          <div className="ml-16 sm:ml-24 lg:ml-44 my-auto uppercase font-bold text-white text-3xl sm:text-4xl md:text-5xl border-l-4 border-yellow-400 px-5 py-1 sm:py-2 md:py-3">
-            blogs
-          </div>
+          <h1 className="ml-16 sm:ml-24 lg:ml-44 my-auto uppercase font-bold text-white text-3xl sm:text-4xl md:text-5xl border-l-4 border-yellow-400 px-5 py-1 sm:py-2 md:py-3">
+  Blogs
+</h1>
         </div>
         <div className="w-[80%] mx-auto my-12">
           {/* flex layout */}
