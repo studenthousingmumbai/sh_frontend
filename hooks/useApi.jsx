@@ -434,11 +434,11 @@ export default function useApi() {
         }
     }
 
-    const contactUs = async ({ name, email, phone, message }) => { 
+    const contactUs = async ({ name, email, phone, message, subject }) => {
         try{ 
             const response = await axios(base_url + `/user/contact-us`, { 
                 method: "POST",
-                data: { name, email, phone, message  } 
+                data: { name, email, phone, message, subject } 
             }); 
             return response.data; 
         }
