@@ -19,7 +19,13 @@ export default function Example() {
   const handleSendMessage = async (e) => {
     e.preventDefault();
 
-    const response = await contactUs({ name, email, phone, message });
+    const response = await contactUs({
+  name,
+  email,
+  phone,
+  message,
+  subject: "New Enquiry Received",
+});
 
     if (typeof response !== "string") {
       console.log("Error occured while sending email!");
