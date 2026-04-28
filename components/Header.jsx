@@ -660,12 +660,13 @@ Date: ${new Date(date).toLocaleDateString()}
 Time: ${time}
 `;
 
-    const response = await contactUs({
-      name,
-      email,
-      phone,
-      message,
-    });
+  const response = await contactUs({
+  name,
+  email,
+  phone,
+  message,
+  subject: "Schedule Visit Request",
+});
 
     if (response === "Message sent successfully") {
       alert("Booking request sent!");
