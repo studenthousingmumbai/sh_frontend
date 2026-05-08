@@ -18,6 +18,41 @@ export default function AboutUs() {
           name="description"
           content="Student housing in Mumbai offers spacious rooms with regular cleaning services, meals, and laundry. It is a home away from home with additional services like recreational activities, a lounge area in some of our flats gives an unwinding space to students after a long day."
         />
+
+        <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: `{
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Student Housing India Limited",
+        "image": "https://www.studenthousing.co.in/SH.png",
+        "url": "https://www.studenthousing.co.in/",
+        "telephone": "+919819780000",
+        "priceRange": "₹₹₹",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Avenue By Student Housing, Shree Krishna building, NS Mankikar Rd, next to Shetty tower, Nutan Laxmi Society, JVPD Scheme, Vile Parle West",
+          "addressLocality": "Mumbai",
+          "postalCode": "400049",
+          "addressCountry": "IN"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 19.10831612604247,
+          "longitude": 72.83014687940613
+        },
+        "sameAs": [
+          "https://www.facebook.com/StudentHousingIN",
+          "https://www.instagram.com/studenthousing_mumbai/",
+          "https://www.youtube.com/@studenthousingmumbai",
+          "https://in.linkedin.com/company/student-housing-india",
+          "https://www.studenthousing.co.in/"
+        ]
+      }`,
+    }}
+  />
+        
       </Head>
 
       <Layout>
