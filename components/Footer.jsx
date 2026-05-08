@@ -21,7 +21,7 @@ const navigation = {
   social: [
     {
       name: "Facebook",
-      href: "https://m.facebook.com/StudentHousingIN",
+      href: "https://www.facebook.com/StudentHousingIN",
       icon: (props) => (
         <svg
           viewBox="0 0 24 24"
@@ -104,7 +104,7 @@ const navigation = {
     },
     {
       name: "Youtube",
-      href: "https://youtube.com/@studenthousingmumbai1681",
+      href: "https://www.youtube.com/@studenthousingmumbai",
       icon: (props) => (
         <svg
           viewBox="0 0 24 24"
