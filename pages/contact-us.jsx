@@ -43,6 +43,42 @@ export default function Example() {
           name="description"
           content="Student housing provides hostels near NMIMS, Mumbai a great locality in Juhu, Vile Parle. With our in house facilities, students can focus on their studies without any domestic chores worries."
         />
+
+
+        <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: `{
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Student Housing India Limited",
+        "image": "https://www.studenthousing.co.in/SH.png",
+        "url": "https://www.studenthousing.co.in/",
+        "telephone": "+919819780000",
+        "priceRange": "₹₹₹",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Avenue By Student Housing, Shree Krishna building, NS Mankikar Rd, next to Shetty tower, Nutan Laxmi Society, JVPD Scheme, Vile Parle West",
+          "addressLocality": "Mumbai",
+          "postalCode": "400049",
+          "addressCountry": "IN"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 19.10831612604247,
+          "longitude": 72.83014687940613
+        },
+        "sameAs": [
+          "https://www.facebook.com/StudentHousingIN",
+          "https://www.instagram.com/studenthousing_mumbai/",
+          "https://www.youtube.com/@studenthousingmumbai",
+          "https://in.linkedin.com/company/student-housing-india",
+          "https://www.studenthousing.co.in/"
+        ]
+      }`,
+    }}
+  />
+        
       </Head>
       <Layout>
          <div className="relative flex justify-center bg-gray-100 items-center my-auto h-[500px] ">
