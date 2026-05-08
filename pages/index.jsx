@@ -571,29 +571,38 @@ const Homepage = ({ announcementImages, listings }) => {
   <script async src="//www.instagram.com/embed.js"></script>
 
   {/* Organization Schema */}
+  {/* ✅ LocalBusiness Schema */}
   <script
     type="application/ld+json"
     dangerouslySetInnerHTML={{
-      __html: JSON.stringify({
+      __html: `{
         "@context": "https://schema.org",
-        "@type": "Organization",
-        name: "Student Housing India Limited",
-        alternateName: "Student Housing",
-        url: "https://www.studenthousing.co.in/",
-        logo: "https://www.studenthousing.co.in/SH.png",
-        contactPoint: {
-          "@type": "ContactPoint",
-          telephone: "+919819780000",
-          contactType: "customer service",
-          areaServed: "IN",
+        "@type": "LocalBusiness",
+        "name": "Student Housing India Limited",
+        "image": "https://www.studenthousing.co.in/SH.png",
+        "url": "https://www.studenthousing.co.in/",
+        "telephone": "+919819780000",
+        "priceRange": "₹₹₹",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Avenue By Student Housing, Shree Krishna building, NS Mankikar Rd, next to Shetty tower, Nutan Laxmi Society, JVPD Scheme, Vile Parle West",
+          "addressLocality": "Mumbai",
+          "postalCode": "400049",
+          "addressCountry": "IN"
         },
-        sameAs: [
-          "https://m.facebook.com/StudentHousingIN",
-          "https://www.instagram.com/studenthousing_mumbai",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 19.10831612604247,
+          "longitude": 72.83014687940613
+        },
+        "sameAs": [
+          "https://www.facebook.com/StudentHousingIN",
+          "https://www.instagram.com/studenthousing_mumbai/",
+          "https://www.youtube.com/@studenthousingmumbai",
           "https://in.linkedin.com/company/student-housing-india",
-          "https://youtube.com/@studenthousingmumbai1681",
-        ],
-      }),
+          "https://www.studenthousing.co.in/"
+        ]
+      }`,
     }}
   />
 </Head>
