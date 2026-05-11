@@ -801,7 +801,7 @@ Time: ${time}
           onClick={handleSubmit}
           className="mt-4 w-full bg-[#ffcc29] py-2 rounded-md"
         >
-          Confirm Booking
+          Confirm Visit
         </button>
 
       </div>
