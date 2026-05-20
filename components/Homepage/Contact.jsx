@@ -1,56 +1,105 @@
 import { useRouter } from "next/router";
-import { useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
 import useApi from "../../hooks/useApi";
 import Link from "next/link";
 
 export default function Example() {
   const router = useRouter();
-  const submitLock = useRef(false);
-
-  const submissionIdRef = useRef(
-    typeof crypto !== "undefined" && crypto.randomUUID
-      ? crypto.randomUUID()
-      : `${Date.now()}-${Math.random()}`
-  );
 
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
+
   const [isSending, setIsSending] = useState(false);
+  const [isBlocked, setIsBlocked] = useState(false);
+  const [remainingTime, setRemainingTime] = useState(0);
   const [error, setError] = useState("");
 
   const { contactUs } = useApi();
 
+  // Check localStorage on page load
+  useEffect(() => {
+    const blockedUntil = localStorage.getItem("contactFormBlockedUntil");
+
+    if (blockedUntil) {
+      const timeLeft = parseInt(blockedUntil) - Date.now();
+
+      if (timeLeft > 0) {
+        setIsBlocked(true);
+        setRemainingTime(Math.ceil(timeLeft / 1000));
+      } else {
+        localStorage.removeItem("contactFormBlockedUntil");
+      }
+    }
+  }, []);
+
+  // Countdown timer
+  useEffect(() => {
+    let timer;
+
+    if (isBlocked && remainingTime > 0) {
+      timer = setInterval(() => {
+        setRemainingTime((prev) => {
+          if (prev <= 1) {
+            clearInterval(timer);
+            setIsBlocked(false);
+            localStorage.removeItem("contactFormBlockedUntil");
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
+
+    return () => clearInterval(timer);
+  }, [isBlocked, remainingTime]);
+
   const handleSendMessage = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  if (submitLock.current) return;
+    if (isBlocked || isSending) return;
 
-  submitLock.current = true;
-  setIsSending(true);
-  setError("");
+    setIsSending(true);
+    setError("");
 
-  try {
-    await contactUs({
-      name,
-      email,
-      phone,
-      message,
-      submissionId: submissionIdRef.current,
-    });
+    try {
+      await contactUs({
+        name,
+        email,
+        phone,
+        message,
+      });
 
-    router.replace("/thank-you");
-  } catch (err) {
-    console.log("contact form error:", err.response?.status);
-    console.log("contact form response:", err.response?.data);
+      // Block button for 5 minutes
+      const blockedUntil = Date.now() + 5 * 60 * 1000;
 
-    setError("Something went wrong. Please try again.");
-    submitLock.current = false;
-    setIsSending(false);
-  }
-};
+      localStorage.setItem(
+        "contactFormBlockedUntil",
+        blockedUntil.toString()
+      );
+
+      setIsBlocked(true);
+      setRemainingTime(5 * 60);
+
+      router.replace("/thank-you");
+    } catch (err) {
+      console.log("contact form error:", err);
+
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setIsSending(false);
+    }
+  };
+
+  // Format timer
+  const formatTime = (seconds) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+
+    return `${mins}:${secs.toString().padStart(2, "0")}`;
+  };
 
   return (
     <div className="bg-gray-50 pb-5">
@@ -60,108 +109,6 @@ export default function Example() {
 
           <div className="grid grid-cols-1 lg:grid-cols-3">
             <div className="relative overflow-hidden bg-yellow-400 py-10 px-6 sm:px-10 xl:p-12 rounded-lg">
-              <div
-                className="pointer-events-none absolute inset-0 sm:hidden"
-                aria-hidden="true"
-              >
-                <svg
-                  className="absolute inset-0 h-full w-full"
-                  width={343}
-                  height={388}
-                  viewBox="0 0 343 388"
-                  fill="none"
-                  preserveAspectRatio="xMidYMid slice"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M-99 461.107L608.107-246l707.103 707.107-707.103 707.103L-99 461.107z"
-                    fill="url(#linear1)"
-                    fillOpacity=".1"
-                  />
-                  <defs>
-                    <linearGradient
-                      id="linear1"
-                      x1="254.553"
-                      y1="107.554"
-                      x2="961.66"
-                      y2="814.66"
-                      gradientUnits="userSpaceOnUse"
-                    >
-                      <stop stopColor="#fff" />
-                      <stop offset={1} stopColor="#fff" stopOpacity={0} />
-                    </linearGradient>
-                  </defs>
-                </svg>
-              </div>
-
-              <div
-                className="pointer-events-none absolute top-0 right-0 bottom-0 hidden w-1/2 sm:block lg:hidden"
-                aria-hidden="true"
-              >
-                <svg
-                  className="absolute inset-0 h-full w-full"
-                  width={359}
-                  height={339}
-                  viewBox="0 0 359 339"
-                  fill="none"
-                  preserveAspectRatio="xMidYMid slice"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M-161 382.107L546.107-325l707.103 707.107-707.103 707.103L-161 382.107z"
-                    fill="url(#linear2)"
-                    fillOpacity=".1"
-                  />
-                  <defs>
-                    <linearGradient
-                      id="linear2"
-                      x1="192.553"
-                      y1="28.553"
-                      x2="899.66"
-                      y2="735.66"
-                      gradientUnits="userSpaceOnUse"
-                    >
-                      <stop stopColor="#fff" />
-                      <stop offset={1} stopColor="#fff" stopOpacity={0} />
-                    </linearGradient>
-                  </defs>
-                </svg>
-              </div>
-
-              <div
-                className="pointer-events-none absolute top-0 right-0 bottom-0 hidden w-1/2 lg:block"
-                aria-hidden="true"
-              >
-                <svg
-                  className="absolute inset-0 h-full w-full"
-                  width={160}
-                  height={678}
-                  viewBox="0 0 160 678"
-                  fill="none"
-                  preserveAspectRatio="xMidYMid slice"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M-161 679.107L546.107-28l707.103 707.107-707.103 707.103L-161 679.107z"
-                    fill="url(#linear3)"
-                    fillOpacity=".1"
-                  />
-                  <defs>
-                    <linearGradient
-                      id="linear3"
-                      x1="192.553"
-                      y1="325.553"
-                      x2="899.66"
-                      y2="1032.66"
-                      gradientUnits="userSpaceOnUse"
-                    >
-                      <stop stopColor="#fff" />
-                      <stop offset={1} stopColor="#fff" stopOpacity={0} />
-                    </linearGradient>
-                  </defs>
-                </svg>
-              </div>
-
               <img
                 src="sh-diamond-logo.png"
                 alt="Student Housing"
@@ -229,73 +176,61 @@ export default function Example() {
             </div>
 
             <div className="py-10 px-6 sm:px-10 lg:col-span-2 xl:p-12">
-              <h3 className="text-lg font-medium text-gray-900">Write to us</h3>
+              <h3 className="text-lg font-medium text-gray-900">
+                Write to us
+              </h3>
 
               <form
                 className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8 mb-3"
                 onSubmit={handleSendMessage}
               >
-                <fieldset disabled={isSending} className="contents">
+                <fieldset
+                  disabled={isSending || isBlocked}
+                  className="contents"
+                >
                   <div className="sm:col-span-2">
-                    <label
-                      htmlFor="first-name"
-                      className="block text-sm font-medium text-gray-900"
-                    >
+                    <label className="block text-sm font-medium text-gray-900">
                       Full Name
                     </label>
+
                     <div className="mt-1">
                       <input
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         type="text"
-                        name="first-name"
-                        id="first-name"
-                        autoComplete="given-name"
-                        className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 disabled:bg-gray-100"
+                        className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm disabled:bg-gray-100"
                         required
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium text-gray-900"
-                    >
+                    <label className="block text-sm font-medium text-gray-900">
                       Email
                     </label>
+
                     <div className="mt-1">
                       <input
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        id="email"
-                        name="email"
                         type="email"
-                        autoComplete="email"
-                        className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 disabled:bg-gray-100"
+                        className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm disabled:bg-gray-100"
                         required
                       />
                     </div>
                   </div>
 
                   <div>
-                    <div className="flex justify-between">
-                      <label
-                        htmlFor="phone"
-                        className="block text-sm font-medium text-gray-900"
-                      >
-                        Phone
-                      </label>
-                    </div>
+                    <label className="block text-sm font-medium text-gray-900">
+                      Phone
+                    </label>
+
                     <div className="mt-1">
                       <input
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         type="text"
-                        name="phone"
-                        id="phone"
-                        autoComplete="tel"
-                        className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 disabled:bg-gray-100"
+                        className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm disabled:bg-gray-100"
                         required
                       />
                     </div>
@@ -303,25 +238,21 @@ export default function Example() {
 
                   <div className="sm:col-span-2">
                     <div className="flex justify-between">
-                      <label
-                        htmlFor="message"
-                        className="block text-sm font-medium text-gray-900"
-                      >
+                      <label className="block text-sm font-medium text-gray-900">
                         Message
                       </label>
-                      <span id="message-max" className="text-sm text-gray-500">
+
+                      <span className="text-sm text-gray-500">
                         Max. 500 characters
                       </span>
                     </div>
+
                     <div className="mt-1">
                       <textarea
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
-                        id="message"
-                        name="message"
                         rows={4}
-                        className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 disabled:bg-gray-100"
-                        aria-describedby="message-max"
+                        className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm disabled:bg-gray-100"
                         required
                       />
                     </div>
@@ -337,10 +268,14 @@ export default function Example() {
                 <div className="sm:col-span-2 sm:flex sm:justify-end">
                   <button
                     type="submit"
-                    disabled={isSending}
-                    className="inline-flex justify-center rounded-md border border-transparent bg-brandColor py-3 px-6 text-base font-medium shadow-sm hover:bg-[#fad45a] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
+                    disabled={isSending || isBlocked}
+                    className="inline-flex justify-center rounded-md border border-transparent bg-brandColor py-3 px-6 text-base font-medium shadow-sm hover:bg-[#fad45a] disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    {isSending ? "Submitting..." : "Submit"}
+                    {isSending
+                      ? "Submitting..."
+                      : isBlocked
+                      ? `Try again in ${formatTime(remainingTime)}`
+                      : "Send Message 🚀"}
                   </button>
                 </div>
               </form>
