@@ -1,39 +1,44 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
 import useApi from "../../hooks/useApi";
 import Link from "next/link";
 
 export default function Example() {
   const router = useRouter();
+  const submitLock = useRef(false);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
-  const [success, setSuccess] = useState(false);
   const [isSending, setIsSending] = useState(false);
+  const [error, setError] = useState("");
   const { contactUs } = useApi();
 
   const handleSendMessage = async (e) => {
     e.preventDefault();
 
-    if (isSending) return;
+    if (submitLock.current) return;
+
+    submitLock.current = true;
+    setIsSending(true);
+    setError("");
 
     try {
-      setIsSending(true);
-
       const response = await contactUs({ name, email, phone, message });
 
       if (typeof response !== "string") {
-        console.log("Error occured while sending email!");
+        setError("Error occurred while sending email!");
+        submitLock.current = false;
+        setIsSending(false);
         return;
       }
 
-      setSuccess(true);
-      router.push("/thank-you");
+      router.replace("/thank-you");
     } catch (error) {
       console.error("Error sending email:", error);
-    } finally {
+      setError("Something went wrong. Please try again.");
+      submitLock.current = false;
       setIsSending(false);
     }
   };
@@ -229,96 +234,104 @@ export default function Example() {
                 className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8 mb-3"
                 onSubmit={handleSendMessage}
               >
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="first-name"
-                    className="block text-sm font-medium text-gray-900"
-                  >
-                    Full Name
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      type="text"
-                      name="first-name"
-                      id="first-name"
-                      autoComplete="given-name"
-                      className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-gray-900"
-                  >
-                    Email
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      id="email"
-                      name="email"
-                      type="email"
-                      autoComplete="email"
-                      className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <div className="flex justify-between">
+                <fieldset disabled={isSending} className="contents">
+                  <div className="sm:col-span-2">
                     <label
-                      htmlFor="phone"
+                      htmlFor="first-name"
                       className="block text-sm font-medium text-gray-900"
                     >
-                      Phone
+                      Full Name
                     </label>
+                    <div className="mt-1">
+                      <input
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        type="text"
+                        name="first-name"
+                        id="first-name"
+                        autoComplete="given-name"
+                        className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 disabled:bg-gray-100"
+                        required
+                      />
+                    </div>
                   </div>
-                  <div className="mt-1">
-                    <input
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      type="text"
-                      name="phone"
-                      id="phone"
-                      autoComplete="tel"
-                      className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                      required
-                    />
-                  </div>
-                </div>
 
-                <div className="sm:col-span-2">
-                  <div className="flex justify-between">
+                  <div>
                     <label
-                      htmlFor="message"
+                      htmlFor="email"
                       className="block text-sm font-medium text-gray-900"
                     >
-                      Message
+                      Email
                     </label>
-                    <span id="message-max" className="text-sm text-gray-500">
-                      Max. 500 characters
-                    </span>
+                    <div className="mt-1">
+                      <input
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        id="email"
+                        name="email"
+                        type="email"
+                        autoComplete="email"
+                        className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 disabled:bg-gray-100"
+                        required
+                      />
+                    </div>
                   </div>
-                  <div className="mt-1">
-                    <textarea
-                      value={message}
-                      onChange={(e) => setMessage(e.target.value)}
-                      id="message"
-                      name="message"
-                      rows={4}
-                      className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                      aria-describedby="message-max"
-                      required
-                    />
+
+                  <div>
+                    <div className="flex justify-between">
+                      <label
+                        htmlFor="phone"
+                        className="block text-sm font-medium text-gray-900"
+                      >
+                        Phone
+                      </label>
+                    </div>
+                    <div className="mt-1">
+                      <input
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        type="text"
+                        name="phone"
+                        id="phone"
+                        autoComplete="tel"
+                        className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 disabled:bg-gray-100"
+                        required
+                      />
+                    </div>
                   </div>
-                </div>
+
+                  <div className="sm:col-span-2">
+                    <div className="flex justify-between">
+                      <label
+                        htmlFor="message"
+                        className="block text-sm font-medium text-gray-900"
+                      >
+                        Message
+                      </label>
+                      <span id="message-max" className="text-sm text-gray-500">
+                        Max. 500 characters
+                      </span>
+                    </div>
+                    <div className="mt-1">
+                      <textarea
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        id="message"
+                        name="message"
+                        rows={4}
+                        className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 disabled:bg-gray-100"
+                        aria-describedby="message-max"
+                        required
+                      />
+                    </div>
+                  </div>
+                </fieldset>
+
+                {error ? (
+                  <div className="sm:col-span-2 text-sm text-red-600">
+                    {error}
+                  </div>
+                ) : null}
 
                 <div className="sm:col-span-2 sm:flex sm:justify-end">
                   <button
