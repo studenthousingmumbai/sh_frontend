@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const LOCK_KEY = "contactFormBlockedUntil";
 const LOCK_DURATION_MS = 5 * 60 * 1000; // 5 minutes
-const REDIRECT_DELAY_MS = 1500; // show message first
+const REDIRECT_DELAY_MS = 1500;
 
 export default function Example() {
   const router = useRouter();
@@ -25,7 +25,7 @@ export default function Example() {
   const [isBlocked, setIsBlocked] = useState(false);
   const [remainingTime, setRemainingTime] = useState(0);
   const [error, setError] = useState("");
-  const [infoMessage, setInfoMessage] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
 
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
@@ -48,7 +48,6 @@ export default function Example() {
     setRemainingTime(0);
   };
 
-  // Restore lock on refresh
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -67,7 +66,6 @@ export default function Example() {
     }
   }, []);
 
-  // Countdown timer
   useEffect(() => {
     if (!isBlocked) return;
 
@@ -106,13 +104,8 @@ export default function Example() {
     if (lockRef.current || isSending) return;
 
     setError("");
-    setInfoMessage("");
-
-    // lock immediately
     startLock();
-    setInfoMessage(
-      "Your enquiry has been received. You are being redirected to the confirmation page..."
-    );
+    setShowPopup(true);
     setIsSending(true);
 
     try {
@@ -123,7 +116,6 @@ export default function Example() {
         message,
       });
 
-      // give the browser time to paint the message
       redirectRef.current = setTimeout(() => {
         router.replace("/thank-you");
       }, REDIRECT_DELAY_MS);
@@ -132,14 +124,33 @@ export default function Example() {
       console.log("contact form response:", err?.response?.data);
 
       setError("Something went wrong. Please try again later.");
-      setInfoMessage("");
+      setShowPopup(false);
       setIsSending(false);
-      // keep lock for 5 mins even on failure
+      // lock stays for 5 mins anyway
     }
   };
 
   return (
     <div className="bg-gray-50 pb-5">
+      {showPopup ? (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
+          <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl">
+            <div className="flex items-start gap-3">
+              <div className="mt-1 h-4 w-4 animate-pulse rounded-full bg-green-500" />
+              <div>
+                <h4 className="text-lg font-semibold text-gray-900">
+                  Enquiry received
+                </h4>
+                <p className="mt-2 text-sm text-gray-600">
+                  Your enquiry has been received. You are being redirected to
+                  the confirmation page.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
       <div className="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8 rounded-lg">
         <div className="relative bg-white shadow-xl rounded-lg">
           <h2 className="sr-only">Get in touch with us</h2>
@@ -314,25 +325,17 @@ export default function Example() {
                 ) : null}
 
                 <div className="sm:col-span-2 sm:flex sm:justify-end">
-                  <div className="w-full sm:w-auto">
-                    <button
-                      type="submit"
-                      disabled={isSending || isBlocked}
-                      className="inline-flex w-full justify-center rounded-md border border-transparent bg-brandColor py-3 px-6 text-base font-medium shadow-sm hover:bg-[#fad45a] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
-                    >
-                      {isBlocked
-                        ? `Try again in ${formatTime(remainingTime)}`
-                        : isSending
-                        ? "Submitting..."
-                        : "Send Message 🚀"}
-                    </button>
-
-                    {infoMessage ? (
-                      <p className="mt-3 text-sm text-green-600">
-                        {infoMessage}
-                      </p>
-                    ) : null}
-                  </div>
+                  <button
+                    type="submit"
+                    disabled={isSending || isBlocked}
+                    className="inline-flex justify-center rounded-md border border-transparent bg-brandColor py-3 px-6 text-base font-medium shadow-sm hover:bg-[#fad45a] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    {isBlocked
+                      ? `Try again in ${formatTime(remainingTime)}`
+                      : isSending
+                      ? "Submitting..."
+                      : "Send Message 🚀"}
+                  </button>
                 </div>
               </form>
             </div>
