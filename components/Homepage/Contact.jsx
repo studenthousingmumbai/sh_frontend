@@ -33,19 +33,15 @@ export default function Example() {
     setError("");
 
     try {
-      const response = await contactUs({
-        name,
-        email,
-        phone,
-        message,
-        submissionId: submissionIdRef.current,
-      });
+      await contactUs({
+  name,
+  email,
+  phone,
+  message,
+  submissionId: submissionIdRef.current,
+});
 
-      if (typeof response !== "string") {
-        throw new Error("Error occurred while sending email!");
-      }
-
-      router.replace("/thank-you");
+router.replace("/thank-you");
     } catch (err) {
       console.error("Error sending email:", err);
       setError("Something went wrong. Please try again.");
