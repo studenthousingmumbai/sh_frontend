@@ -24,32 +24,34 @@ export default function Example() {
   const { contactUs } = useApi();
 
   const handleSendMessage = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (submitLock.current) return;
+  if (submitLock.current) return;
 
-    submitLock.current = true;
-    setIsSending(true);
-    setError("");
+  submitLock.current = true;
+  setIsSending(true);
+  setError("");
 
-    try {
-      await contactUs({
-  name,
-  email,
-  phone,
-  message,
-  submissionId: submissionIdRef.current,
-});
+  try {
+    const result = await contactUs({
+      name,
+      email,
+      phone,
+      message,
+      submissionId: submissionIdRef.current,
+    });
 
-router.replace("/thank-you");
-    } catch (err) {
-      console.error("Error sending email:", err);
-      setError("Something went wrong. Please try again.");
+    console.log("contactUs result:", result);
 
-      submitLock.current = false;
-      setIsSending(false);
-    }
-  };
+    router.replace("/thank-you");
+  } catch (err) {
+    console.error("Error sending email:", err);
+    setError("Something went wrong. Please try again.");
+
+    submitLock.current = false;
+    setIsSending(false);
+  }
+};
 
   return (
     <div className="bg-gray-50 pb-5">
