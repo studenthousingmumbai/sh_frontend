@@ -4,8 +4,12 @@ import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
 import useApi from "../../hooks/useApi";
 import Link from "next/link";
 
+const BLOCK_KEY = "contactFormBlockedUntil";
+const BLOCK_TIME = 5 * 60 * 1000; // 5 minutes
+
 export default function Example() {
   const router = useRouter();
+  const { contactUs } = useApi();
 
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -17,52 +21,72 @@ export default function Example() {
   const [remainingTime, setRemainingTime] = useState(0);
   const [error, setError] = useState("");
 
-  const { contactUs } = useApi();
+  const formatTime = (seconds) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, "0")}`;
+  };
 
-  // Check localStorage on page load
+  // Restore lock on page load
   useEffect(() => {
-    const blockedUntil = localStorage.getItem("contactFormBlockedUntil");
+    const storedUntil = localStorage.getItem(BLOCK_KEY);
 
-    if (blockedUntil) {
-      const timeLeft = parseInt(blockedUntil) - Date.now();
+    if (!storedUntil) return;
 
-      if (timeLeft > 0) {
-        setIsBlocked(true);
-        setRemainingTime(Math.ceil(timeLeft / 1000));
-      } else {
-        localStorage.removeItem("contactFormBlockedUntil");
-      }
+    const blockedUntil = Number(storedUntil);
+    const diff = blockedUntil - Date.now();
+
+    if (diff > 0) {
+      setIsBlocked(true);
+      setRemainingTime(Math.ceil(diff / 1000));
+    } else {
+      localStorage.removeItem(BLOCK_KEY);
     }
   }, []);
 
-  // Countdown timer
+  // Countdown while blocked
   useEffect(() => {
-    let timer;
+    if (!isBlocked) return;
 
-    if (isBlocked && remainingTime > 0) {
-      timer = setInterval(() => {
-        setRemainingTime((prev) => {
-          if (prev <= 1) {
-            clearInterval(timer);
-            setIsBlocked(false);
-            localStorage.removeItem("contactFormBlockedUntil");
-            return 0;
-          }
-          return prev - 1;
-        });
-      }, 1000);
-    }
+    const timer = setInterval(() => {
+      const storedUntil = localStorage.getItem(BLOCK_KEY);
+
+      if (!storedUntil) {
+        setIsBlocked(false);
+        setRemainingTime(0);
+        clearInterval(timer);
+        return;
+      }
+
+      const blockedUntil = Number(storedUntil);
+      const diff = blockedUntil - Date.now();
+
+      if (diff <= 0) {
+        localStorage.removeItem(BLOCK_KEY);
+        setIsBlocked(false);
+        setRemainingTime(0);
+        clearInterval(timer);
+      } else {
+        setRemainingTime(Math.ceil(diff / 1000));
+      }
+    }, 1000);
 
     return () => clearInterval(timer);
-  }, [isBlocked, remainingTime]);
+  }, [isBlocked]);
 
   const handleSendMessage = async (e) => {
     e.preventDefault();
 
-    if (isBlocked || isSending) return;
+    if (isSending || isBlocked) return;
 
-    setIsSending(true);
     setError("");
+
+    // Lock immediately on first click
+    const blockedUntil = Date.now() + BLOCK_TIME;
+    localStorage.setItem(BLOCK_KEY, String(blockedUntil));
+    setIsBlocked(true);
+    setRemainingTime(Math.ceil(BLOCK_TIME / 1000));
+    setIsSending(true);
 
     try {
       await contactUs({
@@ -72,33 +96,16 @@ export default function Example() {
         message,
       });
 
-      // Block button for 5 minutes
-      const blockedUntil = Date.now() + 5 * 60 * 1000;
-
-      localStorage.setItem(
-        "contactFormBlockedUntil",
-        blockedUntil.toString()
-      );
-
-      setIsBlocked(true);
-      setRemainingTime(5 * 60);
-
       router.replace("/thank-you");
     } catch (err) {
-      console.log("contact form error:", err);
+      console.log("contact form error:", err?.response?.status);
+      console.log("contact form response:", err?.response?.data);
 
       setError("Something went wrong. Please try again.");
+      // Keep the button blocked for 5 minutes even if request fails
     } finally {
       setIsSending(false);
     }
-  };
-
-  // Format timer
-  const formatTime = (seconds) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-
-    return `${mins}:${secs.toString().padStart(2, "0")}`;
   };
 
   return (
@@ -176,61 +183,73 @@ export default function Example() {
             </div>
 
             <div className="py-10 px-6 sm:px-10 lg:col-span-2 xl:p-12">
-              <h3 className="text-lg font-medium text-gray-900">
-                Write to us
-              </h3>
+              <h3 className="text-lg font-medium text-gray-900">Write to us</h3>
 
               <form
                 className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8 mb-3"
                 onSubmit={handleSendMessage}
               >
-                <fieldset
-                  disabled={isSending || isBlocked}
-                  className="contents"
-                >
+                <fieldset disabled={isSending || isBlocked} className="contents">
                   <div className="sm:col-span-2">
-                    <label className="block text-sm font-medium text-gray-900">
+                    <label
+                      htmlFor="first-name"
+                      className="block text-sm font-medium text-gray-900"
+                    >
                       Full Name
                     </label>
-
                     <div className="mt-1">
                       <input
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         type="text"
-                        className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm disabled:bg-gray-100"
+                        name="first-name"
+                        id="first-name"
+                        autoComplete="given-name"
+                        className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 disabled:bg-gray-100"
                         required
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-900">
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-gray-900"
+                    >
                       Email
                     </label>
-
                     <div className="mt-1">
                       <input
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        id="email"
+                        name="email"
                         type="email"
-                        className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm disabled:bg-gray-100"
+                        autoComplete="email"
+                        className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 disabled:bg-gray-100"
                         required
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-900">
-                      Phone
-                    </label>
-
+                    <div className="flex justify-between">
+                      <label
+                        htmlFor="phone"
+                        className="block text-sm font-medium text-gray-900"
+                      >
+                        Phone
+                      </label>
+                    </div>
                     <div className="mt-1">
                       <input
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         type="text"
-                        className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm disabled:bg-gray-100"
+                        name="phone"
+                        id="phone"
+                        autoComplete="tel"
+                        className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 disabled:bg-gray-100"
                         required
                       />
                     </div>
@@ -238,21 +257,25 @@ export default function Example() {
 
                   <div className="sm:col-span-2">
                     <div className="flex justify-between">
-                      <label className="block text-sm font-medium text-gray-900">
+                      <label
+                        htmlFor="message"
+                        className="block text-sm font-medium text-gray-900"
+                      >
                         Message
                       </label>
-
-                      <span className="text-sm text-gray-500">
+                      <span id="message-max" className="text-sm text-gray-500">
                         Max. 500 characters
                       </span>
                     </div>
-
                     <div className="mt-1">
                       <textarea
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
+                        id="message"
+                        name="message"
                         rows={4}
-                        className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm disabled:bg-gray-100"
+                        className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 disabled:bg-gray-100"
+                        aria-describedby="message-max"
                         required
                       />
                     </div>
@@ -269,7 +292,7 @@ export default function Example() {
                   <button
                     type="submit"
                     disabled={isSending || isBlocked}
-                    className="inline-flex justify-center rounded-md border border-transparent bg-brandColor py-3 px-6 text-base font-medium shadow-sm hover:bg-[#fad45a] disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="inline-flex justify-center rounded-md border border-transparent bg-brandColor py-3 px-6 text-base font-medium shadow-sm hover:bg-[#fad45a] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {isSending
                       ? "Submitting..."
