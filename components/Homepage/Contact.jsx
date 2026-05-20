@@ -1,15 +1,18 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
 import useApi from "../../hooks/useApi";
 import Link from "next/link";
 
-const BLOCK_KEY = "contactFormBlockedUntil";
-const BLOCK_TIME = 5 * 60 * 1000; // 5 minutes
+const LOCK_KEY = "contactFormBlockedUntil";
+const LOCK_DURATION_MS = 5 * 60 * 1000; // 5 minutes
 
 export default function Example() {
   const router = useRouter();
   const { contactUs } = useApi();
+
+  const lockRef = useRef(false);
+  const timerRef = useRef(null);
 
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -27,34 +30,50 @@ export default function Example() {
     return `${mins}:${secs.toString().padStart(2, "0")}`;
   };
 
-  // Restore lock on page load
-  useEffect(() => {
-    const storedUntil = localStorage.getItem(BLOCK_KEY);
+  const startLock = (durationMs = LOCK_DURATION_MS) => {
+    const blockedUntil = Date.now() + durationMs;
 
+    localStorage.setItem(LOCK_KEY, String(blockedUntil));
+    lockRef.current = true;
+    setIsBlocked(true);
+    setRemainingTime(Math.ceil(durationMs / 1000));
+  };
+
+  const clearLockState = () => {
+    localStorage.removeItem(LOCK_KEY);
+    lockRef.current = false;
+    setIsBlocked(false);
+    setRemainingTime(0);
+  };
+
+  // Restore lock on page load / refresh
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const storedUntil = localStorage.getItem(LOCK_KEY);
     if (!storedUntil) return;
 
     const blockedUntil = Number(storedUntil);
     const diff = blockedUntil - Date.now();
 
     if (diff > 0) {
+      lockRef.current = true;
       setIsBlocked(true);
       setRemainingTime(Math.ceil(diff / 1000));
     } else {
-      localStorage.removeItem(BLOCK_KEY);
+      localStorage.removeItem(LOCK_KEY);
     }
   }, []);
 
-  // Countdown while blocked
+  // Countdown timer
   useEffect(() => {
     if (!isBlocked) return;
 
-    const timer = setInterval(() => {
-      const storedUntil = localStorage.getItem(BLOCK_KEY);
+    timerRef.current = setInterval(() => {
+      const storedUntil = localStorage.getItem(LOCK_KEY);
 
       if (!storedUntil) {
-        setIsBlocked(false);
-        setRemainingTime(0);
-        clearInterval(timer);
+        clearLockState();
         return;
       }
 
@@ -62,30 +81,29 @@ export default function Example() {
       const diff = blockedUntil - Date.now();
 
       if (diff <= 0) {
-        localStorage.removeItem(BLOCK_KEY);
-        setIsBlocked(false);
-        setRemainingTime(0);
-        clearInterval(timer);
+        clearLockState();
       } else {
         setRemainingTime(Math.ceil(diff / 1000));
       }
     }, 1000);
 
-    return () => clearInterval(timer);
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
   }, [isBlocked]);
 
   const handleSendMessage = async (e) => {
     e.preventDefault();
 
-    if (isSending || isBlocked) return;
+    // Hard stop if already locked
+    if (lockRef.current || isSending) return;
 
     setError("");
 
     // Lock immediately on first click
-    const blockedUntil = Date.now() + BLOCK_TIME;
-    localStorage.setItem(BLOCK_KEY, String(blockedUntil));
-    setIsBlocked(true);
-    setRemainingTime(Math.ceil(BLOCK_TIME / 1000));
+    startLock();
+
+    // Optional: disable inputs while request is being sent
     setIsSending(true);
 
     try {
@@ -101,8 +119,8 @@ export default function Example() {
       console.log("contact form error:", err?.response?.status);
       console.log("contact form response:", err?.response?.data);
 
-      setError("Something went wrong. Please try again.");
-      // Keep the button blocked for 5 minutes even if request fails
+      // Still keep it locked for 5 minutes even if API fails
+      setError("Something went wrong. Please try again later.");
     } finally {
       setIsSending(false);
     }
@@ -233,14 +251,12 @@ export default function Example() {
                   </div>
 
                   <div>
-                    <div className="flex justify-between">
-                      <label
-                        htmlFor="phone"
-                        className="block text-sm font-medium text-gray-900"
-                      >
-                        Phone
-                      </label>
-                    </div>
+                    <label
+                      htmlFor="phone"
+                      className="block text-sm font-medium text-gray-900"
+                    >
+                      Phone
+                    </label>
                     <div className="mt-1">
                       <input
                         value={phone}
@@ -294,10 +310,10 @@ export default function Example() {
                     disabled={isSending || isBlocked}
                     className="inline-flex justify-center rounded-md border border-transparent bg-brandColor py-3 px-6 text-base font-medium shadow-sm hover:bg-[#fad45a] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    {isSending
-                      ? "Submitting..."
-                      : isBlocked
+                    {isBlocked
                       ? `Try again in ${formatTime(remainingTime)}`
+                      : isSending
+                      ? "Submitting..."
                       : "Send Message 🚀"}
                   </button>
                 </div>
