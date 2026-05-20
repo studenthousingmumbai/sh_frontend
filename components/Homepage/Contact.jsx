@@ -23,6 +23,7 @@ export default function Example() {
   const [isBlocked, setIsBlocked] = useState(false);
   const [remainingTime, setRemainingTime] = useState(0);
   const [error, setError] = useState("");
+  const [infoMessage, setInfoMessage] = useState("");
 
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
@@ -46,7 +47,6 @@ export default function Example() {
     setRemainingTime(0);
   };
 
-  // Restore lock on page load / refresh
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -65,7 +65,6 @@ export default function Example() {
     }
   }, []);
 
-  // Countdown timer
   useEffect(() => {
     if (!isBlocked) return;
 
@@ -95,15 +94,16 @@ export default function Example() {
   const handleSendMessage = async (e) => {
     e.preventDefault();
 
-    // Hard stop if already locked
     if (lockRef.current || isSending) return;
 
     setError("");
+    setInfoMessage("");
 
-    // Lock immediately on first click
+    // lock immediately on first click
     startLock();
-
-    // Optional: disable inputs while request is being sent
+    setInfoMessage(
+      "Your enquiry has been received. You are being redirected to the confirmation page."
+    );
     setIsSending(true);
 
     try {
@@ -119,8 +119,8 @@ export default function Example() {
       console.log("contact form error:", err?.response?.status);
       console.log("contact form response:", err?.response?.data);
 
-      // Still keep it locked for 5 minutes even if API fails
       setError("Something went wrong. Please try again later.");
+      setInfoMessage("");
     } finally {
       setIsSending(false);
     }
@@ -305,17 +305,25 @@ export default function Example() {
                 ) : null}
 
                 <div className="sm:col-span-2 sm:flex sm:justify-end">
-                  <button
-                    type="submit"
-                    disabled={isSending || isBlocked}
-                    className="inline-flex justify-center rounded-md border border-transparent bg-brandColor py-3 px-6 text-base font-medium shadow-sm hover:bg-[#fad45a] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
-                  >
-                    {isBlocked
-                      ? `Try again in ${formatTime(remainingTime)}`
-                      : isSending
-                      ? "Submitting..."
-                      : "Send Message 🚀"}
-                  </button>
+                  <div className="w-full sm:w-auto">
+                    <button
+                      type="submit"
+                      disabled={isSending || isBlocked}
+                      className="inline-flex w-full justify-center rounded-md border border-transparent bg-brandColor py-3 px-6 text-base font-medium shadow-sm hover:bg-[#fad45a] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
+                    >
+                      {isBlocked
+                        ? `Try again in ${formatTime(remainingTime)}`
+                        : isSending
+                        ? "Submitting..."
+                        : "Send Message 🚀"}
+                    </button>
+
+                    {infoMessage ? (
+                      <p className="mt-3 text-sm text-green-600">
+                        {infoMessage}
+                      </p>
+                    ) : null}
+                  </div>
                 </div>
               </form>
             </div>
