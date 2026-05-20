@@ -33,7 +33,7 @@ export default function Example() {
   setError("");
 
   try {
-    const result = await contactUs({
+    await contactUs({
       name,
       email,
       phone,
@@ -41,13 +41,12 @@ export default function Example() {
       submissionId: submissionIdRef.current,
     });
 
-    console.log("contactUs result:", result);
-
     router.replace("/thank-you");
   } catch (err) {
-    console.error("Error sending email:", err);
-    setError("Something went wrong. Please try again.");
+    console.log("contact form error:", err.response?.status);
+    console.log("contact form response:", err.response?.data);
 
+    setError("Something went wrong. Please try again.");
     submitLock.current = false;
     setIsSending(false);
   }
