@@ -8,6 +8,12 @@ export default function Example() {
   const router = useRouter();
   const submitLock = useRef(false);
 
+  const submissionIdRef = useRef(
+    typeof crypto !== "undefined" && crypto.randomUUID
+      ? crypto.randomUUID()
+      : `${Date.now()}-${Math.random()}`
+  );
+
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -32,6 +38,7 @@ export default function Example() {
         email,
         phone,
         message,
+        submissionId: submissionIdRef.current,
       });
 
       if (typeof response !== "string") {
