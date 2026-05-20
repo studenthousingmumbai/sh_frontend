@@ -6,6 +6,7 @@ import Link from "next/link";
 
 const LOCK_KEY = "contactFormBlockedUntil";
 const LOCK_DURATION_MS = 5 * 60 * 1000; // 5 minutes
+const REDIRECT_DELAY_MS = 1500; // show message first
 
 export default function Example() {
   const router = useRouter();
@@ -13,6 +14,7 @@ export default function Example() {
 
   const lockRef = useRef(false);
   const timerRef = useRef(null);
+  const redirectRef = useRef(null);
 
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -33,7 +35,6 @@ export default function Example() {
 
   const startLock = (durationMs = LOCK_DURATION_MS) => {
     const blockedUntil = Date.now() + durationMs;
-
     localStorage.setItem(LOCK_KEY, String(blockedUntil));
     lockRef.current = true;
     setIsBlocked(true);
@@ -47,6 +48,7 @@ export default function Example() {
     setRemainingTime(0);
   };
 
+  // Restore lock on refresh
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -65,6 +67,7 @@ export default function Example() {
     }
   }, []);
 
+  // Countdown timer
   useEffect(() => {
     if (!isBlocked) return;
 
@@ -91,6 +94,12 @@ export default function Example() {
     };
   }, [isBlocked]);
 
+  useEffect(() => {
+    return () => {
+      if (redirectRef.current) clearTimeout(redirectRef.current);
+    };
+  }, []);
+
   const handleSendMessage = async (e) => {
     e.preventDefault();
 
@@ -99,10 +108,10 @@ export default function Example() {
     setError("");
     setInfoMessage("");
 
-    // lock immediately on first click
+    // lock immediately
     startLock();
     setInfoMessage(
-      "Your enquiry has been received. You are being redirected to the confirmation page."
+      "Your enquiry has been received. You are being redirected to the confirmation page..."
     );
     setIsSending(true);
 
@@ -114,15 +123,18 @@ export default function Example() {
         message,
       });
 
-      router.replace("/thank-you");
+      // give the browser time to paint the message
+      redirectRef.current = setTimeout(() => {
+        router.replace("/thank-you");
+      }, REDIRECT_DELAY_MS);
     } catch (err) {
       console.log("contact form error:", err?.response?.status);
       console.log("contact form response:", err?.response?.data);
 
       setError("Something went wrong. Please try again later.");
       setInfoMessage("");
-    } finally {
       setIsSending(false);
+      // keep lock for 5 mins even on failure
     }
   };
 
@@ -190,10 +202,7 @@ export default function Example() {
                     className="h-6 w-6 flex-shrink-0 text-indigo-200"
                     aria-hidden="true"
                   />
-                  <Link
-                    href="mailto:info@studenthousing.co.in"
-                    className="ml-3"
-                  >
+                  <Link href="mailto:info@studenthousing.co.in" className="ml-3">
                     info@studenthousing.co.in
                   </Link>
                 </dd>
