@@ -434,19 +434,28 @@ export default function useApi() {
         }
     }
 
-    const contactUs = async ({ name, email, phone, message, subject }) => {
-        try{ 
-            const response = await axios(base_url + `/user/contact-us`, { 
-                method: "POST",
-                data: { name, email, phone, message, subject } 
-            }); 
-            return response.data; 
-        }
-        catch(err){ 
-            console.log(err); 
-            return err.response.data; 
-        }
+    const contactUs = async ({
+  name,
+  email,
+  phone,
+  message,
+  subject,
+  submissionId,
+}) => {
+  const response = await axios.post(
+    `${base_url}/user/contact-us`,
+    {
+      name,
+      email,
+      phone,
+      message,
+      subject,
+      submissionId,
     }
+  );
+
+  return response.data;
+};
 
     const referAndEarn = async ({ name, contact, housingProperty, referralName, referralContact, referralHousingProperty }) => { 
         try{ 
