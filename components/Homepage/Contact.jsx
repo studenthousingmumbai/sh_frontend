@@ -7,12 +7,14 @@ import Link from "next/link";
 export default function Example() {
   const router = useRouter();
   const submitLock = useRef(false);
+
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
   const [isSending, setIsSending] = useState(false);
   const [error, setError] = useState("");
+
   const { contactUs } = useApi();
 
   const handleSendMessage = async (e) => {
@@ -25,19 +27,22 @@ export default function Example() {
     setError("");
 
     try {
-      const response = await contactUs({ name, email, phone, message });
+      const response = await contactUs({
+        name,
+        email,
+        phone,
+        message,
+      });
 
       if (typeof response !== "string") {
-        setError("Error occurred while sending email!");
-        submitLock.current = false;
-        setIsSending(false);
-        return;
+        throw new Error("Error occurred while sending email!");
       }
 
       router.replace("/thank-you");
-    } catch (error) {
-      console.error("Error sending email:", error);
+    } catch (err) {
+      console.error("Error sending email:", err);
       setError("Something went wrong. Please try again.");
+
       submitLock.current = false;
       setIsSending(false);
     }
@@ -174,10 +179,6 @@ export default function Example() {
               </a>
 
               <dl className="mt-8 space-y-6">
-                <dt>
-                  <span className="sr-only">Phone number</span>
-                </dt>
-
                 <dd className="flex text-base text-indigo-50">
                   <PhoneIcon
                     className="h-6 w-6 flex-shrink-0 text-indigo-200"
@@ -207,10 +208,6 @@ export default function Example() {
                     +91-8779003845
                   </Link>
                 </dd>
-
-                <dt>
-                  <span className="sr-only">Email</span>
-                </dt>
 
                 <dd className="flex text-base text-indigo-50">
                   <EnvelopeIcon
