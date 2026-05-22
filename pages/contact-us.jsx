@@ -19,24 +19,20 @@ export default function Example() {
 const handleSendMessage = async (e) => {
   e.preventDefault();
 
- const response = await fetch("/submit-contact.php", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
+  const response = await contactUs({
     name,
     email,
     phone: `+91${phone}`,
     message,
-  }),
-});
+    subject: "New Enquiry Received",
+  });
 
-const result = await response.json();
-
-if (!response.ok || !result.success) {
-  throw new Error(result.message || "Something went wrong");
-}
+  if (typeof response !== "string") {
+    console.log("Error occured while sending email!");
+  } else {
+    setSuccess(true);
+    router.push("/thank-you");
+  }
 };
 
   return (
