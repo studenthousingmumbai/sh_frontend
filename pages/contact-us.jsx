@@ -22,7 +22,7 @@ export default function Example() {
     const response = await contactUs({
   name,
   email,
-  phone,
+  phone: `+91${phone}`,
   message,
   subject: "New Enquiry Received",
 });
