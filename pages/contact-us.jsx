@@ -194,15 +194,26 @@ export default function Example() {
           className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-400 outline-none"
         />
 
-        <input
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          type="number"
-          placeholder="Phone Number"
-          required
-          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-400 outline-none"
-        />
+       <div className="flex items-center w-full rounded-xl border border-gray-200 focus-within:ring-2 focus-within:ring-indigo-400 overflow-hidden">
+  <span className="px-4 py-3 bg-gray-100 text-gray-700 border-r border-gray-200">
+    +91
+  </span>
 
+  <input
+    value={phone}
+    onChange={(e) => {
+      const value = e.target.value.replace(/\D/g, "").slice(0, 10);
+      setPhone(value);
+    }}
+    type="tel"
+    inputMode="numeric"
+    pattern="[0-9]{10}"
+    maxLength={10}
+    placeholder="Phone Number"
+    required
+    className="w-full px-4 py-3 outline-none"
+  />
+</div>
         <textarea
           value={message}
           onChange={(e) => setMessage(e.target.value)}
