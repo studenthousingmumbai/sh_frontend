@@ -17,17 +17,23 @@ export default function Example() {
   const { contactUs } = useApi();
 
 const handleSendMessage = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const response = await contactUs({ name, email, phone, message });
+  const response = await contactUs({
+    name,
+    email,
+    phone: `+91${phone}`,
+    message,
+    subject: "New Enquiry Received",
+  });
 
-    if (typeof response !== "string") {
-      console.log("Error occured while sending email!");
-    } else {
-      setSuccess(true);
-      router.push("/thank-you");
-    }
-  };
+  if (typeof response !== "string") {
+    console.log("Error occured while sending email!");
+  } else {
+    setSuccess(true);
+    router.push("/thank-you");
+  }
+};
 
   return (
     <>
