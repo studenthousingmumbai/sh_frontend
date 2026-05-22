@@ -16,11 +16,12 @@ export default function Example() {
   const [success, setSuccess] = useState(false);
   const { contactUs } = useApi();
 
-  const handleSendMessage = async (e) => {
+const handleSendMessage = async (e) => {
   e.preventDefault();
 
   try {
-    // 1) EMAIL
+
+    // EMAIL
     const emailResponse = await contactUs({
       name,
       email,
@@ -29,19 +30,18 @@ export default function Example() {
       subject: "New Enquiry Received",
     });
 
-    console.log("EMAIL RESPONSE:", emailResponse);
+    if (typeof emailResponse !== "string") {
+      throw new Error("Email submission failed");
+    }
 
-    // 2) CRM
+    // CRM
     const payload = {
-      rest_data: {
-        module_name: "Lead",
-        name_value_list: {
-          last_name: name,
-          lead_source: "Website",
-          phone: `+91${phone}`,
-          email: email,
-          description: message,
-        },
+      module_name: "Lead",
+      field_name_list: {
+        last_name: name,
+        lead_source: "Websites",
+        phone: `+91${phone}`,
+        email: email,
       },
     };
 
@@ -51,7 +51,8 @@ export default function Example() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer 77hkP5qjAY2DZT7cQj3ksce0Cd6GUnLb",
+          Authorization:
+            "Bearer 77hkP5qjAY2DZT7cQj3ksce0Cd6GUnLb",
         },
         body: JSON.stringify(payload),
       }
@@ -60,24 +61,23 @@ export default function Example() {
     const crmText = await crmResponse.text();
 
     console.log("CRM STATUS:", crmResponse.status);
-    console.log("CRM RAW RESPONSE:", crmText);
+    console.log("CRM RESPONSE:", crmText);
 
     if (!crmResponse.ok) {
-      throw new Error(`CRM failed: ${crmResponse.status} ${crmText}`);
-    }
-
-    if (typeof emailResponse !== "string") {
-      throw new Error("Email submission failed");
+      throw new Error("CRM submission failed");
     }
 
     setSuccess(true);
+
     setName("");
     setEmail("");
     setPhone("");
     setMessage("");
+
     router.push("/thank-you");
+
   } catch (error) {
-    console.error("SUBMIT ERROR:", error);
+    console.error(error);
     alert(error.message || "Something went wrong");
   }
 };
