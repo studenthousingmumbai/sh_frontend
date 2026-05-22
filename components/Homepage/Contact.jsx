@@ -271,25 +271,41 @@ export default function Example() {
                   </div>
 
                   <div>
-                    <label
-                      htmlFor="phone"
-                      className="block text-sm font-medium text-gray-900"
-                    >
-                      Phone
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                        type="text"
-                        name="phone"
-                        id="phone"
-                        autoComplete="tel"
-                        className="block w-full rounded-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 disabled:bg-gray-100"
-                        required
-                      />
-                    </div>
-                  </div>
+  <label
+    htmlFor="phone"
+    className="block text-sm font-medium text-gray-900"
+  >
+    Phone
+  </label>
+
+  <div className="mt-1 flex rounded-md shadow-sm">
+    <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-100 px-4 text-gray-700">
+      +91
+    </span>
+
+    <input
+      value={phone}
+      onChange={(e) => {
+        const value = e.target.value.replace(/\D/g, "").slice(0, 10);
+        setPhone(value);
+      }}
+      type="tel"
+      name="phone"
+      id="phone"
+      autoComplete="tel"
+      inputMode="numeric"
+      pattern="[0-9]{10}"
+      maxLength={10}
+      placeholder="9876543210"
+      className="block w-full rounded-r-md border-gray-300 py-3 px-4 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 disabled:bg-gray-100"
+      required
+    />
+  </div>
+
+  <p className="mt-1 text-xs text-gray-500">
+    Enter 10 digit mobile number
+  </p>
+</div>
 
                   <div className="sm:col-span-2">
                     <div className="flex justify-between">
