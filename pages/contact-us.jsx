@@ -17,70 +17,17 @@ export default function Example() {
   const { contactUs } = useApi();
 
 const handleSendMessage = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
+    const response = await contactUs({ name, email, phone, message });
 
-    // EMAIL
-    const emailResponse = await contactUs({
-      name,
-      email,
-      phone: `+91${phone}`,
-      message,
-      subject: "New Enquiry Received",
-    });
-
-    if (typeof emailResponse !== "string") {
-      throw new Error("Email submission failed");
+    if (typeof response !== "string") {
+      console.log("Error occured while sending email!");
+    } else {
+      setSuccess(true);
+      router.push("/thank-you");
     }
-
-    // CRM
-    const payload = {
-      module_name: "Lead",
-      field_name_list: {
-        last_name: name,
-        lead_source: "Websites",
-        phone: `+91${phone}`,
-        email: email,
-      },
-    };
-
-    const crmResponse = await fetch(
-      "https://studenthousing.sangamcrm.com/api/v1/save-data",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization:
-            "Bearer 77hkP5qjAY2DZT7cQj3ksce0Cd6GUnLb",
-        },
-        body: JSON.stringify(payload),
-      }
-    );
-
-    const crmText = await crmResponse.text();
-
-    console.log("CRM STATUS:", crmResponse.status);
-    console.log("CRM RESPONSE:", crmText);
-
-    if (!crmResponse.ok) {
-      throw new Error("CRM submission failed");
-    }
-
-    setSuccess(true);
-
-    setName("");
-    setEmail("");
-    setPhone("");
-    setMessage("");
-
-    router.push("/thank-you");
-
-  } catch (error) {
-    console.error(error);
-    alert(error.message || "Something went wrong");
-  }
-};
+  };
 
   return (
     <>
