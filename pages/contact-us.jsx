@@ -194,7 +194,8 @@ export default function Example() {
           className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-400 outline-none"
         />
 
-       <div className="flex items-center w-full rounded-xl border border-gray-200 focus-within:ring-2 focus-within:ring-indigo-400 overflow-hidden">
+      <div className="flex items-center w-full rounded-xl border border-gray-200 overflow-hidden focus-within:ring-2 focus-within:ring-indigo-400 focus-within:border-indigo-400">
+  
   <span className="px-4 py-3 bg-gray-100 text-gray-700 border-r border-gray-200">
     +91
   </span>
@@ -211,7 +212,7 @@ export default function Example() {
     maxLength={10}
     placeholder="Phone Number"
     required
-    className="w-full px-4 py-3 outline-none"
+    className="w-full px-4 py-3 outline-none border-0 focus:outline-none focus:ring-0"
   />
 </div>
         <textarea
