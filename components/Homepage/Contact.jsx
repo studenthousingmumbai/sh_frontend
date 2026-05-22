@@ -110,11 +110,11 @@ export default function Example() {
 
     try {
       await contactUs({
-        name,
-        email,
-        phone,
-        message,
-      });
+  name,
+  email,
+  phone: `+91${phone}`,
+  message,
+});
 
       redirectRef.current = setTimeout(() => {
         router.replace("/thank-you");
