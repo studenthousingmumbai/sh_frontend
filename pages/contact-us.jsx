@@ -15,16 +15,16 @@ export default function Example() {
   const [message, setMessage] = useState("");
   const [success, setSuccess] = useState(false);
   const { contactUs } = useApi();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
 const handleSendMessage = async (e) => {
   e.preventDefault();
 
+  if (isSubmitting) return;
+
+  setIsSubmitting(true);
+
   try {
-
-    // =========================
-    // EMAIL SUBMISSION
-    // =========================
-
     const emailResponse = await contactUs({
       name,
       email,
@@ -34,10 +34,6 @@ const handleSendMessage = async (e) => {
     });
 
     console.log("EMAIL RESPONSE:", emailResponse);
-
-    // =========================
-    // CRM SUBMISSION
-    // =========================
 
     const crmResponse = await fetch("/api/sangam-crm", {
       method: "POST",
@@ -60,22 +56,18 @@ const handleSendMessage = async (e) => {
       throw new Error(crmData.message || "CRM failed");
     }
 
-    // =========================
-    // SUCCESS
-    // =========================
-
     setSuccess(true);
-
     setName("");
     setEmail("");
     setPhone("");
     setMessage("");
 
     router.push("/thank-you");
-
   } catch (error) {
     console.error("SUBMIT ERROR:", error);
     alert(error.message || "Something went wrong");
+  } finally {
+    setIsSubmitting(false);
   }
 };
 
@@ -268,12 +260,13 @@ const handleSendMessage = async (e) => {
           className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-400 outline-none"
         />
 
-        <button
-          type="submit"
-        className="w-full bg-[#fad45a] text-black py-3 rounded-xl font-medium "
-        >
-          Send Message 🚀
-        </button>
+       <button
+  type="submit"
+  disabled={isSubmitting}
+  className="w-full bg-[#fad45a] text-black py-3 rounded-xl font-medium disabled:opacity-60 disabled:cursor-not-allowed"
+>
+  {isSubmitting ? "Sending..." : "Send Message 🚀"}
+</button>
 
       </form>
 
