@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /signup/
+Disallow: /signin/
+Disallow: /profile/
+Disallow: /order-history/
+Disallow: /forgot-password/
+ 
+Sitemap: https://www.studenthousing.co.in/sitemap.xml

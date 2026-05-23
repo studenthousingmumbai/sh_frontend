@@ -1,0 +1,18 @@
+/* styles/nprogress.css */
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  background: #f8c14c; /* Tailwind primary color */
+  height: 3px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px #f8c14c, 0 0 5px #f8c14c;
+}
