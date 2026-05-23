@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
 import { CheckCircleIcon, XMarkIcon } from "@heroicons/react/20/solid";
@@ -16,13 +16,38 @@ export default function Example() {
   const [success, setSuccess] = useState(false);
   const { contactUs } = useApi();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const submitLockRef = useRef(false);
+const LOCK_KEY = "studenthousing_contact_lock";
+const LOCK_TIME = 2 * 60 * 1000; // 2 minutes
+
+useEffect(() => {
+  const savedLock = localStorage.getItem(LOCK_KEY);
+
+  if (savedLock) {
+    const lockUntil = Number(savedLock);
+
+    if (Date.now() < lockUntil) {
+      setIsSubmitting(true);
+      submitLockRef.current = true;
+    } else {
+      localStorage.removeItem(LOCK_KEY);
+    }
+  }
+}, []);
+
 
 const handleSendMessage = async (e) => {
   e.preventDefault();
 
-  if (isSubmitting) return;
+  if (submitLockRef.current || isSubmitting) return;
 
+  const lockUntil = Date.now() + LOCK_TIME;
+  submitLockRef.current = true;
   setIsSubmitting(true);
+  localStorage.setItem(LOCK_KEY, String(lockUntil));
+
+  // lets the button text paint as "Sending..."
+  await new Promise((resolve) => requestAnimationFrame(resolve));
 
   try {
     const emailResponse = await contactUs({
@@ -49,7 +74,6 @@ const handleSendMessage = async (e) => {
     });
 
     const crmData = await crmResponse.json();
-
     console.log("CRM RESPONSE:", crmData);
 
     if (!crmResponse.ok || !crmData.success) {
@@ -66,8 +90,11 @@ const handleSendMessage = async (e) => {
   } catch (error) {
     console.error("SUBMIT ERROR:", error);
     alert(error.message || "Something went wrong");
-  } finally {
+
+    // allow retry only on failure
+    submitLockRef.current = false;
     setIsSubmitting(false);
+    localStorage.removeItem(LOCK_KEY);
   }
 };
 
