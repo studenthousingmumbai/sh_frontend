@@ -266,7 +266,7 @@ try {
       <div className="flex items-center w-full rounded-xl border border-gray-200 overflow-hidden focus-within:ring-2 focus-within:ring-indigo-400 focus-within:border-indigo-400">
   
   <span className="px-4 py-3 bg-gray-100 text-gray-700 border-r border-gray-200">
-    +93
+    +91
   </span>
 
   <input
