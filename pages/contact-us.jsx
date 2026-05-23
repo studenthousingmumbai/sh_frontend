@@ -61,20 +61,26 @@ const handleSendMessage = async (e) => {
     console.log("EMAIL RESPONSE:", emailResponse);
 
     const crmResponse = await fetch("/api/sangam-crm", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        phone: `+91${phone}`,
-        message,
-      }),
-    });
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    name,
+    email,
+    phone,
+    message,
+  }),
+});
 
-    const crmData = await crmResponse.json();
-    console.log("CRM RESPONSE:", crmData);
+const crmText = await crmResponse.text();
+console.log("CRM STATUS:", crmResponse.status);
+console.log("CRM RAW:", crmText);
+
+let crmData = {};
+try {
+  crmData = JSON.parse(crmText);
+} catch (e) {
+  console.log("CRM response was not JSON");
+}
 
     if (!crmResponse.ok || !crmData.success) {
       throw new Error(crmData.message || "CRM failed");

@@ -16,15 +16,16 @@ export default async function handler(req, res) {
       });
     }
 
-    const payload = {
-      module_name: "Lead",
-      field_name_list: {
-        last_name: name,
-        lead_source: "Websites",
-        phone: phone,
-        email: email,
-      },
-    };
+const payload = {
+  module_name: "Lead",
+  field_name_list: {
+    last_name: name || "Website Lead",
+    lead_source: "Websites",
+    phone: phone,
+    email: email,
+    comment: message,
+  },
+};
 
     const crmResponse = await fetch(
       "https://studenthousing.sangamcrm.com/api/v1/save-data",
