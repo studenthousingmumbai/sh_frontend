@@ -123,16 +123,27 @@ export default function EnquireNowFormNew() {
           disabled={isSubmitting}
         />
         <input
-          name="phone"
-          id="phone"
-          type="text"
-          autoComplete="phone"
-          className="outline-none rounded-md w-full mt-4 border-gray-300 bg-gray-100 focus:outline-none text-xs py-3"
-          placeholder="Contact Number *"
-          onChange={handleChange}
-          required
-          disabled={isSubmitting}
-        />
+  name="phone"
+  id="phone"
+  type="tel"
+  inputMode="numeric"
+  maxLength={10}
+  pattern="[0-9]{10}"
+  autoComplete="phone"
+  value={values.phone}
+  onChange={(e) => {
+    const value = e.target.value.replace(/\D/g, "").slice(0, 10);
+
+    setValues({
+      ...values,
+      phone: value,
+    });
+  }}
+  className="outline-none rounded-md w-full mt-4 border-gray-300 bg-gray-100 focus:outline-none text-xs py-3"
+  placeholder="Contact Number *"
+  required
+  disabled={isSubmitting}
+/>
 
         <input
           name="email"
