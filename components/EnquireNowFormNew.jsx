@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useApi from "../hooks/useApi";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 
 const initialValues = {
   firstName: "",
@@ -10,39 +10,96 @@ const initialValues = {
   message: "",
 };
 
-export default function EnquireNowFormNew({ open, setOpen }) {
+export default function EnquireNowFormNew() {
   const [values, setValues] = useState(initialValues);
   const { contactUs } = useApi();
   const router = useRouter();
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const submitLockRef = useRef(false);
+  const LOCK_KEY = "studenthousing_contact_lock";
+  const LOCK_TIME = 2 * 60 * 1000; // 2 minutes
+
+  useEffect(() => {
+    const savedLock = localStorage.getItem(LOCK_KEY);
+
+    if (savedLock) {
+      const lockUntil = Number(savedLock);
+
+      if (Date.now() < lockUntil) {
+        setIsSubmitting(true);
+        submitLockRef.current = true;
+      } else {
+        localStorage.removeItem(LOCK_KEY);
+      }
+    }
+  }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setValues({ ...values, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await contactUs({
-      name: `${values?.firstName} ${values?.lastName}`,
-      email: values?.email,
-      phone: values?.phone,
-      message: values?.message,
-    });
+    if (submitLockRef.current || isSubmitting) return;
 
-    console.log("Response", response);
+    const lockUntil = Date.now() + LOCK_TIME;
+    submitLockRef.current = true;
+    setIsSubmitting(true);
+    localStorage.setItem(LOCK_KEY, String(lockUntil));
 
-    if (typeof response !== "string") {
-      console.log("Error occured while sending email!");
-    } else {
+    await new Promise((resolve) => requestAnimationFrame(resolve));
+
+    try {
+      const fullName = `${values.firstName} ${values.lastName}`.trim();
+
+      const emailResponse = await contactUs({
+        name: fullName,
+        email: values.email,
+        phone: values.phone,
+        message: values.message,
+        subject: "New Enquiry Received",
+      });
+
+      console.log("EMAIL RESPONSE:", emailResponse);
+
+      const crmResponse = await fetch("/api/sangam-crm", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: fullName,
+          email: values.email,
+          phone: values.phone,
+          message: values.message,
+        }),
+      });
+
+      const crmData = await crmResponse.json();
+      console.log("CRM RESPONSE:", crmData);
+
+      if (!crmResponse.ok || !crmData.success) {
+        throw new Error(crmData.message || "CRM failed");
+      }
+
+      setValues(initialValues);
       router.push("/thank-you");
+    } catch (error) {
+      console.error("SUBMIT ERROR:", error);
+      alert(error.message || "Something went wrong");
+
+      submitLockRef.current = false;
+      setIsSubmitting(false);
+      localStorage.removeItem(LOCK_KEY);
     }
   };
 
   return (
     <div className="w-full flex justify-center lg:justify-start items-center">
-      <form action="submit" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <input
           onChange={handleChange}
           type="text"
@@ -51,7 +108,8 @@ export default function EnquireNowFormNew({ open, setOpen }) {
           autoComplete="name"
           className="outline-none rounded-md w-full mt-4 border-gray-300 bg-gray-100 focus:outline-none text-xs py-3"
           placeholder="First name *"
-          required={true}
+          required
+          disabled={isSubmitting}
         />
         <input
           onChange={handleChange}
@@ -61,7 +119,8 @@ export default function EnquireNowFormNew({ open, setOpen }) {
           autoComplete="name"
           className="outline-none rounded-md w-full mt-4 border-gray-300 bg-gray-100 focus:outline-none text-xs py-3"
           placeholder="Last name *"
-          required={true}
+          required
+          disabled={isSubmitting}
         />
         <input
           name="phone"
@@ -71,21 +130,38 @@ export default function EnquireNowFormNew({ open, setOpen }) {
           className="outline-none rounded-md w-full mt-4 border-gray-300 bg-gray-100 focus:outline-none text-xs py-3"
           placeholder="Contact Number *"
           onChange={handleChange}
+          required
+          disabled={isSubmitting}
+        />
+
+        <input
+          name="email"
+          id="email"
+          type="email"
+          autoComplete="email"
+          className="outline-none rounded-md w-full mt-4 border-gray-300 bg-gray-100 focus:outline-none text-xs py-3"
+          placeholder="Email *"
+          onChange={handleChange}
+          required
+          disabled={isSubmitting}
         />
 
         <textarea
           name="message"
           id="message"
-          type="text"
           className="outline-none rounded-md w-full mt-4 border-gray-300 bg-gray-100 focus:outline-none text-xs py-3"
           placeholder="Message *"
           onChange={handleChange}
+          required
+          disabled={isSubmitting}
         />
+
         <button
           type="submit"
-          className="w-full mt-6 bg-brandColor py-3 rounded-lg font-semibold text-sm"
+          disabled={isSubmitting}
+          className="w-full mt-6 bg-brandColor py-3 rounded-lg font-semibold text-sm disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          Submit
+          {isSubmitting ? "Sending..." : "Submit"}
         </button>
       </form>
     </div>
