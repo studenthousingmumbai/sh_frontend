@@ -558,12 +558,12 @@ const Homepage = ({ announcementImages, listings }) => {
     <>
      <Head>
   <title>
-    Book Hostels in Mumbai For College Students | Student Housing
+    Book Hostels in Mumbai for college students | Student Housing
   </title>
 
   <meta
     name="description"
-    content="Student housing offers hostels in Mumbai for college students at a reasonable price. A fully functional clean apartment with regular cleaning services."
+    content="Student Housing offers fully furnished student hostels in Mumbai near top colleges across Vile Parle, Juhu, and Andheri with secure and comfortable living"
   />
 
   <link rel="icon" href="/sh_logo.png" />
