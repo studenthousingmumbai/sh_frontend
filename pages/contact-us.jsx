@@ -107,10 +107,10 @@ try {
   return (
     <>
       <Head>
-        <title>Book Student hostel near NMIIS Vile Parle in Mumbai</title>
+        <title>Contact Student Housing | Get in Touch for Hostel Bookings</title>
         <meta
           name="description"
-          content="Student housing provides hostels near NMIMS, Mumbai a great locality in Juhu, Vile Parle. With our in house facilities, students can focus on their studies without any domestic chores worries."
+          content="Have questions about student hostels in Mumbai? Contact Student Housing for enquiries, bookings or support and get assistance from our team"
         />
 
 
