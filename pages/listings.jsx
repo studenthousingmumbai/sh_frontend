@@ -226,7 +226,7 @@ export default function Listings({ all_listings, total, gender }) {
             </title>
             <meta
               name="description"
-              content="Student housing provides students hostels in Mumbai at prime locations. Hostels are strategically located near major colleges and prime residential areas. We provide hostel stays for girls and boys."
+              content="Explore student hostels in Mumbai near major colleges and key areas. Find comfortable stays for boys and girls with essential amenities"
             />
           </>
         )}
