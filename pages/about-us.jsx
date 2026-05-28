@@ -12,11 +12,11 @@ export default function AboutUs() {
     <>
       <Head>
         <title>
-          Book Student Housing in Mumbai, Vile Parle | Student Housing
+          About Student Housing | Student Hostels in Mumbai
         </title>
         <meta
           name="description"
-          content="Student housing in Mumbai offers spacious rooms with regular cleaning services, meals, and laundry. It is a home away from home with additional services like recreational activities, a lounge area in some of our flats gives an unwinding space to students after a long day."
+          content="Learn about Student Housing, offering well-managed student hostels in Mumbai with modern amenities, convenient locations & comfortable student living"
         />
 
         <script
