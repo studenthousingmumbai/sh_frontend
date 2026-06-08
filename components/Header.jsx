@@ -33,6 +33,7 @@ const hostelsNearLocation = [
   { name: "Hostels in Juhu", href: "/hostels-near-location/hostel-in-juhu" },
   { name: "Hostels in Santacruz", href: "/hostels-near-location/hostel-in-santacruz" },
   { name: "Hostels in Bandra", href: "/hostels-near-location/hostel-in-bandra" },
+  { name: "Hostels in South Mumbai", href: "/hostels-near-location/hostel-in-south-mumbai" },
 ];
 
 const hostelsNearCollege = [
