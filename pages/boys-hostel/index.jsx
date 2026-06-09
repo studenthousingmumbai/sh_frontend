@@ -42,7 +42,18 @@ export default function BoysHostel({ all_listings }) {
         }
         image={"/hero-banner/boys-hostel-hero-banner.png"}
       />
-      <OurRooms data={all_listings[0]} />
+      <OurRooms
+  data={{
+    ...all_listings[0],
+    images: [
+      { url: "/our-rooms/Avenue_building_pic.webp" },
+      { url: "/our-rooms/gym_1.webp" },
+      { url: "/our-rooms/elita_swimming_pool_1.webp" },
+      { url: "/our-rooms/elita_gym_2.webp" },
+      { url: "/our-rooms/elita_gym_3.webp" },
+    ],
+  }}
+/>
 
       <div className="my-14 mx-12 lg:mx-48 border border-black opacity-10" />
       <WhyChoose gender="boy" />
