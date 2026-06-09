@@ -25,7 +25,7 @@ export default function Occupancy() {
         title={"Occupancy"}
         className={"mb-9 responsiveCenterPadding"}
       />
-      <div className="grid grid-cols-1 lg:grid-cols-3 responsiveCenterPadding gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 responsiveCenterPadding gap-4">
         {occupancies.map((occupancy) => {
           return (
             <div className="flex border border-[rgba(0,0,0,0.08)] rounded-[8px] p-4 md:p-6 gap-4 bg-white">
