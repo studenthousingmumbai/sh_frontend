@@ -14,6 +14,10 @@ export default function Occupancy() {
       title: "Triple Occupancy",
       image: "/occupancies/triple-bed.png",
     },
+     {
+      title: "Quadruple Occupancy",
+      image: "/occupancies/triple-bed.png",
+    },
   ];
   return (
     <div className="pt-10 md:pt-12 pb-14 md:pb-16 bg-[url(/occupancies/occupancy-bg.png)]">
