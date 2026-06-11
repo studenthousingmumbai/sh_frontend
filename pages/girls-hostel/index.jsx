@@ -40,7 +40,7 @@ export default function GirlsHostel({ all_listings }) {
         subTitle={
           "Find the perfect stay with modern amenities, security, and a friendly community."
         }
-        image={"/hero-banner/girls-hostel-hero-banner.png"}
+        image={"/hero-banner/Image-2.webp"}
       />
       <OurRooms data={all_listings[0]} />
 

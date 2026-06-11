@@ -40,7 +40,7 @@ export default function BoysHostel({ all_listings }) {
         subTitle={
           "Find the perfect stay with modern amenities, security, and a friendly community."
         }
-        image={"/hero-banner/boys-hostel-hero-banner.png"}
+        image={"/hero-banner/Image-3.webp"}
       />
       <OurRooms
   data={{
