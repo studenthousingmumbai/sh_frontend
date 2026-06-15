@@ -66,7 +66,7 @@ const genderOptions = [
   { id: "all", title: "All" },
   { id: "male", title: "Boys" },
   { id: "female", title: "Girls" },
-  //   { id: "unisex", title: "Unisex" },
+  { id: "both", title: "Both" },
 ];
 
 export default function Listings({ all_listings, total, gender }) {
@@ -181,17 +181,29 @@ export default function Listings({ all_listings, total, gender }) {
     }
   }, []);
 
-  useEffect(() => {
-    if (!is_mounted.current) {
-      is_mounted.current = true;
+ useEffect(() => {
+  if (!is_mounted.current) {
+    is_mounted.current = true;
+  } else {
+    if (listingGender === "all") {
+      fetchListings(null);
+    } else if (listingGender === "both") {
+
+      const bothListings = all_listings.filter(
+        (listing) =>
+          listing.slug === "aston-by-student-housing" ||
+          listing.slug === "arcadia-by-student-housing" ||
+          listing.slug === "elita-by-student-housing-boys" ||
+          listing.slug === "elita-by-student-housing-girls"
+      );
+
+      setListings(bothListings);
+
     } else {
-      if (listingGender === "all") {
-        fetchListings(null);
-      } else {
-        fetchListings(listingGender);
-      }
+      fetchListings(listingGender);
     }
-  }, [listingGender]);
+  }
+}, [listingGender]);
 
   const handleSearch = (searchTerm, results) => {
     setSearchQuery(searchTerm);
