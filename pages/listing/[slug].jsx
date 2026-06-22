@@ -196,25 +196,25 @@ const faqSchema =
       return <title key={index}>{tag.metaContent}</title>;
     }
 
-    if (tag.metaName) {
-      return (
-        <meta
-          key={index}
-          name={tag.metaName}
-          content={tag.metaContent}
-        />
-      );
-    }
-
     if (tag.metaProperty) {
-      return (
-        <meta
-          key={index}
-          property={tag.metaProperty}
-          content={tag.metaContent}
-        />
-      );
-    }
+  return (
+    <meta
+      key={index}
+      property={tag.metaProperty}
+      content={tag.metaContent}
+    />
+  );
+}
+
+if (tag.metaName) {
+  return (
+    <meta
+      key={index}
+      name={tag.metaName}
+      content={tag.metaContent}
+    />
+  );
+}
 
     return null;
   })}
