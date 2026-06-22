@@ -112,9 +112,12 @@ export default function Example({ listing: Listing }) {
   const router = useRouter();
   // const { isReady } = router;
   const { slug } = router.query;
-  const [listing, setListing] = useState(Listing);
+const [listing, setListing] = useState(Listing);
 
-  const faqSchema =
+console.log("METATAGS");
+console.table(listing?.metatags);
+
+const faqSchema =
   listing?.faqs?.length > 0
     ? {
         "@context": "https://schema.org",
