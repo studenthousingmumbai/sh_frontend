@@ -647,13 +647,19 @@ function BookingModal({ open, setOpen }) {
   const [showHostel, setShowHostel] = useState(false);
   const [time, setTime] = useState("");
 
-  const handleSubmit = async () => {
-    if (!name || !phone || !hostel || !time) {
-      alert("Please fill all required fields");
-      return;
-    }
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const message = `
+ const handleSubmit = async () => {
+  if (isSubmitting) return;
+
+  if (!name || !phone || !hostel || !time) {
+    alert("Please fill all required fields");
+    return;
+  }
+
+  setIsSubmitting(true);
+
+  const message = `
 New Booking Request
 
 Hostel: ${hostel}
@@ -662,21 +668,22 @@ Time: ${time}
 `;
 
   const response = await contactUs({
-  name,
-  email,
-  phone,
-  message,
-  subject: "Schedule Visit Request",
-});
+    name,
+    email,
+    phone,
+    message,
+    subject: "Schedule Visit Request",
+  });
 
-    if (response === "Message sent successfully") {
-      alert("Booking request sent!");
-      setOpen(false);
-    } else {
-      alert("Error sending booking");
-      console.log(response);
-    }
-  };
+  if (response === "Message sent successfully") {
+    alert("Booking request sent!");
+    setOpen(false);
+  } else {
+    alert("Error sending booking");
+    console.log(response);
+    setIsSubmitting(false);
+  }
+};
 
   if (!open) return null;
 
