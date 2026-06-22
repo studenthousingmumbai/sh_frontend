@@ -196,21 +196,21 @@ const faqSchema =
       return <title key={index}>{tag.metaContent}</title>;
     }
 
-    if (tag.metaProperty) {
+   if (tag.metaName) {
   return (
     <meta
       key={index}
-      property={tag.metaProperty}
+      name={tag.metaName}
       content={tag.metaContent}
     />
   );
 }
 
-if (tag.metaName) {
+if (tag.metaProperty) {
   return (
     <meta
       key={index}
-      name={tag.metaName}
+      property={tag.metaProperty}
       content={tag.metaContent}
     />
   );
