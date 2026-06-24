@@ -19,6 +19,22 @@ export default function AboutUs() {
           content="Learn about Student Housing, offering well-managed student hostels in Mumbai with modern amenities, convenient locations & comfortable student living"
         />
 
+
+
+<meta property="og:url" content="https://www.studenthousing.co.in/about-us"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="About Student Housing | Student Hostels in Mumbai"/>
+<meta property="og:description" content="Learn about Student Housing, offering well-managed student hostels in Mumbai with modern amenities, convenient locations & comfortable student living"/>
+<meta property="og:image" content="https://www.studenthousing.co.in/about-us/IMG_2397.webp"/>
+ 
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta property="twitter:domain" content="studenthousing.co.in"/>
+<meta property="twitter:url" content="https://www.studenthousing.co.in/about-us"/>
+<meta name="twitter:title" content="About Student Housing | Student Hostels in Mumbai"/>
+<meta name="twitter:description" content="Learn about Student Housing, offering well-managed student hostels in Mumbai with modern amenities, convenient locations & comfortable student living"/>
+<meta name="twitter:image" content="https://www.studenthousing.co.in/about-us/IMG_2397.webp"></meta>
+
         <script
     type="application/ld+json"
     dangerouslySetInnerHTML={{
