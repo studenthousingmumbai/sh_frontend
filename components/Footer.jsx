@@ -307,6 +307,20 @@ export default function Example() {
                 +91-8779003845
               </Link>
             </div>
+
+
+
+            <div className="flex gap-2.5">
+              <PhoneIcon className="w-5 h-5 md:w-6 md:h-6" />
+              <Link
+                href="tel:+91-9702704881"
+                className="text-[#F8C14C] text-sm md:text-base"
+              >
+                +91-9702704881
+              </Link>
+            </div>
+
+
             <div className="flex gap-2.5">
               <MailIcon className="w-5 h-5 md:w-6 md:h-6" />
               <Link
