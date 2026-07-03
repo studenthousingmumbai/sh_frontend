@@ -572,7 +572,7 @@ const Homepage = ({ announcementImages, listings }) => {
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="Book Hostels in Mumbai for college students | Student Housing"/>
 <meta property="og:description" content="Student Housing offers fully furnished student hostels in Mumbai near top colleges across Vile Parle, Juhu, and Andheri with secure and comfortable living"/>
-<meta property="og:image" content="https://www.studenthousing.co.in/banner-1.webp"/>
+<meta property="og:image" content="https://www.studenthousing.co.in/DAN09168.webp"/>
  
 
 <meta name="twitter:card" content="summary_large_image"/>
@@ -580,7 +580,7 @@ const Homepage = ({ announcementImages, listings }) => {
 <meta property="twitter:url" content="https://www.studenthousing.co.in/"/>
 <meta name="twitter:title" content="Student Hostels in Mumbai for Boys & Girls | Student Housing"/>
 <meta name="twitter:description" content="Student Housing offers fully furnished student hostels in Mumbai near top colleges across Vile Parle, Juhu, and Andheri with secure and comfortable living"/>
-<meta name="twitter:image" content="https://www.studenthousing.co.in/banner-1.webp"/>
+<meta name="twitter:image" content="https://www.studenthousing.co.in/DAN09168.webp"/>
 
 
   <link rel="icon" href="/sh_logo.png" />
