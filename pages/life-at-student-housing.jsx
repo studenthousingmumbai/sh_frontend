@@ -37,7 +37,7 @@ export default function LifeAtStudentHousing() {
         <div className="relative flex justify-center bg-gray-100 items-center my-auto h-[500px]">
           <img
             className="w-full h-full object-cover"
-            src="/life-banner.jpeg"
+            src="/contact-bg.jpeg"
             alt="Life at Student Housing"
           />
           <div className="absolute bg-black-overlay w-full h-full"></div>
