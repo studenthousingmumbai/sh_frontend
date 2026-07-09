@@ -1,6 +1,25 @@
-
 import Head from "next/head";
 import Layout from "../components/Layout";
+
+function AltSection({ reverse, eyebrow, highlight, text, imgSrc, imgAlt }) {
+  return (
+    <div className="grid lg:grid-cols-2 gap-10 items-center">
+      <div className={reverse ? "order-2 lg:order-1" : ""}>
+        <h2 className="text-3xl font-bold text-gray-900">
+          {eyebrow} <span className="text-teal-500">{highlight}</span>
+        </h2>
+        <p className="text-gray-500 mt-4 text-lg leading-relaxed">{text}</p>
+      </div>
+      <img
+        src={imgSrc}
+        alt={imgAlt}
+        className={`rounded-2xl shadow-xl object-cover w-full h-[340px] ${
+          reverse ? "order-1 lg:order-2" : ""
+        }`}
+      />
+    </div>
+  );
+}
 
 export default function LifeAtStudentHousing() {
   return (
@@ -49,7 +68,7 @@ export default function LifeAtStudentHousing() {
         </div>
 
         <div className="bg-gradient-to-br from-[#f8fafc] to-[#eef2ff]">
-          <div className="max-w-6xl mx-auto px-6 py-20 space-y-28">
+          <div className="max-w-6xl mx-auto px-6 py-20 space-y-24">
 
             {/* INTRO */}
             <div className="text-center max-w-2xl mx-auto">
@@ -62,231 +81,116 @@ export default function LifeAtStudentHousing() {
               </p>
             </div>
 
-            {/* ACCOMMODATION - images left, text right */}
-            <div className="grid lg:grid-cols-2 gap-10 items-center">
-              <div className="relative grid grid-cols-2 gap-4">
-                <img
-                  src="/life-accommodation-1.webp"
-                  alt="Student housing room"
-                  className="rounded-2xl shadow-xl object-cover w-full h-[420px]"
-                />
-                <div className="space-y-4 pt-10">
-                  <img
-                    src="/life-accommodation-2.webp"
-                    alt="Common area"
-                    className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
-                  />
-                  <img
-                    src="/life-accommodation-3.webp"
-                    alt="Hostel corridor"
-                    className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
-                  />
-                </div>
-              </div>
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900">
-                  Accommodation that feels like <span className="text-teal-500">home</span>
-                </h2>
-                <p className="text-gray-500 mt-4 text-lg leading-relaxed">
-                  Fully furnished single, double and triple sharing rooms with
-                  attached washrooms, storage, study desks and high-speed WiFi.
-                  Housekeeping and linen change are handled for you, so you can
-                  focus on college, not chores.
-                </p>
-              </div>
-            </div>
+            {/* ACCOMMODATION */}
+            <AltSection
+              eyebrow="Accommodation that feels like"
+              highlight="home"
+              text="Fully furnished single, double and triple sharing rooms with attached washrooms, storage, study desks and high-speed WiFi. Housekeeping and linen change are handled for you, so you can focus on college, not chores."
+              imgSrc="/life-accommodation.webp"
+              imgAlt="Student housing room"
+            />
 
-            {/* FOOD - text left, image right */}
-            <div className="grid lg:grid-cols-2 gap-10 items-center">
-              <div className="order-2 lg:order-1">
-                <h2 className="text-3xl font-bold text-gray-900">
-                  Food that tastes like <span className="text-teal-500">home-cooked</span>
-                </h2>
-                <p className="text-gray-500 mt-4 text-lg leading-relaxed">
-                  Wholesome, hygienically prepared meals served through the day
-                  - breakfast, lunch, evening snacks and dinner - with a
-                  rotating menu so it never feels repetitive.
-                </p>
-              </div>
-              <img
-                src="/life-food.webp"
-                alt="Dining area"
-                className="order-1 lg:order-2 rounded-2xl shadow-xl object-cover w-full h-[340px]"
-              />
-            </div>
+            {/* FOOD */}
+            <AltSection
+              reverse
+              eyebrow="Food that tastes like"
+              highlight="home-cooked"
+              text="Wholesome, hygienically prepared meals served through the day - breakfast, lunch, evening snacks and dinner - with a rotating menu so it never feels repetitive."
+              imgSrc="/life-food.webp"
+              imgAlt="Dining area"
+            />
 
-            {/* FACILITIES */}
-            <div>
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-gray-900">
-                  Facilities built for <span className="text-teal-500">downtime</span>
-                </h2>
-                <p className="text-gray-500 mt-3 text-lg">
-                  A break from studying is just an elevator ride away.
-                </p>
-              </div>
+            {/* FACILITIES - Swimming Pool */}
+            <AltSection
+              eyebrow="Cool off at the"
+              highlight="Swimming Pool"
+              text="Take a break between classes or unwind after a long day with a dip in our on-site swimming pool, open to all residents."
+              imgSrc="/life-facility-pool.webp"
+              imgAlt="Swimming pool"
+            />
 
-              <div className="grid sm:grid-cols-3 gap-6">
-                <div className="bg-white/70 backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden">
-                  <img
-                    src="/life-facility-pool.webp"
-                    alt="Swimming pool"
-                    className="w-full h-[200px] object-cover"
-                  />
-                  <div className="p-6">
-                    <div className="bg-indigo-100 p-3 rounded-xl inline-block mb-3">🏊</div>
-                    <h3 className="text-xl font-semibold text-gray-900">Swimming Pool</h3>
-                    <p className="text-gray-500 mt-2">
-                      Cool off after a long day with a dip in our on-site pool.
-                    </p>
-                  </div>
-                </div>
+            {/* FACILITIES - Pickleball */}
+            <AltSection
+              reverse
+              eyebrow="Grab a paddle at the"
+              highlight="Pickleball Court"
+              text="Challenge your floor to a match on our dedicated pickleball court - a fun, easy way to stay active and meet fellow residents."
+              imgSrc="/life-facility-pickleball.webp"
+              imgAlt="Pickleball court"
+            />
 
-                <div className="bg-white/70 backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden">
-                  <img
-                    src="/life-facility-pickleball.webp"
-                    alt="Pickleball court"
-                    className="w-full h-[200px] object-cover"
-                  />
-                  <div className="p-6">
-                    <div className="bg-green-100 p-3 rounded-xl inline-block mb-3">🏓</div>
-                    <h3 className="text-xl font-semibold text-gray-900">Pickleball Court</h3>
-                    <p className="text-gray-500 mt-2">
-                      Grab a paddle and challenge your floor to a match.
-                    </p>
-                  </div>
-                </div>
+            {/* FACILITIES - Gym */}
+            <AltSection
+              eyebrow="Stay fit at the"
+              highlight="Gym"
+              text="A fully equipped fitness space, open whenever you are, so skipping a workout is never about access."
+              imgSrc="/life-facility-gym.webp"
+              imgAlt="Gym"
+            />
 
-                <div className="bg-white/70 backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden">
-                  <img
-                    src="/life-facility-gym.webp"
-                    alt="Gym"
-                    className="w-full h-[200px] object-cover"
-                  />
-                  <div className="p-6">
-                    <div className="bg-yellow-100 p-3 rounded-xl inline-block mb-3">🏋️</div>
-                    <h3 className="text-xl font-semibold text-gray-900">Gym</h3>
-                    <p className="text-gray-500 mt-2">
-                      A fully equipped fitness space, open whenever you are.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {/* FREE PICKUP & DROP */}
+            <AltSection
+              reverse
+              eyebrow="Free pick up &"
+              highlight="drop"
+              text="Moving in shouldn't be stressful. We offer complimentary pick up and drop assistance for residents, so your first day starts on the right note."
+              imgSrc="/life-pickup-drop.webp"
+              imgAlt="Pick up and drop service"
+            />
 
-            {/* FREE PICKUP & DROP - text left, image right */}
-            <div className="grid lg:grid-cols-2 gap-10 items-center">
-              <div className="order-2 lg:order-1">
-                <div className="bg-indigo-100 p-3 rounded-xl inline-block mb-4">🚐</div>
-                <h2 className="text-3xl font-bold text-gray-900">
-                  Free pick up & <span className="text-teal-500">drop</span>
-                </h2>
-                <p className="text-gray-500 mt-4 text-lg leading-relaxed">
-                  Moving in shouldn't be stressful. We offer complimentary
-                  pick up and drop assistance for residents, so your first
-                  day starts on the right note.
-                </p>
-              </div>
-              <img
-                src="/life-pickup-drop.webp"
-                alt="Pick up and drop service"
-                className="order-1 lg:order-2 rounded-2xl shadow-xl object-cover w-full h-[340px]"
-              />
-            </div>
+            {/* EVENTS - SHPL */}
+            <AltSection
+              eyebrow="Compete in the"
+              highlight="SHPL"
+              text="Our own Student Housing Premier League - inter-property sports tournaments residents look forward to all year."
+              imgSrc="/life-event-shpl.webp"
+              imgAlt="SHPL event"
+            />
 
-            {/* EVENTS */}
-            <div>
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-gray-900">
-                  A community that <span className="text-teal-500">celebrates together</span>
-                </h2>
-                <p className="text-gray-500 mt-3 text-lg">
-                  From annual fests to festive get-togethers, there's always something happening.
-                </p>
-              </div>
+            {/* EVENTS - Valentine's Day */}
+            <AltSection
+              reverse
+              eyebrow="Celebrate"
+              highlight="Valentine's Day"
+              text="Themed decor, games and get-togethers that turn the hostel common area into a celebration space every February."
+              imgSrc="/life-event-valentines.webp"
+              imgAlt="Valentine's Day event"
+            />
 
-              <div className="grid sm:grid-cols-3 gap-6">
-                <div className="bg-white/70 backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden">
-                  <img
-                    src="/life-event-shpl.webp"
-                    alt="SHPL event"
-                    className="w-full h-[200px] object-cover"
-                  />
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold text-gray-900">SHPL</h3>
-                    <p className="text-gray-500 mt-2">
-                      Our own Student Housing Premier League - inter-property
-                      sports tournaments residents look forward to all year.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="bg-white/70 backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden">
-                  <img
-                    src="/life-event-valentines.webp"
-                    alt="Valentine's Day event"
-                    className="w-full h-[200px] object-cover"
-                  />
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold text-gray-900">Valentine's Day</h3>
-                    <p className="text-gray-500 mt-2">
-                      Themed decor, games and get-togethers that turn the
-                      hostel common area into a celebration space.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="bg-white/70 backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden">
-                  <img
-                    src="/life-event-parties.webp"
-                    alt="Resident parties"
-                    className="w-full h-[200px] object-cover"
-                  />
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold text-gray-900">Parties</h3>
-                    <p className="text-gray-500 mt-2">
-                      Birthdays, festivals, exam-week wind-downs - reasons to
-                      get together are never in short supply.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {/* EVENTS - Parties */}
+            <AltSection
+              eyebrow="Never miss a"
+              highlight="Party"
+              text="Birthdays, festivals, exam-week wind-downs - reasons to get together are never in short supply."
+              imgSrc="/life-event-parties.webp"
+              imgAlt="Resident parties"
+            />
 
             {/* REVIEWS */}
-            <div>
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-gray-900">
-                  What our <span className="text-teal-500">residents say</span>
-                </h2>
-              </div>
+            <AltSection
+              eyebrow="What Ananya R."
+              highlight="says"
+              text="&ldquo;The food and housekeeping made moving away from home so much easier. It genuinely feels like a second home.&rdquo;"
+              imgSrc="/life-review-ananya.webp"
+              imgAlt="Resident Ananya R."
+            />
 
-              <div className="grid sm:grid-cols-3 gap-6">
-                {[
-                  {
-                    name: "Ananya R.",
-                    text: "The food and housekeeping made moving away from home so much easier. It genuinely feels like a second home.",
-                  },
-                  {
-                    name: "Rohan S.",
-                    text: "Loved the SHPL tournaments - made so many friends across floors I'd never have met otherwise.",
-                  },
-                  {
-                    name: "Priya K.",
-                    text: "Free pick up on day one was such a relief. The pool and gym make weekends actually fun.",
-                  },
-                ].map((review) => (
-                  <div
-                    key={review.name}
-                    className="bg-white/70 backdrop-blur-xl rounded-2xl shadow-xl p-6"
-                  >
-                    <div className="text-yellow-400 mb-3">★★★★★</div>
-                    <p className="text-gray-600 leading-relaxed">"{review.text}"</p>
-                    <p className="text-gray-900 font-semibold mt-4">{review.name}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <AltSection
+              reverse
+              eyebrow="What Rohan S."
+              highlight="says"
+              text="&ldquo;Loved the SHPL tournaments - made so many friends across floors I'd never have met otherwise.&rdquo;"
+              imgSrc="/life-review-rohan.webp"
+              imgAlt="Resident Rohan S."
+            />
+
+            <AltSection
+              eyebrow="What Priya K."
+              highlight="says"
+              text="&ldquo;Free pick up on day one was such a relief. The pool and gym make weekends actually fun.&rdquo;"
+              imgSrc="/life-review-priya.webp"
+              imgAlt="Resident Priya K."
+            />
 
             {/* CTA */}
             <div className="text-center bg-white/70 backdrop-blur-xl rounded-3xl shadow-2xl p-12">
