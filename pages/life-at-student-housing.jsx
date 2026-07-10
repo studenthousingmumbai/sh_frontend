@@ -12,14 +12,13 @@ export default function LifeAtStudentHousing() {
   const eventsRef = useRef(null);
   const reviewsRef = useRef(null);
 
-  const sectionRefs = [
-    accommodationRef,
-    foodRef,
-    facilitiesRef,
-    pickupRef,
-    eventsRef,
-    reviewsRef,
-  ];
+const sectionRefs = [
+  accommodationRef,
+  foodRef,
+  facilitiesRef,
+  eventsRef,
+  reviewsRef,
+];
 
   return (
     <>
@@ -180,10 +179,18 @@ export default function LifeAtStudentHousing() {
                   for a pickleball match with your floor, or head to the fully
                   equipped gym whenever you need to sweat it out.
                 </p>
+                <h2 className="text-3xl font-bold text-gray-900">
+                  Free pick up & <span className="text-teal-500">drop</span>
+                </h2>
+                <p className="text-gray-500 mt-4 text-lg leading-relaxed">
+                  Moving in shouldn't be stressful. We offer complimentary
+                  pick up and drop assistance for residents, so your first
+                  day starts on the right note.
+                </p>
               </div>
             </div>
 
-            {/* FREE PICKUP & DROP - text left, image right */}
+            {/* FREE PICKUP & DROP - text left, image right 
             <div ref={pickupRef} className="grid lg:grid-cols-2 gap-10 items-center relative z-10">
               <div className="order-2 lg:order-1">
                 <div className="bg-indigo-100 p-3 rounded-xl inline-block mb-4">🚐</div>
@@ -202,89 +209,91 @@ export default function LifeAtStudentHousing() {
                 className="order-1 lg:order-2 rounded-2xl shadow-xl object-cover w-full h-[340px]"
               />
             </div>
-
-            {/* EVENTS - text left, images right */}
-            <div ref={eventsRef} className="grid lg:grid-cols-2 gap-10 items-center relative z-10">
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900">
-                  A community that <span className="text-teal-500">celebrates together</span>
-                </h2>
-                <p className="text-gray-500 mt-4 text-lg leading-relaxed">
-                  From the Student Housing Premier League and Valentine's Day
-                  celebrations to birthday and festival parties, there's always
-                  something happening to bring residents together.
-                </p>
-              </div>
-              <div className="relative grid grid-cols-2 gap-4">
-                <img
-                  src="/life-event-shpl.webp"
-                  alt="SHPL event"
-                  className="rounded-2xl shadow-xl object-cover w-full h-[420px]"
-                />
-                <div className="space-y-4 pt-10">
-                  <img
-                    src="/life-event-valentines.webp"
-                    alt="Valentine's Day event"
-                    className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
-                  />
-                  <img
-                    src="/life-event-parties.webp"
-                    alt="Resident parties"
-                    className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
-                  />
-                </div>
-              </div>
-            </div>
+*/}
+           
+           {/* EVENTS - images left, text right */}
+<div ref={eventsRef} className="grid lg:grid-cols-2 gap-10 items-center relative z-10">
+  <div className="relative grid grid-cols-2 gap-4">
+    <img
+      src="/life-event-shpl.webp"
+      alt="SHPL event"
+      className="rounded-2xl shadow-xl object-cover w-full h-[420px]"
+    />
+    <div className="space-y-4 pt-10">
+      <img
+        src="/life-event-valentines.webp"
+        alt="Valentine's Day event"
+        className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
+      />
+      <img
+        src="/life-event-parties.webp"
+        alt="Resident parties"
+        className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
+      />
+    </div>
+  </div>
+  <div>
+    <h2 className="text-3xl font-bold text-gray-900">
+      A community that <span className="text-teal-500">celebrates together</span>
+    </h2>
+    <p className="text-gray-500 mt-4 text-lg leading-relaxed">
+      From the Student Housing Premier League and Valentine's Day
+      celebrations to birthday and festival parties, there's always
+      something happening to bring residents together.
+    </p>
+  </div>
+</div>
 
             {/* REVIEWS - images left, text right */}
-            <div ref={reviewsRef} className="grid lg:grid-cols-2 gap-10 items-center relative z-10">
-              <div className="relative grid grid-cols-2 gap-4">
-                <img
-                  src="/life-review-1.webp"
-                  alt="Resident life"
-                  className="rounded-2xl shadow-xl object-cover w-full h-[420px]"
-                />
-                <div className="space-y-4 pt-10">
-                  <img
-                    src="/life-review-2.webp"
-                    alt="Resident life"
-                    className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
-                  />
-                  <img
-                    src="/life-review-3.webp"
-                    alt="Resident life"
-                    className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
-                  />
-                </div>
-              </div>
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900">
-                  What our <span className="text-teal-500">residents say</span>
-                </h2>
-                <div className="mt-6 space-y-6">
-                  {[
-                    {
-                      name: "Ananya R.",
-                      text: "The food and housekeeping made moving away from home so much easier. It genuinely feels like a second home.",
-                    },
-                    {
-                      name: "Rohan S.",
-                      text: "Loved the SHPL tournaments - made so many friends across floors I'd never have met otherwise.",
-                    },
-                    {
-                      name: "Priya K.",
-                      text: "Free pick up on day one was such a relief. The pool and gym make weekends actually fun.",
-                    },
-                  ].map((review) => (
-                    <div key={review.name}>
-                      <div className="text-yellow-400 mb-1">★★★★★</div>
-                      <p className="text-gray-600 leading-relaxed">"{review.text}"</p>
-                      <p className="text-gray-900 font-semibold mt-1">{review.name}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+         {/* REVIEWS - text left, images right */}
+<div ref={reviewsRef} className="grid lg:grid-cols-2 gap-10 items-center relative z-10">
+  <div>
+    <h2 className="text-3xl font-bold text-gray-900">
+      What our <span className="text-teal-500">residents say</span>
+    </h2>
+    <div className="mt-6 space-y-6">
+      {[
+        {
+          name: "Ananya R.",
+          text: "The food and housekeeping made moving away from home so much easier. It genuinely feels like a second home.",
+        },
+        {
+          name: "Rohan S.",
+          text: "Loved the SHPL tournaments - made so many friends across floors I'd never have met otherwise.",
+        },
+        {
+          name: "Priya K.",
+          text: "Free pick up on day one was such a relief. The pool and gym make weekends actually fun.",
+        },
+      ].map((review) => (
+        <div key={review.name}>
+          <div className="text-yellow-400 mb-1">★★★★★</div>
+          <p className="text-gray-600 leading-relaxed">"{review.text}"</p>
+          <p className="text-gray-900 font-semibold mt-1">{review.name}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+  <div className="relative grid grid-cols-2 gap-4">
+    <img
+      src="/life-review-1.webp"
+      alt="Resident life"
+      className="rounded-2xl shadow-xl object-cover w-full h-[420px]"
+    />
+    <div className="space-y-4 pt-10">
+      <img
+        src="/life-review-2.webp"
+        alt="Resident life"
+        className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
+      />
+      <img
+        src="/life-review-3.webp"
+        alt="Resident life"
+        className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
+      />
+    </div>
+  </div>
+</div>
 
           </div>
         </div>
