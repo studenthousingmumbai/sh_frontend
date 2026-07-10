@@ -23,7 +23,7 @@ export default function ZigzagScrollPath({ sectionRefs, containerRef }) {
           const el = ref.current;
           if (!el) return null;
           const rect = el.getBoundingClientRect();
-          const y = rect.top + window.scrollY - containerTop + 80;
+          const y = rect.top + window.scrollY - containerTop + 80; // small offset from top of section
           return { y, side: i % 2 === 0 ? 0.25 : 0.75 };
         })
         .filter(Boolean);
@@ -44,7 +44,7 @@ export default function ZigzagScrollPath({ sectionRefs, containerRef }) {
       });
       setPathD(d);
 
-      // dimensions/positions may have shifted -> tell ScrollTrigger to recalc
+      // recalc ScrollTrigger since positions/height may have shifted
       ScrollTrigger.refresh();
     }
 
@@ -77,26 +77,26 @@ export default function ZigzagScrollPath({ sectionRefs, containerRef }) {
     path.style.strokeDashoffset = length;
 
     const ctx = gsap.context(() => {
-      const st = ScrollTrigger.create({
-        trigger: svgRef.current,
-        start: "top center",
-        end: "bottom center",
-        scrub: 0.5,
-        onUpdate: (self) => {
-          const drawLength = length * self.progress;
-          path.style.strokeDashoffset = length - drawLength;
-
-          if (dotRef.current) {
-            const point = path.getPointAtLength(drawLength);
-            dotRef.current.setAttribute(
-              "transform",
-              `translate(${point.x}, ${point.y})`
-            );
-          }
+      gsap.to(path, {
+        strokeDashoffset: 0,
+        ease: "none",
+        scrollTrigger: {
+          trigger: svgRef.current,
+          start: "top center",
+          end: "bottom center",
+          scrub: 0.5,
+          onUpdate: (self) => {
+            const drawLength = length * self.progress;
+            if (dotRef.current) {
+              const point = path.getPointAtLength(drawLength);
+              dotRef.current.setAttribute(
+                "transform",
+                `translate(${point.x}, ${point.y})`
+              );
+            }
+          },
         },
       });
-
-      return () => st.kill();
     });
 
     return () => ctx.revert();
@@ -105,23 +105,17 @@ export default function ZigzagScrollPath({ sectionRefs, containerRef }) {
   return (
     <svg
       ref={svgRef}
-      className="absolute top-0 left-0 w-full pointer-events-none hidden lg:block -z-10"
+      className="absolute top-0 left-0 w-full pointer-events-none hidden lg:block z-0"
       style={{ height: svgHeight }}
     >
       {/* base trail (always visible, faint) */}
-      <path
-        d={pathD}
-        fill="none"
-        stroke="#fce8b0"
-        strokeWidth="3"
-        strokeDasharray="6 8"
-      />
+      <path d={pathD} fill="none" stroke="#ffcc29" strokeWidth="3" strokeDasharray="6 8" />
       {/* progress line, draws in as you scroll */}
-      <path ref={pathRef} d={pathD} fill="none" stroke="#FFCC29" strokeWidth="3" />
+      <path ref={pathRef} d={pathD} fill="none" stroke="#ffcc29" strokeWidth="3" />
       {/* moving dot - glow + solid center, travels along the drawn line */}
       <g ref={dotRef}>
-        <circle r="12" fill="#FFCC29" opacity="0.25" />
-        <circle r="6" fill="#FFCC29" />
+        <circle r="12" fill="#ffcc29" opacity="0.25" />
+        <circle r="6" fill="#ffcc29" />
       </g>
     </svg>
   );
