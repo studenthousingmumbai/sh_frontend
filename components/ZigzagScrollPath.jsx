@@ -86,15 +86,21 @@ export default function ZigzagScrollPath({ sectionRefs, containerRef }) {
           end: "bottom center",
           scrub: 0.5,
           onUpdate: (self) => {
-            const drawLength = length * self.progress;
-            if (dotRef.current) {
-              const point = path.getPointAtLength(drawLength);
-              dotRef.current.setAttribute(
-                "transform",
-                `translate(${point.x}, ${point.y})`
-              );
-            }
-          },
+  const drawLength = length * self.progress;
+  path.style.strokeDashoffset = length - drawLength;
+
+  if (dotRef.current) {
+    // dot moves faster than the line draw — tweak speedFactor to taste
+    const speedFactor = 2.5;
+    const dotProgress = Math.min(self.progress * speedFactor, 1);
+    const dotLength = length * dotProgress;
+    const point = path.getPointAtLength(dotLength);
+    dotRef.current.setAttribute(
+      "transform",
+      `translate(${point.x}, ${point.y})`
+    );
+  }
+},
         },
       });
     });
