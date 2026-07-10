@@ -22,7 +22,7 @@ const points = sectionRefs
     const el = ref.current;
     if (!el) return null;
     const rect = el.getBoundingClientRect();
-    const y = rect.top + window.scrollY - containerTop + 40; // small offset from top of section
+    const y = rect.top + window.scrollY - containerTop + 80; // small offset from top of section
     return { y, side: i % 2 === 0 ? 0.25 : 0.75 };
   })
   .filter(Boolean);
