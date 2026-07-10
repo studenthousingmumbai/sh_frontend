@@ -97,7 +97,7 @@ export default function LifeAtStudentHousing() {
                     className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
                   />
                   <img
-                    src="/life-accommodation-3.webp"
+                    src="/contact-bg.jpeg"
                     alt="Hostel corridor"
                     className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
                   />
