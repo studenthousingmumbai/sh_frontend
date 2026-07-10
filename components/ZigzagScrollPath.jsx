@@ -17,15 +17,15 @@ export default function ZigzagScrollPath({ sectionRefs, containerRef }) {
       const containerTop = container.getBoundingClientRect().top + window.scrollY;
       const width = container.offsetWidth;
 
-      const points = sectionRefs
-        .map((ref, i) => {
-          const el = ref.current;
-          if (!el) return null;
-          const rect = el.getBoundingClientRect();
-          const y = rect.top + window.scrollY - containerTop + rect.height / 2;
-          return { y, side: i % 2 === 0 ? 0.25 : 0.75 };
-        })
-        .filter(Boolean);
+const points = sectionRefs
+  .map((ref, i) => {
+    const el = ref.current;
+    if (!el) return null;
+    const rect = el.getBoundingClientRect();
+    const y = rect.top + window.scrollY - containerTop + 40; // small offset from top of section
+    return { y, side: i % 2 === 0 ? 0.25 : 0.75 };
+  })
+  .filter(Boolean);
 
       setSvgHeight(container.offsetHeight);
 
@@ -79,9 +79,9 @@ export default function ZigzagScrollPath({ sectionRefs, containerRef }) {
       style={{ height: svgHeight }}
     >
       {/* base trail (always visible, faint) */}
-      <path d={pathD} fill="none" stroke="#e2e8f0" strokeWidth="3" strokeDasharray="6 8" />
+      <path d={pathD} fill="none" stroke="#ffcc29" strokeWidth="3" strokeDasharray="6 8" />
       {/* progress line, draws in as you scroll */}
-      <path ref={pathRef} d={pathD} fill="none" stroke="#14b8a6" strokeWidth="3" />
+      <path ref={pathRef} d={pathD} fill="none" stroke="#ffcc29" strokeWidth="3" />
     </svg>
   );
 }
