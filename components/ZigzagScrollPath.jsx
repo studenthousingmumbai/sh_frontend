@@ -73,15 +73,15 @@ export default function ZigzagScrollPath({ sectionRefs, containerRef }) {
   }, [pathD]);
 
   return (
-    <svg
-      ref={svgRef}
-      className="absolute top-0 left-0 w-full pointer-events-none hidden lg:block z-0"
-      style={{ height: svgHeight }}
-    >
+<svg
+  ref={svgRef}
+  className="absolute top-0 left-0 w-full pointer-events-none hidden lg:block -z-10"
+  style={{ height: svgHeight }}
+>
       {/* base trail (always visible, faint) */}
-      <path d={pathD} fill="none" stroke="#e2e8f0" strokeWidth="3" strokeDasharray="6 8" />
-      {/* progress line, draws in as you scroll */}
-      <path ref={pathRef} d={pathD} fill="none" stroke="#14b8a6" strokeWidth="3" />
+<path d={pathD} fill="none" stroke="#fce8b0" strokeWidth="3" strokeDasharray="6 8" />
+{/* progress line, draws in as you scroll */}
+<path ref={pathRef} d={pathD} fill="none" stroke="#FFCC29" strokeWidth="3" />
     </svg>
   );
 }
