@@ -85,13 +85,13 @@ const sectionRefs = [
             <div ref={accommodationRef} className="grid lg:grid-cols-2 gap-10 items-center relative z-10">
               <div className="relative grid grid-cols-2 gap-4">
                 <img
-                  src="/life-accommodation-1.webp"
+                  src="/contact-bg.jpeg"
                   alt="Student housing room"
                   className="rounded-2xl shadow-xl object-cover w-full h-[420px]"
                 />
                 <div className="space-y-4 pt-10">
                   <img
-                    src="/life-accommodation-2.webp"
+                    src="/contact-bg.jpeg"
                     alt="Common area"
                     className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
                   />
@@ -129,18 +129,18 @@ const sectionRefs = [
               </div>
               <div className="relative grid grid-cols-2 gap-4">
                 <img
-                  src="/life-food-1.webp"
+                  src="/contact-bg.jpeg"
                   alt="Dining area"
                   className="rounded-2xl shadow-xl object-cover w-full h-[420px]"
                 />
                 <div className="space-y-4 pt-10">
                   <img
-                    src="/life-food-2.webp"
+                    src="/contact-bg.jpeg"
                     alt="Meal spread"
                     className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
                   />
                   <img
-                    src="/life-food-3.webp"
+                    src="/contact-bg.jpeg"
                     alt="Dining hall"
                     className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
                   />
@@ -152,18 +152,18 @@ const sectionRefs = [
             <div ref={facilitiesRef} className="grid lg:grid-cols-2 gap-10 items-center relative z-10">
               <div className="relative grid grid-cols-2 gap-4">
                 <img
-                  src="/life-facility-pool.webp"
+                  src="/contact-bg.jpeg"
                   alt="Swimming pool"
                   className="rounded-2xl shadow-xl object-cover w-full h-[420px]"
                 />
                 <div className="space-y-4 pt-10">
                   <img
-                    src="/life-facility-pickleball.webp"
+                    src="/contact-bg.jpeg"
                     alt="Pickleball court"
                     className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
                   />
                   <img
-                    src="/life-facility-gym.webp"
+                    src="/contact-bg.jpeg"
                     alt="Gym"
                     className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
                   />
@@ -224,18 +224,18 @@ const sectionRefs = [
               </div>
               <div className="relative grid grid-cols-2 gap-4">
                 <img
-                  src="/life-event-shpl.webp"
+                  src="/contact-bg.jpeg"
                   alt="SHPL event"
                   className="rounded-2xl shadow-xl object-cover w-full h-[420px]"
                 />
                 <div className="space-y-4 pt-10">
                   <img
-                    src="/life-event-valentines.webp"
+                    src="/contact-bg.jpeg"
                     alt="Valentine's Day event"
                     className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
                   />
                   <img
-                    src="/life-event-parties.webp"
+                    src="/contact-bg.jpeg"
                     alt="Resident parties"
                     className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
                   />
@@ -247,18 +247,18 @@ const sectionRefs = [
             <div ref={reviewsRef} className="grid lg:grid-cols-2 gap-10 items-center relative z-10">
               <div className="relative grid grid-cols-2 gap-4">
                 <img
-                  src="/life-review-1.webp"
+                  src="/contact-bg.jpeg"
                   alt="Resident life"
                   className="rounded-2xl shadow-xl object-cover w-full h-[420px]"
                 />
                 <div className="space-y-4 pt-10">
                   <img
-                    src="/life-review-2.webp"
+                    src="/contact-bg.jpeg"
                     alt="Resident life"
                     className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
                   />
                   <img
-                    src="/life-review-3.webp"
+                    src="/contact-bg.jpeg"
                     alt="Resident life"
                     className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
                   />
