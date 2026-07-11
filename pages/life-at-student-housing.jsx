@@ -75,7 +75,7 @@ const sectionRefs = [
               <p className="text-4xl font-bold text-gray-900">
                 Start living your best life <span className="text-[#FFCC29]">from day one</span>
               </p>
-              <p className="text-gray-500 mt-4 text-lg">
+              <p className="text-black mt-4 text-lg">
                 Bring a bag full of hopes, dreams and ambitions - everything else,
                 a comfortable room, good food, and a community, is already taken care of.
               </p>
@@ -106,7 +106,7 @@ const sectionRefs = [
                 <h2 className="text-3xl font-bold text-gray-900">
                   Accommodation that feels like <span className="text-[#FFCC29]">home</span>
                 </h2>
-                <p className="text-gray-500 mt-4 text-lg leading-relaxed">
+                <p className="text-black mt-4 text-lg leading-relaxed">
                   Fully furnished single, double and triple sharing rooms with
                   attached washrooms, storage, study desks and high-speed WiFi.
                   Housekeeping and linen change are handled for you, so you can
@@ -121,7 +121,7 @@ const sectionRefs = [
                 <h2 className="text-3xl font-bold text-gray-900">
                   Food that tastes like <span className="text-[#FFCC29]">home-cooked</span>
                 </h2>
-                <p className="text-gray-500 mt-4 text-lg leading-relaxed">
+                <p className="text-black mt-4 text-lg leading-relaxed">
                   Wholesome, hygienically prepared meals served through the day
                   - breakfast, lunch, evening snacks and dinner - with a
                   rotating menu so it never feels repetitive.
@@ -173,7 +173,7 @@ const sectionRefs = [
                 <h2 className="text-3xl font-bold text-gray-900">
                   Facilities built for <span className="text-[#FFCC29]">downtime</span>
                 </h2>
-                <p className="text-gray-500 mt-4 text-lg leading-relaxed">
+                <p className="text-black mt-4 text-lg leading-relaxed">
                   A break from studying is just an elevator ride away. Cool off
                   after a long day with a dip in our swimming pool, grab a paddle
                   for a pickleball match with your floor, or head to the fully
@@ -182,7 +182,7 @@ const sectionRefs = [
                 <h2 className="text-3xl font-bold text-gray-900">
                   Free pick up & <span className="text-[#FFCC29]">drop</span>
                 </h2>
-                <p className="text-gray-500 mt-4 text-lg leading-relaxed">
+                <p className="text-black mt-4 text-lg leading-relaxed">
                   Moving in shouldn't be stressful. We offer complimentary
                   pick up and drop assistance for residents, so your first
                   day starts on the right note.
@@ -197,7 +197,7 @@ const sectionRefs = [
                 <h2 className="text-3xl font-bold text-gray-900">
                   Free pick up & <span className="text-[#FFCC29]">drop</span>
                 </h2>
-                <p className="text-gray-500 mt-4 text-lg leading-relaxed">
+                <p className="text-black mt-4 text-lg leading-relaxed">
                   Moving in shouldn't be stressful. We offer complimentary
                   pick up and drop assistance for residents, so your first
                   day starts on the right note.
@@ -216,7 +216,7 @@ const sectionRefs = [
                 <h2 className="text-3xl font-bold text-gray-900">
                   A community that <span className="text-[#FFCC29]">celebrates together</span>
                 </h2>
-                <p className="text-gray-500 mt-4 text-lg leading-relaxed">
+                <p className="text-black mt-4 text-lg leading-relaxed">
                   From the Student Housing Premier League and Valentine's Day
                   celebrations to birthday and festival parties, there's always
                   something happening to bring residents together.

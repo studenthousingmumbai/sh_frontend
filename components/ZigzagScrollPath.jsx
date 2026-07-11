@@ -76,31 +76,50 @@ export default function ZigzagScrollPath({ sectionRefs, containerRef }) {
     path.style.strokeDasharray = length;
     path.style.strokeDashoffset = length;
 
+    // Binary search: find the arc-length position on the path
+    // whose y-coordinate matches the target scroll-based y.
+    function findLengthForY(targetY) {
+      let low = 0;
+      let high = length;
+      let mid = 0;
+      // ~20 iterations is plenty precise for pixel-level accuracy
+      for (let i = 0; i < 20; i++) {
+        mid = (low + high) / 2;
+        const y = path.getPointAtLength(mid).y;
+        if (y < targetY) {
+          low = mid;
+        } else {
+          high = mid;
+        }
+      }
+      return mid;
+    }
+
     const ctx = gsap.context(() => {
-      gsap.to(path, {
-        strokeDashoffset: 0,
-        ease: "none",
-        scrollTrigger: {
-          trigger: svgRef.current,
-          start: "top center",
-          end: "bottom center",
-          scrub: 0.5,
-          onUpdate: (self) => {
-            const drawLength = length * self.progress;
-            if (dotRef.current) {
-              const point = path.getPointAtLength(drawLength);
-              dotRef.current.setAttribute(
-                "transform",
-                `translate(${point.x}, ${point.y})`
-              );
-            }
-          },
+      ScrollTrigger.create({
+        trigger: svgRef.current,
+        start: "top center",
+        end: "bottom center",
+        scrub: 0.5,
+        onUpdate: (self) => {
+          const targetY = self.progress * svgHeight;
+          const drawLength = findLengthForY(targetY);
+
+          path.style.strokeDashoffset = length - drawLength;
+
+          if (dotRef.current) {
+            const point = path.getPointAtLength(drawLength);
+            dotRef.current.setAttribute(
+              "transform",
+              `translate(${point.x}, ${point.y})`
+            );
+          }
         },
       });
     });
 
     return () => ctx.revert();
-  }, [pathD]);
+  }, [pathD, svgHeight]);
 
   return (
     <svg
