@@ -326,7 +326,7 @@ const sectionRefs = [
 
             {/* CTA - Find Your New Home */}
             <div
-              className="bg-white py-16 rounded-2xl relative z-10"
+              className="bg-[#e4e4e4] py-16 rounded-2xl relative z-10"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
               <div className="max-w-4xl mx-auto text-center">
