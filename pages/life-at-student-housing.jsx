@@ -73,7 +73,7 @@ const sectionRefs = [
             {/* INTRO */}
             <div className="text-center max-w-2xl mx-auto relative z-10">
               <p className="text-4xl font-bold text-gray-900">
-                Start living your best life <span className="text-teal-500">from day one</span>
+                Start living your best life <span className="text-[#FFCC29]">from day one</span>
               </p>
               <p className="text-gray-500 mt-4 text-lg">
                 Bring a bag full of hopes, dreams and ambitions - everything else,
@@ -104,7 +104,7 @@ const sectionRefs = [
               </div>
               <div>
                 <h2 className="text-3xl font-bold text-gray-900">
-                  Accommodation that feels like <span className="text-teal-500">home</span>
+                  Accommodation that feels like <span className="text-[#FFCC29]">home</span>
                 </h2>
                 <p className="text-gray-500 mt-4 text-lg leading-relaxed">
                   Fully furnished single, double and triple sharing rooms with
@@ -119,7 +119,7 @@ const sectionRefs = [
             <div ref={foodRef} className="grid lg:grid-cols-2 gap-10 items-center relative z-10">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900">
-                  Food that tastes like <span className="text-teal-500">home-cooked</span>
+                  Food that tastes like <span className="text-[#FFCC29]">home-cooked</span>
                 </h2>
                 <p className="text-gray-500 mt-4 text-lg leading-relaxed">
                   Wholesome, hygienically prepared meals served through the day
@@ -171,7 +171,7 @@ const sectionRefs = [
               </div>
               <div>
                 <h2 className="text-3xl font-bold text-gray-900">
-                  Facilities built for <span className="text-teal-500">downtime</span>
+                  Facilities built for <span className="text-[#FFCC29]">downtime</span>
                 </h2>
                 <p className="text-gray-500 mt-4 text-lg leading-relaxed">
                   A break from studying is just an elevator ride away. Cool off
@@ -180,7 +180,7 @@ const sectionRefs = [
                   equipped gym whenever you need to sweat it out.
                 </p>
                 <h2 className="text-3xl font-bold text-gray-900">
-                  Free pick up & <span className="text-teal-500">drop</span>
+                  Free pick up & <span className="text-[#FFCC29]">drop</span>
                 </h2>
                 <p className="text-gray-500 mt-4 text-lg leading-relaxed">
                   Moving in shouldn't be stressful. We offer complimentary
@@ -195,7 +195,7 @@ const sectionRefs = [
               <div className="order-2 lg:order-1">
                 <div className="bg-indigo-100 p-3 rounded-xl inline-block mb-4">🚐</div>
                 <h2 className="text-3xl font-bold text-gray-900">
-                  Free pick up & <span className="text-teal-500">drop</span>
+                  Free pick up & <span className="text-[#FFCC29]">drop</span>
                 </h2>
                 <p className="text-gray-500 mt-4 text-lg leading-relaxed">
                   Moving in shouldn't be stressful. We offer complimentary
@@ -214,7 +214,7 @@ const sectionRefs = [
             <div ref={eventsRef} className="grid lg:grid-cols-2 gap-10 items-center relative z-10">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900">
-                  A community that <span className="text-teal-500">celebrates together</span>
+                  A community that <span className="text-[#FFCC29]">celebrates together</span>
                 </h2>
                 <p className="text-gray-500 mt-4 text-lg leading-relaxed">
                   From the Student Housing Premier League and Valentine's Day
@@ -266,7 +266,7 @@ const sectionRefs = [
               </div>
               <div>
                 <h2 className="text-3xl font-bold text-gray-900">
-                  What our <span className="text-teal-500">residents say</span>
+                  What our <span className="text-[#FFCC29]">residents say</span>
                 </h2>
                 <div className="mt-6 space-y-6">
                   {[
