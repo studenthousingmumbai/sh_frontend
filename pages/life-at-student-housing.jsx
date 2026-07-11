@@ -293,6 +293,60 @@ const sectionRefs = [
               </div>
             </div>
 
+
+            {/* STATS - Trusted Student Living */}
+            <div
+              className="bg-white py-16 rounded-2xl relative z-10"
+              style={{ fontFamily: "'Montserrat', sans-serif" }}
+            >
+              <div className="text-center max-w-2xl mx-auto mb-12">
+                <h2 className="text-3xl font-bold text-black">
+                  Trusted Student Living, <span className="text-[#FFCC29]">Built Over the Years</span>
+                </h2>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                  <p className="text-4xl font-bold text-[#FFCC29]">1250+</p>
+                  <p className="text-black mt-2 text-lg">Beds Available</p>
+                </div>
+                <div>
+                  <p className="text-4xl font-bold text-[#FFCC29]">12+</p>
+                  <p className="text-black mt-2 text-lg">Premium Hostels</p>
+                </div>
+                <div>
+                  <p className="text-4xl font-bold text-[#FFCC29]">10+</p>
+                  <p className="text-black mt-2 text-lg">Years of Experience</p>
+                </div>
+                <div>
+                  <p className="text-4xl font-bold text-[#FFCC29]">6000+</p>
+                  <p className="text-black mt-2 text-lg">Students Hosted</p>
+                </div>
+              </div>
+            </div>
+
+            {/* CTA - Find Your New Home */}
+            <div
+              className="bg-white py-16 rounded-2xl relative z-10 text-center max-w-3xl mx-auto"
+              style={{ fontFamily: "'Montserrat', sans-serif" }}
+            >
+              <h2 className="text-3xl font-bold text-black">
+                Ready to Find Your New <span className="text-[#FFCC29]">Home Away From Home?</span>
+              </h2>
+              <p className="text-black mt-4 text-lg leading-relaxed">
+                Experience student living designed around comfort, convenience, and community.
+                Explore fully managed student accommodations with modern rooms, daily meals,
+                essential amenities, and everything you need to make your college journey easier.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+                <button className="bg-[#FFCC29] text-black font-semibold px-8 py-3 rounded-full hover:opacity-90 transition">
+                  Explore Hostels
+                </button>
+                <button className="border-2 border-[#FFCC29] text-black font-semibold px-8 py-3 rounded-full hover:bg-[#FFCC29] transition">
+                  Book a Visit
+                </button>
+              </div>
+            </div>
+
           </div>
         </div>
       </Layout>
