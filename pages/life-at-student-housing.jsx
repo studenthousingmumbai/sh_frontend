@@ -325,25 +325,28 @@ const sectionRefs = [
             </div>
 
             {/* CTA - Find Your New Home */}
+            {/* CTA - Find Your New Home */}
             <div
-              className="bg-white py-16 rounded-2xl relative z-10 text-center max-w-3xl mx-auto"
+              className="bg-white py-16 rounded-2xl relative z-10"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
-              <h2 className="text-3xl font-bold text-black">
-                Ready to Find Your New <span className="text-[#FFCC29]">Home Away From Home?</span>
-              </h2>
-              <p className="text-black mt-4 text-lg leading-relaxed">
-                Experience student living designed around comfort, convenience, and community.
-                Explore fully managed student accommodations with modern rooms, daily meals,
-                essential amenities, and everything you need to make your college journey easier.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-                <button className="bg-[#FFCC29] text-black font-semibold px-8 py-3 rounded-full hover:opacity-90 transition">
-                  Explore Hostels
-                </button>
-                <button className="border-2 border-[#FFCC29] text-black font-semibold px-8 py-3 rounded-full hover:bg-[#FFCC29] transition">
-                  Book a Visit
-                </button>
+              <div className="max-w-3xl mx-auto text-center">
+                <h2 className="text-3xl font-bold text-black">
+                  Ready to Find Your New <span className="text-[#FFCC29]">Home Away From Home?</span>
+                </h2>
+                <p className="text-black mt-4 text-lg leading-relaxed">
+                  Experience student living designed around comfort, convenience, and community.
+                  Explore fully managed student accommodations with modern rooms, daily meals,
+                  essential amenities, and everything you need to make your college journey easier.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+                  <button className="bg-[#FFCC29] text-black font-semibold px-8 py-3 rounded-full hover:opacity-90 transition">
+                    Explore Hostels
+                  </button>
+                  <button className="border-2 border-[#FFCC29] text-black font-semibold px-8 py-3 rounded-full hover:bg-[#FFCC29] transition">
+                    Book a Visit
+                  </button>
+                </div>
               </div>
             </div>
 
