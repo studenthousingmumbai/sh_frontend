@@ -88,18 +88,18 @@ const sectionRefs = [
             <div ref={accommodationRef} className="grid lg:grid-cols-2 gap-10 items-center relative z-10">
               <div className="relative grid grid-cols-2 gap-4">
                 <img
-                  src="/contact-bg.jpeg"
+                  src="/DSC06956.webp"
                   alt="Student housing room"
                   className="rounded-2xl shadow-xl object-cover w-full h-[420px]"
                 />
                 <div className="space-y-4 pt-10">
                   <img
-                    src="/contact-bg.jpeg"
+                    src="/DAN09002.webp"
                     alt="Common area"
                     className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
                   />
                   <img
-                    src="/contact-bg.jpeg"
+                    src="/DSC06839.webp"
                     alt="Hostel corridor"
                     className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
                   />
