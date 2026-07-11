@@ -299,7 +299,7 @@ const sectionRefs = [
               className="bg-white py-16 rounded-2xl relative z-10"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
-              <div className="text-center max-w-2xl mx-auto mb-12">
+              <div className="text-center max-w-3xl mx-auto mb-12">
                 <h2 className="text-3xl font-bold text-black">
                   Trusted Student Living, <span className="text-[#FFCC29]">Built Over the Years</span>
                 </h2>
@@ -325,12 +325,11 @@ const sectionRefs = [
             </div>
 
             {/* CTA - Find Your New Home */}
-            {/* CTA - Find Your New Home */}
             <div
               className="bg-white py-16 rounded-2xl relative z-10"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
-              <div className="max-w-3xl mx-auto text-center">
+              <div className="max-w-4xl mx-auto text-center">
                 <h2 className="text-3xl font-bold text-black">
                   Ready to Find Your New <span className="text-[#FFCC29]">Home Away From Home?</span>
                 </h2>
