@@ -65,7 +65,7 @@ const sectionRefs = [
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-[#f8fafc] to-[#eef2ff]">
+        <div className="bg-[#ffffff]">
           <div className="max-w-6xl mx-auto px-6 py-20 space-y-28 relative" ref={containerRef}>
 
             <ZigzagScrollPath sectionRefs={sectionRefs} containerRef={containerRef} />
