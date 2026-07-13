@@ -166,7 +166,7 @@ const sectionRefs = [
                     className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
                   />
                   <img
-                    src="/IMG_2394.webp"
+                    src="/DJI_20260526185058_0019_D_.webp"
                     alt="Swimming pool"
                     className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
                   />
