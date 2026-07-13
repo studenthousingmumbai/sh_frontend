@@ -79,8 +79,7 @@ const sectionRefs = [
                 Start living your best life <span className="text-[#FFCC29]">from day one</span>
               </p>
               <p className="text-black mt-4 text-lg">
-                Bring a bag full of hopes, dreams and ambitions - everything else,
-                a comfortable room, good food, and a community, is already taken care of.
+                Bring your dreams and ambitions - we'll take care of the rest. From comfortable rooms and wholesome meals to modern amenities and a vibrant community, discover what life at Student Housing is all about.
               </p>
             </div>
 
@@ -122,7 +121,7 @@ const sectionRefs = [
             <div ref={foodRef} className="grid lg:grid-cols-2 gap-10 items-center relative z-10">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900">
-                  Food that tastes like <span className="text-[#FFCC29]">home-cooked</span>
+                  Wholesome meals,<span className="text-[#FFCC29]">just like home</span>
                 </h2>
                 <p className="text-black mt-4 text-lg leading-relaxed">
                   Wholesome, hygienically prepared meals served through the day
@@ -174,7 +173,7 @@ const sectionRefs = [
               </div>
               <div>
                 <h2 className="text-3xl font-bold text-gray-900">
-                  Facilities built for <span className="text-[#FFCC29]">downtime</span>
+                  Amenities for every part of<span className="text-[#FFCC29]">Student Life</span>
                 </h2>
                 <p className="text-black mt-4 text-lg leading-relaxed">
                   A break from studying is just an elevator ride away. Cool off
