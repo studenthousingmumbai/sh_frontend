@@ -155,7 +155,7 @@ const sectionRefs = [
             <div ref={facilitiesRef} className="grid lg:grid-cols-2 gap-10 items-center relative z-10">
               <div className="relative grid grid-cols-2 gap-4">
                 <img
-                  src="/IMG_2383_webp"
+                  src="/IMG_2383.webp"
                   alt="gym"
                   className="rounded-2xl shadow-xl object-cover w-full h-[420px]"
                 />
