@@ -138,7 +138,7 @@ const sectionRefs = [
                 />
                 <div className="space-y-4 pt-10">
                   <img
-                    src="/P1009225.webp"
+                    src="/DAN09233.webp"
                     alt="Meal spread"
                     className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
                   />
