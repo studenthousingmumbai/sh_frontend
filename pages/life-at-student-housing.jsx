@@ -132,18 +132,18 @@ const sectionRefs = [
               </div>
               <div className="relative grid grid-cols-2 gap-4">
                 <img
-                  src="/contact-bg.jpeg"
+                  src="/P1009253.webp"
                   alt="Dining area"
                   className="rounded-2xl shadow-xl object-cover w-full h-[420px]"
                 />
                 <div className="space-y-4 pt-10">
                   <img
-                    src="/contact-bg.jpeg"
+                    src="/P1009225.webp"
                     alt="Meal spread"
                     className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
                   />
                   <img
-                    src="/contact-bg.jpeg"
+                    src="/P1009224.webp"
                     alt="Dining hall"
                     className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
                   />
