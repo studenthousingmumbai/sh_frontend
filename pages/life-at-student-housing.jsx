@@ -182,14 +182,14 @@ const sectionRefs = [
                   for a pickleball match with your floor, or head to the fully
                   equipped gym whenever you need to sweat it out.
                 </p>
-                <h2 className="text-3xl font-bold text-gray-900">
+                <h2 className="text-3xl mt-4 font-bold text-gray-900">
                   Free pick up & <span className="text-[#FFCC29]">drop</span>
                 </h2>
-                <p className="text-black mt-4 text-lg leading-relaxed">
+                {/* <p className="text-black mt-4 text-lg leading-relaxed">
                   Moving in shouldn't be stressful. We offer complimentary
                   pick up and drop assistance for residents, so your first
                   day starts on the right note.
-                </p>
+                </p> */}
               </div>
             </div>
 
