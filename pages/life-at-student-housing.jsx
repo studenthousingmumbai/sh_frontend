@@ -121,7 +121,7 @@ const sectionRefs = [
             <div ref={foodRef} className="grid lg:grid-cols-2 gap-10 items-center relative z-10">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900">
-                  Wholesome meals,<span className="text-[#FFCC29]">just like home</span>
+                  Wholesome meals, <span className="text-[#FFCC29]">just like home</span>
                 </h2>
                 <p className="text-black mt-4 text-lg leading-relaxed">
                   Wholesome, hygienically prepared meals served through the day
@@ -173,7 +173,7 @@ const sectionRefs = [
               </div>
               <div>
                 <h2 className="text-3xl font-bold text-gray-900">
-                  Amenities for every part of<span className="text-[#FFCC29]">Student Life</span>
+                  Amenities for every part of <span className="text-[#FFCC29]">Student Life</span>
                 </h2>
                 <p className="text-black mt-4 text-lg leading-relaxed">
                   A break from studying is just an elevator ride away. Cool off
