@@ -155,19 +155,19 @@ const sectionRefs = [
             <div ref={facilitiesRef} className="grid lg:grid-cols-2 gap-10 items-center relative z-10">
               <div className="relative grid grid-cols-2 gap-4">
                 <img
-                  src="/contact-bg.jpeg"
-                  alt="Swimming pool"
+                  src="/IMG_2383_webp"
+                  alt="gym"
                   className="rounded-2xl shadow-xl object-cover w-full h-[420px]"
                 />
                 <div className="space-y-4 pt-10">
                   <img
-                    src="/contact-bg.jpeg"
+                    src="/DAN09334.webp"
                     alt="Pickleball court"
                     className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
                   />
                   <img
-                    src="/contact-bg.jpeg"
-                    alt="Gym"
+                    src="/IMG_2394.webp"
+                    alt="Swimming pool"
                     className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
                   />
                 </div>
