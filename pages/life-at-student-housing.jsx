@@ -22,7 +22,7 @@ const sectionRefs = [
 
   // Shared classes: white rounded card on mobile, transparent/plain on desktop (lg+)
   const cardClasses =
-    "bg-white rounded-3xl shadow-lg shadow-black/5 p-6 sm:p-8 lg:bg-transparent lg:shadow-none lg:p-0 lg:rounded-none grid lg:grid-cols-2 gap-8 lg:gap-10 items-center relative z-10";
+    "bg-white rounded-3xl shadow-lg shadow-black/5 p-1 sm:p-8 lg:bg-transparent lg:shadow-none lg:p-0 lg:rounded-none grid lg:grid-cols-2 gap-8 lg:gap-10 items-center relative z-10";
   const textClasses = "text-center lg:text-left";
   const paraClasses = "text-gray-600 lg:text-black mt-4 text-base lg:text-lg leading-relaxed";
   const headingClasses = "text-2xl lg:text-3xl font-bold text-gray-900";
