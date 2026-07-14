@@ -8,7 +8,6 @@ import useAuth from "../hooks/useAuth";
 import withAuth from "../hooks/withAuth";
 import Script from "next/script";
 import useApi from "../hooks/useApi";
-import BookingModal from "./BookingModal";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
