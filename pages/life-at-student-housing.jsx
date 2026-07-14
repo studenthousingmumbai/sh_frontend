@@ -160,7 +160,7 @@ const sectionRefs = [
                 />
                 <div className="space-y-4 pt-10">
                   <img
-                    src="/DAN09360.webp"
+                    src="/DAN09360_.webp"
                     alt="Pickleball court"
                     className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
                   />
