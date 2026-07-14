@@ -1,7 +1,9 @@
 import Head from "next/head";
+import Link from "next/link";
 import Layout from "../components/Layout";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import ZigzagScrollPath from "../components/ZigzagScrollPath";
+import BookingModal from "../components/BookingModal";
 
 export default function LifeAtStudentHousing() {
   const containerRef = useRef(null);
@@ -11,6 +13,7 @@ export default function LifeAtStudentHousing() {
   const pickupRef = useRef(null);
   const eventsRef = useRef(null);
   const reviewsRef = useRef(null);
+  const [bookingOpen, setBookingOpen] = useState(false);
 
 const sectionRefs = [
   accommodationRef,
@@ -352,19 +355,25 @@ const sectionRefs = [
                   essential amenities, and everything you need to make your college journey easier.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-                  <button className="bg-[#FFCC29] text-black font-semibold px-8 py-3 rounded-full hover:opacity-90 transition">
-                    Explore Hostels
-                  </button>
-                  <button className="border-2 border-[#FFCC29] text-black font-semibold px-8 py-3 rounded-full hover:bg-[#FFCC29] transition">
-                    Book a Visit
-                  </button>
-                </div>
+  <Link href="/listings" legacyBehavior>
+    <a className="bg-[#FFCC29] text-black font-semibold px-8 py-3 rounded-full hover:opacity-90 transition">
+      Explore Hostels
+    </a>
+  </Link>
+  <button
+    onClick={() => setBookingOpen(true)}
+    className="border-2 border-[#FFCC29] text-black font-semibold px-8 py-3 rounded-full hover:bg-[#FFCC29] transition"
+  >
+    Book a Visit
+  </button>
+</div>
               </div>
             </div>
 
           </div>
         </div>
       </Layout>
+       <BookingModal open={bookingOpen} setOpen={setBookingOpen} />
     </>
   );
 }
