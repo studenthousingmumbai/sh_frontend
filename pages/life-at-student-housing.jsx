@@ -20,6 +20,13 @@ const sectionRefs = [
   reviewsRef,
 ];
 
+  // Shared classes: white rounded card on mobile, transparent/plain on desktop (lg+)
+  const cardClasses =
+    "bg-white rounded-3xl shadow-lg shadow-black/5 p-6 sm:p-8 lg:bg-transparent lg:shadow-none lg:p-0 lg:rounded-none grid lg:grid-cols-2 gap-8 lg:gap-10 items-center relative z-10";
+  const textClasses = "text-center lg:text-left";
+  const paraClasses = "text-gray-600 lg:text-black mt-4 text-base lg:text-lg leading-relaxed";
+  const headingClasses = "text-2xl lg:text-3xl font-bold text-gray-900";
+
   return (
     <>
       <Head>
@@ -67,7 +74,7 @@ const sectionRefs = [
 
         <div className="bg-[#ffffff]">
          <div
-  className="max-w-6xl mx-auto px-6 pt-0 pb-20 space-y-12 relative"
+  className="max-w-6xl mx-auto px-4 sm:px-6 pt-0 pb-20 space-y-8 lg:space-y-12 relative"
   ref={containerRef}
 >
 
@@ -83,8 +90,8 @@ const sectionRefs = [
               </p>
             </div>
 
-            {/* ACCOMMODATION - images left, text right */}
-            <div ref={accommodationRef} className="grid lg:grid-cols-2 gap-10 items-center relative z-10">
+            {/* ACCOMMODATION - images left, text right (mobile: images already show first) */}
+            <div ref={accommodationRef} className={cardClasses}>
               <div className="relative grid grid-cols-2 gap-4">
                 <img
                   src="/DSC06956.webp"
@@ -104,11 +111,11 @@ const sectionRefs = [
                   />
                 </div>
               </div>
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900">
+              <div className={textClasses}>
+                <h2 className={headingClasses}>
                   Accommodation that feels like <span className="text-[#FFCC29]">home</span>
                 </h2>
-                <p className="text-black mt-4 text-lg leading-relaxed">
+                <p className={paraClasses}>
                   Fully furnished single, double and triple sharing rooms with
                   attached washrooms, storage, study desks and high-speed WiFi.
                   Housekeeping and linen change are handled for you, so you can
@@ -117,19 +124,21 @@ const sectionRefs = [
               </div>
             </div>
 
-            {/* FOOD - text left, images right */}
-            <div ref={foodRef} className="grid lg:grid-cols-2 gap-10 items-center relative z-10">
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900">
-                  Wholesome meals, <span className="text-[#FFCC29]">just like home</span>
-                </h2>
-                <p className="text-black mt-4 text-lg leading-relaxed">
-                  Wholesome, hygienically prepared meals served through the day
-                  - breakfast, lunch, evening snacks and dinner - with a
-                  rotating menu so it never feels repetitive.
-                </p>
+            {/* FOOD - text left, images right on desktop; images shown first on mobile */}
+            <div ref={foodRef} className={cardClasses}>
+              <div className="order-2 lg:order-none">
+                <div className={textClasses}>
+                  <h2 className={headingClasses}>
+                    Wholesome meals, <span className="text-[#FFCC29]">just like home</span>
+                  </h2>
+                  <p className={paraClasses}>
+                    Wholesome, hygienically prepared meals served through the day
+                    - breakfast, lunch, evening snacks and dinner - with a
+                    rotating menu so it never feels repetitive.
+                  </p>
+                </div>
               </div>
-              <div className="relative grid grid-cols-2 gap-4">
+              <div className="order-1 lg:order-none relative grid grid-cols-2 gap-4">
                 <img
                   src="/P1009253.webp"
                   alt="Dining area"
@@ -150,8 +159,8 @@ const sectionRefs = [
               </div>
             </div>
 
-            {/* FACILITIES - images left, text right */}
-            <div ref={facilitiesRef} className="grid lg:grid-cols-2 gap-10 items-center relative z-10">
+            {/* FACILITIES - images left, text right (mobile: images already show first) */}
+            <div ref={facilitiesRef} className={cardClasses}>
               <div className="relative grid grid-cols-2 gap-4">
                 <img
                   src="/IMG_2383.webp"
@@ -171,17 +180,17 @@ const sectionRefs = [
                   />
                 </div>
               </div>
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900">
+              <div className={textClasses}>
+                <h2 className={headingClasses}>
                   Amenities for every part of <span className="text-[#FFCC29]">Student Life</span>
                 </h2>
-                <p className="text-black mt-4 text-lg leading-relaxed">
+                <p className={paraClasses}>
                   A break from studying is just an elevator ride away. Cool off
                   after a long day with a dip in our swimming pool, grab a paddle
                   for a pickleball match with your floor, or head to the fully
                   equipped gym whenever you need to sweat it out.
                 </p>
-                <h2 className="text-3xl mt-4 font-bold text-gray-900">
+                <h2 className={`${headingClasses} mt-4`}>
                   Free pick up & <span className="text-[#FFCC29]">drop</span>
                 </h2>
                 {/* <p className="text-black mt-4 text-lg leading-relaxed">
@@ -212,19 +221,21 @@ const sectionRefs = [
               />
             </div>
 */}
-            {/* EVENTS - text left, images right */}
-            <div ref={eventsRef} className="grid lg:grid-cols-2 gap-10 items-center relative z-10">
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900">
-                  A community that <span className="text-[#FFCC29]">celebrates together</span>
-                </h2>
-                <p className="text-black mt-4 text-lg leading-relaxed">
-                  From the Student Housing Premier League and Valentine's Day
-                  celebrations to birthday and festival parties, there's always
-                  something happening to bring residents together.
-                </p>
+            {/* EVENTS - text left, images right on desktop; images shown first on mobile */}
+            <div ref={eventsRef} className={cardClasses}>
+              <div className="order-2 lg:order-none">
+                <div className={textClasses}>
+                  <h2 className={headingClasses}>
+                    A community that <span className="text-[#FFCC29]">celebrates together</span>
+                  </h2>
+                  <p className={paraClasses}>
+                    From the Student Housing Premier League and Valentine's Day
+                    celebrations to birthday and festival parties, there's always
+                    something happening to bring residents together.
+                  </p>
+                </div>
               </div>
-              <div className="relative grid grid-cols-2 gap-4">
+              <div className="order-1 lg:order-none relative grid grid-cols-2 gap-4">
                 <img
                   src="/IMG_7505.webp"
                   alt="SHPL event"
@@ -245,8 +256,8 @@ const sectionRefs = [
               </div>
             </div>
 
-            {/* REVIEWS - images left, text right */}
-            <div ref={reviewsRef} className="grid lg:grid-cols-2 gap-10 items-center relative z-10">
+            {/* REVIEWS - images left, text right (mobile: images already show first) */}
+            <div ref={reviewsRef} className={cardClasses}>
               <div className="relative grid grid-cols-2 gap-4">
                 <img
                   src="/contact-bg.jpeg"
@@ -266,8 +277,8 @@ const sectionRefs = [
                   />
                 </div>
               </div>
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900">
+              <div className={textClasses}>
+                <h2 className={headingClasses}>
                   What our <span className="text-[#FFCC29]">residents say</span>
                 </h2>
                 <div className="mt-6 space-y-6">
