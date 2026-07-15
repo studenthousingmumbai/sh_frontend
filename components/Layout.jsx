@@ -94,7 +94,7 @@ const canonicalUrl = canonical || fallbackCanonical;
 </noscript>
     
     <div className="">
-      <span className="fixed bottom-[25px] right-[20px] z-[1000]">
+      <span className="fixed bottom-[25px] right-[20px] z-[2000]">
         <WhatsAppButton message={""} />
       </span>
       <Dialog onOpenChange={setEnquireNowOpen} open={enquireNowOpen}>
@@ -104,7 +104,7 @@ const canonicalUrl = canonical || fallbackCanonical;
         </DialogContent>
       </Dialog>
       
-       <div className="fixed top-0 left-0 w-full z-[1200]">
+       <div className="fixed top-0 left-0 w-full z-[2000]">
   {marqueeOpen && (
     <Marquee
       text={marqueeText}
