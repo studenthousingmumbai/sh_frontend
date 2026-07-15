@@ -116,7 +116,7 @@ const canonicalUrl = canonical || fallbackCanonical;
 </div>
       
       <button
-        className="fixed top-1/2 right-5 z-50 w-44 h-12 p-3 bg-[#F8C14C] text-black font-semibold rotate-90 origin-right shadow-md"
+        className="fixed top-[58%] md:top-1/2 right-5 z-50 w-44 h-12 p-3 bg-[#F8C14C] text-black font-semibold rotate-90 origin-right shadow-md"
         style={{
           border: "1px solid #00000029",
           boxShadow: "0px 4px 20px #00000014",
