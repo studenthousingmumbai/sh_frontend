@@ -251,7 +251,7 @@ const sectionRefs = [
                     className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
                   />
                   <img
-                    src="/contact-bg.jpeg"
+                    src="/shpl_1.webp"
                     alt="Resident parties"
                     className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
                   />
@@ -263,18 +263,18 @@ const sectionRefs = [
             <div ref={reviewsRef} className={cardClasses}>
               <div className="relative grid grid-cols-2 gap-4">
                 <img
-                  src="/contact-bg.jpeg"
+                  src="/testimonial_1.webp"
                   alt="Resident life"
                   className="rounded-2xl shadow-xl object-cover w-full h-[420px]"
                 />
                 <div className="space-y-4 pt-10">
                   <img
-                    src="/contact-bg.jpeg"
+                    src="/testimonial_3.webp"
                     alt="Resident life"
                     className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
                   />
                   <img
-                    src="/contact-bg.jpeg"
+                    src="/testimonial_4.webp"
                     alt="Resident life"
                     className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
                   />
@@ -287,16 +287,16 @@ const sectionRefs = [
                 <div className="mt-6 space-y-6">
                   {[
                     {
-                      name: "Ananya R.",
-                      text: "The food and housekeeping made moving away from home so much easier. It genuinely feels like a second home.",
+                      name: "Josna Mathews",
+                      text: "Comfortable place to stay. Would definitely recommend non-mumbaikars to avail this luxury.",
                     },
                     {
-                      name: "Rohan S.",
-                      text: "Loved the SHPL tournaments - made so many friends across floors I'd never have met otherwise.",
+                      name: "Khushi Kharwa",
+                      text: "Great services. Would highly recommend.",
                     },
                     {
-                      name: "Priya K.",
-                      text: "Free pick up on day one was such a relief. The pool and gym make weekends actually fun.",
+                      name: "Saakshi Mishra",
+                      text: "Very good housing, 10/10 would recommend",
                     },
                   ].map((review) => (
                     <div key={review.name}>
