@@ -46,7 +46,7 @@ const sectionRefs = [
           property="og:description"
           content="Explore life at Student Housing - fully furnished rooms, home-style food, swimming pool, pickleball & gym, free pick up & drop, events and more."
         />
-        <meta property="og:image" content="https://www.studenthousing.co.in/testimonial_9_.webp" />
+        <meta property="og:image" content="https://www.studenthousing.co.in/IMG_7505.webp" />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:domain" content="studenthousing.co.in" />
@@ -56,7 +56,7 @@ const sectionRefs = [
           name="twitter:description"
           content="Explore life at Student Housing - fully furnished rooms, home-style food, swimming pool, pickleball & gym, free pick up & drop, events and more."
         />
-        <meta name="twitter:image" content="https://www.studenthousing.co.in/testimonial_9_.webp"></meta>
+        <meta name="twitter:image" content="https://www.studenthousing.co.in/IMG_7505.webp"></meta>
       </Head>
 
       <Layout>
@@ -269,7 +269,7 @@ const sectionRefs = [
                 />
                 <div className="space-y-4 pt-10">
                   <img
-                    src="/testimonial_9_.webp"
+                    src="/IMG_7505.webp"
                     alt="Resident life"
                     className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
                   />
