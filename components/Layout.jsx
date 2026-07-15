@@ -98,7 +98,7 @@ const canonicalUrl = canonical || fallbackCanonical;
         <WhatsAppButton message={""} />
       </span>
       <Dialog onOpenChange={setEnquireNowOpen} open={enquireNowOpen}>
-      <DialogContent className="mt-22 md:mt-0 max-h-[90vh] overflow-y-auto">
+     <DialogContent className="top-[58%] md:top-1/2 max-h-[90vh] overflow-y-auto">
   <DialogTitle>Enquire Now</DialogTitle>
   <EnquireNowFormNew />
 </DialogContent>
