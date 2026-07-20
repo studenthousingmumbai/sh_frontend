@@ -4,6 +4,9 @@ export default function Document() {
   return (
     <Html className="h-full bg-white antialiased" lang="en">
       <Head>
+  <meta name="robots" content="index, follow" />
+
+
         {/* <title>Student Housing</title> */}
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
