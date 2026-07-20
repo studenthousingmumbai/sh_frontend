@@ -570,7 +570,11 @@ const Homepage = ({ announcementImages, listings }) => {
 
 <meta property="og:url" content="https://www.studenthousing.co.in/"/>
 <meta property="og:type" content="website"/>
-<meta property="og:title" content="Book Hostels in Mumbai for college students | Student Housing"/>
+<meta
+  key="og:title"
+  property="og:title"
+  content="Book Hostels in Mumbai for college students | Student Housing"
+/>
 <meta property="og:description" content="Student Housing offers fully furnished student hostels in Mumbai near top colleges across Vile Parle, Juhu, and Andheri with secure and comfortable living"/>
 <meta property="og:image" content="https://www.studenthousing.co.in/DAN09168.webp"/>
  
