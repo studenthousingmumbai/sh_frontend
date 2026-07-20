@@ -280,7 +280,7 @@ const HeroSection = () => {
             <div
               className="relative w-full h-48 lg:w-96 lg:h-64 bg-pink-500 rounded-lg overflow-hidden flex items-end p-4 border border-[#FE019A] border-4 hover:scale-[1.06] cursor-pointer transition-all"
               style={{
-                backgroundImage: "url('/hero-girl.webp')",
+                backgroundImage: "url('/about-us/549A6884.webp')",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
@@ -304,7 +304,7 @@ const HeroSection = () => {
             <div
               className="relative w-full h-48 lg:w-96 lg:h-64 w-96 h-64 bg-blue-500 rounded-lg overflow-hidden flex items-end p-4 border border-[#0088FC] border-4 hover:scale-[1.04] cursor-pointer transition-all"
               style={{
-                backgroundImage: "url('/hero-boy.webp')",
+                backgroundImage: "url('/about-us/IMG_5415.webp')",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
