@@ -49,7 +49,7 @@ console.log("Gender:", data?.gender);
           <div className="font-semibold text-2xl">Compatible For</div>
 
          <div className="flex flex-col lg:flex-row gap-6 z-20">
-  {(data.gender === "Male" || data.gender === "Both") && (
+  {(data.gender === "male" || data.gender === "Both") && (
     <div className="flex gap-4 bg-[#99D0FFB2] rounded-[8px] px-2 py-3 md:px-3 md:py-4 w-full lg:w-[302px] z-20">
       <div>
         <img src="/boy.png" />
@@ -60,7 +60,7 @@ console.log("Gender:", data?.gender);
     </div>
   )}
 
-  {(data.gender === "Female" || data.gender === "Both") && (
+  {(data.gender === "female" || data.gender === "Both") && (
     <div className="flex gap-4 bg-[#FFAEDFB2] rounded-[8px] px-2 py-3 md:px-3 md:py-4 w-full lg:w-[302px] z-20">
       <div>
         <img src="/girl.png" />
