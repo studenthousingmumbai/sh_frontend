@@ -190,23 +190,39 @@ const faqSchema =
 
   return (
     <>
-    
+
 <Head>
-  {listing?.metatags?.map((tag, index) => {
-    console.log(index, tag);
+ {listing?.metatags?.map((tag, index) => {
+  if (tag.metaName === "title") {
+    return (
+      <title key={`title-${index}`}>
+        {tag.metaContent}
+      </title>
+    );
+  }
 
-    if (tag.metaProperty === "og:title") {
-      return (
-        <meta
-          key={`og-title-${index}`}
-          property="og:title"
-          content={tag.metaContent}
-        />
-      );
-    }
+  if (tag.metaProperty) {
+    return (
+      <meta
+        key={`prop-${index}`}
+        property={tag.metaProperty}
+        content={tag.metaContent}
+      />
+    );
+  }
 
-    return null;
-  })}
+  if (tag.metaName && tag.metaName !== "title") {
+    return (
+      <meta
+        key={`name-${index}`}
+        name={tag.metaName}
+        content={tag.metaContent}
+      />
+    );
+  }
+
+  return null;
+})}
 </Head>
 
 
