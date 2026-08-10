@@ -191,35 +191,39 @@ const faqSchema =
   return (
     <>
      <Head>
-  {listing?.metatags?.map((tag, index) => {
-    if (tag.metaName === "title") {
-      return <title key={index}>{tag.metaContent}</title>;
-    }
+  {listing?.metatags?.map((tag) => {
+  if (tag.metaName === "title") {
+    return (
+      <title key="page-title">
+        {tag.metaContent}
+      </title>
+    );
+  }
 
-   if (tag.metaName) {
-  return (
-    <meta
-      key={index}
-      name={tag.metaName}
-      content={tag.metaContent}
-    />
-  );
-}
+  if (tag.metaName) {
+    return (
+      <meta
+        key={`name-${tag.metaName}`}
+        name={tag.metaName}
+        content={tag.metaContent}
+      />
+    );
+  }
 
-if (tag.metaProperty) {
-  return (
-    <meta
-      key={index}
-      property={tag.metaProperty}
-      content={tag.metaContent}
-    />
-  );
-}
+  if (tag.metaProperty) {
+    return (
+      <meta
+        key={`property-${tag.metaProperty}`}
+        property={tag.metaProperty}
+        content={tag.metaContent}
+      />
+    );
+  }
 
-    return null;
-  })}
+  return null;
+})}
 
-  {listing?.pageTitle && <title>{listing.pageTitle}</title>}
+  {/* {listing?.pageTitle && <title>{listing.pageTitle}</title>} */}
 
   {/* ✅ Schema Markup from Hygraph */}
   {listing?.schemaMarkup && (
