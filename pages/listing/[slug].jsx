@@ -190,66 +190,11 @@ const faqSchema =
 
   return (
     <>
-   <Head> 
-
-{listing?.metatags?.map((tag) => {
-  if (tag.metaName === "title") {
-    return (
-      <title key="page-title">
-        {tag.metaContent}
-      </title>
-    );
-  }
-
-  if (tag.metaName) {
-    return (
-      <meta
-        key={`name-${tag.metaName}`}
-        name={tag.metaName}
-        content={tag.metaContent}
-      />
-    );
-  }
-
-  if (tag.metaProperty) {
-    return (
-      <meta
-        key={`property-${tag.metaProperty}`}
-        property={tag.metaProperty}
-        content={tag.metaContent}
-      />
-    );
-  }
-
-  return null;
-})}
-
-   {listing?.pageTitle && <title>{listing.pageTitle}</title>} 
-
-  {/* ✅ Schema Markup from Hygraph */}
-  {listing?.schemaMarkup && (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{
-        __html: listing.schemaMarkup
-          .replace(/<script type="application\/ld\+json">/g, "")
-          .replace(/<\/script>/g, ""),
-      }}
-    />
-  )}
-
-
-{listing?.hostelSchema && (
-  <script
-    type="application/ld+json"
-    dangerouslySetInnerHTML={{
-      __html: listing.hostelSchema
-        .replace(/<script type="application\/ld\+json">/g, "")
-        .replace(/<\/script>/g, ""),
-    }}
+   <Head>
+  <meta
+    property={listing?.metatags?.[1]?.metaProperty}
+    content={listing?.metatags?.[1]?.metaContent}
   />
-)}
-
 </Head>
 
 
