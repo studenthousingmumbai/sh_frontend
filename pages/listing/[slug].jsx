@@ -232,6 +232,19 @@ if (tag.metaProperty) {
       }}
     />
   )}
+
+
+{listing?.hostelSchema && (
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: listing.hostelSchema
+        .replace(/<script type="application\/ld\+json">/g, "")
+        .replace(/<\/script>/g, ""),
+    }}
+  />
+)}
+
 </Head>
 
 
@@ -599,6 +612,7 @@ export async function getServerSideProps(context) {
       metaProperty
     }
     schemaMarkup
+    hostelSchema
     mapEmbed
     total_price
     price
