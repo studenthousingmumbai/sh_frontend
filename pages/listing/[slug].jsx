@@ -193,44 +193,45 @@ const faqSchema =
 
 <Head>
   {listing?.metatags?.map((tag, index) => {
+  const tags = [];
 
-    // HTML <title>
-    if (
-      !tag.metaProperty &&
-      tag.metaName &&
-      tag.metaName !== "description"
-    ) {
-      return (
-        <title key="page-title">
-          {tag.metaName}
-        </title>
-      );
-    }
+  // Title
+  if (
+    tag.metaName &&
+    tag.metaName !== "description" &&
+    !tag.metaProperty
+  ) {
+    tags.push(
+      <title key={`title-${index}`}>
+        {tag.metaName}
+      </title>
+    );
+  }
 
-    // Normal meta tags
-    if (tag.metaName === "description") {
-      return (
-        <meta
-          key="description"
-          name="description"
-          content={tag.metaContent}
-        />
-      );
-    }
+  // Normal meta tag
+  if (tag.metaName === "description") {
+    tags.push(
+      <meta
+        key={`desc-${index}`}
+        name="description"
+        content={tag.metaContent}
+      />
+    );
+  }
 
-    // Open Graph tags
-    if (tag.metaProperty) {
-      return (
-        <meta
-          key={tag.metaProperty}
-          property={tag.metaProperty}
-          content={tag.metaContent}
-        />
-      );
-    }
+  // Open Graph tag
+  if (tag.metaProperty) {
+    tags.push(
+      <meta
+        key={`og-${index}`}
+        property={tag.metaProperty}
+        content={tag.metaContent}
+      />
+    );
+  }
 
-    return null;
-  })}
+  return tags;
+})}
 </Head>
 
 
