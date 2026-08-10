@@ -190,11 +190,23 @@ const faqSchema =
 
   return (
     <>
-   <Head>
-  <meta
-    property={listing?.metatags?.[1]?.metaProperty}
-    content={listing?.metatags?.[1]?.metaContent}
-  />
+    
+<Head>
+  {listing?.metatags?.map((tag, index) => {
+    console.log(index, tag);
+
+    if (tag.metaProperty === "og:title") {
+      return (
+        <meta
+          key={`og-title-${index}`}
+          property="og:title"
+          content={tag.metaContent}
+        />
+      );
+    }
+
+    return null;
+  })}
 </Head>
 
 
