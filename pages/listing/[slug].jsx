@@ -192,10 +192,10 @@ const faqSchema =
     <>
 
 <Head>
- {listing?.metatags?.map((tag, index) => {
+ {listing?.metatags?.map((tag) => {
   if (tag.metaName === "title") {
     return (
-      <title key={`title-${index}`}>
+      <title key="title">
         {tag.metaContent}
       </title>
     );
@@ -204,7 +204,7 @@ const faqSchema =
   if (tag.metaProperty) {
     return (
       <meta
-        key={`prop-${index}`}
+        key={`property-${tag.metaProperty}`}
         property={tag.metaProperty}
         content={tag.metaContent}
       />
@@ -214,7 +214,7 @@ const faqSchema =
   if (tag.metaName && tag.metaName !== "title") {
     return (
       <meta
-        key={`name-${index}`}
+        key={`name-${tag.metaName}`}
         name={tag.metaName}
         content={tag.metaContent}
       />
