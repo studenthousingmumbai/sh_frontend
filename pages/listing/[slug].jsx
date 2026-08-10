@@ -224,7 +224,7 @@ const faqSchema =
   return null;
 })}
 
-  {/* {listing?.pageTitle && <title>{listing.pageTitle}</title>} */}
+   {listing?.pageTitle && <title>{listing.pageTitle}</title>} 
 
   {/* ✅ Schema Markup from Hygraph */}
   {listing?.schemaMarkup && (
