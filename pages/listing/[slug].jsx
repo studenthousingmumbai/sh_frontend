@@ -190,9 +190,8 @@ const faqSchema =
 
   return (
     <>
-     <Head>
-  
-
+    <Head>
+  <meta property="og:title" content="TEST123" />
 </Head>
 
 
