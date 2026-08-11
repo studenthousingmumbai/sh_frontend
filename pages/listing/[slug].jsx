@@ -232,6 +232,35 @@ const faqSchema =
 
   return tags;
 })}
+
+
+
+
+{listing?.schemaMarkup && (
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: listing.schemaMarkup
+        .replace(/<script type="application\/ld\+json">/g, "")
+        .replace(/<\/script>/g, ""),
+    }}
+  />
+)}
+
+{listing?.hostelSchema && (
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: listing.hostelSchema
+        .replace(/<script type="application\/ld\+json">/g, "")
+        .replace(/<\/script>/g, ""),
+    }}
+  />
+)}
+
+
+
+
 </Head>
 
 
