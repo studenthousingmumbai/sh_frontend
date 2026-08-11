@@ -192,77 +192,58 @@ const faqSchema =
     <>
 
 <Head>
-  {listing?.metatags?.map((tag, index) => {
-  const tags = [];
+  {listing?.metatags?.map((tag, index) => (
+    <React.Fragment key={`meta-${index}`}>
+      {/* Title */}
+      {tag.metaName &&
+        tag.metaName !== "description" &&
+        !tag.metaProperty && (
+          <title>{tag.metaName}</title>
+        )}
 
-  // Title
-  if (
-    tag.metaName &&
-    tag.metaName !== "description" &&
-    !tag.metaProperty
-  ) {
-    tags.push(
-      <title key={`title-${index}`}>
-        {tag.metaName}
-      </title>
-    );
-  }
+      {/* Normal meta */}
+      {tag.metaName === "description" && (
+        <meta
+          name="description"
+          content={tag.metaContent}
+        />
+      )}
 
-  // Normal meta tag
-  if (tag.metaName === "description") {
-    tags.push(
-      <meta
-        key={`desc-${index}`}
-        name="description"
-        content={tag.metaContent}
-      />
-    );
-  }
+      {/* Open Graph / Twitter */}
+      {tag.metaProperty && (
+        <meta
+          property={tag.metaProperty}
+          content={tag.metaContent}
+        />
+      )}
+    </React.Fragment>
+  ))}
 
-  // Open Graph tag
-  if (tag.metaProperty) {
-    tags.push(
-      <meta
-        key={`og-${index}`}
-        property={tag.metaProperty}
-        content={tag.metaContent}
-      />
-    );
-  }
+  {listing?.schemaMarkup && (
+    <script
+      key="schemaMarkup"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: listing.schemaMarkup
+          .replace(/<script[^>]*>/g, "")
+          .replace(/<\/script>/g, "")
+          .trim(),
+      }}
+    />
+  )}
 
-  return tags;
-})}
-
-
-
-
-{listing?.schemaMarkup && (
-  <script
-    key="faq-schema"
-    type="application/ld+json"
-    dangerouslySetInnerHTML={{
-      __html: listing.schemaMarkup
-        .replace(/<script type="application/ld+json">/g, "")
-        .replace(/<\/script>/g, ""),
-    }}
-  />
-)}
-
-{listing?.hostelSchema && (
-  <script
-    key="hostel-schema"
-    type="application/ld+json"
-    dangerouslySetInnerHTML={{
-      __html: listing.hostelSchema
-        .replace(/<script type="application/ld+json">/g, "")
-        .replace(/<\/script>/g, ""),
-    }}
-  />
-)}
-
-
-
-
+  {listing?.hostelSchema && (
+    <script
+      key="hostelSchema"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: listing.hostelSchema
+          .replace(/<script[^>]*>/g, "")
+          .replace(/<\/script>/g, "")
+          .trim(),
+      }}
+    />
+  )}
 </Head>
 
 
