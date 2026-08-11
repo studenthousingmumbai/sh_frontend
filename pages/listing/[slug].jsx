@@ -192,58 +192,70 @@ const faqSchema =
     <>
 
 <Head>
-  {listing?.metatags?.map((tag, index) => (
-    <React.Fragment key={`meta-${index}`}>
-      {/* Title */}
-      {tag.metaName &&
-        tag.metaName !== "description" &&
-        !tag.metaProperty && (
-          <title>{tag.metaName}</title>
-        )}
+  {listing?.metatags?.map((tag, index) => {
+  const tags = [];
 
-      {/* Normal meta */}
-      {tag.metaName === "description" && (
-        <meta
-          name="description"
-          content={tag.metaContent}
-        />
-      )}
+  // Title
+  if (
+    tag.metaName &&
+    tag.metaName !== "description" &&
+    !tag.metaProperty
+  ) {
+    tags.push(
+      <title key={`title-${index}`}>
+        {tag.metaName}
+      </title>
+    );
+  }
 
-      {/* Open Graph / Twitter */}
-      {tag.metaProperty && (
-        <meta
-          property={tag.metaProperty}
-          content={tag.metaContent}
-        />
-      )}
-    </React.Fragment>
-  ))}
+  // Description
+  if (tag.metaName === "description") {
+    tags.push(
+      <meta
+        key={`desc-${index}`}
+        name="description"
+        content={tag.metaContent}
+      />
+    );
+  }
 
-  {listing?.schemaMarkup && (
-    <script
-      key="schemaMarkup"
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{
-        __html: listing.schemaMarkup
-          .replace(/<script[^>]*>/g, "")
-          .replace(/<\/script>/g, "")
-          .trim(),
-      }}
-    />
-  )}
+  // Open Graph
+  if (tag.metaProperty) {
+    tags.push(
+      <meta
+        key={`og-${index}`}
+        property={tag.metaProperty}
+        content={tag.metaContent}
+      />
+    );
+  }
 
-  {listing?.hostelSchema && (
-    <script
-      key="hostelSchema"
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{
-        __html: listing.hostelSchema
-          .replace(/<script[^>]*>/g, "")
-          .replace(/<\/script>/g, "")
-          .trim(),
-      }}
-    />
-  )}
+  return tags;
+})}
+
+{listing?.schemaMarkup && (
+  <script
+    key="faq-schema"
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: listing.schemaMarkup
+        .replace(/<script type="application\/ld\+json">/g, "")
+        .replace(/<\/script>/g, ""),
+    }}
+  />
+)}
+
+{listing?.hostelSchema && (
+  <script
+    key="hostel-schema"
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: listing.hostelSchema
+        .replace(/<script type="application\/ld\+json">/g, "")
+        .replace(/<\/script>/g, ""),
+    }}
+  />
+)}
 </Head>
 
 
