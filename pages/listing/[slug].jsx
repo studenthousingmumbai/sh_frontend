@@ -236,7 +236,7 @@ const faqSchema =
 
 
 
-{listing?.schemaMarkup && (
+{/* {listing?.schemaMarkup && (
   <script
     type="application/ld+json"
     dangerouslySetInnerHTML={{
@@ -256,7 +256,7 @@ const faqSchema =
         .replace(/<\/script>/g, ""),
     }}
   />
-)}
+)} */}
 
 
 
