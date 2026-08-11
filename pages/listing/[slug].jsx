@@ -221,32 +221,32 @@ const faqSchema =
     </React.Fragment>
   ))}
 
-  {listing?.schemaMarkup && (
-    <script
-      key="schemaMarkup"
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{
-        __html: listing.schemaMarkup
-          .replace(/<script[^>]*>/g, "")
-          .replace(/<\/script>/g, "")
-          .trim(),
-      }}
-    />
-  )}
-
-  {listing?.hostelSchema && (
-    <script
-      key="hostelSchema"
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{
-        __html: listing.hostelSchema
-          .replace(/<script[^>]*>/g, "")
-          .replace(/<\/script>/g, "")
-          .trim(),
-      }}
-    />
-  )}
 </Head>
+
+
+{listing?.schemaMarkup && (
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: listing.schemaMarkup
+        .replace(/<script[^>]*>/g, "")
+        .replace(/<\/script>/g, "")
+        .trim(),
+    }}
+  />
+)}
+
+{listing?.hostelSchema && (
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: listing.hostelSchema
+        .replace(/<script[^>]*>/g, "")
+        .replace(/<\/script>/g, "")
+        .trim(),
+    }}
+  />
+)}
 
 
 
