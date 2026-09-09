@@ -1,4 +1,5 @@
 "use client";
+
 import { Fragment, useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -11,42 +12,118 @@ import useApi from "../hooks/useApi";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-
 const hostels = [
-  { name: "Aston - South Mumbai", href: "/listing/aston-by-student-housing" },
-  { name: "Atlantis - Juhu, Mumbai", href: "/listing/atlantis-by-student-housing" },
-  { name: "Avenue - Juhu, Mumbai", href: "/listing/avenue-by-student-housing" },
-  { name: "Arcadia - Andheri, Mumbai", href: "/listing/arcadia-by-student-housing" },
-  { name: "Elita Boys - Juhu, Mumbai", href: "/listing/elita-by-student-housing-boys" },
-  { name: "Elita Girls - Juhu, Mumbai", href: "/listing/elita-by-student-housing-girls" },
-  { name: "Anand - Vile Parle, Mumbai", href: "/listing/anand-by-student-housing" },
-  { name: "Crescenzo - Vile Parle, Mumbai", href: "/listing/crescenzo-by-student-housing" },
-  { name: "Ganga Niwas - Vile Parle, Mumbai", href: "/listing/ganga-niwas-by-student-housing" },
-  { name: "Bharat - Vile Parle, Mumbai", href: "/listing/bharat-by-student-housing" },
-  { name: "Shradha Suman - Vile Parle, Mumbai", href: "/listing/shradha-suman-by-student-housing" },
-  { name: "Moti Mahal - Vile Parle, Mumbai", href: "/listing/moti-mahal-by-student-housing" },
+  {
+    name: "Aston - South Mumbai",
+    href: "/listing/aston-by-student-housing",
+  },
+  {
+    name: "Atlantis - Juhu, Mumbai",
+    href: "/listing/atlantis-by-student-housing",
+  },
+  {
+    name: "Avenue - Juhu, Mumbai",
+    href: "/listing/avenue-by-student-housing",
+  },
+  {
+    name: "Arcadia - Andheri, Mumbai",
+    href: "/listing/arcadia-by-student-housing",
+  },
+  {
+    name: "Elita Boys - Juhu, Mumbai",
+    href: "/listing/elita-by-student-housing-boys",
+  },
+  {
+    name: "Elita Girls - Juhu, Mumbai",
+    href: "/listing/elita-by-student-housing-girls",
+  },
+  {
+    name: "Anand - Vile Parle, Mumbai",
+    href: "/listing/anand-by-student-housing",
+  },
+  {
+    name: "Crescenzo - Vile Parle, Mumbai",
+    href: "/listing/crescenzo-by-student-housing",
+  },
+  {
+    name: "Ganga Niwas - Vile Parle, Mumbai",
+    href: "/listing/ganga-niwas-by-student-housing",
+  },
+  {
+    name: "Bharat - Vile Parle, Mumbai",
+    href: "/listing/bharat-by-student-housing",
+  },
+  {
+    name: "Shradha Suman - Vile Parle, Mumbai",
+    href: "/listing/shradha-suman-by-student-housing",
+  },
+  {
+    name: "Moti Mahal - Vile Parle, Mumbai",
+    href: "/listing/moti-mahal-by-student-housing",
+  },
 ];
 
 const hostelsNearLocation = [
-  { name: "Hostels in Andheri", href: "/hostels-near-location/hostel-in-andheri" },
-  { name: "Hostels in Vile Parle", href: "/hostels-near-location/hostel-in-vile-parle" },
-  { name: "Hostels in Juhu", href: "/hostels-near-location/hostel-in-juhu" },
-  { name: "Hostels in Santacruz", href: "/hostels-near-location/hostel-in-santacruz" },
-  { name: "Hostels in Bandra", href: "/hostels-near-location/hostel-in-bandra" },
-  { name: "Hostels in South Mumbai", href: "/hostels-near-location/hostel-in-south-mumbai" },
+  {
+    name: "Hostels in Andheri",
+    href: "/hostels-near-location/hostel-in-andheri",
+  },
+  {
+    name: "Hostels in Vile Parle",
+    href: "/hostels-near-location/hostel-in-vile-parle",
+  },
+  {
+    name: "Hostels in Juhu",
+    href: "/hostels-near-location/hostel-in-juhu",
+  },
+  {
+    name: "Hostels in Santacruz",
+    href: "/hostels-near-location/hostel-in-santacruz",
+  },
+  {
+    name: "Hostels in Bandra",
+    href: "/hostels-near-location/hostel-in-bandra",
+  },
+  {
+    name: "Hostels in South Mumbai",
+    href: "/hostels-near-location/hostel-in-south-mumbai",
+  },
 ];
 
 const hostelsNearCollege = [
-  { name: "NMIMS Mumbai", href: "/hostels-near-college/hostels-near-nmims-mumbai" },
-  { name: "Mukesh Patel College", href: "/hostels-near-college/hostels-near-mukesh-patel-college-mumbai" },
-  { name: "Atlas University", href: "/hostels-near-college/hostels-near-atlas-university-mumbai" },
-  { name: "DJ Sanghvi College", href: "/hostels-near-college/hostels-near-dj-sanghvi-college-mumbai" },
-  { name: "Mithibai College", href: "/hostels-near-college/hostels-near-mithibai-college-mumbai" },
-  { name: "Narsee Monjee College", href: "/hostels-near-college/hostels-near-narsee-monjee-college-mumbai" },
-  { name: "UPG College", href: "/hostels-near-college/hostels-near-upg-college-mumbai" },
-  { name: "JK Shah Andheri", href: "/hostels-near-college/hostels-near-jk-shah-andheri-mumbai" },
+  {
+    name: "NMIMS Mumbai",
+    href: "/hostels-near-college/hostels-near-nmims-mumbai",
+  },
+  {
+    name: "Mukesh Patel College",
+    href: "/hostels-near-college/hostels-near-mukesh-patel-college-mumbai",
+  },
+  {
+    name: "Atlas University",
+    href: "/hostels-near-college/hostels-near-atlas-university-mumbai",
+  },
+  {
+    name: "DJ Sanghvi College",
+    href: "/hostels-near-college/hostels-near-dj-sanghvi-college-mumbai",
+  },
+  {
+    name: "Mithibai College",
+    href: "/hostels-near-college/hostels-near-mithibai-college-mumbai",
+  },
+  {
+    name: "Narsee Monjee College",
+    href: "/hostels-near-college/hostels-near-narsee-monjee-college-mumbai",
+  },
+  {
+    name: "UPG College",
+    href: "/hostels-near-college/hostels-near-upg-college-mumbai",
+  },
+  {
+    name: "JK Shah Andheri",
+    href: "/hostels-near-college/hostels-near-jk-shah-andheri-mumbai",
+  },
 ];
-
 
 const userNavigation = [
   { name: "Your Profile", href: "/profile" },
@@ -59,24 +136,22 @@ function classNames(...classes) {
 }
 
 export default function Example() {
-
-  
-  
   const router = useRouter();
   const { isLoading, isAuthenticated } = withAuth();
   const { logout } = useAuth();
   const user = useAuth.user;
-  const [scrolled, setScrolled] = useState(false);
-    const [openMobileMenu, setOpenMobileMenu] = useState(null);
-const [bookingOpen, setBookingOpen] = useState(false);
 
-  
+  const [scrolled, setScrolled] = useState(false);
+  const [openMobileMenu, setOpenMobileMenu] = useState(null);
+  const [bookingOpen, setBookingOpen] = useState(false);
+
   const scrollHandler = () => {
     setScrolled(window.scrollY > 0);
   };
 
   useEffect(() => {
     window.addEventListener("scroll", scrollHandler);
+
     return () => {
       window.removeEventListener("scroll", scrollHandler);
     };
@@ -84,536 +159,163 @@ const [bookingOpen, setBookingOpen] = useState(false);
 
   return (
     <>
-    <Script id="microsoft-clarity" strategy="afterInteractive">
-      {`
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "vz5p8bo23l");
-      `}
-    </Script>
-    
-    <Popover
-      className={`bg-white transition-shadow duration-500 ease-in-out shadow-sm ${
-        scrolled ? "shadow-md" : ""
-      }`}
-    >
-     
-      <div className="w-full px-0">
-        <div className="flex items-center justify-between  py-6 lg:justify-start lg:space-x-10">
-          <div className="flex justify-start lg:w-0 lg:flex-1">
-            <a href="#">
-              <span className="sr-only">Your Company</span>
-              <Link href="/" legacyBehavior>
-                <img
-                  className="w-auto h-[100px] cursor-pointer"
-                  src="/SH.png"
-                  alt="student housing main logo"
-                />
-              </Link>
-              {/* <span className="text-[8px]">
-                Student Housing India Private Limited
-              </span> */}
-            </a>
-          </div>
-          <div className="-my-2 -mr-2 lg:hidden">
-            <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500">
-              <span className="sr-only">Open menu</span>
-              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-            </Popover.Button>
-          </div>
+      {/* =========================================
+          MICROSOFT CLARITY
+         ========================================= */}
+      <Script id="microsoft-clarity" strategy="afterInteractive">
+        {`
+          (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);
+              t.async=1;
+              t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];
+              y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "vz5p8bo23l");
+        `}
+      </Script>
 
-          <Popover.Group as="nav" className="hidden space-x-10 lg:flex">
+      {/* =========================================
+          GOOGLE NEWS PREFERRED SOURCE
+         ========================================= */}
+      <Script
+        id="google-news-preferred-source"
+        async
+        src="https://news.google.com/swg/js/v1/publisher.js"
+      />
 
-            {/*
-            
-            <Link href="/" legacyBehavior>
-              <a
-                href="#"
-                className="text-base font-medium text-gray-500 hover:text-gray-900"
-              >
-                Home
-              </a>
-            </Link>
-*/}
-            <div className="relative group">
-  {/* MAIN LINK (CLICK WORKS) */}
-  <Link href="/listings" legacyBehavior>
-    <a className="flex items-center gap-1 text-base font-medium text-gray-500 hover:text-gray-900">
-      Explore Hostels
-      <svg
-        className="h-4 w-4 transition-transform duration-200 group-hover:rotate-180"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
+      <Popover
+        className={`bg-white transition-shadow duration-500 ease-in-out shadow-sm ${
+          scrolled ? "shadow-md" : ""
+        }`}
       >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M19 9l-7 7-7-7"
-        />
-      </svg>
-    </a>
-  </Link>
+        <div className="w-full px-0">
+          <div className="flex items-center justify-between py-6 lg:justify-start lg:space-x-10">
 
-  {/* DROPDOWN (HOVER ONLY) */}
-  <div className="absolute left-0 mt-3 w-80 rounded-xl bg-white shadow-xl ring-1 ring-black/5
+            {/* =========================================
+                LOGO
+               ========================================= */}
+            <div className="flex justify-start lg:w-0 lg:flex-1">
+              <a href="#">
+                <span className="sr-only">Your Company</span>
+
+                <Link href="/" legacyBehavior>
+                  <img
+                    className="w-auto h-[100px] cursor-pointer"
+                    src="/SH.png"
+                    alt="student housing main logo"
+                  />
+                </Link>
+              </a>
+            </div>
+
+            {/* =========================================
+                MOBILE MENU BUTTON
+               ========================================= */}
+            <div className="-my-2 -mr-2 lg:hidden">
+              <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500">
+                <span className="sr-only">Open menu</span>
+                <Bars3Icon
+                  className="h-6 w-6"
+                  aria-hidden="true"
+                />
+              </Popover.Button>
+            </div>
+
+            {/* =========================================
+                DESKTOP NAVIGATION
+               ========================================= */}
+            <Popover.Group
+              as="nav"
+              className="hidden space-x-10 lg:flex"
+            >
+
+              {/* Explore Hostels */}
+              <div className="relative group">
+
+                <Link href="/listings" legacyBehavior>
+                  <a className="flex items-center gap-1 text-base font-medium text-gray-500 hover:text-gray-900">
+                    Explore Hostels
+
+                    <svg
+                      className="h-4 w-4 transition-transform duration-200 group-hover:rotate-180"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </a>
+                </Link>
+
+                {/* Dropdown */}
+                <div
+                  className="absolute left-0 mt-3 w-80 rounded-xl bg-white shadow-xl ring-1 ring-black/5
                   opacity-0 invisible group-hover:opacity-100 group-hover:visible
-                  transition-all duration-200 z-[1100]">
-    <div className="h-[190px] overflow-y-auto py-2">
-      {hostels.map((hostel) => (
-        <Link key={hostel.href} href={hostel.href} legacyBehavior>
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-          >
-            {hostel.name}
-          </a>
-        </Link>
-      ))}
-    </div>
-  </div>
-</div>
+                  transition-all duration-200 z-[1100]"
+                >
+                  <div className="h-[190px] overflow-y-auto py-2">
+                    {hostels.map((hostel) => (
+                      <Link
+                        key={hostel.href}
+                        href={hostel.href}
+                        legacyBehavior
+                      >
+                        <a
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        >
+                          {hostel.name}
+                        </a>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
 
+              {/* Stay Near Campus */}
+              <div className="relative group">
 
-            <div className="relative group">
-  <span className="flex cursor-pointer items-center gap-1 text-base font-medium text-gray-500 hover:text-gray-900">
-    Stay Near Campus
-    <svg
-      className="h-4 w-4 transition-transform group-hover:rotate-180"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-    </svg>
-  </span>
+                <span className="flex cursor-pointer items-center gap-1 text-base font-medium text-gray-500 hover:text-gray-900">
+                  Stay Near Campus
 
-  <div className="absolute left-0 mt-3 w-72 rounded-xl bg-white shadow-xl ring-1 ring-black/5
-                  opacity-0 invisible group-hover:opacity-100 group-hover:visible
-                  transition-all duration-200 z-[1100]">
-    <div className="max-h-[260px] overflow-y-auto py-2">
-      {hostelsNearCollege.map((item) => (
-        <Link key={item.href} href={item.href} legacyBehavior>
-          <a
-            target="_blank"
-            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-          >
-            {item.name}
-          </a>
-        </Link>
-      ))}
-    </div>
-  </div>
-</div>
-
-
-
-            <div className="relative group">
-  <span className="flex cursor-pointer items-center gap-1 text-base font-medium text-gray-500 hover:text-gray-900">
-    Explore by Area
-    <svg
-      className="h-4 w-4 transition-transform group-hover:rotate-180"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-    </svg>
-  </span>
-
-  <div className="absolute left-0 mt-3 w-64 rounded-xl bg-white shadow-xl ring-1 ring-black/5
-                  opacity-0 invisible group-hover:opacity-100 group-hover:visible
-                  transition-all duration-200 z-[1100]">
-    <div className="py-2">
-      {hostelsNearLocation.map((item) => (
-        <Link key={item.href} href={item.href} legacyBehavior>
-          <a
-            target="_blank"
-            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-          >
-            {item.name}
-          </a>
-        </Link>
-      ))}
-    </div>
-  </div>
-</div>
-
-
-            <Link href="/about-us" legacyBehavior>
-              <a
-                href="#"
-                className="text-base font-medium text-gray-500 hover:text-gray-900"
-              >
-                About Us
-              </a>
-            </Link>
-
-            <Link href="/contact-us" legacyBehavior>
-              <a
-                href="#"
-                className="text-base font-medium text-gray-500 hover:text-gray-900"
-              >
-                Contact Us
-              </a>
-            </Link>
-            {/* 
-            <Link href='/blogs'> 
-              <a
-                href="#"
-                className="text-base font-medium text-gray-500 hover:text-gray-900"
-              >
-                Blogs
-              </a>          
-            </Link> */}
-
-            <Link href="/refer-and-earn" legacyBehavior>
-              <a
-                href="#"
-                className="text-base font-medium text-gray-500 hover:text-gray-900"
-              >
-                Refer & Earn
-              </a>
-            </Link>
-
-            {/* <Link href='/terms-and-conditions'> 
-              <a
-                href="#"
-                className="text-base font-medium text-gray-500 hover:text-gray-900"
-              >
-                Terms & Conditions
-              </a>
-            </Link> */}
-            <Link href="/faqs" legacyBehavior>
-              <a
-                href="#"
-                className="text-base font-medium text-gray-500 hover:text-gray-900"
-              >
-                FAQs
-              </a>
-            </Link>
-          </Popover.Group>
-
-          <div className="hidden items-center justify-end lg:flex lg:flex-1 lg:w-0">
-
-            <button
-  onClick={() => setBookingOpen(true)}
-  className="mr-4 bg-[#ffcc29] hover:bg-[#fad45a] text-black px-4 py-2 rounded-md font-medium"
->
-  Book Now
-</button>
-            
-            {(isAuthenticated && (
-              <div className="ml-4 flex items-center md:ml-6">
-                {/* Profile dropdown */}
-                <span className="mr-3 capitalize">
-                  {(isAuthenticated &&
-                    user &&
-                    user.firstname + " " + user.lastname) ||
-                    ""}
+                  <svg
+                    className="h-4 w-4 transition-transform group-hover:rotate-180"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
                 </span>
 
-                <Menu as="div" className="relative ml-3">
-                  <div>
-                    <Menu.Button className="flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                      <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-yellow-500 uppercase">
-                        <span className="text-sm font-medium leading-none text-white">
-                          {(isAuthenticated &&
-                            user &&
-                            user.firstname[0] + user.lastname[0]) ||
-                            ""}
-                        </span>
-                      </span>
-                    </Menu.Button>
-                  </div>
-                  <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-100"
-                    enterFrom="transform opacity-0 scale-95"
-                    enterTo="transform opacity-100 scale-100"
-                    leave="transition ease-in duration-75"
-                    leaveFrom="transform opacity-100 scale-100"
-                    leaveTo="transform opacity-0 scale-95"
-                  >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      {userNavigation.map((item) => (
-                        <Menu.Item key={item.name}>
-                          {({ active }) => (
-                            <Link href={item.href} legacyBehavior>
-                              <a
-                                onClick={() => {
-                                  item.name === "Sign out" && logout();
-                                }}
-                                className={classNames(
-                                  active ? "bg-gray-100" : "",
-                                  "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                )}
-                              >
-                                {item.name}
-                              </a>
-                            </Link>
-                          )}
-                        </Menu.Item>
-                      ))}
-                    </Menu.Items>
-                  </Transition>
-                </Menu>
-              </div>
-            )) || (
-              <>
-                 {/* 
-                <Link href="/signin" legacyBehavior>
-                  <a
-                    href="#"
-                    className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
-                  >
-                    Sign in
-                  </a>
-                </Link>
-
-                <Link href="/signup" legacyBehavior>
-                  <a
-                    href="#"
-                    className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent px-4 py-2 text-base font-medium text-gray-700 shadow-sm bg-[#ffcc29] hover:bg-[#fad45a]"
-                  >
-                    Sign up
-                  </a>
-                </Link>
-
-                */}
-              </>
-            )}
-          </div>
-        </div>
-      </div>
-
-      <Transition
-        as={Fragment}
-        enter="duration-200 ease-out"
-        enterFrom="opacity-0 scale-95"
-        enterTo="opacity-100 scale-100"
-        leave="duration-100 ease-in"
-        leaveFrom="opacity-100 scale-100"
-        leaveTo="opacity-0 scale-95"
-      >
-        <Popover.Panel
-          focus
-          className="absolute inset-x-0 top-0 origin-top-right transform p-2 transition lg:hidden z-[1000]"
-        >
-          <div className="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
-            <div className="px-5 pt-5 pb-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <Link href="/" legacyBehavior>
-                    <img
-                      className="w-[150px] h-[70px] cursor-pointer"
-                      src="/SH.png"
-                      alt=""
-                    />
-                  </Link>
-                </div>
-                <div className="-mr-2">
-                  <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500">
-                    <span className="sr-only">Close menu</span>
-                    <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                  </Popover.Button>
-                </div>
-              </div>
-            </div>
-            <div className="space-y-6 py-6 px-5">
-            <div className="space-y-5">
-
-  {/* Explore Hostels (main link) */}
-
-
-  {/* Our Hostels */}
-  <div>
-    <button
-      onClick={() =>
-        setOpenMobileMenu(openMobileMenu === "hostels" ? null : "hostels")
-      }
-      className="flex w-full items-center justify-between text-base font-semibold text-gray-900"
-    >
-      Explore Hostels
-      <svg
-        className={`h-4 w-4 transition-transform duration-200 ${
-          openMobileMenu === "hostels" ? "rotate-180" : ""
-        }`}
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-      </svg>
-    </button>
-
-    {openMobileMenu === "hostels" && (
-      <div className="mt-3 space-y-2 pl-4">
-        {hostels.map((hostel) => (
-          <Link key={hostel.href} href={hostel.href} legacyBehavior>
-            <a className="block text-sm text-gray-700 hover:text-gray-900">
-              {hostel.name}
-            </a>
-          </Link>
-        ))}
-      </div>
-    )}
-  </div>
-
-  {/* Stay Near Campus */}
-  <div>
-    <button
-      onClick={() =>
-        setOpenMobileMenu(openMobileMenu === "college" ? null : "college")
-      }
-      className="flex w-full items-center justify-between text-base font-semibold text-gray-900"
-    >
-      Stay Near Campus
-      <svg
-        className={`h-4 w-4 transition-transform duration-200 ${
-          openMobileMenu === "college" ? "rotate-180" : ""
-        }`}
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-      </svg>
-    </button>
-
-    {openMobileMenu === "college" && (
-      <div className="mt-3 space-y-2 pl-4">
-        {hostelsNearCollege.map((item) => (
-          <Link key={item.href} href={item.href} legacyBehavior>
-            <a className="block text-sm text-gray-700 hover:text-gray-900">
-              {item.name}
-            </a>
-          </Link>
-        ))}
-      </div>
-    )}
-  </div>
-
-  {/* Explore by Area */}
-  <div>
-    <button
-      onClick={() =>
-        setOpenMobileMenu(openMobileMenu === "area" ? null : "area")
-      }
-      className="flex w-full items-center justify-between text-base font-semibold text-gray-900"
-    >
-      Explore by Area
-      <svg
-        className={`h-4 w-4 transition-transform duration-200 ${
-          openMobileMenu === "area" ? "rotate-180" : ""
-        }`}
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-      </svg>
-    </button>
-
-    {openMobileMenu === "area" && (
-      <div className="mt-3 space-y-2 pl-4">
-        {hostelsNearLocation.map((item) => (
-          <Link key={item.href} href={item.href} legacyBehavior>
-            <a className="block text-sm text-gray-700 hover:text-gray-900">
-              {item.name}
-            </a>
-          </Link>
-        ))}
-      </div>
-    )}
-  </div>
-
-  {/* Static links */}
-  <Link href="/about-us" legacyBehavior>
-    <a className="block text-base font-semibold text-gray-900">
-      About Us
-    </a>
-  </Link>
-
-  <Link href="/contact-us" legacyBehavior>
-    <a className="block text-base font-semibold text-gray-900">
-      Contact Us
-    </a>
-  </Link>
-
-  <Link href="/blogs" legacyBehavior>
-    <a className="block text-base font-semibold text-gray-900">
-      Blogs
-    </a>
-  </Link>
-
-  <Link href="/refer-and-earn" legacyBehavior>
-    <a className="block text-base font-semibold text-gray-900">
-      Refer & Earn
-    </a>
-  </Link>
-
-  <Link href="/faqs" legacyBehavior>
-    <a className="block text-base font-semibold text-gray-900">
-      FAQs
-    </a>
-  </Link>
-
-</div>
-              {/*
-              {!isAuthenticated && (
-                <div>
-                  <Link href="/signup" legacyBehavior>
-                    <a className="w-full inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent px-4 py-2 text-base font-medium text-gray-700 shadow-sm bg-[#ffcc29] hover:bg-[#fad45a]">
-                      Sign up
-                    </a>
-                  </Link>
-                  <p className="mt-6 text-center text-base font-medium text-gray-500">
-                    Existing customer?{" "}
-                    <Link href="/signin" legacyBehavior>
-                      <a
-                        href="#"
-                        className="text-yellow-600 hover:text-yellow-500"
+                <div
+                  className="absolute left-0 mt-3 w-72 rounded-xl bg-white shadow-xl ring-1 ring-black/5
+                  opacity-0 invisible group-hover:opacity-100 group-hover:visible
+                  transition-all duration-200 z-[1100]"
+                >
+                  <div className="max-h-[260px] overflow-y-auto py-2">
+                    {hostelsNearCollege.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        legacyBehavior
                       >
-                        Sign in
-                      </a>
-                    </Link>
-                  </p>
-                </div>
-              )}
-*/}
-              {isAuthenticated && (
-                <div>
-                  <div className="mb-3">
-                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-yellow-500 mr-3 bg-yellow-500 uppercase">
-                      <span className="text-sm font-medium leading-none text-white">
-                        {(isAuthenticated &&
-                          user &&
-                          user.firstname[0] + user.lastname[0]) ||
-                          ""}
-                      </span>
-                    </span>
-                    <span className="mr-3 capitalize">
-                      {(isAuthenticated &&
-                        user &&
-                        user.firstname + " " + user.lastname) ||
-                        ""}
-                    </span>
-                  </div>
-                  <div>
-                    {userNavigation.map((item) => (
-                      <Link href={item.href} legacyBehavior>
                         <a
-                          onClick={() => {
-                            item.name === "Sign out" && logout();
-                          }}
-                          className={classNames(
-                            "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                          )}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                         >
                           {item.name}
                         </a>
@@ -621,20 +323,477 @@ const [bookingOpen, setBookingOpen] = useState(false);
                     ))}
                   </div>
                 </div>
+              </div>
+
+              {/* Explore by Area */}
+              <div className="relative group">
+
+                <span className="flex cursor-pointer items-center gap-1 text-base font-medium text-gray-500 hover:text-gray-900">
+                  Explore by Area
+
+                  <svg
+                    className="h-4 w-4 transition-transform group-hover:rotate-180"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </span>
+
+                <div
+                  className="absolute left-0 mt-3 w-64 rounded-xl bg-white shadow-xl ring-1 ring-black/5
+                  opacity-0 invisible group-hover:opacity-100 group-hover:visible
+                  transition-all duration-200 z-[1100]"
+                >
+                  <div className="py-2">
+                    {hostelsNearLocation.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        legacyBehavior
+                      >
+                        <a
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        >
+                          {item.name}
+                        </a>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* About Us */}
+              <Link href="/about-us" legacyBehavior>
+                <a className="text-base font-medium text-gray-500 hover:text-gray-900">
+                  About Us
+                </a>
+              </Link>
+
+              {/* Contact Us */}
+              <Link href="/contact-us" legacyBehavior>
+                <a className="text-base font-medium text-gray-500 hover:text-gray-900">
+                  Contact Us
+                </a>
+              </Link>
+
+              {/* Refer & Earn */}
+              <Link href="/refer-and-earn" legacyBehavior>
+                <a className="text-base font-medium text-gray-500 hover:text-gray-900">
+                  Refer & Earn
+                </a>
+              </Link>
+
+              {/* FAQs */}
+              <Link href="/faqs" legacyBehavior>
+                <a className="text-base font-medium text-gray-500 hover:text-gray-900">
+                  FAQs
+                </a>
+              </Link>
+            </Popover.Group>
+
+            {/* =========================================
+                DESKTOP RIGHT SIDE
+               ========================================= */}
+            <div className="hidden items-center justify-end lg:flex lg:flex-1 lg:w-0">
+
+              {/* Book Now */}
+              <button
+                onClick={() => setBookingOpen(true)}
+                className="mr-4 bg-[#ffcc29] hover:bg-[#fad45a] text-black px-4 py-2 rounded-md font-medium"
+              >
+                Book Now
+              </button>
+
+              {/* Authentication */}
+              {(isAuthenticated && (
+                <div className="ml-4 flex items-center md:ml-6">
+
+                  {/* User Name */}
+                  <span className="mr-3 capitalize">
+                    {(isAuthenticated &&
+                      user &&
+                      user.firstname + " " + user.lastname) ||
+                      ""}
+                  </span>
+
+                  {/* Profile Dropdown */}
+                  <Menu as="div" className="relative ml-3">
+                    <div>
+                      <Menu.Button className="flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                        <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-yellow-500 uppercase">
+                          <span className="text-sm font-medium leading-none text-white">
+                            {(isAuthenticated &&
+                              user &&
+                              user.firstname[0] +
+                                user.lastname[0]) ||
+                              ""}
+                          </span>
+                        </span>
+                      </Menu.Button>
+                    </div>
+
+                    <Transition
+                      as={Fragment}
+                      enter="transition ease-out duration-100"
+                      enterFrom="transform opacity-0 scale-95"
+                      enterTo="transform opacity-100 scale-100"
+                      leave="transition ease-in duration-75"
+                      leaveFrom="transform opacity-100 scale-100"
+                      leaveTo="transform opacity-0 scale-95"
+                    >
+                      <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+
+                        {userNavigation.map((item) => (
+                          <Menu.Item key={item.name}>
+                            {({ active }) => (
+                              <Link href={item.href} legacyBehavior>
+                                <a
+                                  onClick={() => {
+                                    if (item.name === "Sign out") {
+                                      logout();
+                                    }
+                                  }}
+                                  className={classNames(
+                                    active ? "bg-gray-100" : "",
+                                    "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                  )}
+                                >
+                                  {item.name}
+                                </a>
+                              </Link>
+                            )}
+                          </Menu.Item>
+                        ))}
+
+                      </Menu.Items>
+                    </Transition>
+                  </Menu>
+                </div>
+              )) || (
+                <></>
               )}
             </div>
           </div>
-        </Popover.Panel>
-      </Transition>
+        </div>
 
-      <BookingModal open={bookingOpen} setOpen={setBookingOpen} />
-      
-    </Popover>
+        {/* =========================================
+            MOBILE MENU
+           ========================================= */}
+        <Transition
+          as={Fragment}
+          enter="duration-200 ease-out"
+          enterFrom="opacity-0 scale-95"
+          enterTo="opacity-100 scale-100"
+          leave="duration-100 ease-in"
+          leaveFrom="opacity-100 scale-100"
+          leaveTo="opacity-0 scale-95"
+        >
+          <Popover.Panel
+            focus
+            className="absolute inset-x-0 top-0 origin-top-right transform p-2 transition lg:hidden z-[1000]"
+          >
+            <div className="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+
+              {/* Mobile Header */}
+              <div className="px-5 pt-5 pb-6">
+                <div className="flex items-center justify-between">
+
+                  <div>
+                    <Link href="/" legacyBehavior>
+                      <img
+                        className="w-[150px] h-[70px] cursor-pointer"
+                        src="/SH.png"
+                        alt="Student Housing"
+                      />
+                    </Link>
+                  </div>
+
+                  <div className="-mr-2">
+                    <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500">
+                      <span className="sr-only">
+                        Close menu
+                      </span>
+
+                      <XMarkIcon
+                        className="h-6 w-6"
+                        aria-hidden="true"
+                      />
+                    </Popover.Button>
+                  </div>
+
+                </div>
+              </div>
+
+              {/* Mobile Navigation */}
+              <div className="space-y-6 py-6 px-5">
+
+                <div className="space-y-5">
+
+                  {/* Explore Hostels */}
+                  <div>
+                    <button
+                      onClick={() =>
+                        setOpenMobileMenu(
+                          openMobileMenu === "hostels"
+                            ? null
+                            : "hostels"
+                        )
+                      }
+                      className="flex w-full items-center justify-between text-base font-semibold text-gray-900"
+                    >
+                      Explore Hostels
+
+                      <svg
+                        className={`h-4 w-4 transition-transform duration-200 ${
+                          openMobileMenu === "hostels"
+                            ? "rotate-180"
+                            : ""
+                        }`}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+
+                    {openMobileMenu === "hostels" && (
+                      <div className="mt-3 space-y-2 pl-4">
+                        {hostels.map((hostel) => (
+                          <Link
+                            key={hostel.href}
+                            href={hostel.href}
+                            legacyBehavior
+                          >
+                            <a className="block text-sm text-gray-700 hover:text-gray-900">
+                              {hostel.name}
+                            </a>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Stay Near Campus */}
+                  <div>
+                    <button
+                      onClick={() =>
+                        setOpenMobileMenu(
+                          openMobileMenu === "college"
+                            ? null
+                            : "college"
+                        )
+                      }
+                      className="flex w-full items-center justify-between text-base font-semibold text-gray-900"
+                    >
+                      Stay Near Campus
+
+                      <svg
+                        className={`h-4 w-4 transition-transform duration-200 ${
+                          openMobileMenu === "college"
+                            ? "rotate-180"
+                            : ""
+                        }`}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+
+                    {openMobileMenu === "college" && (
+                      <div className="mt-3 space-y-2 pl-4">
+                        {hostelsNearCollege.map((item) => (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            legacyBehavior
+                          >
+                            <a className="block text-sm text-gray-700 hover:text-gray-900">
+                              {item.name}
+                            </a>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Explore by Area */}
+                  <div>
+                    <button
+                      onClick={() =>
+                        setOpenMobileMenu(
+                          openMobileMenu === "area"
+                            ? null
+                            : "area"
+                        )
+                      }
+                      className="flex w-full items-center justify-between text-base font-semibold text-gray-900"
+                    >
+                      Explore by Area
+
+                      <svg
+                        className={`h-4 w-4 transition-transform duration-200 ${
+                          openMobileMenu === "area"
+                            ? "rotate-180"
+                            : ""
+                        }`}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+
+                    {openMobileMenu === "area" && (
+                      <div className="mt-3 space-y-2 pl-4">
+                        {hostelsNearLocation.map((item) => (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            legacyBehavior
+                          >
+                            <a className="block text-sm text-gray-700 hover:text-gray-900">
+                              {item.name}
+                            </a>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* About Us */}
+                  <Link href="/about-us" legacyBehavior>
+                    <a className="block text-base font-semibold text-gray-900">
+                      About Us
+                    </a>
+                  </Link>
+
+                  {/* Contact Us */}
+                  <Link href="/contact-us" legacyBehavior>
+                    <a className="block text-base font-semibold text-gray-900">
+                      Contact Us
+                    </a>
+                  </Link>
+
+                  {/* Blogs */}
+                  <Link href="/blogs" legacyBehavior>
+                    <a className="block text-base font-semibold text-gray-900">
+                      Blogs
+                    </a>
+                  </Link>
+
+                  {/* Refer & Earn */}
+                  <Link href="/refer-and-earn" legacyBehavior>
+                    <a className="block text-base font-semibold text-gray-900">
+                      Refer & Earn
+                    </a>
+                  </Link>
+
+                  {/* FAQs */}
+                  <Link href="/faqs" legacyBehavior>
+                    <a className="block text-base font-semibold text-gray-900">
+                      FAQs
+                    </a>
+                  </Link>
+                </div>
+
+                {/* =========================================
+                    MOBILE AUTHENTICATED USER
+                   ========================================= */}
+                {isAuthenticated && (
+                  <div>
+
+                    <div className="mb-3">
+                      <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-yellow-500 mr-3 uppercase">
+                        <span className="text-sm font-medium leading-none text-white">
+                          {(isAuthenticated &&
+                            user &&
+                            user.firstname[0] +
+                              user.lastname[0]) ||
+                            ""}
+                        </span>
+                      </span>
+
+                      <span className="mr-3 capitalize">
+                        {(isAuthenticated &&
+                          user &&
+                          user.firstname +
+                            " " +
+                            user.lastname) ||
+                          ""}
+                      </span>
+                    </div>
+
+                    <div>
+                      {userNavigation.map((item) => (
+                        <Link
+                          key={item.name}
+                          href={item.href}
+                          legacyBehavior
+                        >
+                          <a
+                            onClick={() => {
+                              if (item.name === "Sign out") {
+                                logout();
+                              }
+                            }}
+                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          >
+                            {item.name}
+                          </a>
+                        </Link>
+                      ))}
+                    </div>
+
+                  </div>
+                )}
+
+              </div>
+            </div>
+          </Popover.Panel>
+        </Transition>
+
+        {/* Booking Modal */}
+        <BookingModal
+          open={bookingOpen}
+          setOpen={setBookingOpen}
+        />
+      </Popover>
     </>
   );
 }
 
 
+/* =========================================================
+   BOOKING MODAL
+   ========================================================= */
 
 function BookingModal({ open, setOpen }) {
   const { contactUs } = useApi();
@@ -646,20 +805,19 @@ function BookingModal({ open, setOpen }) {
   const [email, setEmail] = useState("");
   const [showHostel, setShowHostel] = useState(false);
   const [time, setTime] = useState("");
-
   const [isSubmitting, setIsSubmitting] = useState(false);
 
- const handleSubmit = async () => {
-  if (isSubmitting) return;
+  const handleSubmit = async () => {
+    if (isSubmitting) return;
 
-  if (!name || !phone || !hostel || !time) {
-    alert("Please fill all required fields");
-    return;
-  }
+    if (!name || !phone || !hostel || !time) {
+      alert("Please fill all required fields");
+      return;
+    }
 
-  setIsSubmitting(true);
+    setIsSubmitting(true);
 
-  const message = `
+    const message = `
 New Booking Request
 
 Hostel: ${hostel}
@@ -667,30 +825,32 @@ Date: ${new Date(date).toLocaleDateString()}
 Time: ${time}
 `;
 
-  const response = await contactUs({
-    name,
-    email,
-    phone,
-    message,
-    subject: "Schedule Visit Request",
-  });
+    const response = await contactUs({
+      name,
+      email,
+      phone,
+      message,
+      subject: "Schedule Visit Request",
+    });
 
-  if (response === "Message sent successfully") {
-    alert("Booking request sent!");
-    setOpen(false);
-  } else {
-    alert("Error sending booking");
-    console.log(response);
-    setIsSubmitting(false);
-  }
-};
+    if (response === "Message sent successfully") {
+      alert("Booking request sent!");
+      setOpen(false);
+    } else {
+      alert("Error sending booking");
+      console.log(response);
+      setIsSubmitting(false);
+    }
+  };
 
   if (!open) return null;
 
   return (
     <div className="fixed inset-0 z-[2000] bg-black/50 flex items-center justify-center">
+
       <div className="relative bg-white p-6 rounded-xl w-[320px]">
 
+        {/* Close */}
         <button
           onClick={() => setOpen(false)}
           className="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
@@ -698,10 +858,12 @@ Time: ${time}
           ✕
         </button>
 
+        {/* Title */}
         <h2 className="text-lg font-semibold mb-4">
           Schedule Your Visit
         </h2>
 
+        {/* Name */}
         <input
           type="text"
           placeholder="Your Name"
@@ -710,6 +872,7 @@ Time: ${time}
           className="border border-gray-600 p-2 w-full mb-3 focus:outline-none"
         />
 
+        {/* Phone */}
         <input
           type="tel"
           placeholder="Phone Number"
@@ -718,12 +881,18 @@ Time: ${time}
           className="border border-gray-600 p-2 w-full mb-3 focus:outline-none"
         />
 
+        {/* Hostel Dropdown */}
         <div className="relative mb-3">
+
           <button
             onClick={() => setShowHostel(!showHostel)}
             className="w-full border border-gray-600 p-2 text-left bg-white flex items-center justify-between"
           >
-            <span className={hostel ? "text-black" : "text-gray-500"}>
+            <span
+              className={
+                hostel ? "text-black" : "text-gray-500"
+              }
+            >
               {hostel || "Select Hostel"}
             </span>
 
@@ -746,6 +915,7 @@ Time: ${time}
 
           {showHostel && (
             <div className="absolute z-50 w-full bg-white border border-gray-600 mt-1 max-h-[150px] overflow-y-auto shadow-md">
+
               {[
                 "Aston - South Mumbai",
                 "Atlantis - Juhu, Mumbai",
@@ -771,10 +941,12 @@ Time: ${time}
                   {item}
                 </div>
               ))}
+
             </div>
           )}
         </div>
 
+        {/* Date */}
         <DatePicker
           selected={date}
           onChange={(d) => setDate(d)}
@@ -783,33 +955,41 @@ Time: ${time}
           className="w-full border border-gray-600 p-2 focus:outline-none"
         />
 
+        {/* Time */}
         <div className="mt-3">
+
           <p className="text-sm mb-2 text-gray-700">
             Select Time
           </p>
 
           <div className="grid grid-cols-3 gap-2">
-            {["12–2 PM", "2–4 PM", "4–6 PM"].map((slot) => (
-              <button
-                key={slot}
-                onClick={() => setTime(slot)}
-                className={`border border-gray-600 py-2 text-sm ${
-                  time === slot
-                    ? "bg-black text-white"
-                    : "bg-white text-black"
-                }`}
-              >
-                {slot}
-              </button>
-            ))}
+
+            {["12–2 PM", "2–4 PM", "4–6 PM"].map(
+              (slot) => (
+                <button
+                  key={slot}
+                  onClick={() => setTime(slot)}
+                  className={`border border-gray-600 py-2 text-sm ${
+                    time === slot
+                      ? "bg-black text-white"
+                      : "bg-white text-black"
+                  }`}
+                >
+                  {slot}
+                </button>
+              )
+            )}
+
           </div>
         </div>
 
+        {/* Confirm */}
         <button
           onClick={handleSubmit}
+          disabled={isSubmitting}
           className="mt-4 w-full bg-[#ffcc29] py-2 rounded-md"
         >
-          Confirm Visit
+          {isSubmitting ? "Sending..." : "Confirm Visit"}
         </button>
 
       </div>

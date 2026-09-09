@@ -1,6 +1,5 @@
 import { MailIcon, PhoneIcon } from "lucide-react";
 import Link from "next/link";
-import Script from "next/script";
 
 const navigation = {
   solutions: [
@@ -134,218 +133,221 @@ const navigation = {
 
 export default function Example() {
   return (
-    <>
-      {/* Google News Preferred Source Script */}
-      <Script
-        async
-        src="https://news.google.com/swg/js/v1/publisher.js"
-      />
+    <footer className="bg-gray-900 z-10 relative">
 
-      <footer className="bg-gray-900 z-10 relative">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 bg-[url(/bg-pattern-1.png)] z-0" />
+      {/* Background Pattern */}
+      <div className="absolute inset-0 bg-[url(/bg-pattern-1.png)] z-0" />
 
-        <p id="footer-heading" className="sr-only">
-          Footer
-        </p>
+      <p id="footer-heading" className="sr-only">
+        Footer
+      </p>
 
-        <div className="relative mx-auto max-w-7xl px-6 py-14 lg:px-8 z-10">
+      <div className="relative mx-auto max-w-7xl px-6 py-14 lg:px-8 z-10">
 
-          {/* Top Section */}
-          <div className="flex flex-col md:flex-row gap-12 md:gap-16 justify-between">
+        {/* Top Section */}
+        <div className="flex flex-col md:flex-row gap-12 md:gap-16 justify-between">
 
-            {/* Logo */}
-            <div className="space-y-8">
-              <div className="w-[170px] h-[80px]">
-                <img
-                  className="w-full h-full object-contain"
-                  src="/logo-bw.png"
-                  alt="student housing footer logo"
-                />
-              </div>
-            </div>
-
-            {/* Description */}
-            <div className="text-sm md:text-lg text-white">
-              Our hostels are designed to provide a safe, comfortable, and
-              vibrant living space for students. With modern amenities, 24x7
-              security, and a focus on community living, we ensure a home away
-              from home experience. Stay connected with us for the latest
-              updates, offers, and services tailored just for you!
+          {/* Logo */}
+          <div className="space-y-8">
+            <div className="w-[170px] h-[80px]">
+              <img
+                className="w-full h-full object-contain"
+                src="/logo-bw.png"
+                alt="student housing footer logo"
+              />
             </div>
           </div>
 
-          {/* Main Footer Content */}
-          <div className="mt-8 md:mt-14 border-y border-white/10 py-8 flex flex-col md:flex-row gap-8 md:gap-4 text-white w-full">
+          {/* Description */}
+          <div className="text-sm md:text-lg text-white">
+            Our hostels are designed to provide a safe, comfortable, and
+            vibrant living space for students. With modern amenities, 24x7
+            security, and a focus on community living, we ensure a home away
+            from home experience. Stay connected with us for the latest
+            updates, offers, and services tailored just for you!
+          </div>
+        </div>
 
-            {/* Get In Touch */}
-            <div className="flex flex-col justify-start gap-3.5 w-full md:w-1/2">
+        {/* Main Footer Content */}
+        <div className="mt-8 md:mt-14 border-y border-white/10 py-8 flex flex-col md:flex-row gap-8 md:gap-4 text-white w-full">
+
+          {/* Get In Touch */}
+          <div className="flex flex-col justify-start gap-3.5 w-full md:w-1/2">
+
+            <div className="font-semibold text-2xl">
+              Get in touch
+            </div>
+
+            <div className="text-sm md:text-base w-full md:w-[40%]">
+              Avenue By Student Housing, Shree Krishna building, NS Mankikar
+              Rd, next to Shetty tower, Nutan Laxmi Society, JVPD Scheme,
+              Vile Parle West, Mumbai
+            </div>
+
+            {/* Phone 1 */}
+            <div className="flex gap-2.5">
+              <PhoneIcon className="w-5 h-5 md:w-6 md:h-6" />
+
+              <Link
+                href="tel:+91-9819780000"
+                className="text-[#F8C14C] text-sm md:text-base"
+              >
+                +91-9819780000
+              </Link>
+            </div>
+
+            {/* Phone 2 */}
+            <div className="flex gap-2.5">
+              <PhoneIcon className="w-5 h-5 md:w-6 md:h-6" />
+
+              <Link
+                href="tel:+91-9004033884"
+                className="text-[#F8C14C] text-sm md:text-base"
+              >
+                +91-9004033884
+              </Link>
+            </div>
+
+            {/* Phone 3 */}
+            <div className="flex gap-2.5">
+              <PhoneIcon className="w-5 h-5 md:w-6 md:h-6" />
+
+              <Link
+                href="tel:+91-8779003845"
+                className="text-[#F8C14C] text-sm md:text-base"
+              >
+                +91-8779003845
+              </Link>
+            </div>
+
+            {/* Phone 4 */}
+            <div className="flex gap-2.5">
+              <PhoneIcon className="w-5 h-5 md:w-6 md:h-6" />
+
+              <Link
+                href="tel:+91-9702704881"
+                className="text-[#F8C14C] text-sm md:text-base"
+              >
+                +91-9702704881
+              </Link>
+            </div>
+
+            {/* Email */}
+            <div className="flex gap-2.5">
+              <MailIcon className="w-5 h-5 md:w-6 md:h-6" />
+
+              <Link
+                href="mailto:info@studenthousing.co.in"
+                className="text-[#F8C14C] text-sm md:text-base"
+              >
+                info@studenthousing.co.in
+              </Link>
+            </div>
+
+          </div>
+
+          {/* Quick Links + Support */}
+          <div className="flex flex-col w-full md:w-1/2 md:flex-row gap-4">
+
+            {/* Quick Links */}
+            <div className="flex flex-col w-full md:w-1/2">
 
               <div className="font-semibold text-2xl">
-                Get in touch
+                Quick Links
               </div>
 
-              <div className="text-sm md:text-base w-full md:w-[40%]">
-                Avenue By Student Housing, Shree Krishna building, NS Mankikar
-                Rd, next to Shetty tower, Nutan Laxmi Society, JVPD Scheme,
-                Vile Parle West, Mumbai
-              </div>
-
-              {/* Phone 1 */}
-              <div className="flex gap-2.5">
-                <PhoneIcon className="w-5 h-5 md:w-6 md:h-6" />
-
-                <Link
-                  href="tel:+91-9819780000"
-                  className="text-[#F8C14C] text-sm md:text-base"
+              <div>
+                <ul
+                  role="list"
+                  className="mt-4 md:mt-6 space-y-2 md:space-y-4"
                 >
-                  +91-9819780000
-                </Link>
-              </div>
-
-              {/* Phone 2 */}
-              <div className="flex gap-2.5">
-                <PhoneIcon className="w-5 h-5 md:w-6 md:h-6" />
-
-                <Link
-                  href="tel:+91-9004033884"
-                  className="text-[#F8C14C] text-sm md:text-base"
-                >
-                  +91-9004033884
-                </Link>
-              </div>
-
-              {/* Phone 3 */}
-              <div className="flex gap-2.5">
-                <PhoneIcon className="w-5 h-5 md:w-6 md:h-6" />
-
-                <Link
-                  href="tel:+91-8779003845"
-                  className="text-[#F8C14C] text-sm md:text-base"
-                >
-                  +91-8779003845
-                </Link>
-              </div>
-
-              {/* Phone 4 */}
-              <div className="flex gap-2.5">
-                <PhoneIcon className="w-5 h-5 md:w-6 md:h-6" />
-
-                <Link
-                  href="tel:+91-9702704881"
-                  className="text-[#F8C14C] text-sm md:text-base"
-                >
-                  +91-9702704881
-                </Link>
-              </div>
-
-              {/* Email */}
-              <div className="flex gap-2.5">
-                <MailIcon className="w-5 h-5 md:w-6 md:h-6" />
-
-                <Link
-                  href="mailto:info@studenthousing.co.in"
-                  className="text-[#F8C14C] text-sm md:text-base"
-                >
-                  info@studenthousing.co.in
-                </Link>
-              </div>
-            </div>
-
-            {/* Quick Links + Support */}
-            <div className="flex flex-col w-full md:w-1/2 md:flex-row gap-4">
-
-              {/* Quick Links */}
-              <div className="flex flex-col w-full md:w-1/2">
-
-                <div className="font-semibold text-2xl">
-                  Quick Links
-                </div>
-
-                <div>
-                  <ul
-                    role="list"
-                    className="mt-4 md:mt-6 space-y-2 md:space-y-4"
-                  >
-                    {navigation.quickLinks.map((item) => (
-                      <li key={item.name}>
-                        <Link href={item.href} legacyBehavior>
-                          <a className="text-sm leading-6 text-gray-300 hover:text-white">
-                            {item.name}
-                          </a>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              {/* Support */}
-              <div className="flex flex-col w-full md:w-1/2">
-
-                <div className="font-semibold text-2xl">
-                  Support
-                </div>
-
-                <div>
-                  <ul
-                    role="list"
-                    className="mt-4 md:mt-6 space-y-2 md:space-y-4"
-                  >
-                    {navigation.support.map((item) => (
-                      <li key={item.name}>
-                        <Link href={item.href} legacyBehavior>
-                          <a className="text-sm leading-6 text-gray-300 hover:text-white">
-                            {item.name}
-                          </a>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Social Media Icons */}
-                <div className="flex gap-6 flex-wrap justify-start mt-6">
-                  {navigation.social.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-500 hover:text-gray-400 bg-[#1E2533] p-2 rounded-[8px]"
-                    >
-                      <span className="sr-only">
-                        {item.name}
-                      </span>
-
-                      <item.icon
-                        className="h-6 w-6"
-                        aria-hidden="true"
-                      />
-                    </a>
+                  {navigation.quickLinks.map((item) => (
+                    <li key={item.name}>
+                      <Link href={item.href} legacyBehavior>
+                        <a className="text-sm leading-6 text-gray-300 hover:text-white">
+                          {item.name}
+                        </a>
+                      </Link>
+                    </li>
                   ))}
-                </div>
+                </ul>
+              </div>
 
-                {/* =========================================
-                    GOOGLE ADD TO PREFERRED SOURCES
-                   ========================================= */}
+            </div>
 
-                <div
-                  className="google-preferred-btn mt-6"
-                  google-add-preferred-source-btn
-                ></div>
+            {/* Support */}
+            <div className="flex flex-col w-full md:w-1/2">
+
+              <div className="font-semibold text-2xl">
+                Support
+              </div>
+
+              <div>
+                <ul
+                  role="list"
+                  className="mt-4 md:mt-6 space-y-2 md:space-y-4"
+                >
+                  {navigation.support.map((item) => (
+                    <li key={item.name}>
+                      <Link href={item.href} legacyBehavior>
+                        <a className="text-sm leading-6 text-gray-300 hover:text-white">
+                          {item.name}
+                        </a>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Social Media Icons */}
+              <div className="flex gap-6 flex-wrap justify-start mt-6">
+
+                {navigation.social.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-500 hover:text-gray-400 bg-[#1E2533] p-2 rounded-[8px]"
+                  >
+                    <span className="sr-only">
+                      {item.name}
+                    </span>
+
+                    <item.icon
+                      className="h-6 w-6"
+                      aria-hidden="true"
+                    />
+                  </a>
+                ))}
 
               </div>
+
+              {/* =========================================
+                  GOOGLE ADD TO PREFERRED SOURCES BUTTON
+
+                  NOTE:
+                  The Google Publisher JS is intentionally
+                  NOT included here.
+
+                  It is loaded once in Header.jsx.
+                 ========================================= */}
+
+              <div
+                className="google-preferred-btn mt-6"
+                google-add-preferred-source-btn
+              ></div>
+
             </div>
           </div>
-
-          {/* Copyright */}
-          <div className="flex justify-center items-center text-white opacity-80 py-6">
-            © Student Housing India Limited. All rights reserved.
-          </div>
-
         </div>
-      </footer>
-    </>
+
+        {/* Copyright */}
+        <div className="flex justify-center items-center text-white opacity-80 py-6">
+          © Student Housing India Limited. All rights reserved.
+        </div>
+
+      </div>
+    </footer>
   );
 }
