@@ -557,89 +557,131 @@ const Homepage = ({ announcementImages, listings }) => {
   return (
     <>
      <Head>
-  {/* Primary SEO */}
-  <title>
+  {/* ==============================
+      PRIMARY SEO
+  ============================== */}
+
+  <title key="title">
     Book Hostels in Mumbai for college students | Student Housing
   </title>
 
   <meta
     name="description"
     content="Student Housing offers fully furnished student hostels in Mumbai near top colleges across Vile Parle, Juhu, and Andheri with secure and comfortable living"
+    key="description"
   />
 
-  {/* Canonical */}
+  {/* ==============================
+      CANONICAL
+  ============================== */}
+
   <link
     rel="canonical"
     href="https://www.studenthousing.co.in/"
+    key="canonical"
   />
 
-  {/* Open Graph */}
+  {/* ==============================
+      OPEN GRAPH
+  ============================== */}
+
   <meta
     property="og:url"
     content="https://www.studenthousing.co.in/"
+    key="og:url"
   />
 
   <meta
     property="og:type"
     content="website"
+    key="og:type"
   />
 
   <meta
     property="og:title"
     content="Book Hostels in Mumbai for college students | Student Housing"
+    key="og:title"
   />
 
   <meta
     property="og:description"
     content="Student Housing offers fully furnished student hostels in Mumbai near top colleges across Vile Parle, Juhu, and Andheri with secure and comfortable living"
+    key="og:description"
   />
 
   <meta
     property="og:image"
     content="https://www.studenthousing.co.in/DAN09168.webp"
+    key="og:image"
   />
 
-  {/* Twitter */}
+  {/* ==============================
+      TWITTER
+  ============================== */}
+
   <meta
     name="twitter:card"
     content="summary_large_image"
+    key="twitter:card"
   />
 
   <meta
     name="twitter:title"
     content="Student Hostels in Mumbai for Boys & Girls | Student Housing"
+    key="twitter:title"
   />
 
   <meta
     name="twitter:description"
     content="Student Housing offers fully furnished student hostels in Mumbai near top colleges across Vile Parle, Juhu, and Andheri with secure and comfortable living"
+    key="twitter:description"
   />
 
   <meta
     name="twitter:image"
     content="https://www.studenthousing.co.in/DAN09168.webp"
+    key="twitter:image"
   />
 
   <meta
     name="twitter:domain"
     content="studenthousing.co.in"
+    key="twitter:domain"
   />
 
   <meta
     name="twitter:url"
     content="https://www.studenthousing.co.in/"
+    key="twitter:url"
   />
 
-  <link rel="icon" href="/sh_logo.png" />
+  {/* ==============================
+      FAVICON
+  ============================== */}
+
+  <link
+    rel="icon"
+    href="/sh_logo.png"
+    key="favicon"
+  />
+
+  {/* ==============================
+      INSTAGRAM
+  ============================== */}
 
   <script
     async
     src="https://www.instagram.com/embed.js"
-  ></script>
+    key="instagram-script"
+  />
 
-  {/* LocalBusiness Schema */}
+  {/* ==============================
+      LOCAL BUSINESS SCHEMA
+  ============================== */}
+
   <script
     type="application/ld+json"
+    key="local-business-schema"
     dangerouslySetInnerHTML={{
       __html: JSON.stringify({
         "@context": "https://schema.org",
@@ -649,6 +691,7 @@ const Homepage = ({ announcementImages, listings }) => {
         "url": "https://www.studenthousing.co.in/",
         "telephone": "+919819780000",
         "priceRange": "₹₹₹",
+
         "address": {
           "@type": "PostalAddress",
           "streetAddress":
@@ -657,11 +700,13 @@ const Homepage = ({ announcementImages, listings }) => {
           "postalCode": "400049",
           "addressCountry": "IN"
         },
+
         "geo": {
           "@type": "GeoCoordinates",
           "latitude": 19.10831612604247,
           "longitude": 72.83014687940613
         },
+
         "sameAs": [
           "https://www.facebook.com/StudentHousingIN",
           "https://www.instagram.com/studenthousing_mumbai/",
