@@ -1,16 +1,22 @@
 "use client";
 
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { Popover, Transition, Dialog, Menu } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Popover, Transition, Menu } from "@headlessui/react";
+import {
+  Bars3Icon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
 import useAuth from "../hooks/useAuth";
 import withAuth from "../hooks/withAuth";
 import Script from "next/script";
 import useApi from "../hooks/useApi";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+
+/* =========================================================
+   HOSTELS
+   ========================================================= */
 
 const hostels = [
   {
@@ -63,6 +69,10 @@ const hostels = [
   },
 ];
 
+/* =========================================================
+   HOSTELS NEAR LOCATION
+   ========================================================= */
+
 const hostelsNearLocation = [
   {
     name: "Hostels in Andheri",
@@ -89,6 +99,10 @@ const hostelsNearLocation = [
     href: "/hostels-near-location/hostel-in-south-mumbai",
   },
 ];
+
+/* =========================================================
+   HOSTELS NEAR COLLEGE
+   ========================================================= */
 
 const hostelsNearCollege = [
   {
@@ -125,47 +139,79 @@ const hostelsNearCollege = [
   },
 ];
 
+/* =========================================================
+   USER NAVIGATION
+   ========================================================= */
+
 const userNavigation = [
-  { name: "Your Profile", href: "/profile" },
-  { name: "Order History", href: "/order-history" },
-  { name: "Sign out", href: "#" },
+  {
+    name: "Your Profile",
+    href: "/profile",
+  },
+  {
+    name: "Order History",
+    href: "/order-history",
+  },
+  {
+    name: "Sign out",
+    href: "#",
+  },
 ];
+
+/* =========================================================
+   HELPERS
+   ========================================================= */
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
-  const router = useRouter();
-  const { isLoading, isAuthenticated } = withAuth();
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+export default function Header() {
+  const { isAuthenticated } = withAuth();
   const { logout } = useAuth();
+
   const user = useAuth.user;
 
   const [scrolled, setScrolled] = useState(false);
   const [openMobileMenu, setOpenMobileMenu] = useState(null);
   const [bookingOpen, setBookingOpen] = useState(false);
 
-  const scrollHandler = () => {
-    setScrolled(window.scrollY > 0);
-  };
+  /* =======================================================
+     HEADER SCROLL
+     ======================================================= */
 
   useEffect(() => {
-    window.addEventListener("scroll", scrollHandler);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 0);
+    };
+
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
 
     return () => {
-      window.removeEventListener("scroll", scrollHandler);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
     <>
-      {/* =========================================
+      {/* ===================================================
           MICROSOFT CLARITY
-         ========================================= */}
+         =================================================== */}
+
       <Script id="microsoft-clarity" strategy="afterInteractive">
         {`
           (function(c,l,a,r,i,t,y){
-              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              c[a]=c[a]||function(){
+                (c[a].q=c[a].q||[]).push(arguments)
+              };
               t=l.createElement(r);
               t.async=1;
               t.src="https://www.clarity.ms/tag/"+i;
@@ -175,46 +221,67 @@ export default function Example() {
         `}
       </Script>
 
-      {/* =========================================
-          GOOGLE NEWS PREFERRED SOURCE
-         ========================================= */}
+      {/* ===================================================
+          GOOGLE NEWS PUBLISHER SCRIPT
+
+          Loaded ONLY ONCE in Header.
+          Footer uses the button only.
+         =================================================== */}
+
       <Script
         id="google-news-preferred-source"
-        async
+        strategy="afterInteractive"
         src="https://news.google.com/swg/js/v1/publisher.js"
       />
+
+      {/* ===================================================
+          HEADER POPOVER
+         =================================================== */}
 
       <Popover
         className={`bg-white transition-shadow duration-500 ease-in-out shadow-sm ${
           scrolled ? "shadow-md" : ""
         }`}
       >
+        {/* =================================================
+            HEADER CONTAINER
+           ================================================= */}
+
         <div className="w-full px-0">
           <div className="flex items-center justify-between py-6 lg:justify-start lg:space-x-10">
 
-            {/* =========================================
+            {/* ===============================================
                 LOGO
-               ========================================= */}
-            <div className="flex justify-start lg:w-0 lg:flex-1">
-              <a href="#">
-                <span className="sr-only">Your Company</span>
+               =============================================== */}
 
-                <Link href="/" legacyBehavior>
+            <div className="flex justify-start lg:w-0 lg:flex-1">
+              <Link href="/" legacyBehavior>
+                <a>
+                  <span className="sr-only">
+                    Student Housing
+                  </span>
+
                   <img
                     className="w-auto h-[100px] cursor-pointer"
                     src="/SH.png"
-                    alt="student housing main logo"
+                    alt="Student Housing main logo"
                   />
-                </Link>
-              </a>
+                </a>
+              </Link>
             </div>
 
-            {/* =========================================
+            {/* ===============================================
                 MOBILE MENU BUTTON
-               ========================================= */}
+               =============================================== */}
+
             <div className="-my-2 -mr-2 lg:hidden">
-              <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500">
-                <span className="sr-only">Open menu</span>
+              <Popover.Button
+                className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500"
+              >
+                <span className="sr-only">
+                  Open menu
+                </span>
+
                 <Bars3Icon
                   className="h-6 w-6"
                   aria-hidden="true"
@@ -222,15 +289,19 @@ export default function Example() {
               </Popover.Button>
             </div>
 
-            {/* =========================================
+            {/* ===============================================
                 DESKTOP NAVIGATION
-               ========================================= */}
+               =============================================== */}
+
             <Popover.Group
               as="nav"
               className="hidden space-x-10 lg:flex"
             >
 
-              {/* Explore Hostels */}
+              {/* ===========================================
+                  EXPLORE HOSTELS
+                 =========================================== */}
+
               <div className="relative group">
 
                 <Link href="/listings" legacyBehavior>
@@ -253,11 +324,8 @@ export default function Example() {
                   </a>
                 </Link>
 
-                {/* Dropdown */}
                 <div
-                  className="absolute left-0 mt-3 w-80 rounded-xl bg-white shadow-xl ring-1 ring-black/5
-                  opacity-0 invisible group-hover:opacity-100 group-hover:visible
-                  transition-all duration-200 z-[1100]"
+                  className="absolute left-0 mt-3 w-80 rounded-xl bg-white shadow-xl ring-1 ring-black/5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[1100]"
                 >
                   <div className="h-[190px] overflow-y-auto py-2">
                     {hostels.map((hostel) => (
@@ -279,7 +347,10 @@ export default function Example() {
                 </div>
               </div>
 
-              {/* Stay Near Campus */}
+              {/* ===========================================
+                  STAY NEAR CAMPUS
+                 =========================================== */}
+
               <div className="relative group">
 
                 <span className="flex cursor-pointer items-center gap-1 text-base font-medium text-gray-500 hover:text-gray-900">
@@ -301,9 +372,7 @@ export default function Example() {
                 </span>
 
                 <div
-                  className="absolute left-0 mt-3 w-72 rounded-xl bg-white shadow-xl ring-1 ring-black/5
-                  opacity-0 invisible group-hover:opacity-100 group-hover:visible
-                  transition-all duration-200 z-[1100]"
+                  className="absolute left-0 mt-3 w-72 rounded-xl bg-white shadow-xl ring-1 ring-black/5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[1100]"
                 >
                   <div className="max-h-[260px] overflow-y-auto py-2">
                     {hostelsNearCollege.map((item) => (
@@ -325,7 +394,10 @@ export default function Example() {
                 </div>
               </div>
 
-              {/* Explore by Area */}
+              {/* ===========================================
+                  EXPLORE BY AREA
+                 =========================================== */}
+
               <div className="relative group">
 
                 <span className="flex cursor-pointer items-center gap-1 text-base font-medium text-gray-500 hover:text-gray-900">
@@ -347,9 +419,7 @@ export default function Example() {
                 </span>
 
                 <div
-                  className="absolute left-0 mt-3 w-64 rounded-xl bg-white shadow-xl ring-1 ring-black/5
-                  opacity-0 invisible group-hover:opacity-100 group-hover:visible
-                  transition-all duration-200 z-[1100]"
+                  className="absolute left-0 mt-3 w-64 rounded-xl bg-white shadow-xl ring-1 ring-black/5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[1100]"
                 >
                   <div className="py-2">
                     {hostelsNearLocation.map((item) => (
@@ -371,28 +441,28 @@ export default function Example() {
                 </div>
               </div>
 
-              {/* About Us */}
+              {/* ===========================================
+                  STATIC LINKS
+                 =========================================== */}
+
               <Link href="/about-us" legacyBehavior>
                 <a className="text-base font-medium text-gray-500 hover:text-gray-900">
                   About Us
                 </a>
               </Link>
 
-              {/* Contact Us */}
               <Link href="/contact-us" legacyBehavior>
                 <a className="text-base font-medium text-gray-500 hover:text-gray-900">
                   Contact Us
                 </a>
               </Link>
 
-              {/* Refer & Earn */}
               <Link href="/refer-and-earn" legacyBehavior>
                 <a className="text-base font-medium text-gray-500 hover:text-gray-900">
                   Refer & Earn
                 </a>
               </Link>
 
-              {/* FAQs */}
               <Link href="/faqs" legacyBehavior>
                 <a className="text-base font-medium text-gray-500 hover:text-gray-900">
                   FAQs
@@ -400,42 +470,45 @@ export default function Example() {
               </Link>
             </Popover.Group>
 
-            {/* =========================================
+            {/* ===============================================
                 DESKTOP RIGHT SIDE
-               ========================================= */}
+               =============================================== */}
+
             <div className="hidden items-center justify-end lg:flex lg:flex-1 lg:w-0">
 
-              {/* Book Now */}
+              {/* BOOK NOW */}
+
               <button
+                type="button"
                 onClick={() => setBookingOpen(true)}
                 className="mr-4 bg-[#ffcc29] hover:bg-[#fad45a] text-black px-4 py-2 rounded-md font-medium"
               >
                 Book Now
               </button>
 
-              {/* Authentication */}
-              {(isAuthenticated && (
+              {/* AUTHENTICATION */}
+
+              {isAuthenticated ? (
                 <div className="ml-4 flex items-center md:ml-6">
 
-                  {/* User Name */}
                   <span className="mr-3 capitalize">
-                    {(isAuthenticated &&
-                      user &&
-                      user.firstname + " " + user.lastname) ||
-                      ""}
+                    {user
+                      ? `${user.firstname || ""} ${
+                          user.lastname || ""
+                        }`
+                      : ""}
                   </span>
 
-                  {/* Profile Dropdown */}
-                  <Menu as="div" className="relative ml-3">
+                  <Menu
+                    as="div"
+                    className="relative ml-3"
+                  >
                     <div>
                       <Menu.Button className="flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                         <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-yellow-500 uppercase">
                           <span className="text-sm font-medium leading-none text-white">
-                            {(isAuthenticated &&
-                              user &&
-                              user.firstname[0] +
-                                user.lastname[0]) ||
-                              ""}
+                            {user?.firstname?.[0] || ""}
+                            {user?.lastname?.[0] || ""}
                           </span>
                         </span>
                       </Menu.Button>
@@ -455,15 +528,23 @@ export default function Example() {
                         {userNavigation.map((item) => (
                           <Menu.Item key={item.name}>
                             {({ active }) => (
-                              <Link href={item.href} legacyBehavior>
+                              <Link
+                                href={item.href}
+                                legacyBehavior
+                              >
                                 <a
                                   onClick={() => {
-                                    if (item.name === "Sign out") {
+                                    if (
+                                      item.name ===
+                                      "Sign out"
+                                    ) {
                                       logout();
                                     }
                                   }}
                                   className={classNames(
-                                    active ? "bg-gray-100" : "",
+                                    active
+                                      ? "bg-gray-100"
+                                      : "",
                                     "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                   )}
                                 >
@@ -478,16 +559,15 @@ export default function Example() {
                     </Transition>
                   </Menu>
                 </div>
-              )) || (
-                <></>
-              )}
+              ) : null}
             </div>
           </div>
         </div>
 
-        {/* =========================================
+        {/* =================================================
             MOBILE MENU
-           ========================================= */}
+           ================================================= */}
+
         <Transition
           as={Fragment}
           enter="duration-200 ease-out"
@@ -503,19 +583,20 @@ export default function Example() {
           >
             <div className="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
 
-              {/* Mobile Header */}
+              {/* MOBILE HEADER */}
+
               <div className="px-5 pt-5 pb-6">
                 <div className="flex items-center justify-between">
 
-                  <div>
-                    <Link href="/" legacyBehavior>
+                  <Link href="/" legacyBehavior>
+                    <a>
                       <img
                         className="w-[150px] h-[70px] cursor-pointer"
                         src="/SH.png"
                         alt="Student Housing"
                       />
-                    </Link>
-                  </div>
+                    </a>
+                  </Link>
 
                   <div className="-mr-2">
                     <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500">
@@ -533,14 +614,17 @@ export default function Example() {
                 </div>
               </div>
 
-              {/* Mobile Navigation */}
+              {/* MOBILE NAVIGATION */}
+
               <div className="space-y-6 py-6 px-5">
 
                 <div className="space-y-5">
 
-                  {/* Explore Hostels */}
+                  {/* EXPLORE HOSTELS */}
+
                   <div>
                     <button
+                      type="button"
                       onClick={() =>
                         setOpenMobileMenu(
                           openMobileMenu === "hostels"
@@ -588,9 +672,11 @@ export default function Example() {
                     )}
                   </div>
 
-                  {/* Stay Near Campus */}
+                  {/* STAY NEAR CAMPUS */}
+
                   <div>
                     <button
+                      type="button"
                       onClick={() =>
                         setOpenMobileMenu(
                           openMobileMenu === "college"
@@ -623,24 +709,28 @@ export default function Example() {
 
                     {openMobileMenu === "college" && (
                       <div className="mt-3 space-y-2 pl-4">
-                        {hostelsNearCollege.map((item) => (
-                          <Link
-                            key={item.href}
-                            href={item.href}
-                            legacyBehavior
-                          >
-                            <a className="block text-sm text-gray-700 hover:text-gray-900">
-                              {item.name}
-                            </a>
-                          </Link>
-                        ))}
+                        {hostelsNearCollege.map(
+                          (item) => (
+                            <Link
+                              key={item.href}
+                              href={item.href}
+                              legacyBehavior
+                            >
+                              <a className="block text-sm text-gray-700 hover:text-gray-900">
+                                {item.name}
+                              </a>
+                            </Link>
+                          )
+                        )}
                       </div>
                     )}
                   </div>
 
-                  {/* Explore by Area */}
+                  {/* EXPLORE BY AREA */}
+
                   <div>
                     <button
+                      type="button"
                       onClick={() =>
                         setOpenMobileMenu(
                           openMobileMenu === "area"
@@ -673,50 +763,49 @@ export default function Example() {
 
                     {openMobileMenu === "area" && (
                       <div className="mt-3 space-y-2 pl-4">
-                        {hostelsNearLocation.map((item) => (
-                          <Link
-                            key={item.href}
-                            href={item.href}
-                            legacyBehavior
-                          >
-                            <a className="block text-sm text-gray-700 hover:text-gray-900">
-                              {item.name}
-                            </a>
-                          </Link>
-                        ))}
+                        {hostelsNearLocation.map(
+                          (item) => (
+                            <Link
+                              key={item.href}
+                              href={item.href}
+                              legacyBehavior
+                            >
+                              <a className="block text-sm text-gray-700 hover:text-gray-900">
+                                {item.name}
+                              </a>
+                            </Link>
+                          )
+                        )}
                       </div>
                     )}
                   </div>
 
-                  {/* About Us */}
+                  {/* STATIC LINKS */}
+
                   <Link href="/about-us" legacyBehavior>
                     <a className="block text-base font-semibold text-gray-900">
                       About Us
                     </a>
                   </Link>
 
-                  {/* Contact Us */}
                   <Link href="/contact-us" legacyBehavior>
                     <a className="block text-base font-semibold text-gray-900">
                       Contact Us
                     </a>
                   </Link>
 
-                  {/* Blogs */}
                   <Link href="/blogs" legacyBehavior>
                     <a className="block text-base font-semibold text-gray-900">
                       Blogs
                     </a>
                   </Link>
 
-                  {/* Refer & Earn */}
                   <Link href="/refer-and-earn" legacyBehavior>
                     <a className="block text-base font-semibold text-gray-900">
                       Refer & Earn
                     </a>
                   </Link>
 
-                  {/* FAQs */}
                   <Link href="/faqs" legacyBehavior>
                     <a className="block text-base font-semibold text-gray-900">
                       FAQs
@@ -724,30 +813,25 @@ export default function Example() {
                   </Link>
                 </div>
 
-                {/* =========================================
-                    MOBILE AUTHENTICATED USER
-                   ========================================= */}
+                {/* MOBILE AUTHENTICATED USER */}
+
                 {isAuthenticated && (
                   <div>
 
                     <div className="mb-3">
                       <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-yellow-500 mr-3 uppercase">
                         <span className="text-sm font-medium leading-none text-white">
-                          {(isAuthenticated &&
-                            user &&
-                            user.firstname[0] +
-                              user.lastname[0]) ||
-                            ""}
+                          {user?.firstname?.[0] || ""}
+                          {user?.lastname?.[0] || ""}
                         </span>
                       </span>
 
                       <span className="mr-3 capitalize">
-                        {(isAuthenticated &&
-                          user &&
-                          user.firstname +
-                            " " +
-                            user.lastname) ||
-                          ""}
+                        {user
+                          ? `${user.firstname || ""} ${
+                              user.lastname || ""
+                            }`
+                          : ""}
                       </span>
                     </div>
 
@@ -760,7 +844,10 @@ export default function Example() {
                         >
                           <a
                             onClick={() => {
-                              if (item.name === "Sign out") {
+                              if (
+                                item.name ===
+                                "Sign out"
+                              ) {
                                 logout();
                               }
                             }}
@@ -771,7 +858,6 @@ export default function Example() {
                         </Link>
                       ))}
                     </div>
-
                   </div>
                 )}
 
@@ -779,17 +865,20 @@ export default function Example() {
             </div>
           </Popover.Panel>
         </Transition>
-
-        {/* Booking Modal */}
-        <BookingModal
-          open={bookingOpen}
-          setOpen={setBookingOpen}
-        />
       </Popover>
+
+      {/* ===================================================
+          IMPORTANT:
+          BOOKING MODAL IS OUTSIDE POPOVER
+         =================================================== */}
+
+      <BookingModal
+        open={bookingOpen}
+        setOpen={setBookingOpen}
+      />
     </>
   );
 }
-
 
 /* =========================================================
    BOOKING MODAL
@@ -807,11 +896,81 @@ function BookingModal({ open, setOpen }) {
   const [time, setTime] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  /* =======================================================
+     BODY SCROLL LOCK
+
+     Only lock scrolling while THIS modal is open.
+     Always restore the previous body overflow state.
+     ======================================================= */
+
+  useEffect(() => {
+    if (!open) {
+      return;
+    }
+
+    const originalOverflow =
+      document.body.style.overflow;
+
+    const originalPaddingRight =
+      document.body.style.paddingRight;
+
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow =
+        originalOverflow;
+
+      document.body.style.paddingRight =
+        originalPaddingRight;
+    };
+  }, [open]);
+
+  /* =======================================================
+     ESCAPE KEY
+     ======================================================= */
+
+  useEffect(() => {
+    if (!open) {
+      return;
+    }
+
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener(
+      "keydown",
+      handleEscape
+    );
+
+    return () => {
+      document.removeEventListener(
+        "keydown",
+        handleEscape
+      );
+    };
+  }, [open, setOpen]);
+
+  /* =======================================================
+     SUBMIT
+     ======================================================= */
+
   const handleSubmit = async () => {
-    if (isSubmitting) return;
+    if (isSubmitting) {
+      return;
+    }
 
     if (!name || !phone || !hostel || !time) {
       alert("Please fill all required fields");
+      return;
+    }
+
+    if (phone.length !== 10) {
+      alert(
+        "Please enter a valid 10-digit phone number"
+      );
       return;
     }
 
@@ -821,76 +980,135 @@ function BookingModal({ open, setOpen }) {
 New Booking Request
 
 Hostel: ${hostel}
-Date: ${new Date(date).toLocaleDateString()}
+Date: ${
+      date
+        ? new Date(date).toLocaleDateString()
+        : ""
+    }
 Time: ${time}
 `;
 
-    const response = await contactUs({
-      name,
-      email,
-      phone,
-      message,
-      subject: "Schedule Visit Request",
-    });
+    try {
+      const response = await contactUs({
+        name,
+        email,
+        phone,
+        message,
+        subject: "Schedule Visit Request",
+      });
 
-    if (response === "Message sent successfully") {
-      alert("Booking request sent!");
-      setOpen(false);
-    } else {
+      if (
+        response === "Message sent successfully"
+      ) {
+        alert("Booking request sent!");
+
+        setOpen(false);
+
+        /* Reset form */
+        setName("");
+        setPhone("");
+        setEmail("");
+        setHostel("");
+        setTime("");
+        setDate(new Date());
+        setShowHostel(false);
+      } else {
+        alert("Error sending booking");
+        console.log(response);
+      }
+    } catch (error) {
+      console.error("Booking error:", error);
       alert("Error sending booking");
-      console.log(response);
+    } finally {
       setIsSubmitting(false);
     }
   };
 
-  if (!open) return null;
+  if (!open) {
+    return null;
+  }
 
   return (
-    <div className="fixed inset-0 z-[2000] bg-black/50 flex items-center justify-center">
+    <div
+      className="fixed inset-0 z-[99999] bg-black/50 flex items-center justify-center p-4 overscroll-contain"
+      onMouseDown={(event) => {
+        if (
+          event.target === event.currentTarget
+        ) {
+          setOpen(false);
+        }
+      }}
+    >
+      <div
+        className="relative bg-white p-6 rounded-xl w-full max-w-[380px] max-h-[90vh] overflow-y-auto shadow-2xl"
+        onMouseDown={(event) =>
+          event.stopPropagation()
+        }
+      >
+        {/* CLOSE */}
 
-      <div className="relative bg-white p-6 rounded-xl w-[320px]">
-
-        {/* Close */}
         <button
+          type="button"
           onClick={() => setOpen(false)}
           className="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
+          aria-label="Close booking modal"
         >
           ✕
         </button>
 
-        {/* Title */}
-        <h2 className="text-lg font-semibold mb-4">
+        {/* TITLE */}
+
+        <h2 className="text-lg font-semibold mb-4 pr-8">
           Schedule Your Visit
         </h2>
 
-        {/* Name */}
+        {/* NAME */}
+
         <input
           type="text"
           placeholder="Your Name"
           value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="border border-gray-600 p-2 w-full mb-3 focus:outline-none"
+          onChange={(event) =>
+            setName(event.target.value)
+          }
+          className="border border-gray-600 p-2 w-full mb-3 focus:outline-none rounded"
         />
 
-        {/* Phone */}
+        {/* PHONE */}
+
         <input
           type="tel"
           placeholder="Phone Number"
           value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          className="border border-gray-600 p-2 w-full mb-3 focus:outline-none"
+          onChange={(event) => {
+            const value =
+              event.target.value.replace(
+                /\D/g,
+                ""
+              );
+
+            setPhone(value.slice(0, 10));
+          }}
+          className="border border-gray-600 p-2 w-full mb-3 focus:outline-none rounded"
+          inputMode="numeric"
+          maxLength={10}
         />
 
-        {/* Hostel Dropdown */}
-        <div className="relative mb-3">
+        {/* HOSTEL */}
 
+        <div className="relative mb-3">
           <button
-            onClick={() => setShowHostel(!showHostel)}
-            className="w-full border border-gray-600 p-2 text-left bg-white flex items-center justify-between"
+            type="button"
+            onClick={() =>
+              setShowHostel(!showHostel)
+            }
+            className="w-full border border-gray-600 p-2 text-left bg-white flex items-center justify-between rounded"
           >
             <span
               className={
-                hostel ? "text-black" : "text-gray-500"
+                hostel
+                  ? "text-black"
+                  : "text-gray-500"
               }
             >
               {hostel || "Select Hostel"}
@@ -898,7 +1116,9 @@ Time: ${time}
 
             <svg
               className={`w-4 h-4 transition-transform ${
-                showHostel ? "rotate-180" : ""
+                showHostel
+                  ? "rotate-180"
+                  : ""
               } text-gray-600`}
               fill="none"
               stroke="currentColor"
@@ -914,8 +1134,7 @@ Time: ${time}
           </button>
 
           {showHostel && (
-            <div className="absolute z-50 w-full bg-white border border-gray-600 mt-1 max-h-[150px] overflow-y-auto shadow-md">
-
+            <div className="absolute z-[100000] w-full bg-white border border-gray-600 mt-1 max-h-[150px] overflow-y-auto shadow-md rounded">
               {[
                 "Aston - South Mumbai",
                 "Atlantis - Juhu, Mumbai",
@@ -930,68 +1149,79 @@ Time: ${time}
                 "Kapadia - Vile Parle, Mumbai",
                 "Moti Mahal - Vile Parle, Mumbai",
               ].map((item) => (
-                <div
+                <button
+                  type="button"
                   key={item}
                   onClick={() => {
                     setHostel(item);
                     setShowHostel(false);
                   }}
-                  className="px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm"
+                  className="block w-full text-left px-3 py-2 hover:bg-gray-100 cursor-pointer text-sm"
                 >
                   {item}
-                </div>
+                </button>
               ))}
-
             </div>
           )}
         </div>
 
-        {/* Date */}
+        {/* DATE */}
+
         <DatePicker
           selected={date}
-          onChange={(d) => setDate(d)}
+          onChange={(selectedDate) =>
+            setDate(selectedDate)
+          }
           minDate={new Date()}
           wrapperClassName="w-full"
-          className="w-full border border-gray-600 p-2 focus:outline-none"
+          className="w-full border border-gray-600 p-2 focus:outline-none rounded"
         />
 
-        {/* Time */}
-        <div className="mt-3">
+        {/* TIME */}
 
+        <div className="mt-3">
           <p className="text-sm mb-2 text-gray-700">
             Select Time
           </p>
 
           <div className="grid grid-cols-3 gap-2">
-
-            {["12–2 PM", "2–4 PM", "4–6 PM"].map(
-              (slot) => (
-                <button
-                  key={slot}
-                  onClick={() => setTime(slot)}
-                  className={`border border-gray-600 py-2 text-sm ${
-                    time === slot
-                      ? "bg-black text-white"
-                      : "bg-white text-black"
-                  }`}
-                >
-                  {slot}
-                </button>
-              )
-            )}
-
+            {[
+              "12–2 PM",
+              "2–4 PM",
+              "4–6 PM",
+            ].map((slot) => (
+              <button
+                type="button"
+                key={slot}
+                onClick={() => setTime(slot)}
+                className={`border border-gray-600 py-2 text-sm rounded ${
+                  time === slot
+                    ? "bg-black text-white"
+                    : "bg-white text-black"
+                }`}
+              >
+                {slot}
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* Confirm */}
+        {/* CONFIRM */}
+
         <button
+          type="button"
           onClick={handleSubmit}
           disabled={isSubmitting}
-          className="mt-4 w-full bg-[#ffcc29] py-2 rounded-md"
+          className={`mt-4 w-full bg-[#ffcc29] py-2 rounded-md font-medium ${
+            isSubmitting
+              ? "opacity-60 cursor-not-allowed"
+              : "hover:bg-[#fad45a]"
+          }`}
         >
-          {isSubmitting ? "Sending..." : "Confirm Visit"}
+          {isSubmitting
+            ? "Sending..."
+            : "Confirm Visit"}
         </button>
-
       </div>
     </div>
   );

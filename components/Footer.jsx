@@ -1,26 +1,28 @@
-import { MailIcon, PhoneIcon } from "lucide-react";
+import {
+  MailIcon,
+  PhoneIcon,
+} from "lucide-react";
 import Link from "next/link";
 
+/* =========================================================
+   FOOTER NAVIGATION
+   ========================================================= */
+
 const navigation = {
-  solutions: [
-    { name: "Home", href: "/" },
-    { name: "Explore Hostels", href: "/listings" },
-    { name: "Blogs", href: "/blogs" },
-  ],
-
   support: [
-    { name: "Terms and Conditions", href: "/terms-and-conditions" },
-    { name: "Refer & Earn", href: "/refer-and-earn" },
-    { name: "Privacy Policy", href: "/privacy-policy" },
+    {
+      name: "Terms and Conditions",
+      href: "/terms-and-conditions",
+    },
+    {
+      name: "Refer & Earn",
+      href: "/refer-and-earn",
+    },
+    {
+      name: "Privacy Policy",
+      href: "/privacy-policy",
+    },
   ],
-
-  company: [
-    { name: "About Us", href: "/about-us" },
-    { name: "Terms and Conditions", href: "/terms-and-conditions" },
-    { name: "Refer & Earn", href: "/refer-and-earn" },
-  ],
-
-  legal: [],
 
   social: [
     {
@@ -83,8 +85,14 @@ const navigation = {
               gradientUnits="userSpaceOnUse"
               gradientTransform="translate(4.47787 22.3364) scale(26.7483 26.7323)"
             >
-              <stop offset="0.09" stopColor="#FA8F21" />
-              <stop offset="0.78" stopColor="#D82D7E" />
+              <stop
+                offset="0.09"
+                stopColor="#FA8F21"
+              />
+              <stop
+                offset="0.78"
+                stopColor="#D82D7E"
+              />
             </radialGradient>
           </defs>
 
@@ -121,57 +129,102 @@ const navigation = {
   ],
 
   quickLinks: [
-    { name: "Home", href: "/" },
-    { name: "About Us", href: "/about-us" },
-    { name: "Explore Hostels", href: "/listings" },
-    { name: "Blogs", href: "/blogs" },
-    { name: "Locations", href: "/locations" },
-    { name: "Contact Us", href: "/contact-us" },
-    { name: "FAQs", href: "/faqs" },
+    {
+      name: "Home",
+      href: "/",
+    },
+    {
+      name: "About Us",
+      href: "/about-us",
+    },
+    {
+      name: "Explore Hostels",
+      href: "/listings",
+    },
+    {
+      name: "Blogs",
+      href: "/blogs",
+    },
+    {
+      name: "Locations",
+      href: "/locations",
+    },
+    {
+      name: "Contact Us",
+      href: "/contact-us",
+    },
+    {
+      name: "FAQs",
+      href: "/faqs",
+    },
   ],
 };
 
-export default function Example() {
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+export default function Footer() {
   return (
     <footer className="bg-gray-900 z-10 relative">
 
-      {/* Background Pattern */}
+      {/* ===================================================
+          BACKGROUND PATTERN
+         =================================================== */}
+
       <div className="absolute inset-0 bg-[url(/bg-pattern-1.png)] z-0" />
 
-      <p id="footer-heading" className="sr-only">
+      <p
+        id="footer-heading"
+        className="sr-only"
+      >
         Footer
       </p>
 
       <div className="relative mx-auto max-w-7xl px-6 py-14 lg:px-8 z-10">
 
-        {/* Top Section */}
+        {/* =================================================
+            TOP SECTION
+           ================================================= */}
+
         <div className="flex flex-col md:flex-row gap-12 md:gap-16 justify-between">
 
-          {/* Logo */}
+          {/* LOGO */}
+
           <div className="space-y-8">
             <div className="w-[170px] h-[80px]">
               <img
                 className="w-full h-full object-contain"
                 src="/logo-bw.png"
-                alt="student housing footer logo"
+                alt="Student Housing footer logo"
               />
             </div>
           </div>
 
-          {/* Description */}
+          {/* DESCRIPTION */}
+
           <div className="text-sm md:text-lg text-white">
-            Our hostels are designed to provide a safe, comfortable, and
-            vibrant living space for students. With modern amenities, 24x7
-            security, and a focus on community living, we ensure a home away
-            from home experience. Stay connected with us for the latest
-            updates, offers, and services tailored just for you!
+            Our hostels are designed to provide a safe,
+            comfortable, and vibrant living space for
+            students. With modern amenities, 24x7
+            security, and a focus on community living,
+            we ensure a home away from home experience.
+            Stay connected with us for the latest
+            updates, offers, and services tailored just
+            for you!
           </div>
         </div>
 
-        {/* Main Footer Content */}
+        {/* =================================================
+            MAIN FOOTER CONTENT
+           ================================================= */}
+
         <div className="mt-8 md:mt-14 border-y border-white/10 py-8 flex flex-col md:flex-row gap-8 md:gap-4 text-white w-full">
 
-          {/* Get In Touch */}
+          {/* ===============================================
+              GET IN TOUCH
+             =============================================== */}
+
           <div className="flex flex-col justify-start gap-3.5 w-full md:w-1/2">
 
             <div className="font-semibold text-2xl">
@@ -179,12 +232,16 @@ export default function Example() {
             </div>
 
             <div className="text-sm md:text-base w-full md:w-[40%]">
-              Avenue By Student Housing, Shree Krishna building, NS Mankikar
-              Rd, next to Shetty tower, Nutan Laxmi Society, JVPD Scheme,
-              Vile Parle West, Mumbai
+              Avenue By Student Housing,
+              Shree Krishna building,
+              NS Mankikar Rd, next to Shetty
+              tower, Nutan Laxmi Society,
+              JVPD Scheme, Vile Parle West,
+              Mumbai
             </div>
 
-            {/* Phone 1 */}
+            {/* PHONE 1 */}
+
             <div className="flex gap-2.5">
               <PhoneIcon className="w-5 h-5 md:w-6 md:h-6" />
 
@@ -196,7 +253,8 @@ export default function Example() {
               </Link>
             </div>
 
-            {/* Phone 2 */}
+            {/* PHONE 2 */}
+
             <div className="flex gap-2.5">
               <PhoneIcon className="w-5 h-5 md:w-6 md:h-6" />
 
@@ -208,7 +266,8 @@ export default function Example() {
               </Link>
             </div>
 
-            {/* Phone 3 */}
+            {/* PHONE 3 */}
+
             <div className="flex gap-2.5">
               <PhoneIcon className="w-5 h-5 md:w-6 md:h-6" />
 
@@ -220,7 +279,8 @@ export default function Example() {
               </Link>
             </div>
 
-            {/* Phone 4 */}
+            {/* PHONE 4 */}
+
             <div className="flex gap-2.5">
               <PhoneIcon className="w-5 h-5 md:w-6 md:h-6" />
 
@@ -232,7 +292,8 @@ export default function Example() {
               </Link>
             </div>
 
-            {/* Email */}
+            {/* EMAIL */}
+
             <div className="flex gap-2.5">
               <MailIcon className="w-5 h-5 md:w-6 md:h-6" />
 
@@ -243,13 +304,16 @@ export default function Example() {
                 info@studenthousing.co.in
               </Link>
             </div>
-
           </div>
 
-          {/* Quick Links + Support */}
+          {/* ===============================================
+              QUICK LINKS + SUPPORT
+             =============================================== */}
+
           <div className="flex flex-col w-full md:w-1/2 md:flex-row gap-4">
 
-            {/* Quick Links */}
+            {/* QUICK LINKS */}
+
             <div className="flex flex-col w-full md:w-1/2">
 
               <div className="font-semibold text-2xl">
@@ -261,21 +325,26 @@ export default function Example() {
                   role="list"
                   className="mt-4 md:mt-6 space-y-2 md:space-y-4"
                 >
-                  {navigation.quickLinks.map((item) => (
-                    <li key={item.name}>
-                      <Link href={item.href} legacyBehavior>
-                        <a className="text-sm leading-6 text-gray-300 hover:text-white">
-                          {item.name}
-                        </a>
-                      </Link>
-                    </li>
-                  ))}
+                  {navigation.quickLinks.map(
+                    (item) => (
+                      <li key={item.name}>
+                        <Link
+                          href={item.href}
+                          legacyBehavior
+                        >
+                          <a className="text-sm leading-6 text-gray-300 hover:text-white">
+                            {item.name}
+                          </a>
+                        </Link>
+                      </li>
+                    )
+                  )}
                 </ul>
               </div>
-
             </div>
 
-            {/* Support */}
+            {/* SUPPORT */}
+
             <div className="flex flex-col w-full md:w-1/2">
 
               <div className="font-semibold text-2xl">
@@ -287,66 +356,76 @@ export default function Example() {
                   role="list"
                   className="mt-4 md:mt-6 space-y-2 md:space-y-4"
                 >
-                  {navigation.support.map((item) => (
-                    <li key={item.name}>
-                      <Link href={item.href} legacyBehavior>
-                        <a className="text-sm leading-6 text-gray-300 hover:text-white">
-                          {item.name}
-                        </a>
-                      </Link>
-                    </li>
-                  ))}
+                  {navigation.support.map(
+                    (item) => (
+                      <li key={item.name}>
+                        <Link
+                          href={item.href}
+                          legacyBehavior
+                        >
+                          <a className="text-sm leading-6 text-gray-300 hover:text-white">
+                            {item.name}
+                          </a>
+                        </Link>
+                      </li>
+                    )
+                  )}
                 </ul>
               </div>
 
-              {/* Social Media Icons */}
+              {/* =========================================
+                  SOCIAL MEDIA
+                 ========================================= */}
+
               <div className="flex gap-6 flex-wrap justify-start mt-6">
 
-                {navigation.social.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-500 hover:text-gray-400 bg-[#1E2533] p-2 rounded-[8px]"
-                  >
-                    <span className="sr-only">
-                      {item.name}
-                    </span>
+                {navigation.social.map(
+                  (item) => (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={item.name}
+                      className="text-gray-500 hover:text-gray-400 bg-[#1E2533] p-2 rounded-[8px]"
+                    >
+                      <span className="sr-only">
+                        {item.name}
+                      </span>
 
-                    <item.icon
-                      className="h-6 w-6"
-                      aria-hidden="true"
-                    />
-                  </a>
-                ))}
+                      <item.icon
+                        className="h-6 w-6"
+                        aria-hidden="true"
+                      />
+                    </a>
+                  )
+                )}
 
               </div>
 
               {/* =========================================
-                  GOOGLE ADD TO PREFERRED SOURCES BUTTON
+                  GOOGLE PREFERRED SOURCE BUTTON
 
-                  NOTE:
-                  The Google Publisher JS is intentionally
-                  NOT included here.
-
-                  It is loaded once in Header.jsx.
+                  IMPORTANT:
+                  The Google Publisher script itself
+                  is loaded ONLY in Header.jsx.
                  ========================================= */}
 
               <div
                 className="google-preferred-btn mt-6"
                 google-add-preferred-source-btn
               ></div>
-
             </div>
           </div>
         </div>
 
-        {/* Copyright */}
-        <div className="flex justify-center items-center text-white opacity-80 py-6">
+        {/* =================================================
+            COPYRIGHT
+           ================================================= */}
+
+        <div className="flex justify-center items-center text-white opacity-80 py-6 text-sm text-center">
           © Student Housing India Limited. All rights reserved.
         </div>
-
       </div>
     </footer>
   );
