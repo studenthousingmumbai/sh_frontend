@@ -43,8 +43,10 @@ export default function RoomOptionsAndPricing({ sectionTitle, data }) {
 
       <div className="px-4 sm:px-6 lg:px-0">
         <CarouselList
-          items={data || []}
-          autoScroll
+  items={(data || []).filter(
+    (item) => item.slug !== "aston-by-student-housing"
+  )}
+  autoScroll
           renderItem={(item) => (
             <Card className="shadow-sm rounded-[16px] h-full flex flex-col">
               <CardContent className="flex flex-col p-3 sm:p-4 h-full">
