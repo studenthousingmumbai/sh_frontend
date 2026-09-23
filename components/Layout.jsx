@@ -1,5 +1,3 @@
-import Head from "next/head";
-import { useRouter } from "next/router";
 import Header from "./Header";
 import Footer from "./Footer";
 import Marquee from "./MarqeeText";
@@ -14,21 +12,14 @@ import EnquireNowFormNew from "./EnquireNowFormNew";
 import WhatsAppButton from "./common/WhatsappButton";
  import Script from "next/script";
 
-export default function Layout({ children, canonical }) {
+export default function Layout({ children }) {
   const [marqueeOpen, setMarqueeOpen] = useState(true);
   const [marqueeText, setMarqueeText] = useState("");
   const isMounted = useRef(false);
   const [enquireNowOpen, setEnquireNowOpen] = useState(false);
 
   
-  const router = useRouter();
 
-const fallbackCanonical = (
-  "https://www.studenthousing.co.in" +
-  (router.asPath === "/" ? "" : router.asPath)
-).split("?")[0];
-
-const canonicalUrl = canonical || fallbackCanonical;
 
   useEffect(() => {
     if (!isMounted.current) {
@@ -63,9 +54,7 @@ const canonicalUrl = canonical || fallbackCanonical;
     <>
   
 
-<Head>
-  <link rel="canonical" href={canonicalUrl} />
-</Head>
+
 
 {/* Meta Pixel */}
 <Script id="facebook-pixel" strategy="afterInteractive">
