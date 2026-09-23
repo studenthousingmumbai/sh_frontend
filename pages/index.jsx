@@ -557,6 +557,7 @@ const Homepage = ({ announcementImages, listings }) => {
   return (
     <>
      <Head>
+  {/* Primary SEO */}
   <title>
     Book Hostels in Mumbai for college students | Student Housing
   </title>
@@ -566,33 +567,81 @@ const Homepage = ({ announcementImages, listings }) => {
     content="Student Housing offers fully furnished student hostels in Mumbai near top colleges across Vile Parle, Juhu, and Andheri with secure and comfortable living"
   />
 
+  {/* Canonical */}
+  <link
+    rel="canonical"
+    href="https://www.studenthousing.co.in/"
+  />
 
+  {/* Open Graph */}
+  <meta
+    property="og:url"
+    content="https://www.studenthousing.co.in/"
+  />
 
-<meta property="og:url" content="https://www.studenthousing.co.in/"/>
-<meta property="og:type" content="website"/>
-<meta property="og:title" content="Book Hostels in Mumbai for college students | Student Housing" />
-<meta property="og:description" content="Student Housing offers fully furnished student hostels in Mumbai near top colleges across Vile Parle, Juhu, and Andheri with secure and comfortable living"/>
-<meta property="og:image" content="https://www.studenthousing.co.in/DAN09168.webp"/>
- 
+  <meta
+    property="og:type"
+    content="website"
+  />
 
-<meta name="twitter:card" content="summary_large_image"/>
-<meta property="twitter:domain" content="studenthousing.co.in"/>
-<meta property="twitter:url" content="https://www.studenthousing.co.in/"/>
-<meta name="twitter:title" content="Student Hostels in Mumbai for Boys & Girls | Student Housing"/>
-<meta name="twitter:description" content="Student Housing offers fully furnished student hostels in Mumbai near top colleges across Vile Parle, Juhu, and Andheri with secure and comfortable living"/>
-<meta name="twitter:image" content="https://www.studenthousing.co.in/DAN09168.webp"/>
+  <meta
+    property="og:title"
+    content="Book Hostels in Mumbai for college students | Student Housing"
+  />
 
+  <meta
+    property="og:description"
+    content="Student Housing offers fully furnished student hostels in Mumbai near top colleges across Vile Parle, Juhu, and Andheri with secure and comfortable living"
+  />
+
+  <meta
+    property="og:image"
+    content="https://www.studenthousing.co.in/DAN09168.webp"
+  />
+
+  {/* Twitter */}
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  />
+
+  <meta
+    name="twitter:title"
+    content="Student Hostels in Mumbai for Boys & Girls | Student Housing"
+  />
+
+  <meta
+    name="twitter:description"
+    content="Student Housing offers fully furnished student hostels in Mumbai near top colleges across Vile Parle, Juhu, and Andheri with secure and comfortable living"
+  />
+
+  <meta
+    name="twitter:image"
+    content="https://www.studenthousing.co.in/DAN09168.webp"
+  />
+
+  <meta
+    name="twitter:domain"
+    content="studenthousing.co.in"
+  />
+
+  <meta
+    name="twitter:url"
+    content="https://www.studenthousing.co.in/"
+  />
 
   <link rel="icon" href="/sh_logo.png" />
 
-  <script async src="//www.instagram.com/embed.js"></script>
+  <script
+    async
+    src="https://www.instagram.com/embed.js"
+  ></script>
 
-  {/* Organization Schema */}
-  {/* ✅ LocalBusiness Schema */}
+  {/* LocalBusiness Schema */}
   <script
     type="application/ld+json"
     dangerouslySetInnerHTML={{
-      __html: `{
+      __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         "name": "Student Housing India Limited",
@@ -602,7 +651,8 @@ const Homepage = ({ announcementImages, listings }) => {
         "priceRange": "₹₹₹",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Avenue By Student Housing, Shree Krishna building, NS Mankikar Rd, next to Shetty tower, Nutan Laxmi Society, JVPD Scheme, Vile Parle West",
+          "streetAddress":
+            "Avenue By Student Housing, Shree Krishna building, NS Mankikar Rd, next to Shetty tower, Nutan Laxmi Society, JVPD Scheme, Vile Parle West",
           "addressLocality": "Mumbai",
           "postalCode": "400049",
           "addressCountry": "IN"
@@ -619,7 +669,7 @@ const Homepage = ({ announcementImages, listings }) => {
           "https://in.linkedin.com/company/student-housing-india",
           "https://www.studenthousing.co.in/"
         ]
-      }`,
+      })
     }}
   />
 </Head>
