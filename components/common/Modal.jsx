@@ -1,6 +1,5 @@
-import { Fragment, useState, useEffect } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useEffect, useState } from "react";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import ReactDOM from "react-dom";
 
 export default function Example({ open, onClose, title, children }) {
@@ -8,63 +7,106 @@ export default function Example({ open, onClose, title, children }) {
 
   useEffect(() => {
     setMounted(true);
+
+    return () => {
+      setMounted(false);
+    };
   }, []);
 
-  if (!mounted) return null;
+  /*
+   * Lock page scroll while modal is open.
+   * Restore everything when modal closes/unmounts.
+   */
+  useEffect(() => {
+    if (!open) {
+      // Safety cleanup
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
+      document.documentElement.style.overflow = "";
+
+      return;
+    }
+
+    const bodyOverflow = document.body.style.overflow;
+    const bodyPaddingRight = document.body.style.paddingRight;
+    const htmlOverflow = document.documentElement.style.overflow;
+
+    // Prevent background page scrolling
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = bodyOverflow;
+      document.body.style.paddingRight = bodyPaddingRight;
+      document.documentElement.style.overflow = htmlOverflow;
+    };
+  }, [open]);
+
+  /*
+   * Close modal with ESC
+   */
+  useEffect(() => {
+    if (!open) return;
+
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [open, onClose]);
+
+  if (!mounted || !open) return null;
 
   const modalRoot = document.getElementById("modal-root");
+
   if (!modalRoot) return null;
 
+  const handleBackdropClick = (event) => {
+    if (event.target === event.currentTarget) {
+      onClose();
+    }
+  };
+
   return ReactDOM.createPortal(
-    <Transition.Root show={open} as={Fragment} className="z-1">
-      <Dialog as="div" className="absolute z-1000" onClose={onClose}>
-        <Transition.Child
-          as={Fragment}
-          enter="ease-out duration-300"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="ease-in duration-200"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
+    <div
+      className="fixed inset-0 z-[100000] bg-gray-500/75 overflow-y-auto"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="student-housing-modal-title"
+      onMouseDown={handleBackdropClick}
+    >
+      <div className="flex justify-center p-4 text-center items-start pt-[260px] sm:pt-[220px]">
+        <div
+          className="relative flex flex-col rounded-lg p-4 bg-white text-left shadow-xl sm:w-full sm:max-w-xl w-full"
+          onMouseDown={(event) => event.stopPropagation()}
         >
-          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-        </Transition.Child>
+          {/* Close Button */}
+          <button
+            type="button"
+            onClick={onClose}
+            className="absolute top-4 right-4 z-10 text-gray-400 hover:text-gray-600 focus:outline-none"
+            aria-label="Close"
+          >
+            <XMarkIcon className="h-5 w-5" aria-hidden="true" />
+          </button>
 
-        <div className="fixed inset-0 overflow-y-auto">
-          <div className="flex justify-center p-4 text-center items-start pt-[260px] sm:pt-[220px]">
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-              enterTo="opacity-100 translate-y-0 sm:scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-              leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-            >
-              <Dialog.Panel className="relative flex flex-col transform rounded-lg p-4 bg-white text-left shadow-xl transition-all sm:w-full sm:max-w-xl w-full">
-                {/* ❌ Close Button */}
-                <button
-                  type="button"
-                  onClick={onClose}
-                  className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 focus:outline-none"
-                >
-                  <XMarkIcon className="h-5 w-5" aria-hidden="true" />
-                  <span className="sr-only">Close</span>
-                </button>
+          <h3
+            id="student-housing-modal-title"
+            className="text-lg font-medium leading-6 text-gray-900 mb-3 pr-8"
+          >
+            {title || "Title"}
+          </h3>
 
-                <Dialog.Title
-                  as="h3"
-                  className="text-lg font-medium leading-6 text-gray-900 mb-3"
-                >
-                  {title || "Title"}
-                </Dialog.Title>
-                <div className="">{children}</div>
-              </Dialog.Panel>
-            </Transition.Child>
-          </div>
+          <div>{children}</div>
         </div>
-      </Dialog>
-    </Transition.Root>,
+      </div>
+    </div>,
     modalRoot
   );
 }
