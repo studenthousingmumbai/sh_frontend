@@ -27,6 +27,55 @@ const Event = dynamic(
   { ssr: false }
 );
 
+/**
+ * Removes exact duplicate <meta> / canonical tags from <head> after Next.js
+ * hydrates. Keeps the LAST copy (the one Next.js manages) and removes the
+ * older leftovers. Only exact duplicates (same tag + same attributes) are
+ * removed, so legit repeated tags (e.g. several og:image) are untouched.
+ */
+function HeadDedupe() {
+  useEffect(() => {
+    let frame;
+
+    const keyOf = (el) =>
+      el.tagName +
+      "|" +
+      Array.from(el.attributes)
+        .map((a) => `${a.name}=${a.value}`)
+        .sort()
+        .join("|");
+
+    const dedupe = () => {
+      const seen = new Set();
+      const nodes = Array.from(
+        document.head.querySelectorAll(
+          "meta[charset], meta[name], meta[property], link[rel='canonical']"
+        )
+      );
+      // walk from the end so the last copy is the one that's kept
+      for (let i = nodes.length - 1; i >= 0; i--) {
+        const key = keyOf(nodes[i]);
+        if (seen.has(key)) nodes[i].remove();
+        else seen.add(key);
+      }
+    };
+
+    const observer = new MutationObserver(() => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(dedupe);
+    });
+    observer.observe(document.head, { childList: true });
+    dedupe();
+
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  return null;
+}
+
 const images = [
   "/banner-1.webp",
   "/banner-2.webp",
@@ -556,168 +605,163 @@ const Homepage = ({ announcementImages, listings }) => {
 
   return (
     <>
-     <Head>
-  {/* ==============================
-      PRIMARY SEO
-  ============================== */}
+      {/* Removes duplicate meta tags Next.js leaves behind in <head> */}
+      <HeadDedupe />
 
-  <title key="title">
-    Book Hostels in Mumbai for college students | Student Housing
-  </title>
+      <Head>
+        {/* ==============================
+            PRIMARY SEO
+        ============================== */}
 
-  <meta
-    name="description"
-    content="Student Housing offers fully furnished student hostels in Mumbai near top colleges across Vile Parle, Juhu, and Andheri with secure and comfortable living"
-    key="description"
-  />
+        <title key="title">
+          Book Hostels in Mumbai for college students | Student Housing
+        </title>
 
-  {/* ==============================
-      CANONICAL
-  ============================== */}
+        <meta
+          name="description"
+          content="Student Housing offers fully furnished student hostels in Mumbai near top colleges across Vile Parle, Juhu, and Andheri with secure and comfortable living"
+          key="description"
+        />
 
-  <link
-    rel="canonical"
-    href="https://www.studenthousing.co.in/"
-    key="canonical"
-  />
+        {/* ==============================
+            CANONICAL
+        ============================== */}
 
-  {/* ==============================
-      OPEN GRAPH
-  ============================== */}
+        <link
+          rel="canonical"
+          href="https://www.studenthousing.co.in/"
+          key="canonical"
+        />
 
-  <meta
-    property="og:url"
-    content="https://www.studenthousing.co.in/"
-    key="og:url"
-  />
+        {/* ==============================
+            OPEN GRAPH
+        ============================== */}
 
-  <meta
-    property="og:type"
-    content="website"
-    key="og:type"
-  />
+        <meta
+          property="og:url"
+          content="https://www.studenthousing.co.in/"
+          key="og:url"
+        />
 
-  <meta
-    property="og:title"
-    content="Book Hostels in Mumbai for college students | Student Housing"
-    key="og:title"
-  />
+        <meta property="og:type" content="website" key="og:type" />
 
-  <meta
-    property="og:description"
-    content="Student Housing offers fully furnished student hostels in Mumbai near top colleges across Vile Parle, Juhu, and Andheri with secure and comfortable living"
-    key="og:description"
-  />
+        <meta
+          property="og:title"
+          content="Book Hostels in Mumbai for college students | Student Housing"
+          key="og:title"
+        />
 
-  <meta
-    property="og:image"
-    content="https://www.studenthousing.co.in/DAN09168.webp"
-    key="og:image"
-  />
+        <meta
+          property="og:description"
+          content="Student Housing offers fully furnished student hostels in Mumbai near top colleges across Vile Parle, Juhu, and Andheri with secure and comfortable living"
+          key="og:description"
+        />
 
-  {/* ==============================
-      TWITTER
-  ============================== */}
+        <meta
+          property="og:image"
+          content="https://www.studenthousing.co.in/DAN09168.webp"
+          key="og:image"
+        />
 
-  <meta
-    name="twitter:card"
-    content="summary_large_image"
-    key="twitter:card"
-  />
+        {/* ==============================
+            TWITTER
+        ============================== */}
 
-  <meta
-    name="twitter:title"
-    content="Student Hostels in Mumbai for Boys & Girls | Student Housing"
-    key="twitter:title"
-  />
+        <meta
+          name="twitter:card"
+          content="summary_large_image"
+          key="twitter:card"
+        />
 
-  <meta
-    name="twitter:description"
-    content="Student Housing offers fully furnished student hostels in Mumbai near top colleges across Vile Parle, Juhu, and Andheri with secure and comfortable living"
-    key="twitter:description"
-  />
+        <meta
+          name="twitter:title"
+          content="Student Hostels in Mumbai for Boys & Girls | Student Housing"
+          key="twitter:title"
+        />
 
-  <meta
-    name="twitter:image"
-    content="https://www.studenthousing.co.in/DAN09168.webp"
-    key="twitter:image"
-  />
+        <meta
+          name="twitter:description"
+          content="Student Housing offers fully furnished student hostels in Mumbai near top colleges across Vile Parle, Juhu, and Andheri with secure and comfortable living"
+          key="twitter:description"
+        />
 
-  <meta
-    name="twitter:domain"
-    content="studenthousing.co.in"
-    key="twitter:domain"
-  />
+        <meta
+          name="twitter:image"
+          content="https://www.studenthousing.co.in/DAN09168.webp"
+          key="twitter:image"
+        />
 
-  <meta
-    name="twitter:url"
-    content="https://www.studenthousing.co.in/"
-    key="twitter:url"
-  />
+        <meta
+          name="twitter:domain"
+          content="studenthousing.co.in"
+          key="twitter:domain"
+        />
 
-  {/* ==============================
-      FAVICON
-  ============================== */}
+        <meta
+          name="twitter:url"
+          content="https://www.studenthousing.co.in/"
+          key="twitter:url"
+        />
 
-  <link
-    rel="icon"
-    href="/sh_logo.png"
-    key="favicon"
-  />
+        {/* ==============================
+            FAVICON
+        ============================== */}
 
-  {/* ==============================
-      INSTAGRAM
-  ============================== */}
+        <link rel="icon" href="/sh_logo.png" key="favicon" />
 
-  <script
-    async
-    src="https://www.instagram.com/embed.js"
-    key="instagram-script"
-  />
+        {/* ==============================
+            INSTAGRAM
+        ============================== */}
 
-  {/* ==============================
-      LOCAL BUSINESS SCHEMA
-  ============================== */}
+        <script
+          async
+          src="https://www.instagram.com/embed.js"
+          key="instagram-script"
+        />
 
-  <script
-    type="application/ld+json"
-    key="local-business-schema"
-    dangerouslySetInnerHTML={{
-      __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Student Housing India Limited",
-        "image": "https://www.studenthousing.co.in/SH.png",
-        "url": "https://www.studenthousing.co.in/",
-        "telephone": "+919819780000",
-        "priceRange": "₹₹₹",
+        {/* ==============================
+            LOCAL BUSINESS SCHEMA
+        ============================== */}
 
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress":
-            "Avenue By Student Housing, Shree Krishna building, NS Mankikar Rd, next to Shetty tower, Nutan Laxmi Society, JVPD Scheme, Vile Parle West",
-          "addressLocality": "Mumbai",
-          "postalCode": "400049",
-          "addressCountry": "IN"
-        },
+        <script
+          type="application/ld+json"
+          key="local-business-schema"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "name": "Student Housing India Limited",
+              "image": "https://www.studenthousing.co.in/SH.png",
+              "url": "https://www.studenthousing.co.in/",
+              "telephone": "+919819780000",
+              "priceRange": "₹₹₹",
 
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 19.10831612604247,
-          "longitude": 72.83014687940613
-        },
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress":
+                  "Avenue By Student Housing, Shree Krishna building, NS Mankikar Rd, next to Shetty tower, Nutan Laxmi Society, JVPD Scheme, Vile Parle West",
+                "addressLocality": "Mumbai",
+                "postalCode": "400049",
+                "addressCountry": "IN",
+              },
 
-        "sameAs": [
-          "https://www.facebook.com/StudentHousingIN",
-          "https://www.instagram.com/studenthousing_mumbai/",
-          "https://www.youtube.com/@studenthousingmumbai",
-          "https://in.linkedin.com/company/student-housing-india",
-          "https://www.studenthousing.co.in/"
-        ]
-      })
-    }}
-  />
-</Head>
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 19.10831612604247,
+                "longitude": 72.83014687940613,
+              },
+
+              "sameAs": [
+                "https://www.facebook.com/StudentHousingIN",
+                "https://www.instagram.com/studenthousing_mumbai/",
+                "https://www.youtube.com/@studenthousingmumbai",
+                "https://in.linkedin.com/company/student-housing-india",
+                "https://www.studenthousing.co.in/",
+              ],
+            }),
+          }}
+        />
+      </Head>
 
       <div className="z-50">
         <Modal
