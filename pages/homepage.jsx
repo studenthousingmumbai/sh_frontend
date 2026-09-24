@@ -35,7 +35,7 @@ export default function Home({ announcementImages }) {
 
   return (
     <div>
-      {/* <Head>
+      <Head>
         <title>
           Book Hostels in Mumbai For College Students | Student Housing
         </title>
@@ -44,7 +44,7 @@ export default function Home({ announcementImages }) {
           content="Student housing offers hostels in Mumbai for college students at a reasonable price. A fully functional clean apartment with regular cleaning services. We also provide additional services like meals, laundry and drop off to college."
         />
         <link rel="icon" href="/sh_logo.png" />
-      </Head> */}
+      </Head>
 
       <div className="z-50">
         <Modal
