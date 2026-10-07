@@ -627,11 +627,11 @@ const Homepage = ({ announcementImages, listings }) => {
             CANONICAL
         ============================== */}
 
-        <link
+        {/* <link
           rel="canonical"
           href="https://www.studenthousing.co.in/"
           key="canonical"
-        />
+        /> */}
 
         {/* ==============================
             OPEN GRAPH
