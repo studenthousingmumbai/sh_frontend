@@ -27,10 +27,10 @@ export default function GirlsHostel({ all_listings }) {
     <>
 
       <Head>
-  <title>Girls Hostel in India | Safe Student Housing</title>
+  <title>Girls Hostel in Mumbai Near Top Colleges | Student Housing</title>
   <meta
     name="description"
-    content="Explore safe and secure girls hostels with premium facilities and trusted management across India."
+    content="Looking for a girls hostel in Mumbai? Student Housing offers furnished student accommodation with meals, WiFi, housekeeping & security near top colleges"
   />
 </Head>
       

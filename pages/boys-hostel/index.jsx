@@ -27,10 +27,10 @@ export default function BoysHostel({ all_listings }) {
     <>
 
       <Head>
-  <title>Boys Hostel in India | Student Housing</title>
+  <title>Boys Hostel in Mumbai Near Top Colleges | Student Housing</title>
   <meta
     name="description"
-    content="Find verified boys hostels with modern amenities, safety, and flexible stays across major cities in India."
+    content="Looking for a boys hostel in Mumbai? Find furnished student accommodation with meals, WiFi, housekeeping and security near top colleges."
   />
 </Head>
       
