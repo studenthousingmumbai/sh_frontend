@@ -4,6 +4,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Script from "next/script";
+import Head from "next/head";
 import { Montserrat, Inter } from "next/font/google";
 import TopProgressBar from "../components/TopProgressBar";
 
@@ -14,7 +15,7 @@ import TopProgressBar from "../components/TopProgressBar";
 // ---------------------------------------------------------------
 const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["100", "400", "700", "900"], // drop any weight you don't use
+  weight: ["100", "400", "700", "900"],
   display: "swap",
 });
 
@@ -25,21 +26,28 @@ const inter = Inter({
 
 const FB_PIXEL_ID = "983766016309702";
 
+// ---------------------------------------------------------------
+// Facebook Pixel
 // Single Meta Pixel (remove the one in components/Layout.jsx).
 // Inits once, then fires PageView on every client-side route change.
+// ---------------------------------------------------------------
 function FacebookPixel() {
   const router = useRouter();
 
   useEffect(() => {
     let cancelled = false;
     let ReactPixel;
+
     const onRouteChange = () => ReactPixel?.pageView();
 
     import("react-facebook-pixel").then((x) => {
       if (cancelled) return;
+
       ReactPixel = x.default;
+
       ReactPixel.init(FB_PIXEL_ID);
       ReactPixel.pageView();
+
       router.events.on("routeChangeComplete", onRouteChange);
     });
 
@@ -52,9 +60,45 @@ function FacebookPixel() {
   return null;
 }
 
+// ---------------------------------------------------------------
+// Main App
+// ---------------------------------------------------------------
 function MyApp({ Component, pageProps }) {
   const google_client_id = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
 
+  const router = useRouter();
+
+  // -------------------------------------------------------------
+  // GLOBAL DYNAMIC CANONICAL
+  // -------------------------------------------------------------
+  // Uses the current Next.js route and automatically generates:
+  //
+  // /
+  // → https://www.studenthousing.co.in/
+  //
+  // /about-us
+  // → https://www.studenthousing.co.in/about-us
+  //
+  // /listing/aston-by-student-housing
+  // → https://www.studenthousing.co.in/listing/aston-by-student-housing
+  //
+  // Query parameters and hash fragments are removed.
+  // -------------------------------------------------------------
+
+  const canonicalPath = router.asPath
+    .split("?")[0]
+    .split("#")[0];
+
+  const canonicalUrl =
+    `https://www.studenthousing.co.in${
+      canonicalPath === "/"
+        ? "/"
+        : canonicalPath.replace(/\/$/, "")
+    }`;
+
+  // -------------------------------------------------------------
+  // Existing global effects
+  // -------------------------------------------------------------
   useEffect(() => {
     window.addEventListener("phx:page-loading-stop", (event) => {
       // trigger flowbite events
@@ -66,18 +110,35 @@ function MyApp({ Component, pageProps }) {
       );
     });
 
-    // NOTE: these two are heavy and load on every page. If only a few
-    // components use them, import them in those components instead.
+    // NOTE: these two are heavy and load on every page.
+    // If only a few components use them, import them in those
+    // components instead.
     const use = async () => {
       (await import("tw-elements")).default;
       (await import("flowbite")).default;
     };
+
     use();
   }, []);
 
   return (
     <>
-      {/* Font variables on :root so portals (modals/dialogs) get them too */}
+      {/* =========================================================
+          GLOBAL CANONICAL
+          ========================================================= */}
+
+      <Head>
+        <link
+          rel="canonical"
+          href={canonicalUrl}
+          key="global-canonical"
+        />
+      </Head>
+
+      {/* =========================================================
+          FONT VARIABLES
+          ========================================================= */}
+
       <style jsx global>{`
         :root {
           --font-montserrat: ${montserrat.style.fontFamily};
@@ -85,15 +146,25 @@ function MyApp({ Component, pageProps }) {
         }
       `}</style>
 
+      {/* =========================================================
+          GOOGLE OAUTH
+          ========================================================= */}
+
       <GoogleOAuthProvider clientId={google_client_id}>
         <FacebookPixel />
+
         <TopProgressBar />
+
         <Component {...pageProps} />
       </GoogleOAuthProvider>
 
-      {/* ---------------- Third-party scripts ---------------- */}
+      {/* =========================================================
+          THIRD-PARTY SCRIPTS
+          ========================================================= */}
 
-      {/* Google Tag Manager */}
+      {/* ---------------------------------------------------------
+          Google Tag Manager
+          --------------------------------------------------------- */}
       <Script id="gtm" strategy="afterInteractive">
         {`
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -104,45 +175,82 @@ function MyApp({ Component, pageProps }) {
         `}
       </Script>
 
-      {/* GA4 + Google Ads: ONE gtag.js load, two configs.
-          (UA-75045456-1 removed: Universal Analytics no longer collects data.)
-          If your GTM container already contains the GA4 and Ads tags,
-          delete these two <Script> blocks to avoid double counting. */}
+      {/* ---------------------------------------------------------
+          GA4 + Google Ads
+          ONE gtag.js load, two configs.
+          
+          UA-75045456-1 removed:
+          Universal Analytics no longer collects data.
+
+          If your GTM container already contains the GA4 and Ads
+          tags, delete these two Script blocks to avoid double
+          counting.
+          --------------------------------------------------------- */}
+
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-DEFDC3GBPL"
         strategy="afterInteractive"
       />
+
       <Script id="gtag-init" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
+
+          function gtag(){
+            dataLayer.push(arguments);
+          }
+
           gtag('js', new Date());
+
           gtag('config', 'G-DEFDC3GBPL');
           gtag('config', 'AW-925883133');
         `}
       </Script>
 
-      {/* Microsoft Clarity — loads when the browser is idle */}
+      {/* ---------------------------------------------------------
+          Microsoft Clarity
+          Loads when browser is idle
+          --------------------------------------------------------- */}
+
       <Script id="clarity" strategy="lazyOnload">
         {`
           (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            c[a]=c[a]||function(){
+              (c[a].q=c[a].q||[]).push(arguments)
+            };
+
+            t=l.createElement(r);
+            t.async=1;
+            t.src="https://www.clarity.ms/tag/"+i;
+
+            y=l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t,y);
           })(window, document, "clarity", "script", "hf3i0kvqqu");
         `}
       </Script>
 
-      {/* Tawk.to live chat — loads when the browser is idle */}
+      {/* ---------------------------------------------------------
+          Tawk.to Live Chat
+          Loads when browser is idle
+          --------------------------------------------------------- */}
+
       <Script id="tawk" strategy="lazyOnload">
         {`
-          var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+          var Tawk_API=Tawk_API||{},
+              Tawk_LoadStart=new Date();
+
           (function(){
-            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            var s1=document.createElement("script"),
+                s0=document.getElementsByTagName("script")[0];
+
             s1.async=true;
+
             s1.src='https://embed.tawk.to/65b0f5130ff6374032c44bc4/1hktjql51';
+
             s1.charset='UTF-8';
+
             s1.setAttribute('crossorigin','*');
+
             s0.parentNode.insertBefore(s1,s0);
           })();
         `}
