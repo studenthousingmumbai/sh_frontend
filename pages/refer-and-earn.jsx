@@ -154,7 +154,7 @@ export default function ReferAndEarn() {
                 
                 {index !== banners.length - 1 && (
                   <div className='hidden lg:flex items-center'>
-                    <img src="/refer-and-earn-arrow.png" alt="" />
+                    <img src="/refer-and-earn-arrow.webp" alt="" />
                   </div>
                 )}
               </>
