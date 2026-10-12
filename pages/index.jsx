@@ -539,28 +539,29 @@ function AboutSection() {
 
 const ReferSection = () => {
   return (
-    <div className="flex flex-col lg:flex-row w-full p-6 py-16 sm:py-24 bg-refer-and-earn-banner bg-cover bg-no-repeat gap-4 lg:gap-0">
-      <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-end justify-center gap-4 lg:gap-8">
-        <div className="w-full sm:w-[80%] lg:w-[70%] text-2xl sm:text-3xl lg:text-[41px] leading-7 sm:leading-9 lg:leading-[52px] text-center lg:text-left font-semibold">
-          Earn Rewards While Helping Your Friends!
-        </div>
-
-        <div className="w-full sm:w-[80%] lg:w-[70%] text-sm sm:text-lg lg:text-xl font-medium text-center lg:text-left">
-          Share the comfort! Invite your friends to our hostels, and for every
-          successful booking through your referral, you both earn exciting
-          rewards. The more you refer, the more you earn.
-        </div>
-
-        <div className="w-full sm:w-[80%] lg:w-[70%] text-center lg:text-left">
-          <Link
-            href="/refer-and-earn"
-            className="rounded-md py-3 sm:py-4 px-4 text-sm sm:text-base font-semibold text-white shadow-sm bg-[#eba510] hover:bg-[#e0a82f]"
-          >
-            Refer Now!
-          </Link>
-        </div>
-      </div>
+<div className="flex flex-col lg:flex-row w-full p-6 py-16 sm:py-24 bg-[url('/refer-and-earn-bg.webp')] bg-cover bg-center bg-no-repeat gap-4 lg:gap-0">
+  <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-end justify-center gap-4 lg:gap-8">
+    <div className="w-full sm:w-[80%] lg:w-[70%] text-2xl sm:text-3xl lg:text-[41px] leading-7 sm:leading-9 lg:leading-[52px] text-center lg:text-left font-semibold">
+      Earn Rewards While Helping Your Friends!
     </div>
+
+    <div className="w-full sm:w-[80%] lg:w-[70%] text-sm sm:text-lg lg:text-xl font-medium text-center lg:text-left">
+      Share the comfort! Invite your friends to our hostels, and for every
+      successful booking through your referral, you both earn exciting
+      rewards. The more you refer, the more you earn.
+    </div>
+
+    <div className="w-full sm:w-[80%] lg:w-[70%] text-center lg:text-left">
+      <Link
+        href="/refer-and-earn"
+        className="rounded-md py-3 sm:py-4 px-4 text-sm sm:text-base font-semibold text-white shadow-sm bg-[#eba510] hover:bg-[#e0a82f]"
+      >
+        Refer Now!
+      </Link>
+    </div>
+  </div>
+</div>
+
   );
 };
 
