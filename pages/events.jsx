@@ -492,7 +492,7 @@ export default function Events() {
 
       <Layout>
         {/* BANNER */}
-        <div className="relative flex justify-center bg-gray-100 items-center my-auto h-[150px]">
+        <div className="relative flex justify-center bg-gray-100 items-center my-auto h-[250px]">
           <img
             className="w-full h-full object-cover"
             src="/contact-bg.jpeg"
@@ -509,14 +509,14 @@ export default function Events() {
         <div className="bg-white">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-0 pb-20 space-y-10 lg:space-y-16 relative">
             {/* INTRO */}
-            <div className="text-center max-w-2xl mx-auto relative z-10">
+            {/* <div className="text-center max-w-2xl mx-auto relative z-10">
               <p className="text-4xl font-bold text-gray-900">
                 Memories made <span className="text-[#FFCC29]">together</span>
               </p>
               <p className="text-black mt-4 text-lg">
                 Parties, leagues and festivals - here's a look at life when the books are closed.
               </p>
-            </div>
+            </div> */}
 
             {/* EVENTS – each with its own layout */}
             {events.map((event) => {
