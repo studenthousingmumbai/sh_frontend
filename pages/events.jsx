@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import { createPortal } from "react-dom";
 import Layout from "../components/Layout";
 import { useEffect, useRef, useState } from "react";
 import BookingModal from "../components/BookingModal";
@@ -380,6 +381,8 @@ const layouts = {
 };
 
 /* ----------------------------- LIGHTBOX ------------------------------ */
+/* Rendered via a portal into <body> with the max z-index so it always   */
+/* sits above the site header / any fixed navbar.                        */
 
 function Lightbox({ state, setState }) {
   useEffect(() => {
@@ -401,24 +404,27 @@ function Lightbox({ state, setState }) {
     };
   }, [state, setState]);
 
-  if (!state) return null;
+  if (!state || typeof document === "undefined") return null;
+
   const img = state.images[state.index];
   const step = (d) =>
     setState({ ...state, index: (state.index + d + state.images.length) % state.images.length });
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4"
+      className="fixed inset-0 bg-black/95 flex items-center justify-center px-4 py-16"
+      style={{ zIndex: 2147483647 }}
       onClick={() => setState(null)}
     >
       <button
         type="button"
         aria-label="Close"
         onClick={() => setState(null)}
-        className="absolute top-4 right-4 w-11 h-11 rounded-full bg-white/10 hover:bg-[#FFCC29] hover:text-black text-white text-xl transition"
+        className="absolute top-4 right-4 w-11 h-11 rounded-full bg-white/15 hover:bg-[#FFCC29] hover:text-black text-white text-xl transition"
       >
         ✕
       </button>
+
       <button
         type="button"
         aria-label="Previous"
@@ -426,16 +432,19 @@ function Lightbox({ state, setState }) {
           e.stopPropagation();
           step(-1);
         }}
-        className="absolute left-3 sm:left-6 w-11 h-11 rounded-full bg-white/10 hover:bg-[#FFCC29] hover:text-black text-white transition"
+        className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/15 hover:bg-[#FFCC29] hover:text-black text-white transition"
       >
         ←
       </button>
+
       <img
         src={img.src}
         alt={img.alt || "Event photo"}
         onClick={(e) => e.stopPropagation()}
-        className="max-h-[88vh] max-w-full sm:max-w-[85vw] object-contain rounded-xl"
+        className="max-w-full sm:max-w-[85vw] object-contain rounded-xl"
+        style={{ maxHeight: "calc(100vh - 8rem)" }}
       />
+
       <button
         type="button"
         aria-label="Next"
@@ -443,14 +452,16 @@ function Lightbox({ state, setState }) {
           e.stopPropagation();
           step(1);
         }}
-        className="absolute right-3 sm:right-6 w-11 h-11 rounded-full bg-white/10 hover:bg-[#FFCC29] hover:text-black text-white transition"
+        className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/15 hover:bg-[#FFCC29] hover:text-black text-white transition"
       >
         →
       </button>
-      <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/70 text-sm tabular-nums">
+
+      <p className="absolute bottom-5 left-1/2 -translate-x-1/2 text-white/70 text-sm tabular-nums">
         {state.index + 1} / {state.images.length}
       </p>
-    </div>
+    </div>,
+    document.body
   );
 }
 
@@ -481,7 +492,7 @@ export default function Events() {
 
       <Layout>
         {/* BANNER */}
-        <div className="relative flex justify-center bg-gray-100 items-center my-auto h-[500px]">
+        <div className="relative flex justify-center bg-gray-100 items-center my-auto h-[150px]">
           <img
             className="w-full h-full object-cover"
             src="/contact-bg.jpeg"
