@@ -507,7 +507,7 @@ export default function Events() {
         </div>
 
         <div className="bg-white">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-0 pb-20 space-y-10 lg:space-y-16 relative">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-0 pb-20 space-y-10 lg:space-y-16 relative mt-5">
             {/* INTRO */}
             {/* <div className="text-center max-w-2xl mx-auto relative z-10">
               <p className="text-4xl font-bold text-gray-900">
