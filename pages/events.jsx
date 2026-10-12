@@ -24,7 +24,7 @@ const events = [
     year: "2025",
     title: "The White Affair",
     tagline: "300+ students, all in white, one unforgettable poolside night.",
-    images: imgs("white-affair", 9, "White Affair"),
+    images: imgs("white-affair", 11, "White Affair"),
   },
   {
     layout: "filmstrip",
