@@ -7,10 +7,11 @@ import BookingModal from "../components/BookingModal";
 
 /* ------------------------------------------------------------------ */
 /*  EVENTS DATA                                                        */
-/*  layout: "mosaic" | "filmstrip" | "editorial" | "masonry" | "gallery"
+/*  Every event uses the same Mosaic layout.                           */
 /*  images: [{ src, alt }, ...]  – first image is the hero/lead image  */
 /*  imgs() is just a shortcut for /events/<folder>/1.webp ... n.webp.  */
 /*  Replace with an explicit array of your own URLs any time.          */
+/*  Add as many images as you like – the grid auto-balances itself.    */
 /* ------------------------------------------------------------------ */
 const imgs = (folder, n, alt) =>
   Array.from({ length: n }, (_, i) => ({
@@ -20,45 +21,41 @@ const imgs = (folder, n, alt) =>
 
 const events = [
   {
-    layout: "mosaic",
     month: "OCT",
     year: "2025",
     title: "The White Affair",
     tagline: "300+ students, all in white, one unforgettable poolside night.",
     images: imgs("white-affair", 11, "White Affair"),
   },
+
   {
-    layout: "filmstrip",
-    month: "DEC",
-    year: "2025",
-    title: "Premier League",
-    tagline: "Our annual SHPL - cricket, cheers and bragging rights.",
-    images: imgs("shpl", 8, "SHPL"),
-  },
+  month: "NOV",
+  year: "2025",
+  title: "Sunday Banger Run & Coffee Rave",
+  tagline:
+    "A refreshing 2 km community run through Juhu, ending with a lively coffee rave at Elita by Student Housing.",
+  images: imgs("banger-run", 11, "Banger Run"),
+},
+
   {
-    layout: "editorial",
-    month: "FEB",
-    year: "2026",
-    title: "Valentine's Night",
-    tagline: "Fairy lights, good food and great company.",
-    images: imgs("valentine", 8, "Valentine's Night"),
-  },
+  month: "DEC",
+  year: "2025",
+  title: "Sleigh the Night",
+  tagline:
+    "A magical rooftop Christmas celebration filled with festive lights, music, games, hot chocolate and unforgettable memories.",
+  images: imgs("christmas", 11, "Sleigh the Night"),
+},
+
   {
-    layout: "masonry",
-    month: "NOV",
-    year: "2025",
-    title: "Festival of Lights",
-    tagline: "Diyas, rangoli and a hostel full of colour.",
-    images: imgs("diwali", 12, "Festival celebration"),
-  },
-  {
-    layout: "gallery",
-    month: "MAR",
-    year: "2026",
-    title: "Birthday Bashes",
-    tagline: "Because every resident's birthday deserves a party.",
-    images: imgs("birthdays", 8, "Birthday party"),
-  },
+  month: "MAR",
+  year: "2025",
+  title: "The Neon Nirvana",
+  tagline:
+    "A vibrant Holi celebration filled with neon colours, music, lights, and an energetic pool party with 200+ students.",
+  images: imgs("holi", 11, "Neon Nirvana"),
+},
+
+  
 ];
 
 /* ------------------------------ helpers ------------------------------ */
@@ -95,13 +92,9 @@ function Reveal({ children, className = "" }) {
   );
 }
 
-function DateChip({ event, dark = false }) {
+function DateChip({ event }) {
   return (
-    <span
-      className={`inline-block text-xs font-bold tracking-[0.2em] px-3 py-1 rounded-full ${
-        dark ? "bg-black text-white" : "bg-[#FFCC29] text-black"
-      }`}
-    >
+    <span className="inline-block text-xs font-bold tracking-[0.2em] px-3 py-1 rounded-full bg-[#FFCC29] text-black">
       {event.month} {event.year}
     </span>
   );
@@ -127,12 +120,28 @@ function Tile({ img, onClick, className = "" }) {
   );
 }
 
-/* ---------------------------- 1. MOSAIC ------------------------------ */
-/* Bento grid – big hero with title overlay + mixed-size tiles            */
+/* ---------------------------- MOSAIC --------------------------------- */
+/* Bento grid – big hero with title overlay + mixed-size tiles.          */
+/* The hero takes 4 cells. To avoid empty gaps for any number of photos, */
+/* we add just enough "big" tiles (row-span-2 / col-span-2) so the total */
+/* cell count is a multiple of 4 (desktop) and of 2 (mobile).            */
+
+const SPAN_SLOTS = { 1: "row-span-2", 3: "col-span-2", 5: "row-span-2" };
+
+function getSpans(restCount) {
+  const extra = (4 - (restCount % 4)) % 4; // number of tiles that must be doubled
+  const spans = {};
+  Object.keys(SPAN_SLOTS)
+    .slice(0, extra)
+    .forEach((k) => {
+      spans[k] = SPAN_SLOTS[k];
+    });
+  return spans;
+}
 
 function Mosaic({ event, open }) {
   const [hero, ...rest] = event.images;
-  const spans = ["", "row-span-2", "", "col-span-2", "", ""];
+  const spans = getSpans(rest.length);
 
   return (
     <section className="rounded-3xl bg-white p-2 sm:p-3 shadow-lg shadow-black/5 border border-gray-100">
@@ -158,227 +167,6 @@ function Mosaic({ event, open }) {
     </section>
   );
 }
-
-/* --------------------------- 2. FILMSTRIP ---------------------------- */
-/* Dark section, huge title, horizontal swipe row of tall photos         */
-
-function Filmstrip({ event, open }) {
-  const ref = useRef(null);
-  const scroll = (dir) =>
-    ref.current?.scrollBy({ left: dir * ref.current.clientWidth * 0.8, behavior: "smooth" });
-
-  return (
-    <section className="rounded-3xl bg-[#111] text-white py-8 sm:py-12 overflow-hidden">
-      <div className="px-5 sm:px-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5">
-        <div>
-          <DateChip event={event} />
-          <h2 className="mt-3 text-4xl sm:text-6xl font-extrabold uppercase leading-none">
-            {event.title}
-          </h2>
-          <p className="mt-3 text-white/70 max-w-md text-sm sm:text-base">{event.tagline}</p>
-        </div>
-        <div className="flex gap-3">
-          {[
-            ["←", -1, "Previous"],
-            ["→", 1, "Next"],
-          ].map(([label, dir, aria]) => (
-            <button
-              key={aria}
-              type="button"
-              aria-label={aria}
-              onClick={() => scroll(dir)}
-              className="w-11 h-11 rounded-full border border-white/30 hover:bg-[#FFCC29] hover:text-black hover:border-[#FFCC29] transition"
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div
-        ref={ref}
-        className="mt-8 flex gap-4 overflow-x-auto snap-x snap-mandatory px-5 sm:px-10 pb-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-      >
-        {event.images.map((img, i) => (
-          <div
-            key={i}
-            className={`snap-center shrink-0 w-[78%] sm:w-[44%] lg:w-[30%] h-[380px] sm:h-[440px] rounded-2xl overflow-hidden ${
-              i % 2 ? "mt-10" : ""
-            }`}
-          >
-            <Tile img={img} onClick={() => open(i)} />
-          </div>
-        ))}
-        <div className="shrink-0 w-2" />
-      </div>
-    </section>
-  );
-}
-
-/* --------------------------- 3. EDITORIAL ---------------------------- */
-/* Giant outlined title that the photos overlap, magazine style          */
-
-function Editorial({ event, open }) {
-  const [a, b, c, d, ...strip] = event.images;
-
-  return (
-    <section className="rounded-3xl bg-[#FFF6D6] px-4 sm:px-8 pt-8 sm:pt-10 pb-4 sm:pb-8">
-      <div className="flex flex-wrap items-center gap-3">
-        <DateChip event={event} />
-        <p className="text-sm sm:text-base text-gray-800 max-w-md">{event.tagline}</p>
-      </div>
-
-      <h2
-        className="relative z-0 mt-4 text-6xl sm:text-8xl font-black uppercase leading-[0.85] text-[#FFCC29] break-words"
-        style={{ WebkitTextStroke: "2px #111" }}
-      >
-        {event.title}
-      </h2>
-
-      <div className="relative z-10 -mt-5 sm:-mt-10 grid lg:grid-cols-12 gap-3">
-        <div className="lg:col-span-7 h-[300px] sm:h-[460px] rounded-2xl overflow-hidden shadow-xl">
-          <Tile img={a} onClick={() => open(0)} />
-        </div>
-        <div className="lg:col-span-5 grid grid-cols-2 grid-rows-2 gap-3 h-[320px] sm:h-[460px]">
-          <div className="col-span-2 rounded-2xl overflow-hidden shadow-xl">
-            <Tile img={b} onClick={() => open(1)} />
-          </div>
-          <div className="rounded-2xl overflow-hidden shadow-xl">
-            <Tile img={c} onClick={() => open(2)} />
-          </div>
-          <div className="rounded-2xl overflow-hidden shadow-xl">
-            <Tile img={d} onClick={() => open(3)} />
-          </div>
-        </div>
-      </div>
-
-      {strip.length > 0 && (
-        <div className="relative z-10 mt-3 grid grid-cols-2 sm:grid-cols-4 auto-rows-[140px] sm:auto-rows-[190px] gap-3">
-          {strip.map((img, i) => (
-            <div key={i} className="rounded-2xl overflow-hidden shadow-lg">
-              <Tile img={img} onClick={() => open(i + 4)} />
-            </div>
-          ))}
-        </div>
-      )}
-    </section>
-  );
-}
-
-/* ---------------------------- 4. MASONRY ----------------------------- */
-/* Centered header, then a Pinterest-style wall of mixed-ratio photos    */
-
-function Masonry({ event, open }) {
-  const ratios = [
-    "aspect-[3/4]",
-    "aspect-square",
-    "aspect-[4/5]",
-    "aspect-[4/3]",
-    "aspect-[3/4]",
-    "aspect-square",
-    "aspect-[4/5]",
-  ];
-
-  return (
-    <section className="rounded-3xl bg-[#f4f4f4] px-3 sm:px-8 py-8 sm:py-12">
-      <div className="text-center max-w-2xl mx-auto mb-8">
-        <DateChip event={event} />
-        <h2 className="mt-3 text-4xl sm:text-6xl font-extrabold uppercase leading-none text-gray-900">
-          {event.title}
-        </h2>
-        <p className="mt-3 text-gray-600">{event.tagline}</p>
-      </div>
-
-      <div className="columns-2 md:columns-3 gap-2 sm:gap-3">
-        {event.images.map((img, i) => (
-          <Tile
-            key={i}
-            img={img}
-            onClick={() => open(i)}
-            className={`mb-2 sm:mb-3 break-inside-avoid rounded-2xl !h-auto ${ratios[i % ratios.length]}`}
-          />
-        ))}
-      </div>
-    </section>
-  );
-}
-
-/* ---------------------------- 5. GALLERY ----------------------------- */
-/* Yellow block, big featured photo + clickable thumbnails + counter     */
-
-function Gallery({ event, open }) {
-  const [active, setActive] = useState(0);
-  const total = event.images.length;
-  const pad = (n) => String(n).padStart(2, "0");
-
-  return (
-    <section className="rounded-3xl bg-[#FFCC29] p-4 sm:p-8">
-      <div className="flex items-end justify-between gap-4">
-        <div>
-          <DateChip event={event} dark />
-          <h2 className="mt-3 text-4xl sm:text-6xl font-extrabold uppercase leading-none text-black">
-            {event.title}
-          </h2>
-          <p className="mt-2 text-black/75 text-sm sm:text-base max-w-md">{event.tagline}</p>
-        </div>
-        <p className="text-3xl sm:text-5xl font-black text-black/80 tabular-nums shrink-0">
-          {pad(active + 1)}
-          <span className="text-black/40"> / {pad(total)}</span>
-        </p>
-      </div>
-
-      <div className="mt-6 grid lg:grid-cols-[1fr_140px] gap-3">
-        <button
-          type="button"
-          onClick={() => open(active)}
-          aria-label="Open photo"
-          className="relative h-[320px] sm:h-[480px] lg:h-[540px] rounded-2xl overflow-hidden bg-black cursor-zoom-in"
-        >
-          {event.images.map((img, i) => (
-            <img
-              key={i}
-              src={img.src}
-              alt={img.alt || "Event photo"}
-              loading={i === 0 ? "eager" : "lazy"}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-                i === active ? "opacity-100" : "opacity-0"
-              }`}
-            />
-          ))}
-        </button>
-
-        <div className="flex lg:flex-col gap-3 overflow-x-auto lg:overflow-x-visible lg:overflow-y-auto lg:h-[540px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {event.images.map((img, i) => (
-            <button
-              key={i}
-              type="button"
-              onClick={() => setActive(i)}
-              aria-label={`Show photo ${i + 1}`}
-              className={`shrink-0 w-24 h-20 lg:w-full lg:h-[100px] rounded-xl overflow-hidden transition ${
-                i === active ? "ring-4 ring-black" : "opacity-70 hover:opacity-100"
-              }`}
-            >
-              <img
-                src={img.src}
-                alt=""
-                loading="lazy"
-                className="w-full h-full object-cover"
-              />
-            </button>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-const layouts = {
-  mosaic: Mosaic,
-  filmstrip: Filmstrip,
-  editorial: Editorial,
-  masonry: Masonry,
-  gallery: Gallery,
-};
 
 /* ----------------------------- LIGHTBOX ------------------------------ */
 /* Rendered via a portal into <body> with the max z-index so it always   */
@@ -495,7 +283,7 @@ export default function Events() {
         <div className="relative flex justify-center bg-gray-100 items-center my-auto h-[250px]">
           <img
             className="w-full h-full object-cover"
-            src="/contact-bg.jpeg"
+            src="/events_homebanner.webp"
             alt="Events at Student Housing"
           />
           <div className="absolute bg-black-overlay w-full h-full"></div>
@@ -508,31 +296,18 @@ export default function Events() {
 
         <div className="bg-white">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-0 pb-20 space-y-10 lg:space-y-16 relative mt-5">
-            {/* INTRO */}
-            {/* <div className="text-center max-w-2xl mx-auto relative z-10">
-              <p className="text-4xl font-bold text-gray-900">
-                Memories made <span className="text-[#FFCC29]">together</span>
-              </p>
-              <p className="text-black mt-4 text-lg">
-                Parties, leagues and festivals - here's a look at life when the books are closed.
-              </p>
-            </div> */}
-
-            {/* EVENTS – each with its own layout */}
-            {events.map((event) => {
-              const Section = layouts[event.layout] || Mosaic;
-              return (
-                <Reveal key={`${event.month}-${event.year}-${event.title}`}>
-                  <Section
-                    event={event}
-                    open={(index) => setLightbox({ images: event.images, index })}
-                  />
-                </Reveal>
-              );
-            })}
+            {/* EVENTS – all use the Mosaic layout */}
+            {events.map((event) => (
+              <Reveal key={`${event.month}-${event.year}-${event.title}`}>
+                <Mosaic
+                  event={event}
+                  open={(index) => setLightbox({ images: event.images, index })}
+                />
+              </Reveal>
+            ))}
 
             {/* CTA */}
-            <div
+            {/* <div
               className="bg-[#f8f8f8] py-16 rounded-2xl relative z-10"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
@@ -558,7 +333,11 @@ export default function Events() {
                   </button>
                 </div>
               </div>
-            </div>
+            </div> */}
+
+
+
+
           </div>
         </div>
       </Layout>

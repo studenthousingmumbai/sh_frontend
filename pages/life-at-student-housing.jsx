@@ -1,379 +1,343 @@
 import Head from "next/head";
 import Link from "next/link";
+import { createPortal } from "react-dom";
 import Layout from "../components/Layout";
-import { useRef, useState } from "react";
-import ZigzagScrollPath from "../components/ZigzagScrollPath";
+import { useEffect, useRef, useState } from "react";
 import BookingModal from "../components/BookingModal";
 
-export default function LifeAtStudentHousing() {
-  const containerRef = useRef(null);
-  const accommodationRef = useRef(null);
-  const foodRef = useRef(null);
-  const facilitiesRef = useRef(null);
-  const pickupRef = useRef(null);
-  const eventsRef = useRef(null);
-  const reviewsRef = useRef(null);
-  const [bookingOpen, setBookingOpen] = useState(false);
+/* ------------------------------------------------------------------ */
+/*  EVENTS DATA                                                        */
+/*  Every event uses the same Mosaic layout.                           */
+/*  images: [{ src, alt }, ...]  – first image is the hero/lead image  */
+/*  imgs() is just a shortcut for /events/<folder>/1.webp ... n.webp.  */
+/*  Replace with an explicit array of your own URLs any time.          */
+/*  Add as many images as you like – the grid auto-balances itself.    */
+/* ------------------------------------------------------------------ */
+const imgs = (folder, n, alt) =>
+  Array.from({ length: n }, (_, i) => ({
+    src: `/events/${folder}/${i + 1}.webp`,
+    alt: `${alt} ${i + 1}`,
+  }));
 
-const sectionRefs = [
-  accommodationRef,
-  foodRef,
-  facilitiesRef,
-  eventsRef,
-  reviewsRef,
+const events = [
+
+ {
+    month: "MAR",
+    year: "2025",
+    title: "The Neon Nirvana",
+    tagline:
+      "A vibrant Holi celebration filled with neon colours, music, lights, and an energetic pool party with 200+ students.",
+    images: imgs("holi", 11, "Neon Nirvana"),
+  },
+
+  {
+    month: "OCT",
+    year: "2025",
+    title: "The White Affair",
+    tagline: "300+ students, all in white, one unforgettable poolside night.",
+    images: imgs("white-affair", 11, "White Affair"),
+  },
+  {
+    month: "NOV",
+    year: "2025",
+    title: "Sunday Banger Run & Coffee Rave",
+    tagline:
+      "A refreshing 2 km community run through Juhu, ending with a lively coffee rave at Elita by Student Housing.",
+    images: imgs("banger-run", 11, "Banger Run"),
+  },
+  {
+    month: "DEC",
+    year: "2025",
+    title: "Sleigh the Night",
+    tagline:
+      "A magical rooftop Christmas celebration filled with festive lights, music, games, hot chocolate and unforgettable memories.",
+    images: imgs("christmas", 11, "Sleigh the Night"),
+  },
+ 
 ];
 
-  // Shared classes: white rounded card on mobile, transparent/plain on desktop (lg+)
-  const cardClasses =
-    "bg-white rounded-3xl shadow-lg shadow-black/5 p-1 sm:p-8 lg:bg-transparent lg:shadow-none lg:p-0 lg:rounded-none grid lg:grid-cols-2 gap-8 lg:gap-10 items-center relative z-10";
-  const textClasses = "text-center lg:text-left";
-  const paraClasses = "text-gray-600 lg:text-black mt-4 text-base lg:text-lg leading-relaxed";
-  const headingClasses = "text-2xl lg:text-3xl font-bold text-gray-900";
+/* ------------------------------ helpers ------------------------------ */
+
+function Reveal({ children, className = "" }) {
+  const ref = useRef(null);
+  const [shown, setShown] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShown(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.08 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={`transition-all duration-700 ease-out ${
+        shown ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      } ${className}`}
+    >
+      {children}
+    </div>
+  );
+}
+
+function DateChip({ event }) {
+  return (
+    <span className="inline-block text-xs font-bold tracking-[0.2em] px-3 py-1 rounded-full bg-[#FFCC29] text-black">
+      {event.month} {event.year}
+    </span>
+  );
+}
+
+function Tile({ img, onClick, className = "" }) {
+  if (!img) return null;
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label="View photo"
+      className={`group relative block w-full h-full overflow-hidden cursor-zoom-in ${className}`}
+    >
+      <img
+        src={img.src}
+        alt={img.alt || "Event photo"}
+        loading="lazy"
+        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+      />
+      <span className="pointer-events-none absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+    </button>
+  );
+}
+
+/* ---------------------------- MOSAIC --------------------------------- */
+/* Bento grid – big hero with title overlay + mixed-size tiles.          */
+/* The hero takes 4 cells. To avoid empty gaps for any number of photos, */
+/* we add just enough "big" tiles (row-span-2 / col-span-2) so the total */
+/* cell count is a multiple of 4 (desktop) and of 2 (mobile).            */
+
+const SPAN_SLOTS = { 1: "row-span-2", 3: "col-span-2", 5: "row-span-2" };
+
+function getSpans(restCount) {
+  const extra = (4 - (restCount % 4)) % 4; // number of tiles that must be doubled
+  const spans = {};
+  Object.keys(SPAN_SLOTS)
+    .slice(0, extra)
+    .forEach((k) => {
+      spans[k] = SPAN_SLOTS[k];
+    });
+  return spans;
+}
+
+function Mosaic({ event, open }) {
+  const [hero, ...rest] = event.images;
+  const spans = getSpans(rest.length);
+
+  return (
+    <section className="rounded-3xl bg-white p-2 sm:p-3 shadow-lg shadow-black/5 border border-gray-100">
+      <div className="grid grid-cols-2 md:grid-cols-4 grid-flow-dense auto-rows-[150px] sm:auto-rows-[190px] md:auto-rows-[200px] gap-2 sm:gap-3">
+        <div className="relative col-span-2 row-span-2 rounded-2xl overflow-hidden">
+          <Tile img={hero} onClick={() => open(0)} />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+          <div className="pointer-events-none absolute bottom-0 left-0 p-5 sm:p-8 text-white">
+            <DateChip event={event} />
+            <h2 className="mt-3 text-3xl sm:text-5xl font-extrabold uppercase leading-none">
+              {event.title}
+            </h2>
+            <p className="mt-2 text-sm sm:text-base text-white/85 max-w-sm">{event.tagline}</p>
+          </div>
+        </div>
+
+        {rest.map((img, i) => (
+          <div key={i} className={`rounded-2xl overflow-hidden ${spans[i] || ""}`}>
+            <Tile img={img} onClick={() => open(i + 1)} />
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ----------------------------- LIGHTBOX ------------------------------ */
+/* Rendered via a portal into <body> with the max z-index so it always   */
+/* sits above the site header / any fixed navbar.                        */
+
+function Lightbox({ state, setState }) {
+  useEffect(() => {
+    if (!state) return;
+    const close = () => setState(null);
+    const step = (d) =>
+      setState((s) => (s ? { ...s, index: (s.index + d + s.images.length) % s.images.length } : s));
+
+    const onKey = (e) => {
+      if (e.key === "Escape") close();
+      if (e.key === "ArrowRight") step(1);
+      if (e.key === "ArrowLeft") step(-1);
+    };
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [state, setState]);
+
+  if (!state || typeof document === "undefined") return null;
+
+  const img = state.images[state.index];
+  const step = (d) =>
+    setState({ ...state, index: (state.index + d + state.images.length) % state.images.length });
+
+  return createPortal(
+    <div
+      className="fixed inset-0 bg-black/95 flex items-center justify-center px-4 py-16"
+      style={{ zIndex: 2147483647 }}
+      onClick={() => setState(null)}
+    >
+      <button
+        type="button"
+        aria-label="Close"
+        onClick={() => setState(null)}
+        className="absolute top-4 right-4 w-11 h-11 rounded-full bg-white/15 hover:bg-[#FFCC29] hover:text-black text-white text-xl transition"
+      >
+        ✕
+      </button>
+
+      <button
+        type="button"
+        aria-label="Previous"
+        onClick={(e) => {
+          e.stopPropagation();
+          step(-1);
+        }}
+        className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/15 hover:bg-[#FFCC29] hover:text-black text-white transition"
+      >
+        ←
+      </button>
+
+      <img
+        src={img.src}
+        alt={img.alt || "Event photo"}
+        onClick={(e) => e.stopPropagation()}
+        className="max-w-full sm:max-w-[85vw] object-contain rounded-xl"
+        style={{ maxHeight: "calc(100vh - 8rem)" }}
+      />
+
+      <button
+        type="button"
+        aria-label="Next"
+        onClick={(e) => {
+          e.stopPropagation();
+          step(1);
+        }}
+        className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/15 hover:bg-[#FFCC29] hover:text-black text-white transition"
+      >
+        →
+      </button>
+
+      <p className="absolute bottom-5 left-1/2 -translate-x-1/2 text-white/70 text-sm tabular-nums">
+        {state.index + 1} / {state.images.length}
+      </p>
+    </div>,
+    document.body
+  );
+}
+
+/* ------------------------------- PAGE -------------------------------- */
+
+export default function LifeAtStudentHousing() {
+  const [bookingOpen, setBookingOpen] = useState(false);
+  const [lightbox, setLightbox] = useState(null);
 
   return (
     <>
       <Head>
-        <title>Life @ Student Housing | Hostel Living in Mumbai</title>
+        <title>Life @ Student Housing | Hostel Events in Mumbai</title>
         <meta
           name="description"
-          content="Explore life at Student Housing - fully furnished rooms, home-style food, swimming pool, pickleball & gym, free pick up & drop, events and more."
+          content="Pool parties, Student Housing Premier League, festival and birthday celebrations - explore the events that make life at Student Housing unforgettable."
         />
-
         <meta property="og:url" content="https://www.studenthousing.co.in/life-at-student-housing" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Life @ Student Housing | Hostel Living in Mumbai" />
+        <meta property="og:title" content="Events @ Student Housing | Hostel Events in Mumbai" />
         <meta
           property="og:description"
-          content="Explore life at Student Housing - fully furnished rooms, home-style food, swimming pool, pickleball & gym, free pick up & drop, events and more."
+          content="Pool parties, Student Housing Premier League, festival and birthday celebrations - explore the events that make life at Student Housing unforgettable."
         />
         <meta property="og:image" content="https://www.studenthousing.co.in/IMG_7505.webp" />
-
         <meta name="twitter:card" content="summary_large_image" />
-        <meta property="twitter:domain" content="studenthousing.co.in" />
-        <meta property="twitter:url" content="https://www.studenthousing.co.in/life-at-student-housing" />
-        <meta name="twitter:title" content="Life @ Student Housing | Hostel Living in Mumbai" />
-        <meta
-          name="twitter:description"
-          content="Explore life at Student Housing - fully furnished rooms, home-style food, swimming pool, pickleball & gym, free pick up & drop, events and more."
-        />
-        <meta name="twitter:image" content="https://www.studenthousing.co.in/IMG_7505.webp"></meta>
       </Head>
 
       <Layout>
         {/* BANNER */}
-        <div className="relative flex justify-center bg-gray-100 items-center my-auto h-[500px]">
+        <div className="relative flex justify-center bg-gray-100 items-center my-auto h-[150px] lg:h-[250px]">
           <img
             className="w-full h-full object-cover"
-            src="/contact-bg.jpeg"
-            alt="Life at Student Housing"
+            src="/events_homebanner.webp"
+            alt="Events at Student Housing"
           />
           <div className="absolute bg-black-overlay w-full h-full"></div>
           <div className="absolute w-full text-center">
-            <h1 className="uppercase text-2xl text-white">
+           <h1 className="uppercase text-xl lg:text-3xl text-white">
               <b>Life @ Student Housing</b>
             </h1>
           </div>
         </div>
 
-        <div className="bg-[#ffffff]">
-         <div
-  className="max-w-6xl mx-auto px-4 sm:px-6 pt-0 pb-20 space-y-8 lg:space-y-12 relative"
-  ref={containerRef}
->
-
-            <ZigzagScrollPath sectionRefs={sectionRefs} containerRef={containerRef} />
-
-            {/* INTRO */}
-            <div className="text-center max-w-2xl mx-auto relative z-10">
-              <p className="text-4xl font-bold text-gray-900">
-                Start living your best life <span className="text-[#FFCC29]">from day one</span>
-              </p>
-              <p className="text-black mt-4 text-lg">
-                Bring your dreams and ambitions - we'll take care of the rest. From comfortable rooms and wholesome meals to modern amenities and a vibrant community, discover what life at Student Housing is all about.
-              </p>
-            </div>
-
-            {/* ACCOMMODATION - images left, text right (mobile: images already show first) */}
-            <div ref={accommodationRef} className={cardClasses}>
-              <div className="relative grid grid-cols-2 gap-4">
-                <img
-                  src="/DSC06956.webp"
-                  alt="Student housing room"
-                  className="rounded-2xl shadow-xl object-cover w-full h-[420px]"
+        <div className="bg-white">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-0 pb-20 space-y-10 lg:space-y-16 relative mt-5">
+            {/* EVENTS – all use the Mosaic layout */}
+            {events.map((event) => (
+              <Reveal key={`${event.month}-${event.year}-${event.title}`}>
+                <Mosaic
+                  event={event}
+                  open={(index) => setLightbox({ images: event.images, index })}
                 />
-                <div className="space-y-4 pt-10">
-                  <img
-                    src="/DAN09002.webp"
-                    alt="Common area"
-                    className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
-                  />
-                  <img
-                    src="/DSC06839.webp"
-                    alt="Hostel corridor"
-                    className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
-                  />
-                </div>
-              </div>
-              <div className={textClasses}>
-                <h2 className={headingClasses}>
-                  Accommodation that feels like <span className="text-[#FFCC29]">home</span>
-                </h2>
-                <p className={paraClasses}>
-                  Fully furnished single, double and triple sharing rooms with
-                  attached washrooms, storage, study desks and high-speed WiFi.
-                  Housekeeping and linen change are handled for you, so you can
-                  focus on college, not chores.
-                </p>
-              </div>
-            </div>
+              </Reveal>
+            ))}
 
-            {/* FOOD - text left, images right on desktop; images shown first on mobile */}
-            <div ref={foodRef} className={cardClasses}>
-              <div className="order-2 lg:order-none">
-                <div className={textClasses}>
-                  <h2 className={headingClasses}>
-                    Wholesome meals, <span className="text-[#FFCC29]">just like home</span>
-                  </h2>
-                  <p className={paraClasses}>
-                    Wholesome, hygienically prepared meals served through the day
-                    - breakfast, lunch, evening snacks and dinner - with a
-                    rotating menu so it never feels repetitive.
-                  </p>
-                </div>
-              </div>
-              <div className="order-1 lg:order-none relative grid grid-cols-2 gap-4">
-                <img
-                  src="/P1009253.webp"
-                  alt="Dining area"
-                  className="rounded-2xl shadow-xl object-cover w-full h-[420px]"
-                />
-                <div className="space-y-4 pt-10">
-                  <img
-                    src="/DAN09233.webp"
-                    alt="Meal spread"
-                    className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
-                  />
-                  <img
-                    src="/P1009224.webp"
-                    alt="Dining hall"
-                    className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* FACILITIES - images left, text right (mobile: images already show first) */}
-            <div ref={facilitiesRef} className={cardClasses}>
-              <div className="relative grid grid-cols-2 gap-4">
-                <img
-                  src="/IMG_2383.webp"
-                  alt="gym"
-                  className="rounded-2xl shadow-xl object-cover w-full h-[420px]"
-                />
-                <div className="space-y-4 pt-10">
-                  <img
-                    src="/DAN09360_.webp"
-                    alt="Pickleball court"
-                    className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
-                  />
-                  <img
-                    src="/DJI_20260526185058_0019_D_.webp"
-                    alt="Swimming pool"
-                    className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
-                  />
-                </div>
-              </div>
-              <div className={textClasses}>
-                <h2 className={headingClasses}>
-                  Amenities for every part of <span className="text-[#FFCC29]">Student Life</span>
-                </h2>
-                <p className={paraClasses}>
-                  A break from studying is just an elevator ride away. Cool off
-                  after a long day with a dip in our swimming pool, grab a paddle
-                  for a pickleball match with your floor, or head to the fully
-                  equipped gym whenever you need to sweat it out.
-                </p>
-                <h2 className={`${headingClasses} mt-4`}>
-                  Free pick up & <span className="text-[#FFCC29]">drop</span>
-                </h2>
-                {/* <p className="text-black mt-4 text-lg leading-relaxed">
-                  Moving in shouldn't be stressful. We offer complimentary
-                  pick up and drop assistance for residents, so your first
-                  day starts on the right note.
-                </p> */}
-              </div>
-            </div>
-
-            {/* FREE PICKUP & DROP - text left, image right 
-            <div ref={pickupRef} className="grid lg:grid-cols-2 gap-10 items-center relative z-10">
-              <div className="order-2 lg:order-1">
-                <div className="bg-indigo-100 p-3 rounded-xl inline-block mb-4">🚐</div>
-                <h2 className="text-3xl font-bold text-gray-900">
-                  Free pick up & <span className="text-[#FFCC29]">drop</span>
-                </h2>
-                <p className="text-black mt-4 text-lg leading-relaxed">
-                  Moving in shouldn't be stressful. We offer complimentary
-                  pick up and drop assistance for residents, so your first
-                  day starts on the right note.
-                </p>
-              </div>
-              <img
-                src="/life-pickup-drop.webp"
-                alt="Pick up and drop service"
-                className="order-1 lg:order-2 rounded-2xl shadow-xl object-cover w-full h-[340px]"
-              />
-            </div>
-*/}
-            {/* EVENTS - text left, images right on desktop; images shown first on mobile */}
-            <div ref={eventsRef} className={cardClasses}>
-              <div className="order-2 lg:order-none">
-                <div className={textClasses}>
-                  <h2 className={headingClasses}>
-                    A community that <span className="text-[#FFCC29]">celebrates together</span>
-                  </h2>
-                  <p className={paraClasses}>
-                    From the Student Housing Premier League and Valentine's Day
-                    celebrations to birthday and festival parties, there's always
-                    something happening to bring residents together.
-                  </p>
-                </div>
-              </div>
-              <div className="order-1 lg:order-none relative grid grid-cols-2 gap-4">
-                <img
-                  src="/IMG_7505.webp"
-                  alt="SHPL event"
-                  className="rounded-2xl shadow-xl object-cover w-full h-[420px]"
-                />
-                <div className="space-y-4 pt-10">
-                  <img
-                    src="/549A7343.webp"
-                    alt="Valentine's Day event"
-                    className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
-                  />
-                  <img
-                    src="/shpl_1.webp"
-                    alt="Resident parties"
-                    className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* REVIEWS - images left, text right (mobile: images already show first) */}
-            <div ref={reviewsRef} className={cardClasses}>
-              <div className="relative grid grid-cols-2 gap-4">
-                <img
-                  src="/testimonial_1.webp"
-                  alt="Resident life"
-                  className="rounded-2xl shadow-xl object-cover w-full h-[420px]"
-                />
-                <div className="space-y-4 pt-10">
-                  <img
-                    src="/IMG_7505.webp"
-                    alt="Resident life"
-                    className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
-                  />
-                  <img
-                    src="/testimonial_10_.webp"
-                    alt="Resident life"
-                    className="rounded-2xl shadow-xl object-cover w-full h-[190px]"
-                  />
-                </div>
-              </div>
-              <div className={textClasses}>
-                <h2 className={headingClasses}>
-                  What our <span className="text-[#FFCC29]">residents say</span>
-                </h2>
-                <div className="mt-6 space-y-6">
-                  {[
-                    {
-                      name: "Josna Mathews",
-                      text: "Comfortable place to stay. Would definitely recommend non-mumbaikars to avail this luxury.",
-                    },
-                    {
-                      name: "Khushi Kharwa",
-                      text: "Great services. Would highly recommend.",
-                    },
-                    {
-                      name: "Saakshi Mishra",
-                      text: "Very good housing, 10/10 would recommend",
-                    },
-                  ].map((review) => (
-                    <div key={review.name}>
-                      <div className="text-yellow-400 mb-1">★★★★★</div>
-                      <p className="text-gray-600 leading-relaxed">"{review.text}"</p>
-                      <p className="text-gray-900 font-semibold mt-1">{review.name}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-
-            {/* STATS - Trusted Student Living */}
-            <div
-              className="bg-white py-16 rounded-2xl relative z-10"
-              style={{ fontFamily: "'Montserrat', sans-serif" }}
-            >
-              <div className="text-center max-w-3xl mx-auto mb-12">
-                <h2 className="text-3xl font-bold text-black">
-                  Trusted Student Living, <span className="text-[#FFCC29]">Built Over the Years</span>
-                </h2>
-              </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div>
-                  <p className="text-4xl font-bold text-[#FFCC29]">1250+</p>
-                  <p className="text-black mt-2 text-lg">Beds Available</p>
-                </div>
-                <div>
-                  <p className="text-4xl font-bold text-[#FFCC29]">12+</p>
-                  <p className="text-black mt-2 text-lg">Premium Hostels</p>
-                </div>
-                <div>
-                  <p className="text-4xl font-bold text-[#FFCC29]">10+</p>
-                  <p className="text-black mt-2 text-lg">Years of Experience</p>
-                </div>
-                <div>
-                  <p className="text-4xl font-bold text-[#FFCC29]">6000+</p>
-                  <p className="text-black mt-2 text-lg">Students Hosted</p>
-                </div>
-              </div>
-            </div>
-
-            {/* CTA - Find Your New Home */}
-            <div
+            {/* CTA */}
+            {/* <div
               className="bg-[#f8f8f8] py-16 rounded-2xl relative z-10"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
-              <div className="max-w-4xl mx-auto text-center">
+              <div className="max-w-4xl mx-auto text-center px-4">
                 <h2 className="text-3xl font-bold text-black">
-                  Ready to Find Your New <span className="text-[#FFCC29]">Home Away From Home?</span>
+                  Be Part of the Next <span className="text-[#FFCC29]">Big Event</span>
                 </h2>
                 <p className="text-black mt-4 text-lg leading-relaxed">
-                  Experience student living designed around comfort, convenience, and community.
-                  Explore fully managed student accommodations with modern rooms, daily meals,
-                  essential amenities, and everything you need to make your college journey easier.
+                  Come see the community in person. Explore our hostels or book a visit and find
+                  your place at Student Housing.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-  <Link href="/listings" legacyBehavior>
-    <a className="bg-[#FFCC29] text-black font-semibold px-8 py-3 rounded-full hover:opacity-90 transition">
-      Explore Hostels
-    </a>
-  </Link>
-  <button
-    onClick={() => setBookingOpen(true)}
-    className="border-2 border-[#FFCC29] text-black font-semibold px-8 py-3 rounded-full hover:bg-[#FFCC29] transition"
-  >
-    Book a Visit
-  </button>
-</div>
+                  <Link href="/listings" legacyBehavior>
+                    <a className="bg-[#FFCC29] text-black font-semibold px-8 py-3 rounded-full hover:opacity-90 transition">
+                      Explore Hostels
+                    </a>
+                  </Link>
+                  <button
+                    onClick={() => setBookingOpen(true)}
+                    className="border-2 border-[#FFCC29] text-black font-semibold px-8 py-3 rounded-full hover:bg-[#FFCC29] transition"
+                  >
+                    Book a Visit
+                  </button>
+                </div>
               </div>
-            </div>
-
+            </div> */}
           </div>
         </div>
       </Layout>
-       <BookingModal open={bookingOpen} setOpen={setBookingOpen} />
+
+      <Lightbox state={lightbox} setState={setLightbox} />
+      <BookingModal open={bookingOpen} setOpen={setBookingOpen} />
     </>
   );
 }
