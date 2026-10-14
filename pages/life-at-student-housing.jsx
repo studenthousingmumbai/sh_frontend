@@ -21,13 +21,22 @@ const imgs = (folder, n, alt) =>
 
 const events = [
 
- {
-    month: "MAR",
+  {
+    month: "DEC",
     year: "2025",
-    title: "The Neon Nirvana",
+    title: "Sleigh the Night",
     tagline:
-      "A vibrant Holi celebration filled with neon colours, music, lights, and an energetic pool party with 200+ students.",
-    images: imgs("holi", 11, "Neon Nirvana"),
+      "A magical rooftop Christmas celebration filled with festive lights, music, games, hot chocolate and unforgettable memories.",
+    images: imgs("christmas", 11, "Sleigh the Night"),
+  },
+
+  {
+    month: "NOV",
+    year: "2025",
+    title: "Sunday Banger Run & Coffee Rave",
+    tagline:
+      "A refreshing 2 km community run through Juhu, ending with a lively coffee rave at Elita by Student Housing.",
+    images: imgs("banger-run", 11, "Banger Run"),
   },
 
   {
@@ -37,21 +46,14 @@ const events = [
     tagline: "300+ students, all in white, one unforgettable poolside night.",
     images: imgs("white-affair", 11, "White Affair"),
   },
+
   {
-    month: "NOV",
+    month: "MAR",
     year: "2025",
-    title: "Sunday Banger Run & Coffee Rave",
+    title: "The Neon Nirvana",
     tagline:
-      "A refreshing 2 km community run through Juhu, ending with a lively coffee rave at Elita by Student Housing.",
-    images: imgs("banger-run", 11, "Banger Run"),
-  },
-  {
-    month: "DEC",
-    year: "2025",
-    title: "Sleigh the Night",
-    tagline:
-      "A magical rooftop Christmas celebration filled with festive lights, music, games, hot chocolate and unforgettable memories.",
-    images: imgs("christmas", 11, "Sleigh the Night"),
+      "A vibrant Holi celebration filled with neon colours, music, lights, and an energetic pool party with 200+ students.",
+    images: imgs("holi", 11, "Neon Nirvana"),
   },
  
 ];
