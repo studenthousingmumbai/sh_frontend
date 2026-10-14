@@ -269,7 +269,7 @@ export default function LifeAtStudentHousing() {
         />
         <meta property="og:url" content="https://www.studenthousing.co.in/life-at-student-housing" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Events @ Student Housing | Hostel Events in Mumbai" />
+        <meta property="og:title" content="Life @ Student Housing | Hostel Events in Mumbai" />
         <meta
           property="og:description"
           content="Pool parties, Student Housing Premier League, festival and birthday celebrations - explore the events that make life at Student Housing unforgettable."
