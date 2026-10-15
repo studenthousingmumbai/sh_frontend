@@ -137,7 +137,7 @@ export default function ReferAndEarn() {
           {banners.map((val, index) => {
             return (
               <>
-                <div className='flex flex-col p-4 justify-center items-center w-[50%] sm:w-[45%] md:w-[30%] lg:w-[20%] bg-brandColorBg border border-gray-200 rounded-lg gap-3' key={index}>
+                <div className='flex flex-col p-4 justify-center items-center w-[80%] sm:w-[45%] md:w-[30%] lg:w-[20%] bg-brandColorBg border border-gray-200 rounded-lg gap-3' key={index}>
                   <img src={val.img} alt="test" width={val.width} />
                   <div className='text-center font-semibold text-sm'>
                     {val.content.includes('info@studenthousing.co.in') ? (
@@ -153,9 +153,15 @@ export default function ReferAndEarn() {
                 </div>
                 
                 {index !== banners.length - 1 && (
-                  <div className='hidden lg:flex items-center'>
-                    <img src="/refer-and-earn-arrow.webp" alt="" />
-                  </div>
+                
+<div className="hidden lg:flex items-center">
+  <img
+    src="/about-us/refer-and-earn-arrow.webp"
+    alt=""
+    className="w-16 h-auto object-contain"
+  />
+</div>
+
                 )}
               </>
             )
