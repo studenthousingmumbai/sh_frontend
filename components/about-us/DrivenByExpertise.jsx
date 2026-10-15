@@ -6,7 +6,7 @@ import SectionTitle from "../SectionTitle";
 const DrivenByExpertise = () => {
   const values = [
     {
-      img: "/about-us/team/kamlesh-bhatena--founder-chief-managing-director.png",
+      img: "/about-us/team/kamlesh-bhatena--founder-chief-managing-director.webp",
       title: "Mr. Kamlesh Bhathena",
       subtitle: "Founder and Chief Managing Director",
     },
@@ -21,7 +21,7 @@ const DrivenByExpertise = () => {
       subtitle: "Co-Founder and Sales",
     },
     {
-      img: "/about-us/team/gaurav-bhatena---director-and-marketing.png",
+      img: "/about-us/team/gaurav-bhatena---director-and-marketing.webp",
       title: "Mr. Gaurav Bhathena",
       subtitle: "Director and Marketing",
     },
