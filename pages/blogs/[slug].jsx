@@ -7,6 +7,9 @@ import Head from "next/head";
 import Link from "next/link";
 
 const SITE_URL = "https://www.studenthousing.co.in";
+const SITE_NAME = "Student Housing";
+const AUTHOR_NAME = "Kartik"; // change to the real author name
+const LOGO_URL = `${SITE_URL}/logo.png`; // replace with your real logo URL
 
 export default function Blog({ blog }) {
   if (!blog) return null;
@@ -47,23 +50,29 @@ export default function Blog({ blog }) {
     ...(wordCount && { wordCount }),
     ...(blog.coverPhoto?.url && { image: [blog.coverPhoto.url] }),
     author: {
-      "@type": "Organization",
-      name: "Student Housing",
+      "@type": "Person",
+      name: AUTHOR_NAME,
       url: SITE_URL,
     },
     publisher: {
       "@type": "Organization",
-      name: "Student Housing",
+      name: SITE_NAME,
       url: SITE_URL,
       logo: {
         "@type": "ImageObject",
-        url: `${SITE_URL}/logo.png`, // replace with your real logo URL
+        url: LOGO_URL,
       },
     },
   };
 
-  // Hygraph schemaMarkup (if filled) overrides the generated one
-  const schemaJson = blog.schemaMarkup || JSON.stringify(defaultSchema);
+  // Hygraph schema (FAQPage etc.), stripped of any accidental <script> wrapper
+  const extraSchema = (blog.schemaMarkup || "")
+    .replace(/<\/?script[^>]*>/gi, "")
+    .trim();
+
+  // If Hygraph already contains its own BlogPosting/Article, don't duplicate it
+  const hasOwnArticleSchema =
+    /"@type"\s*:\s*"(BlogPosting|Article)"/.test(extraSchema);
 
   return (
     <>
@@ -79,7 +88,7 @@ export default function Blog({ blog }) {
         <meta property="og:type" content="article" />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:site_name" content="Student Housing" />
+        <meta property="og:site_name" content={SITE_NAME} />
         {description && (
           <meta property="og:description" content={description} />
         )}
@@ -128,14 +137,27 @@ export default function Blog({ blog }) {
           return null;
         })}
 
-        {/* ===== Schema Markup (single script: Hygraph override or auto-generated) ===== */}
-        <script
-          key="blog-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: schemaJson.replace(/</g, "\\u003c"),
-          }}
-        />
+        {/* ===== BlogPosting schema (auto-generated) ===== */}
+        {!hasOwnArticleSchema && (
+          <script
+            key="blogposting-schema"
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(defaultSchema).replace(/</g, "\\u003c"),
+            }}
+          />
+        )}
+
+        {/* ===== Extra schema from Hygraph (FAQPage etc.) ===== */}
+        {extraSchema && (
+          <script
+            key="extra-schema"
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: extraSchema.replace(/</g, "\\u003c"),
+            }}
+          />
+        )}
       </Head>
 
       {/* ================= PAGE LAYOUT ================= */}
