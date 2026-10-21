@@ -80,7 +80,7 @@ export default function Blog({ blog }) {
 
       {/* ================= PAGE LAYOUT ================= */}
       <Layout>
-        <div className="w-[70%] md:w-[65%] lg:w-[55%] mx-auto py-16 lg:py-20">
+       <div className="w-[88%] sm:w-[90%] md:w-[65%] lg:w-[55%] mx-auto py-8 md:py-16 lg:py-20">
           {/* Breadcrumb */}
           <div className="text-xs sm:text-sm md:text-base">
             <span className="text-brandColor">
