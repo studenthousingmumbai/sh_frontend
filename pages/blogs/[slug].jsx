@@ -8,7 +8,7 @@ import Link from "next/link";
 
 const SITE_URL = "https://www.studenthousing.co.in";
 const SITE_NAME = "Student Housing";
-const AUTHOR_NAME = "Kartik"; // change to the real author name
+const AUTHOR_NAME = "Student Housing"; // change to the real author name
 const LOGO_URL = `${SITE_URL}/logo.png`; // replace with your real logo URL
 
 export default function Blog({ blog }) {
