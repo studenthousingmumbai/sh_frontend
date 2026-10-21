@@ -6,11 +6,64 @@ import moment from "moment/moment";
 import Head from "next/head";
 import Link from "next/link";
 
+const SITE_URL = "https://www.studenthousing.co.in";
+
 export default function Blog({ blog }) {
   if (!blog) return null;
 
   const pageTitle = blog.pageTitle || blog.title;
   const description = blog.description || "";
+  const canonicalUrl = `${SITE_URL}/blogs/${blog.slug}`;
+
+  // ================= AUTO-GENERATED BLOGPOSTING SCHEMA =================
+  const toISO = (value) => {
+    const d = new Date(value);
+    return isNaN(d.getTime()) ? undefined : d.toISOString();
+  };
+
+  const published = toISO(blog.createdOn || blog.createdAt);
+  const modified = toISO(blog.updatedAt || blog.createdOn || blog.createdAt);
+
+  const wordCount = blog.content?.html
+    ? blog.content.html
+        .replace(/<[^>]*>/g, " ")
+        .split(/\s+/)
+        .filter(Boolean).length
+    : undefined;
+
+  const defaultSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "@id": `${canonicalUrl}#richSnippet`,
+    mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
+    headline: pageTitle,
+    name: pageTitle,
+    description,
+    url: canonicalUrl,
+    inLanguage: "en-IN",
+    articleSection: "Student Housing",
+    ...(published && { datePublished: published }),
+    ...(modified && { dateModified: modified }),
+    ...(wordCount && { wordCount }),
+    ...(blog.coverPhoto?.url && { image: [blog.coverPhoto.url] }),
+    author: {
+      "@type": "Organization",
+      name: "Student Housing",
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Student Housing",
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/logo.png`, // replace with your real logo URL
+      },
+    },
+  };
+
+  // Hygraph schemaMarkup (if filled) overrides the generated one
+  const schemaJson = blog.schemaMarkup || JSON.stringify(defaultSchema);
 
   return (
     <>
@@ -18,18 +71,26 @@ export default function Blog({ blog }) {
       <Head>
         <title>{pageTitle}</title>
 
-        {description && (
-          <meta name="description" content={description} />
-        )}
+        {description && <meta name="description" content={description} />}
 
-        {/* ===== Open Graph (optional but recommended) ===== */}
+        <link rel="canonical" href={canonicalUrl} />
+
+        {/* ===== Open Graph ===== */}
         <meta property="og:type" content="article" />
         <meta property="og:title" content={pageTitle} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:site_name" content="Student Housing" />
         {description && (
           <meta property="og:description" content={description} />
         )}
         {blog.coverPhoto?.url && (
           <meta property="og:image" content={blog.coverPhoto.url} />
+        )}
+        {published && (
+          <meta property="article:published_time" content={published} />
+        )}
+        {modified && (
+          <meta property="article:modified_time" content={modified} />
         )}
 
         {/* ===== Twitter Card ===== */}
@@ -67,20 +128,19 @@ export default function Blog({ blog }) {
           return null;
         })}
 
-        {/* ===== Schema Markup ===== */}
-        {blog.schemaMarkup && (
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: blog.schemaMarkup,
-            }}
-          />
-        )}
+        {/* ===== Schema Markup (single script: Hygraph override or auto-generated) ===== */}
+        <script
+          key="blog-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: schemaJson.replace(/</g, "\\u003c"),
+          }}
+        />
       </Head>
 
       {/* ================= PAGE LAYOUT ================= */}
       <Layout>
-       <div className="w-[88%] sm:w-[90%] md:w-[65%] lg:w-[55%] mx-auto py-8 md:py-16 lg:py-20">
+        <div className="w-[88%] sm:w-[90%] md:w-[65%] lg:w-[55%] mx-auto py-8 md:py-16 lg:py-20">
           {/* Breadcrumb */}
           <div className="text-xs sm:text-sm md:text-base">
             <span className="text-brandColor">
@@ -124,9 +184,12 @@ export async function getServerSideProps({ params }) {
         query BlogBySlug($slug: String!) {
           blogs(where: { slug: $slug }) {
             title
+            slug
             pageTitle
             description
             createdOn
+            createdAt
+            updatedAt
             coverPhoto {
               url
             }
