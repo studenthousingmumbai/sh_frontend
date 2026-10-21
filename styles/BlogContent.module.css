@@ -65,7 +65,7 @@
     font-size: 16px;
     font-weight: 400 !important;
     text-transform: none;
-    line-height: 1.5;
+    line-height: 1.4;
     margin-bottom: 3px;
     height: auto;
 }
@@ -83,6 +83,8 @@
 .blog-content table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 .blog-content td,
@@ -95,7 +97,7 @@
 @media (max-width: 768px) {
     .blog-content {
         font-size: 14px;
-        line-height: 1.4;
+        line-height: 1;
     }
 
     .blog-content h1 {
@@ -136,7 +138,7 @@
 @media (max-width: 480px) {
     .blog-content {
         font-size: 12px;
-        line-height: 1.4;
+        line-height: 1;
     }
 
     .blog-content h1 {
