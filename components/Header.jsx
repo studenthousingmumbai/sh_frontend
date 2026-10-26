@@ -247,14 +247,14 @@ export default function Header() {
             HEADER CONTAINER
            ================================================= */}
 
-        <div className="w-full px-0">
-          <div className="flex items-center justify-between py-6 lg:justify-start lg:space-x-10">
+       <div className="w-full px-4 sm:px-6 lg:px-8 2xl:px-12">
+  <div className="mx-auto flex max-w-[1536px] items-center justify-between py-6 xl:justify-start xl:space-x-8 2xl:space-x-10">
 
             {/* ===============================================
                 LOGO
                =============================================== */}
 
-            <div className="flex justify-start lg:w-0 lg:flex-1">
+            <div className="flex justify-start xl:w-0 xl:flex-1">
               <Link href="/" legacyBehavior>
                 <a>
                   <span className="sr-only">
@@ -274,8 +274,16 @@ export default function Header() {
                 MOBILE MENU BUTTON
                =============================================== */}
 
-            <div className="-my-2 -mr-2 lg:hidden">
-              <Popover.Button
+          <div className="-my-2 flex items-center gap-2 xl:hidden">
+  <button
+    type="button"
+    onClick={() => setBookingOpen(true)}
+    className="rounded-md bg-[#ffcc29] px-3 py-2 text-sm font-medium text-black hover:bg-[#fad45a]"
+  >
+    Book Now
+  </button>
+
+  <Popover.Button
                 className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500"
               >
                 <span className="sr-only">
@@ -293,10 +301,7 @@ export default function Header() {
                 DESKTOP NAVIGATION
                =============================================== */}
 
-            <Popover.Group
-              as="nav"
-              className="hidden space-x-10 lg:flex"
-            >
+        <Popover.Group as="nav" className="hidden space-x-8 xl:flex 2xl:space-x-10">
 
               {/* ===========================================
                   EXPLORE HOSTELS
@@ -474,7 +479,7 @@ export default function Header() {
                 DESKTOP RIGHT SIDE
                =============================================== */}
 
-            <div className="hidden items-center justify-end lg:flex lg:flex-1 lg:w-0">
+          <div className="hidden items-center justify-end xl:flex xl:flex-1 xl:w-0">
 
               {/* BOOK NOW */}
 
@@ -579,9 +584,9 @@ export default function Header() {
         >
           <Popover.Panel
             focus
-            className="absolute inset-x-0 top-0 origin-top-right transform p-2 transition lg:hidden z-[1000]"
-          >
-            <div className="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+           className="absolute inset-x-0 top-0 origin-top-right transform p-2 transition sm:p-4 xl:hidden z-[1000]"
+>
+  <div className="max-h-[calc(100vh-2rem)] overflow-y-auto divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 md:ml-auto md:max-w-md">
 
               {/* MOBILE HEADER */}
 
