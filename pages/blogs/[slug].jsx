@@ -82,7 +82,7 @@ export default function Blog({ blog }) {
 
         {description && <meta name="description" content={description} />}
 
-        <link rel="canonical" href={canonicalUrl} />
+        <link rel="canonical" href={canonicalUrl} key="global-canonical" />
 
         {/* ===== Open Graph ===== */}
         <meta property="og:type" content="article" />
