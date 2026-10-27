@@ -301,185 +301,78 @@ export default function Header() {
                 DESKTOP NAVIGATION
                =============================================== */}
 
-        <Popover.Group as="nav" className="hidden space-x-8 xl:flex 2xl:space-x-10">
+       <Popover.Group as="nav" className="hidden space-x-6 xl:flex 2xl:space-x-8">
 
-              {/* ===========================================
-                  EXPLORE HOSTELS
-                 =========================================== */}
+  {/* EXPLORE HOSTELS */}
+  <div className="relative group">
+    <Link href="/listings" legacyBehavior>
+      <a className="flex items-center gap-1 text-sm font-medium text-gray-500 hover:text-gray-900">
+        Explore Hostels
+        <svg
+          className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </a>
+    </Link>
 
-              <div className="relative group">
+    {/* keep your existing dropdown div here, unchanged */}
+  </div>
 
-                <Link href="/listings" legacyBehavior>
-                  <a className="flex items-center gap-1 text-base font-medium text-gray-500 hover:text-gray-900">
-                    Explore Hostels
+  {/* STAY NEAR CAMPUS */}
+  <div className="relative group">
+    <span className="flex cursor-pointer items-center gap-1 text-sm font-medium text-gray-500 hover:text-gray-900">
+      Stay Near Campus
+      <svg
+        className="h-3.5 w-3.5 transition-transform group-hover:rotate-180"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+      </svg>
+    </span>
 
-                    <svg
-                      className="h-4 w-4 transition-transform duration-200 group-hover:rotate-180"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </a>
-                </Link>
+    {/* keep your existing dropdown div here, unchanged */}
+  </div>
 
-                <div
-                  className="absolute left-0 mt-3 w-80 rounded-xl bg-white shadow-xl ring-1 ring-black/5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[1100]"
-                >
-                  <div className="h-[190px] overflow-y-auto py-2">
-                    {hostels.map((hostel) => (
-                      <Link
-                        key={hostel.href}
-                        href={hostel.href}
-                        legacyBehavior
-                      >
-                        <a
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        >
-                          {hostel.name}
-                        </a>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              </div>
+  {/* EXPLORE BY AREA */}
+  <div className="relative group">
+    <span className="flex cursor-pointer items-center gap-1 text-sm font-medium text-gray-500 hover:text-gray-900">
+      Explore by Area
+      <svg
+        className="h-3.5 w-3.5 transition-transform group-hover:rotate-180"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+      </svg>
+    </span>
 
-              {/* ===========================================
-                  STAY NEAR CAMPUS
-                 =========================================== */}
+    {/* keep your existing dropdown div here, unchanged */}
+  </div>
 
-              <div className="relative group">
+  {/* STATIC LINKS */}
+  <Link href="/about-us" legacyBehavior>
+    <a className="text-sm font-medium text-gray-500 hover:text-gray-900">About Us</a>
+  </Link>
 
-                <span className="flex cursor-pointer items-center gap-1 text-base font-medium text-gray-500 hover:text-gray-900">
-                  Stay Near Campus
+  <Link href="/contact-us" legacyBehavior>
+    <a className="text-sm font-medium text-gray-500 hover:text-gray-900">Contact Us</a>
+  </Link>
 
-                  <svg
-                    className="h-4 w-4 transition-transform group-hover:rotate-180"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </span>
+  <Link href="/life-at-student-housing" legacyBehavior>
+    <a className="text-sm font-medium text-gray-500 hover:text-gray-900">Life @ Student Housing</a>
+  </Link>
 
-                <div
-                  className="absolute left-0 mt-3 w-72 rounded-xl bg-white shadow-xl ring-1 ring-black/5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[1100]"
-                >
-                  <div className="max-h-[260px] overflow-y-auto py-2">
-                    {hostelsNearCollege.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        legacyBehavior
-                      >
-                        <a
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        >
-                          {item.name}
-                        </a>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* ===========================================
-                  EXPLORE BY AREA
-                 =========================================== */}
-
-              <div className="relative group">
-
-                <span className="flex cursor-pointer items-center gap-1 text-base font-medium text-gray-500 hover:text-gray-900">
-                  Explore by Area
-
-                  <svg
-                    className="h-4 w-4 transition-transform group-hover:rotate-180"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </span>
-
-                <div
-                  className="absolute left-0 mt-3 w-64 rounded-xl bg-white shadow-xl ring-1 ring-black/5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[1100]"
-                >
-                  <div className="py-2">
-                    {hostelsNearLocation.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        legacyBehavior
-                      >
-                        <a
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        >
-                          {item.name}
-                        </a>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* ===========================================
-                  STATIC LINKS
-                 =========================================== */}
-
-              <Link href="/about-us" legacyBehavior>
-                <a className="text-base font-medium text-gray-500 hover:text-gray-900">
-                  About Us
-                </a>
-              </Link>
-
-              <Link href="/contact-us" legacyBehavior>
-                <a className="text-base font-medium text-gray-500 hover:text-gray-900">
-                  Contact Us
-                </a>
-              </Link>
-
-              {/* <Link href="/refer-and-earn" legacyBehavior>
-                <a className="text-base font-medium text-gray-500 hover:text-gray-900">
-                  Refer & Earn
-                </a>
-              </Link> */}
-
-                <Link href="/life-at-student-housing" legacyBehavior>
-                <a className="text-base font-medium text-gray-500 hover:text-gray-900">
-                  Life @ Student Housing
-                </a>
-              </Link>
-
-              <Link href="/faqs" legacyBehavior>
-                <a className="text-base font-medium text-gray-500 hover:text-gray-900">
-                  FAQs
-                </a>
-              </Link>
-            </Popover.Group>
+  <Link href="/faqs" legacyBehavior>
+    <a className="text-sm font-medium text-gray-500 hover:text-gray-900">FAQs</a>
+  </Link>
+</Popover.Group>
 
             {/* ===============================================
                 DESKTOP RIGHT SIDE
