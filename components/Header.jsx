@@ -462,9 +462,15 @@ export default function Header() {
                 </a>
               </Link>
 
-              <Link href="/refer-and-earn" legacyBehavior>
+              {/* <Link href="/refer-and-earn" legacyBehavior>
                 <a className="text-base font-medium text-gray-500 hover:text-gray-900">
                   Refer & Earn
+                </a>
+              </Link> */}
+
+                <Link href="/life-at-student-housing" legacyBehavior>
+                <a className="text-base font-medium text-gray-500 hover:text-gray-900">
+                  Life @ Student Housing
                 </a>
               </Link>
 
