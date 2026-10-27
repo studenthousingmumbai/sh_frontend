@@ -11,67 +11,80 @@ import Occupancy from "../../components/Occupancy";
 import Ameities from "../../components/Amenities";
 import StudentTestimonials from "../../components/StudentTestimonials";
 import apis from "../../lib/apis";
-import { pickRandomFaqs } from "../../utils/faqs";
+import {
+  boysFixedFaqs,
+  boysRandomFaqPool,
+  getFaqs,
+  withIds,
+} from "../../utils/hostelFaqs";
 import client from "../../apolloClient";
 import { gql } from "@apollo/client";
 import Head from "next/head";
 
-export default function BoysHostel({ all_listings }) {
-  const [randomFaqs, setRandomFaqs] = useState([]);
+export default function BoysHostel({ all_listings = [] }) {
+  // Start with the fixed FAQs so the server render matches the first client render
+  const [faqs, setFaqs] = useState(withIds(boysFixedFaqs));
 
   useLayoutEffect(() => {
-    setRandomFaqs(pickRandomFaqs(6));
+    // 4 fixed + 4 random from the pool of 8
+    setFaqs(getFaqs(boysFixedFaqs, boysRandomFaqPool, 4));
   }, []);
+
+  const firstListing = all_listings?.[0];
 
   return (
     <>
-
       <Head>
-  <title>Boys Hostel in Mumbai Near Top Colleges | Student Housing</title>
-  <meta
-    name="description"
-    content="Looking for a boys hostel in Mumbai? Find furnished student accommodation with meals, WiFi, housekeeping and security near top colleges."
-  />
-</Head>
-      
-    <Layout>
-      <HeroBanner
-        title={"Boys Hostel"}
-        subTitle={
-          "Find the perfect stay with modern amenities, security, and a friendly community."
-        }
-        image={"/hero-banner/Image-3.webp"}
-      />
-      <OurRooms
-  data={{
-    ...all_listings[0],
-    images: [
-      { url: "/our-rooms/Avenue_building_pic.webp" },
-      { url: "/our-rooms/gym_1.webp" },
-      { url: "/our-rooms/elita_swimming_pool_1.webp" },
-      { url: "/our-rooms/elita_gym_2.webp" },
-      { url: "/our-rooms/elita_gym_3.webp" },
-    ],
-  }}
-/>
+        <title>Boys Hostel in Mumbai Near Top Colleges | Student Housing</title>
+        <meta
+          name="description"
+          content="Looking for a boys hostel in Mumbai? Find furnished student accommodation with meals, WiFi, housekeeping and security near top colleges."
+        />
+      </Head>
 
-      <div className="my-14 mx-12 lg:mx-48 border border-black opacity-10" />
-      <WhyChoose gender="boy" />
+      <Layout>
+        <HeroBanner
+          title={"Boys Hostel"}
+          subTitle={
+            "Find the perfect stay with modern amenities, security, and a friendly community."
+          }
+          image={"/hero-banner/Image-3.webp"}
+        />
 
-      <Quote />
+        {firstListing && (
+          <OurRooms
+            data={{
+              ...firstListing,
+              images: [
+                { url: "/our-rooms/Avenue_building_pic.webp" },
+                { url: "/our-rooms/gym_1.webp" },
+                { url: "/our-rooms/elita_swimming_pool_1.webp" },
+                { url: "/our-rooms/elita_gym_2.webp" },
+                { url: "/our-rooms/elita_gym_3.webp" },
+              ],
+            }}
+          />
+        )}
 
-      <RoomOptionsAndPricing data={all_listings} />
+        <div className="my-14 mx-12 lg:mx-48 border border-black opacity-10" />
+        <WhyChoose gender="boy" />
 
-      <Occupancy />
+        <Quote />
 
-      <Ameities />
+        {all_listings?.length > 0 && (
+          <RoomOptionsAndPricing data={all_listings} />
+        )}
 
-      <StudentTestimonials />
+        <Occupancy />
 
-      <Queries />
+        <Ameities />
 
-      <FAQ faqs={randomFaqs} />
-    </Layout>
+        <StudentTestimonials />
+
+        <Queries />
+
+        <FAQ faqs={faqs} />
+      </Layout>
     </>
   );
 }
@@ -140,18 +153,19 @@ export async function getServerSideProps(context) {
         gender,
       },
     });
-    const { hostelsOrders } = data;
-    const hostels = hostelsOrders[0].hostel;
+
+    const hostels = data?.hostelsOrders?.[0]?.hostel ?? [];
+
     return {
       props: {
-        all_listings: hostels ?? null,
+        all_listings: hostels,
       },
     };
   } catch (e) {
     console.error("Error fetching data:", e);
     return {
       props: {
-        all_listings: null,
+        all_listings: [],
       },
     };
   }

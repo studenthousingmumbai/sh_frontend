@@ -301,7 +301,7 @@ export default function Header() {
                 DESKTOP NAVIGATION
                =============================================== */}
 
-       <Popover.Group as="nav" className="hidden space-x-6 xl:flex 2xl:space-x-8">
+      <Popover.Group as="nav" className="hidden space-x-6 xl:flex 2xl:space-x-8">
 
   {/* EXPLORE HOSTELS */}
   <div className="relative group">
@@ -319,7 +319,21 @@ export default function Header() {
       </a>
     </Link>
 
-    {/* keep your existing dropdown div here, unchanged */}
+    <div className="absolute left-0 mt-3 w-80 rounded-xl bg-white shadow-xl ring-1 ring-black/5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[1100]">
+      <div className="h-[190px] overflow-y-auto py-2">
+        {hostels.map((hostel) => (
+          <Link key={hostel.href} href={hostel.href} legacyBehavior>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+            >
+              {hostel.name}
+            </a>
+          </Link>
+        ))}
+      </div>
+    </div>
   </div>
 
   {/* STAY NEAR CAMPUS */}
@@ -336,7 +350,21 @@ export default function Header() {
       </svg>
     </span>
 
-    {/* keep your existing dropdown div here, unchanged */}
+    <div className="absolute left-0 mt-3 w-72 rounded-xl bg-white shadow-xl ring-1 ring-black/5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[1100]">
+      <div className="max-h-[260px] overflow-y-auto py-2">
+        {hostelsNearCollege.map((item) => (
+          <Link key={item.href} href={item.href} legacyBehavior>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+            >
+              {item.name}
+            </a>
+          </Link>
+        ))}
+      </div>
+    </div>
   </div>
 
   {/* EXPLORE BY AREA */}
@@ -353,7 +381,21 @@ export default function Header() {
       </svg>
     </span>
 
-    {/* keep your existing dropdown div here, unchanged */}
+    <div className="absolute left-0 mt-3 w-64 rounded-xl bg-white shadow-xl ring-1 ring-black/5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[1100]">
+      <div className="py-2">
+        {hostelsNearLocation.map((item) => (
+          <Link key={item.href} href={item.href} legacyBehavior>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+            >
+              {item.name}
+            </a>
+          </Link>
+        ))}
+      </div>
+    </div>
   </div>
 
   {/* STATIC LINKS */}

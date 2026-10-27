@@ -1,3 +1,4 @@
+import { useLayoutEffect, useState } from "react";
 import HeroBanner from "../../components/HeroBanner";
 import Queries from "../../components/Queries";
 import Quote from "../../components/Quote";
@@ -10,57 +11,67 @@ import Occupancy from "../../components/Occupancy";
 import Ameities from "../../components/Amenities";
 import StudentTestimonials from "../../components/StudentTestimonials";
 import apis from "../../lib/apis";
-import { useLayoutEffect, useState } from "react";
-import { pickRandomFaqs } from "../../utils/faqs";
+import {
+  girlsFixedFaqs,
+  girlsRandomFaqPool,
+  getFaqs,
+  withIds,
+} from "../../utils/hostelFaqs";
 import client from "../../apolloClient";
 import { gql } from "@apollo/client";
 import Head from "next/head";
 
-export default function GirlsHostel({ all_listings }) {
-  const [randomFaqs, setRandomFaqs] = useState([]);
+export default function GirlsHostel({ all_listings = [] }) {
+  // Start with the fixed FAQs so the server render matches the first client render
+  const [faqs, setFaqs] = useState(withIds(girlsFixedFaqs));
 
   useLayoutEffect(() => {
-    setRandomFaqs(pickRandomFaqs(6));
+    // 4 fixed + 4 random from the pool of 8
+    setFaqs(getFaqs(girlsFixedFaqs, girlsRandomFaqPool, 4));
   }, []);
+
+  const firstListing = all_listings?.[0];
 
   return (
     <>
-
       <Head>
-  <title>Girls Hostel in Mumbai Near Top Colleges | Student Housing</title>
-  <meta
-    name="description"
-    content="Looking for a girls hostel in Mumbai? Student Housing offers furnished student accommodation with meals, WiFi, housekeeping & security near top colleges"
-  />
-</Head>
-      
-    <Layout>
-      <HeroBanner
-        title={"Girls Hostel"}
-        subTitle={
-          "Find the perfect stay with modern amenities, security, and a friendly community."
-        }
-        image={"/hero-banner/Image-1.webp"}
-      />
-      <OurRooms data={all_listings[0]} />
+        <title>Girls Hostel in Mumbai Near Top Colleges | Student Housing</title>
+        <meta
+          name="description"
+          content="Looking for a girls hostel in Mumbai? Student Housing offers furnished student accommodation with meals, WiFi, housekeeping & security near top colleges"
+        />
+      </Head>
 
-      <div className="my-14 mx-12 lg:mx-48 border border-black opacity-10" />
-      <WhyChoose gender="girl" />
+      <Layout>
+        <HeroBanner
+          title={"Girls Hostel"}
+          subTitle={
+            "Find the perfect stay with modern amenities, security, and a friendly community."
+          }
+          image={"/hero-banner/Image-1.webp"}
+        />
 
-      <Quote />
+        {firstListing && <OurRooms data={firstListing} />}
 
-      <RoomOptionsAndPricing data={all_listings} />
+        <div className="my-14 mx-12 lg:mx-48 border border-black opacity-10" />
+        <WhyChoose gender="girl" />
 
-      <Occupancy />
+        <Quote />
 
-      <Ameities />
+        {all_listings?.length > 0 && (
+          <RoomOptionsAndPricing data={all_listings} />
+        )}
 
-      <StudentTestimonials />
+        <Occupancy />
 
-      <Queries />
+        <Ameities />
 
-      <FAQ faqs={randomFaqs} />
-    </Layout>
+        <StudentTestimonials />
+
+        <Queries />
+
+        <FAQ faqs={faqs} />
+      </Layout>
     </>
   );
 }
@@ -129,18 +140,19 @@ export async function getServerSideProps(context) {
         gender,
       },
     });
-    const { hostelsOrders } = data;
-    const hostels = hostelsOrders[0].hostel;
+
+    const hostels = data?.hostelsOrders?.[0]?.hostel ?? [];
+
     return {
       props: {
-        all_listings: hostels ?? null,
+        all_listings: hostels,
       },
     };
   } catch (e) {
     console.error("Error fetching data:", e);
     return {
       props: {
-        all_listings: null,
+        all_listings: [],
       },
     };
   }
