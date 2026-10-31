@@ -7,10 +7,7 @@ export default function Document() {
     <Html className="h-full bg-white antialiased" lang="en">
       <Head>
         <meta name="robots" content="index, follow" />
-        <meta
-          name="google-site-verification"
-          content="TdH2yMKePDJB-Vb8XETapJ-ad9iQF7dCnPKwIk0PJQw"
-        />
+        <meta name="google-site-verification" content="34-Oxj2STWVVZkrX4AiUSzpw-w05U_W84HGkeBLUz5I" />
         <link rel="icon" href="/sh_logo.png" />
       </Head>
 
