@@ -8,10 +8,15 @@ import BookingModal from "../components/BookingModal";
 /* ------------------------------------------------------------------ */
 /*  EVENTS DATA                                                        */
 /*  Every event uses the same Mosaic layout.                           */
-/*  images: [{ src, alt }, ...]  – first image is the hero/lead image  */
-/*  imgs() is just a shortcut for /events/<folder>/1.webp ... n.webp.  */
-/*  Replace with an explicit array of your own URLs any time.          */
-/*  Add as many images as you like – the grid auto-balances itself.    */
+/*  images: [{ src, alt }, ...]  – first item is the hero/lead tile    */
+/*  imgs() is a shortcut for /events/<folder>/1.webp ... n.webp.       */
+/*                                                                     */
+/*  VIDEOS: add items like                                             */
+/*    { type: "video", src: "/events/x/clip.webm",                     */
+/*      orientation: "vertical" | "horizontal", alt: "..." }           */
+/*  vertical   -> takes 2 rows (tall tile)                             */
+/*  horizontal -> takes 2 columns (wide tile)                          */
+/*  withVideos() inserts videos at a given position in the final list. */
 /* ------------------------------------------------------------------ */
 const imgs = (folder, n, alt) =>
   Array.from({ length: n }, (_, i) => ({
@@ -19,15 +24,37 @@ const imgs = (folder, n, alt) =>
     alt: `${alt} ${i + 1}`,
   }));
 
-const events = [
+// vids: [{ at: <index in final list>, src, orientation, alt }]  (keep `at` ascending)
+const withVideos = (images, vids) => {
+  const out = [...images];
+  vids.forEach(({ at, ...v }) => out.splice(at, 0, { type: "video", ...v }));
+  return out;
+};
 
+// encodeURI so file names with spaces / brackets still work
+const vid = (path) => encodeURI(path);
+
+const events = [
   {
     month: "DEC",
     year: "2025",
     title: "Sleigh the Night",
     tagline:
       "A magical rooftop Christmas celebration filled with festive lights, music, games, hot chocolate and unforgettable memories.",
-    images: imgs("christmas", 11, "Sleigh the Night"),
+    images: withVideos(imgs("christmas", 11, "Sleigh the Night"), [
+      {
+        at: 3, // position in the final list (0 = hero)
+        src: vid("/events/christmas/christmas_video_1.webm"),
+        orientation: "horizontal",
+        alt: "Sleigh the Night video 1",
+      },
+      {
+        at: 8,
+        src: vid("/events/christmas/christmas_video_2.webm"),
+        orientation: "vertical",
+        alt: "Sleigh the Night video 2",
+      },
+    ]),
   },
 
   {
@@ -44,7 +71,20 @@ const events = [
     year: "2025",
     title: "The White Affair",
     tagline: "300+ students, all in white, one unforgettable poolside night.",
-    images: imgs("white-affair", 11, "White Affair"),
+    images: withVideos(imgs("white-affair", 11, "White Affair"), [
+      {
+        at: 3,
+        src: vid("/events/white-affair/white-affair-video1.webm"),
+        orientation: "vertical",
+        alt: "White Affair video 1",
+      },
+      {
+        at: 8,
+        src: vid("/events/white-affair/white-affair-video2_.webm"),
+        orientation: "horizontal",
+        alt: "White Affair video 2",
+      },
+    ]),
   },
 
   {
@@ -53,12 +93,26 @@ const events = [
     title: "The Neon Nirvana",
     tagline:
       "A vibrant Holi celebration filled with neon colours, music, lights, and an energetic pool party with 200+ students.",
-    images: imgs("holi", 11, "Neon Nirvana"),
+    images: withVideos(imgs("holi", 11, "Neon Nirvana"), [
+      {
+        at: 3,
+         src: vid("/events/holi/holi_2_video.webm"),
+        orientation: "vertical",
+        alt: "Neon Nirvana video 1",
+      },
+      {
+        at: 8,
+        src: vid("/events/holi/8B5A7853 (1).webm"),
+        orientation: "horizontal",
+        alt: "Neon Nirvana video 2",
+      },
+    ]),
   },
- 
 ];
 
 /* ------------------------------ helpers ------------------------------ */
+
+const isVideo = (m) => m && m.type === "video";
 
 function Reveal({ children, className = "" }) {
   const ref = useRef(null);
@@ -100,21 +154,67 @@ function DateChip({ event }) {
   );
 }
 
+/* Video tile: muted looping preview that only plays while on screen.   */
+function VideoTile({ media }) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          const p = el.play();
+          if (p && p.catch) p.catch(() => {});
+        } else {
+          el.pause();
+        }
+      },
+      { threshold: 0.25 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <video
+      ref={ref}
+      src={media.src}
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      aria-label={media.alt || "Event video"}
+      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+    />
+  );
+}
+
 function Tile({ img, onClick, className = "" }) {
   if (!img) return null;
   return (
     <button
       type="button"
       onClick={onClick}
-      aria-label="View photo"
+      aria-label={isVideo(img) ? "Play video" : "View photo"}
       className={`group relative block w-full h-full overflow-hidden cursor-zoom-in ${className}`}
     >
-      <img
-        src={img.src}
-        alt={img.alt || "Event photo"}
-        loading="lazy"
-        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-      />
+      {isVideo(img) ? (
+        <>
+          <VideoTile media={img} />
+          {/* small play badge */}
+          <span className="pointer-events-none absolute top-3 right-3 w-9 h-9 rounded-full bg-black/50 backdrop-blur text-white text-xs flex items-center justify-center">
+            ▶
+          </span>
+        </>
+      ) : (
+        <img
+          src={img.src}
+          alt={img.alt || "Event photo"}
+          loading="lazy"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+      )}
       <span className="pointer-events-none absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
     </button>
   );
@@ -122,26 +222,43 @@ function Tile({ img, onClick, className = "" }) {
 
 /* ---------------------------- MOSAIC --------------------------------- */
 /* Bento grid – big hero with title overlay + mixed-size tiles.          */
-/* The hero takes 4 cells. To avoid empty gaps for any number of photos, */
-/* we add just enough "big" tiles (row-span-2 / col-span-2) so the total */
-/* cell count is a multiple of 4 (desktop) and of 2 (mobile).            */
+/* The hero takes 4 cells. Videos take 2 cells each (vertical = row-span-2,
+   horizontal = col-span-2). To avoid empty gaps, we double just enough
+   photo tiles so the total cell count is a multiple of 4 (desktop).     */
 
-const SPAN_SLOTS = { 1: "row-span-2", 3: "col-span-2", 5: "row-span-2" };
+const PHOTO_SPAN_CYCLE = ["row-span-2", "col-span-2", "row-span-2"];
 
-function getSpans(restCount) {
-  const extra = (4 - (restCount % 4)) % 4; // number of tiles that must be doubled
+function getSpans(rest) {
   const spans = {};
-  Object.keys(SPAN_SLOTS)
-    .slice(0, extra)
-    .forEach((k) => {
-      spans[k] = SPAN_SLOTS[k];
-    });
+
+  // 1) fixed spans for videos
+  let cells = 0;
+  const photoIdx = [];
+  rest.forEach((m, i) => {
+    if (isVideo(m)) {
+      spans[i] = m.orientation === "vertical" ? "row-span-2" : "col-span-2";
+      cells += 2;
+    } else {
+      photoIdx.push(i);
+      cells += 1;
+    }
+  });
+
+  // 2) double just enough photos to make the total a multiple of 4
+  const extra = (4 - (cells % 4)) % 4;
+  if (extra > 0 && photoIdx.length > 0) {
+    const step = Math.max(1, Math.floor(photoIdx.length / extra));
+    for (let k = 0; k < extra; k++) {
+      const idx = photoIdx[Math.min(k * step + 1, photoIdx.length - 1)];
+      if (!spans[idx]) spans[idx] = PHOTO_SPAN_CYCLE[k % PHOTO_SPAN_CYCLE.length];
+    }
+  }
   return spans;
 }
 
 function Mosaic({ event, open }) {
   const [hero, ...rest] = event.images;
-  const spans = getSpans(rest.length);
+  const spans = getSpans(rest);
 
   return (
     <section className="rounded-3xl bg-white p-2 sm:p-3 shadow-lg shadow-black/5 border border-gray-100">
@@ -170,7 +287,7 @@ function Mosaic({ event, open }) {
 
 /* ----------------------------- LIGHTBOX ------------------------------ */
 /* Rendered via a portal into <body> with the max z-index so it always   */
-/* sits above the site header / any fixed navbar.                        */
+/* sits above the site header / any fixed navbar. Supports photos+videos */
 
 function Lightbox({ state, setState }) {
   useEffect(() => {
@@ -209,6 +326,7 @@ function Lightbox({ state, setState }) {
         aria-label="Close"
         onClick={() => setState(null)}
         className="absolute top-4 right-4 w-11 h-11 rounded-full bg-white/15 hover:bg-[#FFCC29] hover:text-black text-white text-xl transition"
+        style={{ zIndex: 1 }}
       >
         ✕
       </button>
@@ -221,17 +339,32 @@ function Lightbox({ state, setState }) {
           step(-1);
         }}
         className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/15 hover:bg-[#FFCC29] hover:text-black text-white transition"
+        style={{ zIndex: 1 }}
       >
         ←
       </button>
 
-      <img
-        src={img.src}
-        alt={img.alt || "Event photo"}
-        onClick={(e) => e.stopPropagation()}
-        className="max-w-full sm:max-w-[85vw] object-contain rounded-xl"
-        style={{ maxHeight: "calc(100vh - 8rem)" }}
-      />
+      {isVideo(img) ? (
+        <video
+          key={img.src}
+          src={img.src}
+          controls
+          autoPlay
+          loop
+          playsInline
+          onClick={(e) => e.stopPropagation()}
+          className="max-w-full sm:max-w-[85vw] object-contain rounded-xl"
+          style={{ maxHeight: "calc(100vh - 8rem)" }}
+        />
+      ) : (
+        <img
+          src={img.src}
+          alt={img.alt || "Event photo"}
+          onClick={(e) => e.stopPropagation()}
+          className="max-w-full sm:max-w-[85vw] object-contain rounded-xl"
+          style={{ maxHeight: "calc(100vh - 8rem)" }}
+        />
+      )}
 
       <button
         type="button"
@@ -241,6 +374,7 @@ function Lightbox({ state, setState }) {
           step(1);
         }}
         className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/15 hover:bg-[#FFCC29] hover:text-black text-white transition"
+        style={{ zIndex: 1 }}
       >
         →
       </button>
@@ -288,7 +422,7 @@ export default function LifeAtStudentHousing() {
           />
           <div className="absolute bg-black-overlay w-full h-full"></div>
           <div className="absolute w-full text-center">
-           <h1 className="uppercase text-xl lg:text-3xl text-white">
+            <h1 className="uppercase text-xl lg:text-3xl text-white">
               <b>Life @ Student Housing</b>
             </h1>
           </div>
