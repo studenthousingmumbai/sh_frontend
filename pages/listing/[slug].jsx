@@ -286,13 +286,16 @@ const faqSchema =
           </button>
         </Modal>
 
-        <Modal
-          title="Watch Listing Video"
-          onClose={setWatchVideoOpen}
-          open={watchVideoOpen}
-        >
-          <VideoPlayer videoLink={listing?.video_link} width={"w-[550px]"} />
-        </Modal>
+      <Modal
+  title="Watch Listing Video"
+  onClose={() => setWatchVideoOpen(false)}
+  open={watchVideoOpen}
+  noScroll
+>
+  <div className="relative w-full aspect-video overflow-hidden rounded-md bg-black [&_iframe]:absolute [&_iframe]:inset-0 [&_iframe]:!h-full [&_iframe]:!w-full [&_iframe]:border-0 [&_video]:absolute [&_video]:inset-0 [&_video]:h-full [&_video]:w-full">
+    <VideoPlayer videoLink={listing?.video_link} width="w-full" />
+  </div>
+</Modal>
 
         {/* <Modal open={selectedImageOpen} onClose={() => setSelectedImageOpen(false)}>
           <div className='w-[1000px]'> 
@@ -301,7 +304,7 @@ const faqSchema =
         </Modal> */}
 
         <div className="bg-white mb-5 px-4 sm:px-16">
-          <main className="mx-auto max-w-7xl sm:px-6 sm:pt-16 lg:px-8">
+          <main className="mx-auto max-w-7xl pt-6 sm:px-6 sm:pt-16 lg:px-8">
             <div className="mx-auto max-w-2xl lg:max-w-none mb-6">
               {/* Product */}
               <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
@@ -339,12 +342,20 @@ const faqSchema =
                     {listing?.name}
                   </h1>
 
-                  <div className="mt-3">
-                    <p className="sr-only">Listing description</p>
-                    <p className="text-xl tracking-tight text-gray-600 font-medium">
-                      {listing?.description}
-                    </p>
-                  </div>
+                <div className="mt-3">
+  <p className="sr-only">Listing description</p>
+
+  {listing?.richDescription?.html ? (
+    <div
+      className="text-xl tracking-tight text-gray-600 font-normal [&_p]:mb-4 [&_strong]:font-bold [&_strong]:text-gray-900"
+      dangerouslySetInnerHTML={{ __html: listing.richDescription.html }}
+    />
+  ) : (
+    <p className="text-xl tracking-tight text-gray-600 font-normal whitespace-pre-line">
+      {listing?.description}
+    </p>
+  )}
+</div>
 
                   <div className="mt-3">
                     <p className="sr-only">Listing address</p>
@@ -358,55 +369,53 @@ const faqSchema =
                     <a className="text-md tracking-tight text-green-500 hover:text-green-600 underline cursor-pointer">View distances</a>
                   </div> */}
 
-                  <div className="flex mt-3">
-                    <button
-                      type="button"
-                      className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 mr-2"
-                      onClick={handleViewOnMap}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="-ml-1 mr-2 h-5 w-5"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
-                        />
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
-                        />
-                      </svg>
-                      View on Map
-                    </button>
+                  <div className="mt-3 flex flex-nowrap gap-2">
+  <button
+    type="button"
+    className="inline-flex flex-1 items-center justify-center whitespace-nowrap rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:flex-none sm:px-4"
+    onClick={handleViewOnMap}
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      className="mr-1.5 h-5 w-5 shrink-0 sm:mr-2"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+      />
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+      />
+    </svg>
+    View on Map
+  </button>
 
-                    <button
-                      type="button"
-                      className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                      onClick={() => setWatchVideoOpen(true)}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        width="24"
-                        height="24"
-                        className="mr-2"
-                      >
-                        <path
-                          fill="#FF0000"
-                          d="M21.34 5.04c-.24-.89-.95-1.59-1.84-1.84C17.53 3 12 3 12 3S6.47 3 4.5 3.2c-.89.25-1.6.95-1.84 1.84C2 7.12 2 12 2 12s0 4.88.66 6.96c.24.89.95 1.59 1.84 1.84 1.97.2 7.5.2 7.5.2s5.53 0 7.5-.2c.89-.25 1.6-.95 1.84-1.84.66-2.08.66-6.96.66-6.96s0-4.88-.66-6.96zM9.75 15.42V8.58l6.67 3.42-6.67 3.42z"
-                        />
-                      </svg>
-                      Watch Video
-                    </button>
-                  </div>
+  <button
+    type="button"
+    className="inline-flex flex-1 items-center justify-center whitespace-nowrap rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:flex-none sm:px-4"
+    onClick={() => setWatchVideoOpen(true)}
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className="mr-1.5 h-5 w-5 shrink-0 sm:mr-2 sm:h-6 sm:w-6"
+    >
+      <path
+        fill="#FF0000"
+        d="M21.34 5.04c-.24-.89-.95-1.59-1.84-1.84C17.53 3 12 3 12 3S6.47 3 4.5 3.2c-.89.25-1.6.95-1.84 1.84C2 7.12 2 12 2 12s0 4.88.66 6.96c.24.89.95 1.59 1.84 1.84 1.97.2 7.5.2 7.5.2s5.53 0 7.5-.2c.89-.25 1.6-.95 1.84-1.84.66-2.08.66-6.96.66-6.96s0-4.88-.66-6.96zM9.75 15.42V8.58l6.67 3.42-6.67 3.42z"
+      />
+    </svg>
+    Watch Video
+  </button>
+</div>
 
                   <div className="mt-3 mb-3 ">
                     <p className="uppercase text-lg text-gray-600">
@@ -558,22 +567,22 @@ const faqSchema =
               <Faqs faqs={listing?.faqs} />
             </div>
 
-            <Modal
-              title={"View Location On Map"}
-              open={locationOpen}
-              onClose={() => setLocationOpen(false)}
-            >
-              <div className="mb-3 w-full h-[450px] bg-gray-200">
-                {listing?.mapEmbed && (
-  <div className="w-full h-[450px] rounded-md overflow-hidden">
-    <div
-      className="w-full h-full"
-      dangerouslySetInnerHTML={{ __html: listing.mapEmbed }}
-    />
+           <Modal
+  title={"View Location On Map"}
+  open={locationOpen}
+  onClose={() => setLocationOpen(false)}
+>
+  <div className="w-full h-[60dvh] sm:h-[65dvh] max-h-[450px] min-h-[240px] rounded-md overflow-hidden bg-gray-200">
+    {listing?.mapEmbed && (
+      <div
+        className="w-full h-full [&_iframe]:!w-full [&_iframe]:!h-full [&_iframe]:block [&_iframe]:border-0"
+        dangerouslySetInnerHTML={{ __html: listing.mapEmbed }}
+      />
+    )}
   </div>
-)}
-              </div>
-            </Modal>
+</Modal>
+
+
           </main>
         </div>
       </Layout>
